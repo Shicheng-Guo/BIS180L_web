@@ -71,7 +71,7 @@ You've learned a lot of valuable information in this course and some of that mig
 
 
 ### Sample Interview Question 1:
-You are given a large list or array, say of 1,000 in length. It contains the integers 0-1,000 inclusive. Now I just said this list is only 1,000 in length which isn’t possible because 0-1,000 is 1,001 numbers. One number is in fact missing from the array. Your task is to develop an algorithm to determine which number is missing.
+You are given a large list or array of 1,000 in length. It contains the integers 0-1,000 inclusive. Now I just said this list is only 1,000 in length which isn’t possible because 0-1,000 is in fact 1,001 numbers. One number is missing from the array. Your task is to develop an algorithm to determine which number is missing.
 
 ### Sample Interview Question 2:
 Write a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz” instead of the number and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz”.
