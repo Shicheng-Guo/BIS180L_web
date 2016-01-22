@@ -15,7 +15,7 @@ In the last lab period we learned about Illumina reads and fastq files.  We perf
 Today we will pick up where we left off.  Our goals are to:
 
 1. Learn about sequence alignment/mapping (SAM/BAM) files.
-2. Examine mapped reads in [IGV--the integrative genomics viewer](https://www.broadinstitute.org/igv/).  This will allow us to see how reads are placed on the genome during the mapping process. 
+2. Examine mapped reads in [IGV--the integrative genomics viewer](https://www.broadinstitute.org/igv/).  This will allow us to see how reads are placed on the genome during the mapping process.
 3. Find polymorphic positions in our sequencing data.
 
 
@@ -94,7 +94,7 @@ Let's take a look at `accepted_hits_A01.bam`.  For this we use the `samtools vie
 `samtools idxstats` -- summarize reads mapping to each reference sequence  
 `samtools mpileup` -- count the number of matches and mismatches at each position  
 
-And more 
+And more
 
 ## Look at a bam file with IGV
 
@@ -159,7 +159,7 @@ Make a new directory for this analysis inside the Brassica_assigment directory
     mkdir SNP_analysis
     cd SNP_analysis
 
-In the library preparation step there is a PCR amplification.  This can cause duplication of DNA fragments.  We want to remove these duplicate reads because they can skew our SNP analysis (essentially they represent pseudo-replication, giving us artificially high sample numbers).  We will use `samtools rmdup` to remove the duplicate reads 
+In the library preparation step there is a PCR amplification.  This can cause duplication of DNA fragments.  We want to remove these duplicate reads because they can skew our SNP analysis (essentially they represent pseudo-replication, giving us artificially high sample numbers).  We will use `samtools rmdup` to remove the duplicate reads
 
     samtools rmdup -s ../tophat_out-IMB211_All_A01_INTERNODE.fq/accepted_hits_A01.bam IMB211_rmdup.bam
 
@@ -174,14 +174,14 @@ Now we use `samtools mpileup` to look for SNPs.  Samtools mpileup calculates the
 
     samtools mpileup -DVuf ../Brapa_reference/BrapaV1.5_chrom_only.fa IMB211_rmdup.bam R500_rmdup.bam | bcftools view -vcg - > IMB211_R500.vcf
 
-You should check the man page for the meaning of the flags, but briefly, 
+You should check the man page for the meaning of the flags, but briefly,
 
-* for samtools, 
+* for samtools,
     * -D and -V indicate that per sample depth and variant depth should be reported.  
     * -u is uncompressed format
     * -f specifies the reference fasta file.  
 * For bcftools,
-    * -c specifies that variants should be called. 
+    * -c specifies that variants should be called.
     * -v limits the output to variant sites only
     * -g reports separate genotype calls for each sample
 
@@ -193,4 +193,3 @@ We will examine these in R either at the end of this lab or on Friday.
 * Other mpileup flags [may be useful depending on your situation](http://samtools.sourceforge.net/mpileup.shtml).
 * Realigning your reads around indels using the [GATK realigner](https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_indels_IndelRealigner.php) is recommended.
 * GATK offers an alternative and popular [genotyping pipeline and caller](https://www.broadinstitute.org/gatk/)
-
