@@ -3,7 +3,7 @@ title: "Library checkup for final"
 layout: post
 tags:
 - R
-hidden: false
+hidden: true
 ---
 
 Some people have been having trouble with their R libraries.  To make sure that everything will work for the final please check if the following will load:
@@ -71,8 +71,3 @@ sudo ./VBoxLinuxAdditions.run
 ```
 
 * restart your virtual machine
-
-
-
-
-
