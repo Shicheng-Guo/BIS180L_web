@@ -21,7 +21,7 @@ author:
   url:            http://biosci3.ucdavis.edu/Faculty/Profile/View/241
 
 paginate:         5
-
+future:           false
 # Custom vars
 version:          0.1.0
 
