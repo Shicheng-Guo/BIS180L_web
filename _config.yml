@@ -1,13 +1,11 @@
 # Dependencies
-markdown:         redcarpet
+markdown:         kramdown
 highlighter:      pygments
-
-redcarpet:
-  extensions: ["tables"]
+gems:             [jekyll-paginate]
 
 # Permalinks
 permalink:        pretty
-relative_permalinks: true
+#relative_permalinks: true
 
 # Setup
 title:            BIS180L
