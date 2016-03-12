@@ -24,7 +24,7 @@ If you get an error loading any of those you have two choices.
 * In Linux:
 
 ```
-cd #change to your home direcoty
+cd #change to your home directory
 rm .Rhistory .Rdata
 rm -r .rstudio-desktop
 rm -r R # this removes your user-installed R libraries

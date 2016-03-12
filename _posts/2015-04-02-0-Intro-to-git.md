@@ -44,7 +44,7 @@ Work in a group of 2 or 3 people. Each partner should follow along with what the
 
 Designate one of you to create a new repository.  This is Partner 1.
 
-* Partner 1: 
+* Partner 1:
 	* Add a file to the repository with a bit of text (what your plans are for the weekend?).  
 	* Commit your change
 	* Push the repository to git hub
@@ -55,7 +55,7 @@ Designate one of you to create a new repository.  This is Partner 1.
 	* Clone the repository to your computer
 	* Add your information (what your plans are for the weekend?)
 	* Commit your change
-	* Push the changes to the repsitory
+	* Push the changes to the repository
 	* Run git log and save the output to a file.
 
 * Partner 1:
@@ -71,7 +71,7 @@ The above exercise illustrate one way to collaborate: each collaborator is added
 
 Let's try it.  I need to collect everyone's GitHub usernames.  To do this we will collaboratively edit a document through git and GitHub.  I have created a repository [https://github.com/UCDBIS180L/gh-usernames](https://github.com/UCDBIS180L/gh-usernames) for this purpose.
 
-* Go the home page for that respository in your web browser. 
+* Go the home page for that respository in your web browser.
 * Fork it using the button on the upper right hand side.
 * Clone it to your computer
 * Create a develop branch to work on
@@ -80,7 +80,7 @@ Let's try it.  I need to collect everyone's GitHub usernames.  To do this we wil
 * Merge your change on to the master branch
 	* hint: checkout the master branch, then use `merge develop`
 * Push your change back up to you repository
-* Use the website to send a pull request 
+* Use the website to send a pull request
 
 ## More resources
 
@@ -102,7 +102,7 @@ The four part git basics series (the first two were shown in class)
 3. https://www.youtube.com/watch?v=wmnSyrRBKTw
 4. https://www.youtube.com/watch?v=7w5Z7LmyLgI
 
-[A longer video](https://www.youtube.com/watch?v=U8GBXvdmHT4) (50 minutes) 
+[A longer video](https://www.youtube.com/watch?v=U8GBXvdmHT4) (50 minutes)
 
 [GitHub Video Channel](https://www.youtube.com/user/GitHubGuides/videos)
 
