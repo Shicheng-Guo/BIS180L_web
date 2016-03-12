@@ -24,7 +24,7 @@ For an introduction to markdown, please complete [this tutorial](http://markdown
 
 The tutorial covers **_almost all_** of the most important markdown features but leaves out two important ones related to code editing.  If you want to indicate a command in line with text `like this`, you should surround the text with back ticks  \`like this\`
 
-If you want to show a block of code, then you should indent it with 4 spaces or 1 tab.
+If you want to show a block of code, then you should indent it with __4 spaces__ or 1 tab.
 
 This will give
 
