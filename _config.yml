@@ -5,7 +5,6 @@ gems:             [jekyll-paginate]
 
 # Permalinks
 permalink:        pretty
-#relative_permalinks: true
 
 # Setup
 title:            BIS180L
@@ -19,7 +18,7 @@ author:
   url:            http://biosci3.ucdavis.edu/Faculty/Profile/View/241
 
 paginate:         5
-future:           false
+future:           true
 # Custom vars
 version:          0.1.0
 
