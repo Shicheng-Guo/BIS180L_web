@@ -344,6 +344,24 @@ From software update GUI
 
 ## Setup user home directory for USB
 
+## For computer lab ditribution (from Tim Leamy)
+
+Here’s how I set up the virtualbox for your notes:
+** Set VDI Immutable & snapshots
+-Open initial vbox but don't start
+-remove vdi from VM
+-Open Virtual Media Manager from File menu
+ -Chose VDI, then Modify
+ -Select Immutable
+ -Save & close
+-Add new HD
+ -Choose existing disk
+ -Select updated vdi
+-Close prefs
+-Click on Snapshots
+ -Make Snapshot 1
+-Edited BIS180L2016.vbox to remove autoReset="false" from snapshot lines
+
 # Not installed 2015 and 2016:
 
 ## SAINT
