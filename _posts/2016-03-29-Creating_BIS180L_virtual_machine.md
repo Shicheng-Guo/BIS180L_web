@@ -344,7 +344,7 @@ From software update GUI
 
 ## Setup user home directory for USB
 
-## For computer lab ditribution (from Tim Leamy)
+## For computer lab distribution (from Tim Leamy)
 
 Here’s how I set up the virtualbox for your notes:
 ** Set VDI Immutable & snapshots
