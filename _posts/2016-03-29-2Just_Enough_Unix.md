@@ -456,7 +456,11 @@ always use the `-s` option with `ln`).
 	# do some editing
 	cat foof
 	cat Stuff/foo
-	
+
+Note that aliases don't work on FAT32 filesystems. If your USB drive is
+formatted as such, you will get an `Operation not permitted` error and
+won't be able to do this part.
+
 ### Deleting Files ###
 
 You delete files with the `rm` command. Be careful, because once gone,
@@ -957,6 +961,8 @@ look like `worm_genome.gz` rather than
 `c_elegans.PRJNA13758.WS240.genomic.fa.gz`. You might also want to
 concatenate all the *A. thaliana* files into a single file to be more
 similar to the other genomes. These decisions are left to you.
+
+If you get an error of `Operation not permitted` it means your USB drive does not allow symbolic links. Instead, you can copy the sequence files into your directory structure.
 
 ### Part 3: do experiments
 
