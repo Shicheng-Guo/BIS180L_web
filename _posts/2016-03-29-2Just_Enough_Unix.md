@@ -285,7 +285,7 @@ determine what directory you are currently in, use the `pwd` command
 
 	pwd
 
- This will tell you your location is `/home/bios180student` (or maybe
+ This will tell you your location is `/home/bis180student` (or maybe
  not if you're reading this outside the context of the class or if the
  documentation is out of date - it doesn't matter, this is your home
  directory). The current directory is also known by the single letter `.`
@@ -379,7 +379,7 @@ to get the contents of the `HOME` variable, we have to precede it with a
 Now create a couple more files but using absolute and relative paths
 rather than short-cuts.
 
-	touch /home/bios180student/file3
+	touch /home/bis180student/file3
 	cd ~/Documents
 	pwd
 	ls
@@ -816,7 +816,7 @@ Every process (program) on your computer has a process ID (PID). If you
 know the PID of a process, you can take control of it (assuming it is
 yours). My perl process has PID 6000. On yours it is probably different.
 You can view all your processes with the `ps` command. In the following
-command, replace `ian` with your user name: `bios180student`.
+command, replace `ian` with your user name: `bis180student`.
 
 	ps -u ian
 
