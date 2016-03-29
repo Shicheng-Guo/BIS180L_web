@@ -6,7 +6,7 @@ tags:
 - Linux
 ---
 
-[Markdown](http://en.wikipedia.org/wiki/Markdown) is a simple system for formatting text.  It is easy to type, human readable, and easy to format to html or PDF.  Almost all of the documents generated for this lab class are written in markdown. 
+[Markdown](http://en.wikipedia.org/wiki/Markdown) is a simple system for formatting text.  It is easy to type, human readable, and easy to format to html or PDF.  Almost all of the documents generated for this lab class are written in markdown.
 
 We will require that your lab reports be generated in markdown or the variant [Rmarkdown](http://rmarkdown.rstudio.com/)
 
@@ -44,7 +44,7 @@ done
 
 ## Exercise
 
-Use the Rmarkdown editor to write a brief biography of your lab partner.
+Use the Remarkable editor to write a brief biography of your lab partner.
 
 Include:
 
