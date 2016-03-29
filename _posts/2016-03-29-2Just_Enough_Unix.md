@@ -542,7 +542,8 @@ The path to the genome file is long. We can simplify it with an alias.
 
 Note what `ls -lF` shows you. The `@` symbol trailing the file name
 shows you that the file is an alias. The arrow shows you what the alias
-points to.
+points to. (If you get an error, aliases might not work on your
+filesystem - skip renaming the file).
 
 Now let's start uncompressing it. The `gunzip` command uncompresses
 files. If we want to stream the file to the terminal in a way similar to
@@ -882,9 +883,9 @@ underscores or something benign (there are only a couple cases).
 After you've created the directory structure, use tab complete to
 explore the phylogenetic tree you just made. One last task: in the
 `/data` directory, you'll see 3 sub-directories for 3 genomes. Make
-aliases from your directory to these directories in the correct
-taxonomic position. When you're done, save your experiment with the
-following command (or something like it).
+aliases (or direct copies if you get an error) from your directory to
+these directories in the correct taxonomic position. When you're done,
+save your experiment with the following command (or something like it).
 
 	ls -R Eukaryota > Lab0/taxonomy.txt
 
