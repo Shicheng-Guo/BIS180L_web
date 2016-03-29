@@ -285,7 +285,7 @@ determine what directory you are currently in, use the `pwd` command
 
 	pwd
 
- This will tell you your location is `/home/bios180student` (or maybe
+ This will tell you your location is `/home/bis180student` (or maybe
  not if you're reading this outside the context of the class or if the
  documentation is out of date - it doesn't matter, this is your home
  directory). The current directory is also known by the single letter `.`
@@ -379,7 +379,7 @@ to get the contents of the `HOME` variable, we have to precede it with a
 Now create a couple more files but using absolute and relative paths
 rather than short-cuts.
 
-	touch /home/bios180student/file3
+	touch /home/bis180student/file3
 	cd ~/Documents
 	pwd
 	ls
@@ -456,7 +456,11 @@ always use the `-s` option with `ln`).
 	# do some editing
 	cat foof
 	cat Stuff/foo
-	
+
+Note that aliases don't work on FAT32 filesystems. If your USB drive is
+formatted as such, you will get an `Operation not permitted` error and
+won't be able to do this part.
+
 ### Deleting Files ###
 
 You delete files with the `rm` command. Be careful, because once gone,
@@ -538,7 +542,8 @@ The path to the genome file is long. We can simplify it with an alias.
 
 Note what `ls -lF` shows you. The `@` symbol trailing the file name
 shows you that the file is an alias. The arrow shows you what the alias
-points to.
+points to. (If you get an error, aliases might not work on your
+filesystem - skip renaming the file).
 
 Now let's start uncompressing it. The `gunzip` command uncompresses
 files. If we want to stream the file to the terminal in a way similar to
@@ -816,7 +821,7 @@ Every process (program) on your computer has a process ID (PID). If you
 know the PID of a process, you can take control of it (assuming it is
 yours). My perl process has PID 6000. On yours it is probably different.
 You can view all your processes with the `ps` command. In the following
-command, replace `ian` with your user name: `bios180student`.
+command, replace `ian` with your user name: `bis180student`.
 
 	ps -u ian
 
@@ -878,9 +883,9 @@ underscores or something benign (there are only a couple cases).
 After you've created the directory structure, use tab complete to
 explore the phylogenetic tree you just made. One last task: in the
 `/data` directory, you'll see 3 sub-directories for 3 genomes. Make
-aliases from your directory to these directories in the correct
-taxonomic position. When you're done, save your experiment with the
-following command (or something like it).
+aliases (or direct copies if you get an error) from your directory to
+these directories in the correct taxonomic position. When you're done,
+save your experiment with the following command (or something like it).
 
 	ls -R Eukaryota > Lab0/taxonomy.txt
 
@@ -958,6 +963,8 @@ look like `worm_genome.gz` rather than
 concatenate all the *A. thaliana* files into a single file to be more
 similar to the other genomes. These decisions are left to you.
 
+If you get an error of `Operation not permitted` it means your USB drive does not allow symbolic links. Instead, you can copy the sequence files into your directory structure.
+
 ### Part 3: do experiments
 
 Estimate the A, C, G, and T mono-nucleotide compositions of the three
@@ -967,9 +974,10 @@ The following Unix commands will be useful for this task.
 
 * `gunzip -c` to stream the file from its compressed state
 * `grep -c` to count specific patterns
+* `bc` to do simple math (i.e. compute sums and frequencies)
 
-It may help you to review these commands in "Just Enough Unix for
-Bioinformatics" or look at online resources.
+What is `bc` you ask? Go look it up! Again, not being mean, preparing you
+for life.
 
 Do you think that the di-nucleotide compositions can be estimated from
 the mono-nucleotide compositions? In other words, is the probability of
