@@ -967,9 +967,10 @@ The following Unix commands will be useful for this task.
 
 * `gunzip -c` to stream the file from its compressed state
 * `grep -c` to count specific patterns
+* `bc` to do simple math (i.e. compute sums and frequencies)
 
-It may help you to review these commands in "Just Enough Unix for
-Bioinformatics" or look at online resources.
+What is `bc` you ask? Go look it up! Again, not being mean, preparing you
+for life.
 
 Do you think that the di-nucleotide compositions can be estimated from
 the mono-nucleotide compositions? In other words, is the probability of
