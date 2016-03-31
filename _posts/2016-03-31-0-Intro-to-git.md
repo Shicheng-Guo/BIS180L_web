@@ -77,16 +77,13 @@ Let's try it.  I need to collect everyone's GitHub usernames.  To do this we wil
 
 * Go the home page for that repository in your web browser.
 * Fork it using the button on the upper right hand side.
-* Clone it to your computer
-* Create a develop branch to work on
-* Using Linux commands:
-	- Change directories into the repository directory
-	- Create a copy of the `template.md` and name it with your first and last name.  For example if you were [Adele](https://en.wikipedia.org/wiki/Adele) you would name the new file `Adele_Adkins.md`
-* Edit your new file to add your name, email, and github user name (use Atom or Remarkable)
-* Merge your change on to the master branch
-	* hint: checkout the master branch, then use `merge develop`
-* Push your change back up to your repository
-* Use the website to send a pull request
+* Clone your forked repository to your computer
+* Open the file "2016_roster.csv" in `nano` or `atom`
+* Find your name in the file and add your github user name after the last comma (look at my entry for an example).  (If you can't find your name, add a new entry at the _bottom_ of the file.)
+* Save your changes the file.
+* Add and commit your changes.
+* Push your change back up to your repository.
+* Use the website to send a pull request.
 
 ## More resources
 
