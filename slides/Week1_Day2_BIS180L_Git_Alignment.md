@@ -1,7 +1,7 @@
 Git and Sequence Alignment
 ========================================================
 author: Julin Maloof
-date: April 02, 2015
+date: March 31, 2016
 
 Today's Lab
 ========================================================
