@@ -8,7 +8,8 @@ tags:
 
 ## Reading
 
-For an overview of how Git can be used in the biological sciences, please read this excellent [article by Ram](http://www.scfbm.org/content/8/1/7)
+For an overview of how Git can be used in the biological sciences, please read this excellent [article by Ram](http://www.scfbm.org/content/8/1/7).
+
 For a practical introduction please read Chapter 5 in [Bioinformatics Data Skills](http://shop.oreilly.com/product/0636920030157.do) available from the library [here](https://harvest.lib.ucdavis.edu/F/CYUA711QE89QJB4FHK5GTGIKTQ7LLXY31UL9LXU2XUR7QUHXEH-06773?func=full-set-set&set_number=076035&set_entry=000002&format=999&local_base=ucd01pub)
 
 ## Git: reproducibility and collaboration
@@ -80,7 +81,7 @@ Let's try it.  I need to collect everyone's GitHub usernames.  To do this we wil
 * Create a develop branch to work on
 * Using Linux commands:
 	- Change directories into the repository directory
- 	- Create a copy of the `template.md` and name it with your first and last name.  For example if you were [Adele](https://en.wikipedia.org/wiki/Adele) you would name the new file `Adele_Adkins.md`
+	- Create a copy of the `template.md` and name it with your first and last name.  For example if you were [Adele](https://en.wikipedia.org/wiki/Adele) you would name the new file `Adele_Adkins.md`
 * Edit your new file to add your name, email, and github user name (use Atom or Remarkable)
 * Merge your change on to the master branch
 	* hint: checkout the master branch, then use `merge develop`
