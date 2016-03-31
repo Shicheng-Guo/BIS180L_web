@@ -6,13 +6,16 @@ tags:
 - Git
 ---
 
+## Reading
+
+For an overview of how Git can be used in the biological sciences, please read this excellent [article by Ram](http://www.scfbm.org/content/8/1/7)
+For a practical introduction please read Chapter 5 in [Bioinformatics Data Skills](http://shop.oreilly.com/product/0636920030157.do) available from the library [here](https://harvest.lib.ucdavis.edu/F/CYUA711QE89QJB4FHK5GTGIKTQ7LLXY31UL9LXU2XUR7QUHXEH-06773?func=full-set-set&set_number=076035&set_entry=000002&format=999&local_base=ucd01pub)
+
 ## Git: reproducibility and collaboration
 
 This document will introduce you to __Git__, a version control system that is a great aid in writing software, maintaining documentation, and maintaining reproducibility.
 
 What does Git do?  Git keeps track of changes that you (and your collaborators) make in your documents.  By maintaining a record of all the changes that have been made you can restore your project to an earlier state if needed (i.e. if you screw up).  Git also allows you to maintain different versions (known as branches in Git) simultaneously, an incredibly useful feature.  For example you can maintain a "master" branch that works correctly.  You try out changes in a "develop" branch without breaking the working "master" version.  Once you know that your changes in "develop" are functioning as intended you can merge them into the "master".
-
-For an overiew of how Git can be used in the biological sciences, please read this excellent [article by Ram](http://www.scfbm.org/content/8/1/7)
 
 ## A few key concepts
 
@@ -69,17 +72,19 @@ Designate one of you to create a new repository.  This is Partner 1.
 
 The above exercise illustrate one way to collaborate: each collaborator is added as a contributor to the repository.  A second (and perhaps more common) method is to __fork__ a repository.  When you fork a repository your are creating your own copy of the repository.  You then make changes to your fork.  If you think the original creator might want to incorporate your changes than you can create a __pull request__ to request that they pull your changes back into their repository.  This is safer for the original creator because it is easier for them to choose to include your changes if they don't like them.
 
-Let's try it.  I need to collect everyone's GitHub usernames.  To do this we will collaboratively edit a document through git and GitHub.  I have created a repository [https://github.com/UCDBIS180L/gh-usernames](https://github.com/UCDBIS180L/gh-usernames) for this purpose.
+Let's try it.  I need to collect everyone's GitHub usernames.  To do this we will each add a file to a shared repository with our details.  I have created a repository [https://github.com/UCDBIS180L/gh-usernames](https://github.com/UCDBIS180L/gh-usernames) for this purpose.
 
-* Go the home page for that respository in your web browser.
+* Go the home page for that repository in your web browser.
 * Fork it using the button on the upper right hand side.
 * Clone it to your computer
 * Create a develop branch to work on
-* Add your name, email, and user name to the `usernames.md` document
-* Confirm that the file looks OK (view it in Remarkable)
+* Using Linux commands:
+	- Change directories into the repository directory
+ 	- Create a copy of the `template.md` and name it with your first and last name.  For example if you were [Adele](https://en.wikipedia.org/wiki/Adele) you would name the new file `Adele_Adkins.md`
+* Edit your new file to add your name, email, and github user name (use Atom or Remarkable)
 * Merge your change on to the master branch
 	* hint: checkout the master branch, then use `merge develop`
-* Push your change back up to you repository
+* Push your change back up to your repository
 * Use the website to send a pull request
 
 ## More resources
