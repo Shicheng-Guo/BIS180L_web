@@ -104,4 +104,4 @@ The virtual machine is formatted to use 3 cores and 3GB of memory.  You may need
 
 ## Get the Machine Image for home
 
-You can download the machine image from (check with Dr. Maloof)
+You can download the machine image [here](http://malooflab.phytonetworks.org/downloads/BIS180L/BIS180L2016_v2.zip)
