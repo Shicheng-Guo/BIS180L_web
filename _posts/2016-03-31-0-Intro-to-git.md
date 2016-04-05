@@ -68,9 +68,9 @@ __OR__
 4. `git init` to initialize a repository in the current directory
 5. Add a file to the repository.  For example:  
 
-	touch README.md  
-	git add README.md  
-	git commit -m "Added README.md"  
+	`touch README.md`  
+	`git add README.md`  
+	`git commit -m "Added README.md"`  
 
 
 6. Go to Github.com
@@ -79,10 +79,10 @@ __OR__
 9. Click on the clipboard icon to copy the URL next to the heading __"…or push an existing repository from the command line"__
 10. Paste that into the terminal while in the directory of your repository.  i.e.   
 
+	`git remote add origin git@github.com:jnmaloof/test2.git`  
+	`git push -u origin master`  
 
-	git remote add origin git@github.com:jnmaloof/test2.git  
-	git push -u origin master  
-
+### Now lets try it
 
 * Partner 1:
 	* Add a file to the repository with a bit of text (what your plans are for the weekend?).  
