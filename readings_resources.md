@@ -27,12 +27,12 @@ title: Readings and Resources
 
 [Local Alignment Stats](../docs/4_Local_alignment_statistics.pdf)
 
-[Combined Unabridged Sequence Analysis Primer](../docs/SequenceAnalysisPrimer.pdf) (This combines the above 4 documents above and has a bit more informaiton)
+Extra Info: [Combined Unabridged Sequence Analysis Primer](../docs/SequenceAnalysisPrimer.pdf) (This combines the above 4 documents above and has a bit more informaiton)
 
 
 ### Other
 
-[Orthlogs and Paralogs](http://www.sciencedirect.com/science/article/pii/S0168952500020059)
+[Orthologs and Paralogs](http://www.sciencedirect.com/science/article/pii/S0168952500020059)
 
 [Kristen's cool paper](http://pubs.acs.org/doi/abs/10.1021/pr501243m)
 
