@@ -6,13 +6,17 @@ __Student ID:__
 
 *_Please answer the following questions which are each worth 2 points. Be clear and concise with any written answers. Late assignments will be penalized with a 2pt deduction without prior communication of extenuating circumstances._*
 
-__Q1__.  Paste in code and output for the `for loop`  __Exercise 1__ (pluralizing fruit names)
 
-__Q2__. Create a table that indicates blastp runtime as a function of word size.  Is there a linear relationship?  Why does does changing the word size change the search time?
+__Q1__. Create a table that indicates blastp runtime as a function of
+threshold value.  Is there a linear relationship?  Why does does
+changing the threshold change the search time?
 
-__Q3__.  How much faster is blastp than water at a world size of 5?
+__Q2__.  How much faster is blastp than water under default parameters?
 
-__Q4__.  How long will it take to search two proteomes with word length 5?
+__Q3__.  What search parameters (matrix and threshold) would you use to
+search two proteomes? Justify your answer.
+
+__Q4__.  How long will it take to search two proteomes (given the above)?
 
 __Q5__.  Using E-value to determine the best match, find a worm gene with a single fly ortholog and record their names and the reciprocal E-Values.  Is there more than one fly "hit" for your worm gene?  If so how do you decide if there is a single orthlog?
 
