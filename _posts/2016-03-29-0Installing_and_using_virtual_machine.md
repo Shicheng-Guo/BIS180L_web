@@ -24,7 +24,7 @@ The instructor or TA will give you a USB flash drive formatted with a home direc
 
 ## Starting the virtual machine
 
-1. On the PC go to Computer > Local Disk (C:) > BIS180L2016 ![BIS180L vbox ](){{ site.baseurl}}/images/Start_Vbox.png)
+1. On the PC go to Computer > Local Disk (C:) > BIS180L2016 ![BIS180L vbox ]({{ site.baseurl}}/images/Start_Vbox.png)
 2. Double click on the file "BIS180L2016.vbox".  This will open Virtual box
 3. Once Virtual Box opens you may need to double click on "BIS180L2016" to start the virtual machine or it may start directly.
 4. Insert the USB flash drive __into one of the righthand USB ports__.  It is important to use the right hand ports because they are USB 3.0 and much faster.  __Do not__ insert the flash drive before starting the virtual machine.
@@ -54,7 +54,7 @@ You can resize the "screen" by dragging from the lower-right corner.
 
 You should be able to cut and paste between your host machine and the virtual machine.  Mac users note that inside the virtual machine you will need to use ctrl-C, not CMD-c, etc.  Also the cut and paste commands for the terminal are shift-ctrl-C and shift-ctrl-V.
 
-The icons at the bottom left give you access to various programs.  
+The icons at the bottom left give you access to various programs.
 
 From left to right:
 
