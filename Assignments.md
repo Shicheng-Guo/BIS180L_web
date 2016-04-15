@@ -9,8 +9,8 @@ Right click on the link to download the markdown template.  Edit the markdown te
 
 | Date Assigned | Title              | Links                                      | Date Due       |
 |---------------|--------------------|--------------------------------------------|----------------|
-| __TBD__       | Sequence Alignment | [SA_template](unit1-worksheet.md)          | __TBD__        |
-| __TBD__       | BLAST              | [BLAST template](assignment2-worksheet.md) | __TBD__        |
+| __April 14__       | Sequence Alignment | [SA_template](Assignment_1.5_SA_template.md)          | __April 19, 1PM__        |
+| __April 14__       | BLAST              | [BLAST template](assignment2-worksheet.md) | __April 19, 1PM__        |
 | __TBD__       | Intro to R         | [See Exercises in lab]({{site.baseurl}}/{% post_url 2016-04-12-R-intro%}) | __TBD__  |
 | __TBD__       | Pop Struc and GWAS | Template pushed to your github repository  | __TBD__ |
 | __TBD__       | Create a Shiny App | [See lab]({{site.baseurl}}/{% post_url 2016-04-26-Shiny%}) | __TBD__ |
