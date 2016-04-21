@@ -10,7 +10,7 @@ hidden: yes
 
 Tired of having to enter your password every time you push or pull from git?
 
-Git push and pull not working with RStudio?
+Want to use git from within RStudio?
 
 __There is a solution__
 
