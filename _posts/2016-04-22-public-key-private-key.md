@@ -54,7 +54,7 @@ copy the key and your email address but no extra lines or spaces to the clipboar
 
 Go to github.com and login to your account
 
-Click on the "gear" icon near the upper right hand side to bring up your settings.
+Click on the your profile icon near the upper right hand side and then select "settings".
 
 ![]({{site.baseurl}}/images/GitHub_SSH1.png)
 
