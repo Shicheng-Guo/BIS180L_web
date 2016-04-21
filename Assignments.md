@@ -11,12 +11,12 @@ Right click on the link to download the markdown template.  Edit the markdown te
 |---------------|--------------------|--------------------------------------------|----------------|
 | __April 14__       | Sequence Alignment | [SA_template](Assignment_1.5_SA_template.md)          | __April 19, 1PM__        |
 | __April 14__       | BLAST              | [BLAST template](assignment2-worksheet.md) | __April 19, 1PM__        |
-| __April 19__       | Intro to R         | [See Exercises in lab]({{site.baseurl}}/{% post_url 2016-04-19-R-intro%}) | __April 26, 1pm__  |
-| __TBD__       | Pop Struc and GWAS | Template pushed to your github repository  | __TBD__ |
-| __TBD__       | Create a Shiny App | [See lab]({{site.baseurl}}/{% post_url 2016-04-26-Shiny%}) | __TBD__ |
-| __TBD & TBD__ | Understanding Illumina | [See lab]({{site.baseurl}}/{% post_url 2016-05-06-R-SNPs%}) | __TBD__ |
-| __TBD__       | RNAseq Differential Expression 1 | [See lab]({{site.baseurl}}/{% post_url 2016-05-10-RNAseq-edgeR%}) | __TBD__ |
-| __TBD__       | RNAseq Differential Expression 2 |  [See lab]({{site.baseurl}}/{% post_url 2016-05-12-RNAseq-Annotation%})| __TBD__ |
+| __April 21__       | Intro to R         | [See Exercises in lab]({{site.baseurl}}/{% post_url 2016-04-21-R-intro%}) | __April 28, 1pm__  |
+| __April 28__       | Pop Struc and GWAS | Template pushed to your github repository  | __May 5, 1pm__ |
+| __TBD__       | Create a Shiny App | [See lab]({{site.baseurl}}/{% post_url 2016-05-05-Shiny%}) | __TBD__ |
+| __TBD & TBD__ | Understanding Illumina | [See lab]({{site.baseurl}}/{% post_url 2016-05-13-R-SNPs%}) | __TBD__ |
+| __TBD__       | RNAseq Differential Expression 1 | [See lab]({{site.baseurl}}/{% post_url 2016-05-17-RNAseq-edgeR%}) | __TBD__ |
+| __TBD__       | RNAseq Differential Expression 2 |  [See lab]({{site.baseurl}}/{% post_url 2016-05-19-RNAseq-Annotation%})| __TBD__ |
 | __TBD__       | Gene Networks | [Networks template](Assignment_7_template.Rmd)          | __TBD__ |
 | __TBD__       | Gene Networks 2 | [Networks template](Assignment_8_template.Rmd)          | __TBD__ |
-| __TBD__       | Metagenomics | [See lab]({{site.baseurl}}/{% post_url 2016-05-26-Metagenomics%})          | __TBD__  |
+| __TBD__       | Metagenomics | [See lab]({{site.baseurl}}/{% post_url 2016-05-31-Metagenomics%})          | __TBD__  |
