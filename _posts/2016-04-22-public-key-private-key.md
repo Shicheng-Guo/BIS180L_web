@@ -32,7 +32,8 @@ If you get a directory not found, or don't see either `id_rsa.pub` or `id_dsa.pu
     ssh-keygen -t RSA -C "youremail@ucdavis.edu"
     #creates a new ssh key pair using your email as an identifier
 
-When asked for a file to save the key in, just __press enter__ to save in the default location
+When asked for a file to save the key in, just __press enter__ to save in the default location  
+When asked for a passphrase, just __press enter__
 
 Make sure that the files exist
 
@@ -79,11 +80,13 @@ Go to GitHub for your repository, find the URL for cloning.  Click below it to c
 
 In the Linux terminal cd to the directory for that repository and update the URL
 
-    cd ~/BIS180L_Assignments_Julin.Maloof/
+    cd ~/Assignment_3_Julin.Maloof/
     git remote set-url origin PASTE_IN_CLIPBOARD_URL_HERE
 
 
 Now you should be all set!
+
+Use the SSH method for future repositories
 
 
 
