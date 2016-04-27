@@ -25,14 +25,15 @@ Schedule is subject to change (but not the exam dates)
 |                   |         |
 | Tue 1:10 - 5:00   |  26-Apr |  More R
 | Thur 1:10 - 5:00  |  28-Apr |  Rice variation and SNPs
-| Fri 1:10 - 2:00   |  29-Apr |   __Midterm Handed out??__
+| Fri 1:10 - 2:00   |  29-Apr |  Rice variation and SNPs
 |                   |         |
-| Tue 1:10 - 5:00   |  3-May  |  Rice GWAS; Midterm Q and A review session
-| __Thur 1:10 - 5:00__  |  5-May  |    Shiny __Midterm Due @ 1:10??__
-| Fri 1:10 - 2:00   |  6-May  |  Shiny, cont.
+| Tue 1:10 - 5:00   |  3-May  |  Rice GWAS; 
+| Thur 1:10 - 5:00  |  5-May  |    Shiny 
+| Fri 1:10 - 2:00   |  6-May  |  Shiny, cont.  __Midterm Handed out__
 |                   |         |
 | Tue 1:10 - 5:00   |  10-May |  Illumina Sequence Data: QC and mapping
-| Thur 1:10 - 5:00  |  12-May |  Illumina: SNPs and IGV
+| Tue 5:00 - 6:00   |  10-May | _Tentative: Midterm Q&A_
+| __Thur 1:10 - 5:00__  |  12-May |  Illumina: SNPs and IGV; __Midterm Due @ 1:10__
 | Fri 1:10 - 2:00   |  13-May |  SNPs in R
 |                   |         |
 | Tue 1:10 - 5:00   |  17-May |  Illumina: RNAseq analysis
