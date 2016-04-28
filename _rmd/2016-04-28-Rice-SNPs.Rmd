@@ -12,7 +12,7 @@ knitr::opts_chunk$set(cache=TRUE)
 ```
 
 ## Getting Started
-* I have created a directory in your `BIS180L_Assignments` repository called `Assignment_4` and have placed an `Assignment_4_worksheet.Rmd` template there.  
+* I have created a new repository  called `Assignment_4` and have placed an `Assignment_4_template.Rmd` file there.  
 * Pull your repository to obtain these changes.
 * Download the file [RiceSNPData.zip]({{site.baseurl}}/data/RiceSNPData.zip), unzip it, and place the files into the `Assigment_4` directory.
 * Start RStudio.  
@@ -70,7 +70,7 @@ We can use `order()` to tell us how we could reorder the items to obtain a sorte
 ```{r}
 fruit.shape$fruit 
 order(fruit.shape$fruit)
-#order tells us that the third item (apple) should be first, the first item (bananna) should be second, etc)
+#order tells us that the third item (apple) should be first, the first item (banana) should be second, etc)
 
 #thus we can use the [] brackets to re-order things correctly.  this allows us to reorder a whole data.frame
 
