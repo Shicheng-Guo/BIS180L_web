@@ -329,7 +329,12 @@ head(ps4.df.melt) #look a the melted data set.
 Finally we are ready to plot the results.  In the plot produced below, each column is a single rice variety. The colors correspond to ancestral genomes.  Do you see any evidence of admixture?
 ```{r plot_PSMix data,results='hide',eval=FALSE}
 library(ggplot2)
-qplot(x=sampleID, y=value, color=variable, fill=variable, data=ps4.df.melt, geom="bar", stat="identity") + ylab("genome proportion") + scale_color_brewer(type="div") + scale_fill_brewer(type="div")
+
+pl <- ggplot(aes(x=sampleID, y=value, color=variable, fill=variable), data=ps4.df.melt)
+pl <- pl + geom_bar(stat="identity") 
+pl <- pl + ylab("genome proportion") + scale_color_brewer(type="div") + scale_fill_brewer(type="div")
+
+pl
 ```
 
 ### How do these population assignments relate to the MDS plot? 
