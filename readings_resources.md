@@ -36,17 +36,17 @@ Extra Info: [Combined Unabridged Sequence Analysis Primer](../docs/SequenceAnaly
 
 [Kristen's cool paper](http://pubs.acs.org/doi/abs/10.1021/pr501243m)
 
-## April 19
+## April 28
 [Rice Diversity](../docs/Kovach2007_Trends Genet.pdf)
 
-## April 21
+## May 03
 [Wikipedia GWAS](http://en.wikipedia.org/wiki/Genome-wide_association_study)
 
 [GWAS Q & A](../docs/Brookfield2010_BMC_Biol.pdf)
 
 [Rice GWAS](../docs/Zhao2011_Nat Commun.pdf)
 
-## May 03
+## May 12
 [van Dijk Next Gen Seq](../docs/van Dijk et al. - 2014 - Ten years of next-generation sequencing technology)
 [Illumina Seq technology](http://www.illumina.com/content/dam/illumina-marketing/documents/products/illumina_sequencing_introduction.pdf)
 [Illumina Video](https://www.youtube.com/embed/HMyCqWhwB8E?iframe&rel=0&autoplay=1)
