@@ -158,7 +158,7 @@ Each team will produce and deploy a Shiny app that will be collectively graded.
 | Chynna Gabotero        | Alexander Duveneck     | Jennifer Koo   |                            |
 | Aaron Baer             | Jacob North            | Sam Deck       |                            |
 | Andrew Katznelson      | Livingstone Nganga     | Mai Khanh Tran |                            |
-| Cassandra Baker        | Anh Nguyen             | Sarah Stinson  |                            |
+| Cassandra Baker        | Diane Nguyen             | Sarah Stinson  |                            |
 
 Assignment
 ==========
