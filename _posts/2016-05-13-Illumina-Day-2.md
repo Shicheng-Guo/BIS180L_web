@@ -31,25 +31,6 @@ For better viewing and SNP calling I compiled all of the IMB211 internode files 
     wget http://de.iplantcollaborative.org/dl/d/B31CD90A-9B32-446A-A451-D0D645A91BC0/tophat_out-R500_All_A01_INTERNODE.fq.tar.gz
     tar -xvzf tophat_out-R500_All_A01_INTERNODE.fq.tar.gz
 
-## IGV
-
-Unfortunately the version of IGV installed on your computers does not work and it must be reinstalled.
-
-Download the binary distribution from the [download page](https://www.broadinstitute.org/software/igv/download)
-
-Unzip it and move the unzipped directory to BioinformaticsPackages
-
-    unzip IGV_2.3.52.zip
-    mv ~/Downloads/IGV_2.3.52 ~/BioinformaticsPackages/
-
-Add the following line to the end of your `.bashrc` file
-
-    PATH="$HOME/BioinformaticsPackages/IGV_2.3.52:$PATH"
-
-The source your `.bashrc`
-
-    source .bashrc
-
 ## Examine tophat output
 
 `cd` into one of the tophat output directories that you downloaded above
@@ -108,7 +89,7 @@ Then start IGV by typing
 
     igv.sh
 
-__Important do not try starting it from the start menu, it will not work__
+Or by selecting it from the start menu > education
 
 ### Create a .genome file for IGV to use
 
@@ -186,7 +167,7 @@ You should check the man page for the meaning of the flags, but briefly,
     * -g reports separate genotype calls for each sample
 
 
-We will examine these in R either at the end of this lab or on Friday.
+We will examine these in R either at the end of this lab or next period.
 
 ## Further info on SNP calling:
 
