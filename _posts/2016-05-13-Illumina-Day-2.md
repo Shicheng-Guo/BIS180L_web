@@ -21,9 +21,32 @@ Today we will pick up where we left off.  Our goals are to:
 
 # Preliminaries
 
+## Installations
+
+We need one additional piece of software, [bamaddrg](https://github.com/ekg/bamaddrg).  Go ahead and install this now, we will use it a bit later.  
+
+    cd ~/BioinformaticsPackages
+    git clone --recursive https://github.com/ekg/bamaddrg.git
+    cd bamaddrg
+    make
+    
+The `make` command compiles the code and "makes" the executable program
+    
+## Edit your PATH
+
+Add the following line the very end of your `~/.bashrc` to include additional software in your path:
+
+    PATH=$HOME/BioinformaticsPackages/bamaddrg:$HOME/git/freebayes/bin:$PATH
+    
+(Remember to include MEGAsync in your path to BioinformaticsPackages if appropriate.  You do not need to modify the path to freebayes.)
+    
+Now source it
+
+    source ~/.bashrc    
+
 ## Data files
 
-For better viewing and SNP calling I compiled all of the IMB211 internode files and all of the R500 internode files and ran tophat on those.  Then to keep the download to a somewhat reasonable size I subset the bam file to chromosome A01.  Download the files as listed below:
+For better viewing and SNP calling I compiled all of the IMB211 internode files and all of the R500 internode files and ran tophat on those.  Then to keep the download to a somewhat reasonable size I subset the bam file to chromosome A01.  `cd` into your Assignment_5 directory and download the files as listed below:
 
     wget http://de.iplantcollaborative.org/dl/d/3A400919-4820-467A-8F9D-B80E6A6DD5C9/tophat_out-IMB211_All_A01_INTERNODE.fq.tar.gz
     tar -xvzf tophat_out-IMB211_All_A01_INTERNODE.fq.tar.gz
@@ -153,9 +176,9 @@ __b__ Go to A01:15,660,359-15,665,048 (you can cut and paste this into the viewe
 
 ## Calling SNPs
 
-The goal of this section is to find polymorphisms between IMB211 and R500.  There are many tools available.  We will use [mpileup and bcftools](http://samtools.sourceforge.net/mpileup.shtml) part of the samtools suite.  [Additional Info](http://massgenomics.org/2012/03/5-things-to-know-about-samtools-mpileup.html)
+The goal of this section is to find polymorphisms between IMB211 and R500.  There are many tools available.  We will use [FreeBayes](https://github.com/ekg/freebayes) (One you are on the FreeBayes page, scroll down to the README for more info on FreeBayes)
 
-Make a new directory for this analysis inside the Brassica_assigment directory
+Make a new directory for this analysis inside the Assignment_5 directory
 
     mkdir SNP_analysis
     cd SNP_analysis
@@ -171,26 +194,17 @@ Next create an index for each of the new files
     samtools index IMB211_rmdup.bam
     samtools index R500_rmdup.bam
 
-Now we use `samtools mpileup` to look for SNPs.  Samtools mpileup calculates the number of reference and alternate alleles at each position in the genome and genotype likelihoods.  bcftools makes a call of the most likely genotype.
+Now we use `freebayes` to look for SNPs.  `freebayes` calculates the number of reference and alternate alleles at each position in the genome and genotype likelihoods.
 
-    samtools mpileup -DVuf ../Brapa_reference/BrapaV1.5_chrom_only.fa IMB211_rmdup.bam R500_rmdup.bam | bcftools view -vcg - > IMB211_R500.vcf
+We first call `bamaddrg` to add Read Groups to our bam files, enabling us to call SNPs separately for the two genotypes.  The output from `bamaddrg` is a merged bam files which we pipe directly into `freebayes` instead of storing it first.
 
-You should check the man page for the meaning of the flags, but briefly,
+    bamaddrg -b IMB211_rmdup.bam -s IMB211 -r IMB211 \ 
+    -b R500_rmdup.bam -s R500 -r R500 \ 
+    | freebayes --fasta-reference ../Brapa_reference/BrapaV1.5_chrom_only.fa --stdin  > IMB211_R500.vcf 
 
-* for samtools,
-    * -D and -V indicate that per sample depth and variant depth should be reported.  
-    * -u is uncompressed format
-    * -f specifies the reference fasta file.  
-* For bcftools,
-    * -c specifies that variants should be called.
-    * -v limits the output to variant sites only
-    * -g reports separate genotype calls for each sample
+We will examine the VCF file in R on Tuesday.
 
+## Two other popular SNP callers:
 
-We will examine these in R either at the end of this lab or next period.
-
-## Further info on SNP calling:
-
-* Other mpileup flags [may be useful depending on your situation](http://samtools.sourceforge.net/mpileup.shtml).
-* Realigning your reads around indels using the [GATK realigner](https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_indels_IndelRealigner.php) is recommended.
+* [samtools mpileup](http://samtools.sourceforge.net/mpileup.shtml).
 * GATK offers an alternative and popular [genotyping pipeline and caller](https://www.broadinstitute.org/gatk/)
