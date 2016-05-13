@@ -23,7 +23,7 @@ Today we will pick up where we left off.  Our goals are to:
 
 ## Installations
 
-We need one additional piece of software, [bamaddrg](https://github.com/ekg/bamaddrg).  Go ahead and install this now, we will use it a bit later.  
+We need two additional piece of software.  First [bamaddrg](https://github.com/ekg/bamaddrg).  Go ahead and install this now, we will use it a bit later.  
 
     cd ~/BioinformaticsPackages
     git clone --recursive https://github.com/ekg/bamaddrg.git
@@ -31,12 +31,23 @@ We need one additional piece of software, [bamaddrg](https://github.com/ekg/bama
     make
     
 The `make` command compiles the code and "makes" the executable program
+
+## IGV
+
+The second software is IGV.  Unfortunately the version of IGV installed on your computers does not work and it must be reinstalled.
+
+Download the binary distribution from the [download page](https://www.broadinstitute.org/software/igv/download)
+
+Unzip it and move the unzipped directory to BioinformaticsPackages
+
+    unzip IGV_2.3.72.zip
+    mv ~/Downloads/IGV_2.3.72 ~/BioinformaticsPackages/
     
 ## Edit your PATH
 
 Add the following line the very end of your `~/.bashrc` to include additional software in your path:
 
-    PATH=$HOME/BioinformaticsPackages/bamaddrg:$HOME/git/freebayes/bin:$PATH
+    PATH=$HOME/BioinformaticsPackages/IGV_2.3.52:$HOME/BioinformaticsPackages/bamaddrg:$HOME/git/freebayes/bin:$PATH
     
 (Remember to include MEGAsync in your path to BioinformaticsPackages if appropriate.  You do not need to modify the path to freebayes.)
     
@@ -53,25 +64,6 @@ For better viewing and SNP calling I compiled all of the IMB211 internode files 
 
     wget http://de.iplantcollaborative.org/dl/d/B31CD90A-9B32-446A-A451-D0D645A91BC0/tophat_out-R500_All_A01_INTERNODE.fq.tar.gz
     tar -xvzf tophat_out-R500_All_A01_INTERNODE.fq.tar.gz
-
-## IGV
-
-Unfortunately the version of IGV installed on your computers does not work and it must be reinstalled.
-
-Download the binary distribution from the [download page](https://www.broadinstitute.org/software/igv/download)
-
-Unzip it and move the unzipped directory to BioinformaticsPackages
-
-    unzip IGV_2.3.72.zip
-    mv ~/Downloads/IGV_2.3.72 ~/BioinformaticsPackages/
-
-Add the following line to the end of your `.bashrc` file
-
-    PATH="$HOME/BioinformaticsPackages/IGV_2.3.52:$PATH"
-
-Then source your `.bashrc`
-
-    source .bashrc
 
 
 ## Examine tophat output
@@ -131,8 +123,6 @@ To use IGV we need to create an index of our bam file
 Then start IGV by typing
 
     igv.sh
-
-Or by selecting it from the start menu > education
 
 ### Create a .genome file for IGV to use
 
