@@ -47,7 +47,7 @@ Unzip it and move the unzipped directory to BioinformaticsPackages
 
 Add the following line the very end of your `~/.bashrc` to include additional software in your path:
 
-    PATH=$HOME/BioinformaticsPackages/IGV_2.3.52:$HOME/BioinformaticsPackages/bamaddrg:$HOME/git/freebayes/bin:$PATH
+    PATH=$HOME/BioinformaticsPackages/IGV_2.3.72:$HOME/BioinformaticsPackages/bamaddrg:$HOME/git/freebayes/bin:$PATH
     
 (Remember to include MEGAsync in your path to BioinformaticsPackages if appropriate.  You do not need to modify the path to freebayes.)
     
