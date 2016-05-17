@@ -16,7 +16,7 @@ Right click on the link to download the markdown template.  Edit the markdown te
 | __May 5__       | Create a Shiny App | [See lab]({{site.baseurl}}/{% post_url 2016-05-05-Shiny%}) | __May 13, 1pm__ |
 | __May 6__     | Midterm             | See your github                             | __May 12, 1pm__ |
 | __May 12 & May 13__ | Understanding Illumina | See [Illumina lab 1]({{site.baseurl}}/{% post_url 2016-05-12-Illumina%}) and [Illumina Lab 2]({{site.baseurl}}/{% post_url 2016-05-13-Illumina-Day-2%})  | __May 19, 1pm__ |
-| __TBD__       | RNAseq Differential Expression 1 | [See lab]({{site.baseurl}}/{% post_url 2016-05-17-RNAseq-edgeR%}) | __TBD__ |
+| __TBD__       | RNAseq Differential Expression 1 | [See lab]({{site.baseurl}}/{% post_url 2016-05-19-0RNAseq-edgeR%}) | __TBD__ |
 | __TBD__       | RNAseq Differential Expression 2 |  [See lab]({{site.baseurl}}/{% post_url 2016-05-19-RNAseq-Annotation%})| __TBD__ |
 | __TBD__       | Gene Networks | [Networks template](Assignment_7_template.Rmd)          | __TBD__ |
 | __TBD__       | Gene Networks 2 | [Networks template](Assignment_8_template.Rmd)          | __TBD__ |
