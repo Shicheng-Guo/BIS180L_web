@@ -15,4 +15,4 @@ jekyll.knit <- function(input) {
 # .Rmd files in _rmd directory
 # Usage example:
 # jekyll.knit("_rmd/2013-XX-XX-post-name.Rmd")
-jekyll.knit("_rmd/2016-04-28-Rice-SNPs.Rmd")
+jekyll.knit("_rmd/2016-05-16-R-SNPs.Rmd")
