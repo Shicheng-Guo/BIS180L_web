@@ -59,10 +59,10 @@ Now source it
 
 For better viewing and SNP calling I compiled all of the IMB211 internode files and all of the R500 internode files and ran tophat on those.  Then to keep the download to a somewhat reasonable size I subset the bam file to chromosome A01.  `cd` into your Assignment_5 directory and download the files as listed below:
 
-    wget http://de.iplantcollaborative.org/dl/d/3A400919-4820-467A-8F9D-B80E6A6DD5C9/tophat_out-IMB211_All_A01_INTERNODE.fq.tar.gz
+    wget http://malooflab.phytonetworks.org/downloads/BIS180L/tophat_out-IMB211_All_A01_INTERNODE.fq.tar.gz
     tar -xvzf tophat_out-IMB211_All_A01_INTERNODE.fq.tar.gz
 
-    wget http://de.iplantcollaborative.org/dl/d/B31CD90A-9B32-446A-A451-D0D645A91BC0/tophat_out-R500_All_A01_INTERNODE.fq.tar.gz
+    wget http://malooflab.phytonetworks.org/downloads/BIS180L/tophat_out-R500_All_A01_INTERNODE.fq.tar.gz
     tar -xvzf tophat_out-R500_All_A01_INTERNODE.fq.tar.gz
 
 
