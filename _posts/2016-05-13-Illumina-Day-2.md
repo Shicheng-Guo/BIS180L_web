@@ -188,8 +188,8 @@ Now we use `freebayes` to look for SNPs.  `freebayes` calculates the number of r
 
 We first call `bamaddrg` to add Read Groups to our bam files, enabling us to call SNPs separately for the two genotypes.  The output from `bamaddrg` is a merged bam files which we pipe directly into `freebayes` instead of storing it first.
 
-    bamaddrg -b IMB211_rmdup.bam -s IMB211 -r IMB211 \ 
-    -b R500_rmdup.bam -s R500 -r R500 \ 
+    bamaddrg -b IMB211_rmdup.bam -s IMB211 -r IMB211 \
+    -b R500_rmdup.bam -s R500 -r R500 \
     | freebayes --fasta-reference ../Brapa_reference/BrapaV1.5_chrom_only.fa --stdin  > IMB211_R500.vcf 
 
 We will examine the VCF file in R on Tuesday.
