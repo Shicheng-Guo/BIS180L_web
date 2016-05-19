@@ -31,27 +31,25 @@ If you are going to do more RNAseq analyses I __strongly recommend__ that you th
 
 ## Set your working directory
 
-Pull your BIS180L_Assignments repository.
+Pull your Assignment_6 repository and set it as your working directory in R.
 
-Set your working directory in R to the "Diff_Exp" directory.
-
-You can open the `RNA_Seq_Assignment1.Rmd` file there to record you answers.
+You can open the `Assignment_6_Part_1.Rmd` file there to record you answers.
 
 ## GFF to GTF
 
 There are two closely related file formats that describe genomic features, [GFF](http://www.sequenceontology.org/gff3.shtml) and [GTF](http://mblab.wustl.edu/GTF22.html).  Unfortunately we have a GFF but we need a GTF.  Fortunately the conversion is pretty easy.
 
-Set your working directory to the Brassica_Assignment directory.  Then:
+Remember that the reference files are in the `Assignment_5_Last.First/Brapa_reference` .  Create a symbolic link called `Brapa_reference` in the Assignment_6 directory that points to the original `Brapa_reference` directory (you can review how to so this in the Linux tutorial from the first week).
 
 ```{r GFF2GTF, eval=FALSE}
 library(rtracklayer)
-gff <- import.gff("../Brapa_reference/Brapa_gene_v1.5.gff")
+gff <- import.gff("Brapa_reference/Brapa_gene_v1.5.gff")
 gff #take a look
 
 #create a column "gene_id" that contains the gene name for every entry
-gff$gene_id <- regmatches(gff$group,regexpr("Bra[0-9]+$",gff$group))
+gff$gene_id <- ifelse(is.na(gff$ID),gff$Parent,gff$ID)
 
-export(gff,"..Brapa_reference/Brapa_gene_v1.5.gtf",format="gtf")
+export(gff,"Brapa_reference/Brapa_gene_v1.5.gtf",format="gtf")
 ```
 
 ## Bam to read counts
@@ -60,13 +58,13 @@ As you know from last week's lab, we mapped RNAseq reads to the _B. rapa_ genome
 
 To do this we use the bam files (telling us where in the genome the reads mapped) and the .gtf file that we just generated (telling us where the genes are) to figure out which reads belong to which genes.  Thankfully the `Rsubread` package does this for us.  An alternative workflow (not used here) would be to use the python package [`HTSeq`](http://www-huber.embl.de/HTSeq/).  Yet another alternative would have been to map our reads to cDNA fasta files and then use `samtools idxstats` on the bam file.
 
-But for this lab we will use `Rsubread` on the two files from Thursday.  You may need to change the path listed below to make this work.  __Important: tilde expansion for your home directory will not work in this function.  Do not include a "~" in your path.  Use relative or the full absolute path__
+But for this lab we will use `Rsubread` on the two files from Thursday.  You will need to change the path listed below to make this work.  __Important: tilde expansion for your home directory will not work in this function.  Do not include a "~" in your path.  Use relative or the full absolute path__
 
 ```{r Rsubread, eval=FALSE}
 library(Rsubread)
 readCounts <- featureCounts(
-  files=c("../tophat_out-IMB211_All_A01_INTERNODE.fq/accepted_hits_A01.bam","../tophat_out-R500_All_A01_INTERNODE.fq/accepted_hits_A01.bam"),
-  annot.ext="../Brapa_reference/Brapa_gene_v1.5.gtf", 
+  files=c("../Assignment_5_Maloof.Julin/tophat_out-IMB211_All_A01_INTERNODE.fq/accepted_hits_A01.bam","../tophat_out-R500_All_A01_INTERNODE.fq/accepted_hits_A01.bam"),
+  annot.ext="Brapa_reference/Brapa_gene_v1.5.gtf", 
   isGTFAnnotationFile=TRUE,
   GTF.featureType="CDS", # This depends on GTF file.  Often it would be "exon"
   GTF.attrType="gene_id"
