@@ -63,7 +63,8 @@ But for this lab we will use `Rsubread` on the two files from Thursday.  You wil
 ```{r Rsubread, eval=FALSE}
 library(Rsubread)
 readCounts <- featureCounts(
-  files=c("../Assignment_5_Maloof.Julin/tophat_out-IMB211_All_A01_INTERNODE.fq/accepted_hits_A01.bam","../tophat_out-R500_All_A01_INTERNODE.fq/accepted_hits_A01.bam"),
+  files=c("../Assignment_5_Maloof.Julin/tophat_out-IMB211_All_A01_INTERNODE.fq/accepted_hits_A01.bam",
+    "../Assignment_5_Maloof.Julin/tophat_out-R500_All_A01_INTERNODE.fq/accepted_hits_A01.bam"),
   annot.ext="Brapa_reference/Brapa_gene_v1.5.gtf", 
   isGTFAnnotationFile=TRUE,
   GTF.featureType="CDS", # This depends on GTF file.  Often it would be "exon"
