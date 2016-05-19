@@ -29,25 +29,6 @@ Two packages that effectively deal with the above issues are [DESeq](http://bioc
 If you are going to do more RNAseq analyses I __strongly recommend__ that you thoroughly study the [edgeR user manual](http://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf) available both at the [link](http://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf) and by typing `edgeRUsersGuide()` in R (after you have loaded the library).
 
 
-## Preliminaries
-
-We need a couple of additional Bioconductor libraries.  The `Rsubread` library will enable us to go from mapped reads to a count of reads per gene.  The `rtracklayer` library enables us to convert gff files to gtf files.
-
-First we need to install a Linux dependency.  From the Linux command line:
-
-  sudo apt-get install libxml2-dev
-
-Now we can install the R packages.  Start Rstudio and enter:
-
-```{r install_subread,eval=FALSE}
-  source("http://bioconductor.org/biocLite.R")
-	biocLite(c("Rsubread","rtracklayer"))
-```
-
-If R asks you about using a personal library, answer "y".  If R asks you if you want to update packages you can answer "n". 
-
-Don't worry about the warning messages.  Do worry if you get a message saying "ERROR could not install."
-
 ## Set your working directory
 
 Pull your BIS180L_Assignments repository.
