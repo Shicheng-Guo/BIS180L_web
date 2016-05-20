@@ -29,18 +29,17 @@ Schedule is subject to change (but not the exam dates)
 |                   |         |
 | Tue 1:10 - 5:00   |  3-May  |  Rice GWAS; 
 | Thur 1:10 - 5:00  |  5-May  |    Shiny 
-| Fri 1:10 - 2:00   |  6-May  |  Shiny, cont.  __Midterm Handed out__
+| Fri 1:10 - 2:00   |  6-May  |    __Midterm Handed out__
 |                   |         |
-| Tue 1:10 - 5:00   |  10-May |  Illumina Sequence Data: QC and mapping
-| Tue 5:00 - 6:00   |  10-May | _Tentative: Midterm Q&A_
-| __Thur 1:10 - 5:00__  |  12-May |  Illumina: SNPs and IGV; __Midterm Due @ 1:10__
-| Fri 1:10 - 2:00   |  13-May |  SNPs in R
+| Tue 1:10 - 5:00   |  10-May |  Shiny, cont.
+| __Thur 1:10 - 5:00__  |  12-May | Illumina Sequence Data: QC and mapping  __Midterm Due @ 1:10__
+| Fri 1:10 - 2:00   |  13-May |  Illumina: SNPs and IGV; 
 |                   |         |
-| Tue 1:10 - 5:00   |  17-May |  Illumina: RNAseq analysis
-| Thur 1:10 - 5:00  |  19-May |  Expression clustering; Motif discovery
-| Fri 1:10 - 2:00   |  20-May |  Discussion: RNAseq, etcGenetic Networks
+| Tue 1:10 - 5:00   |  17-May |  SNPs in R
+| Thur 1:10 - 5:00  |  19-May |  Illumina: RNAseq analysis
+| Fri 1:10 - 2:00   |  20-May |  Discussion: RNAseq, 
 |                   |         |
-| Tue 1:10 - 5:00   |  24-May |  Genetic Networks
+| Tue 1:10 - 5:00   |  24-May |  Expression clustering; Motif discovery
 | Thur 1:10 - 5:00  |  26-May |  Genetic Networks
 | Fri 1:10 - 2:00   |  27-May |  Genetic Networks
 |                   |         |
