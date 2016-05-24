@@ -28,7 +28,7 @@ Schedule is subject to change (but not the exam dates)
 | Fri 1:10 - 2:00   |  29-Apr |  Rice variation and SNPs
 |                   |         |
 | Tue 1:10 - 5:00   |  3-May  |  Rice GWAS; 
-| Thur 1:10 - 5:00  |  5-May  |    Shiny 
+| Thur 1:10 - 5:00  |  5-May  |  Shiny 
 | Fri 1:10 - 2:00   |  6-May  |  Shiny, cont.  __Midterm Handed out__
 |                   |         |
 | Tue 1:10 - 5:00   |  10-May |  Illumina Sequence Data: QC and mapping
@@ -36,15 +36,18 @@ Schedule is subject to change (but not the exam dates)
 | __Thur 1:10 - 5:00__  |  12-May |  Illumina: SNPs and IGV; __Midterm Due @ 1:10__
 | Fri 1:10 - 2:00   |  13-May |  SNPs in R
 |                   |         |
-| Tue 1:10 - 5:00   |  17-May |  Illumina: RNAseq analysis
-| Thur 1:10 - 5:00  |  19-May |  Expression clustering; Motif discovery
-| Fri 1:10 - 2:00   |  20-May |  Discussion: RNAseq, etcGenetic Networks
+| Tue 1:10 - 5:00   |  17-May |  SNPs in R
+| Thur 1:10 - 5:00  |  19-May |  Illumina: RNAseq analysis
+| Fri 1:10 - 2:00   |  20-May |  Discussion: RNAseq, etc
 |                   |         |
-| Tue 1:10 - 5:00   |  24-May |  Genetic Networks
+| Tue 1:10 - 5:00   |  24-May |  Expression clustering; Motif discovery
 | Thur 1:10 - 5:00  |  26-May |  Genetic Networks
 | Fri 1:10 - 2:00   |  27-May |  Genetic Networks
 |                   |         |
-| Tue 1:10 - 5:00   |  31-May |  Metagenomics __Final Exam Handed out__
-| Thur 1:10 - 5:00  |  2-Jun  |  Open office hours for final exam questions
-|                   |         |
-| __Mon 9:00 AM__   |  6-Jun  | __Final Exam Due 9AM__
+| Tue 1:10 - 5:00   |  31-May |  TBD 
+| Thur 1:10 - 5:00  |  2-Jun  |  TBD __Final Exam Handed out__
+| Fri 1:00 - 3:00   |  3-Jun  |  Open Lab Hours for Final Exam Help (Dandekar, Korf, Maloof)
+|    |   |   
+| Mon 1:00 - 3:00   |  6-Jun  |  Open Lab Hours for Final Exam Help (Dandekar, Korf) 
+| Tue 1:00 - 3:00   |  7-Jun  |  Open Lab Hours for Final Exam Help (Dandekar, Korf, Maloof) 
+| __Wed 9:00 AM__   |  8-Jun  | __Final Exam Due 9AM__
