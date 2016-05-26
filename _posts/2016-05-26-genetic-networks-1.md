@@ -15,7 +15,7 @@ tags:
 _This lab was designed by [Cody Markelz](http://rjcmarkelz.github.io/) a postdoc in the Maloof Lab._
 
 ## Assignment repository
-Please clone your `Assignment_7` repository and plave your answers in the `Assignment_7_template.Rmd` file.  When you are done push the .Rmd and a knitted .html file.  Start an issue indicating that the assignment is ready to grade.
+Please clone your `Assignment_7` repository and place your answers in the `Assignment_7_template.Rmd` file.  When you are done push the .Rmd and a knitted .html file.  Start an issue indicating that the assignment is ready to grade.
 
 ## Clustering Introduction
 As you learned last lab, when we are dealing with genome scale data it is hard to come up with good summaries of the data unless you know exactly the question you are trying to ask. Today we will be explore three different ways to cluster data and get visual summaries of the expression of all genes that had a significant GxE interaction. Once we have these clusters, it allows us to ask further, more detailed questions such as what GO categories are enriched in each cluster, or are there specific metabolic pathways contained in the clusters? While clustering can be used in an exploratory way, the basics you will be learning today have been extended to very sophisticated statistical/machine learning methods used across many disciplines. In fact, there are many different methods used for clustering in R outlined in this **[CRAN VIEW](http://cran.r-project.org/web/views/Cluster.html)**.
@@ -78,9 +78,9 @@ Now that we have that example out of the way, lets start using this technique on
 
 If you remember last week, you found some genes that had significant GxE in the internode tissue. We are going to be taking a look at those same genes again this week. That data set that you used only had 12 RNA-seq libraries in it. However, that subset of data was part of a much larger study that we are going to explore today. This data set consists of RNA-seq samples collected from 2 genotypes of *Brassica rapa* (R500 and IMB211) that were grown in either dense (DP) or non-dense planting (NDP) treatments. Upendra also collected tissue from multiple tissue types including: Leaf, Petiole, Internode (you worked with this last week), and silique (the plant seed pod). There were also 3 biological replicates of each combination (Rep 1, 2, 3). If your head is spinning thinking about all of this, do not worry, data visualization will come to the rescue here in a second.
 
-Remember last week when we were concerned with what distribution the RNA-seq count data was coming from so that we could have a good statistical model of it? Well, if we want to perform good clustering we also need to think about this because most of the simplest clustering assumes data to be from a normal distribution. I have transformed the RNAseq data to be normally distributed for you, but if you every need to do it yourself you can do so with the function `voom` from the `limma` package.  
+Remember last week when we were concerned with what distribution the RNA-seq count data was coming from so that we could have a good statistical model of it? Well, if we want to perform good clustering we also need to think about this because most of the simplest clustering assumes data to be from a normal distribution. I have transformed the RNA-seq data to be normally distributed for you, but if you every need to do it yourself you can do so with the function `voom` from the `limma` package.  
 
-Lets start by loading the two data sets. Then we can subset the larger full data set to include only the genes that we are interested in from our analysis last week.
+Let's start by loading the two data sets. Then we can subset the larger full data set to include only the genes that we are interested in from our analysis last week.
 
 
 ```bash

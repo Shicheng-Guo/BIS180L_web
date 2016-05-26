@@ -15,7 +15,7 @@ tags:
 _This lab was designed by [Cody Markelz](http://rjcmarkelz.github.io/) a postdoc in the Maloof Lab._
 
 ## Assignment repository
-Please clone your `Assignment_7` repository and plave your answers in the `Assignment_7_template.Rmd` file.  When you are done push the .Rmd and a knitted .html file.  Start an issue indicating that the assignment is ready to grade.
+Please clone your `Assignment_7` repository and place your answers in the `Assignment_7_template.Rmd` file.  When you are done push the .Rmd and a knitted .html file.  Start an issue indicating that the assignment is ready to grade.
 
 ## Clustering Introduction
 As you learned last lab, when we are dealing with genome scale data it is hard to come up with good summaries of the data unless you know exactly the question you are trying to ask. Today we will be explore three different ways to cluster data and get visual summaries of the expression of all genes that had a significant GxE interaction. Once we have these clusters, it allows us to ask further, more detailed questions such as what GO categories are enriched in each cluster, or are there specific metabolic pathways contained in the clusters? While clustering can be used in an exploratory way, the basics you will be learning today have been extended to very sophisticated statistical/machine learning methods used across many disciplines. In fact, there are many different methods used for clustering in R outlined in this **[CRAN VIEW](http://cran.r-project.org/web/views/Cluster.html)**.
