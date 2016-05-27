@@ -11,7 +11,7 @@ tags:
      - graphs
 --- 
 
-
+# For 2016 we are NOT doing this lab.  I leave it here for those that are curious
 
 
 # Biological Context 
