@@ -19,6 +19,6 @@ Right click on the link to download the markdown template.  Edit the markdown te
 | __May 17__ | VCF and SNPs in R (Assignment_5_part_2)| See [SNPs in R]({{site.baseurl}}/{% post_url 2016-05-17-R-SNPs%}) | __May 23, 1pm__ |
 | __May 19__       | RNAseq Differential Expression 1 (Assignment_5_Part_1) | [See lab]({{site.baseurl}}/{% post_url 2016-05-19-RNAseq-edgeR%}) | __May 26, 1pm__ |
 | __May 24__       | RNAseq Differential Expression 2 |  [See lab]({{site.baseurl}}/{% post_url 2016-05-24-RNAseq-Annotation%})| __May 27, 2pm__ |
-| __TBD__       | Gene Networks 1 | [Networks template](Assignment_7_template.Rmd)          | __TBD__ |
+| __May 26__       | Gene Networks 1 | [Networks template](Assignment_7_template.Rmd)          | __May 31__ |
 | __TBD__       | Gene Networks 2 | [Networks template](Assignment_8_template.Rmd)          | __TBD__ |
 | __TBD__       | Metagenomics | [See lab]({{site.baseurl}}/{% post_url 2016-05-31-Metagenomics%})          | __TBD__  |
