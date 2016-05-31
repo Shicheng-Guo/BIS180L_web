@@ -9,6 +9,8 @@ tags:
 - Metagenomics
 ---
 
+# THIS LAB WILL NOT BE COVERED IN 2016.  I LEAVE IT HERE FOR THOSE THAT ARE INTERESTED.
+
 # Assignment 9
 
 After setting up the QIIME Virtual Box, pull your repository for the assignment template. 
