@@ -6,6 +6,8 @@ tags:
 hidden: true
 ---
 
+# THIS LAB IS NOT BEING COVERED IN 2016.  I LEAVE IT HERE FOR THOSE THAT ARE INTERESTED.
+
 # Automating analysis in R
 
 This document serves to introduce, or re-introduce, programming features in R that can greatly help speed up repetitive analyses. 
