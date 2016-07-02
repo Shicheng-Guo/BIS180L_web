@@ -11,6 +11,10 @@ tags:
 
 # THIS LAB WILL NOT BE COVERED IN 2016.  I LEAVE IT HERE FOR THOSE THAT ARE INTERESTED.
 
+If you want to do the lab you will need to download [QIIME](www.qiime.org) (pronounced "chime") and run it as a virtual machine or use MacQiime.  
+
+You will also need to download the [data files]({{ site.baseurl }}/data/MetaGenomeData.tar.gz)
+
 # Assignment 9
 
 After setting up the QIIME Virtual Box, pull your repository for the assignment template. 
