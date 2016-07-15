@@ -241,11 +241,11 @@ Download [deb file](https://mega.co.nz/#sync) and install with gdebi
 
 # Data
 
-This is for Ian
+This is for Ian's lab
 
-Download https://www.dropbox.com/sh/j7o2wfm69t60wug/NdRUMv1rU0 and place them in /data 
-Change permission so that the files are owned by root but readable by everyone
+Download [KorfData.tar.gz](http://malooflab.phytonetworks.org/downloads/BIS180L/KorfData.tar.gz), and unpack it into /data 
 
+Change permissions of /data so that the files are owned by root but readable by everyones
 
 # 2016 update
 
