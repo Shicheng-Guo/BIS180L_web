@@ -516,6 +516,11 @@ You should see something that looks similar to this:
 
 	-rw------- 1 ian  staff    29M Nov 26 14:41 c_elegans.PRJNA13758.WS240.genomic.fa.gz
 	-rw------- 1 ian  staff   5.9M Oct  9 21:06 c_elegans.PRJNA13758.WS240.protein.fa.gz
+	
+If you get a message like `ls: cannot access /data/C.elegans: No such file or directory` 
+then you need to download [KorfData.tar.gz](http://malooflab.phytonetworks.org/downloads/BIS180L/KorfData.tar.gz).
+After unpacking it (`tar xfgz KorfData.tar.gz` at the command line) then either move it /data, or
+prepend the path to the commands in this lab.  i.e. `ls -lh ~/Downloads/data/C.elegans` if the data is in Downloads.
 
 There are two files, one contains genomic sequence, the other contains
 protein. The genome is 29 megabytes. That's not a very big file, but
