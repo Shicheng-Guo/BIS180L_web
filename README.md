@@ -1,8 +1,8 @@
 # BIS180L Website
 
-Website for UC Davis class BIS180L
+Website for UC Davis class BIS180L.  This is a [github-pages hosted jekyll site](https://help.github.com/articles/using-jekyll-as-a-static-site-generator-with-github-pages/)
 
-Based on the Jekyll theme [Hyde](http://hyde.getpoole.com/)
+Based on the Jekyll theme [Hyde](http://hyde.getpoole.com/).
 
 The live website is [http://jnmaloof.github.io/BIS180L_web/](http://jnmaloof.github.io/BIS180L_web/)
 
@@ -52,9 +52,13 @@ Save it in the '_posts' folder with a name that follows a format of `yyyy-mm-dd-
 
 ## Setting up your computer to use jekyll
 
-See https://github.com/github/pages-gem or https://help.github.com/articles/using-jekyll-with-pages/ .  Bundler has been a bit strange for me, so the former approach may be better.
+On a mac you will need to update your ruby installation.  I like using [homebrew](https://brew.sh/).  Once homebrew in installed, then:
 
-Once you have jekyll installed, type `jekyll serve` in the root directory and point your browser to http://localhost:4000
+    brew install ruby
+
+Then follow the [instructions on github](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/) .  
+
+Once you have jekyll installed, type `bundle exec jekyll serve` in the root directory and point your browser to http://localhost:4000
 
 ## Branching Scheme
 
