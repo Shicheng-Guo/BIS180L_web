@@ -3,7 +3,7 @@ layout: page
 title: Course Info
 ---
 
-## BIS180L -- Genomics Laboratory Spring 2016
+## BIS180L -- Genomics Laboratory Spring 2017
 
 __Lecture:__  TR 1:10-2:00 PM  SciLab2020  
 __Lab:__    TR 2:10-5:00 PM  SciLab2020  
@@ -11,8 +11,7 @@ __Discussion:__  F  1:10-2:00 PM  SciLab2020
 
 
 __Instructor:__  Julin Maloof <jnmaloof@ucdavis.edu>   
-__Instructor:__  Ian Korf <ifkorf@ucdavis.edu>  
-__Teaching Assistant:__ Ravi Dandekar <rdandekar@ucdavis.edu>  
+__Teaching Assistant:__ Gina Turco <gmturco@ucdavis.edu>  
 
 __TA Office Hours__ F 12:10 - 1:00 PM SciLab2020
 
