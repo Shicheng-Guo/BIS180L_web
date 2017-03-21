@@ -13,7 +13,7 @@ __Discussion:__  F  1:10-2:00 PM  SciLab2020
 __Instructor:__  Julin Maloof <jnmaloof@ucdavis.edu>   
 __Teaching Assistant:__ Gina Turco <gmturco@ucdavis.edu>  
 
-__TA Office Hours:__ M 12:10 - 1:00 PM SciLab2060
+__TA Office Hours:__ M 12:10 - 1:00 PM SciLab2060  
 __TA Office Hours:__ R 12:10 - 1:00 PM SciLab2020
 
 
