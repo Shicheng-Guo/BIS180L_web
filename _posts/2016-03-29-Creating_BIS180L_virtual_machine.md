@@ -6,6 +6,8 @@ permalink: Creating_VBox_machine
 category: extras
 ---
 
+__DEPRECATED__ We are no longer using virtual box, we are using AWS instead.
+
 Download virtual box from https://www.virtualbox.org/
 
 # linux installation
