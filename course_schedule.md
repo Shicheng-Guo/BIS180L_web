@@ -37,13 +37,13 @@ Schedule is subject to change (but not the exam dates)
 |                   |         |  
 | Tue 1:10 - 5:00   |  23-May |  Genetic Networks
 | Thur 1:10 - 5:00  |  25-May |  Genetic Networks
-| Fri 1:10 - 2:00   |  26-May |  Genetic Networks
+| Fri 1:10 - 2:00   |  26-May |  Discussion: Genetic Networks
 |                   |         |  
-| Tue 1:10 - 5:00   |  30-May |  Discussion: Genetic Networks
-| Thur 1:10 - 5:00  |  1-Jun  |  Metagenomics
+| Tue 1:10 - 5:00   |  30-May |  Metagenomics
+| Thur 1:10 - 5:00  |  1-Jun  |  Automating tasks in R
 | Fri 1:10 - 2:00   |  2-Jun  |  Discussion: Metagenomics
 |                   |         |  
-| Tue 1:10 - 5:00   |  6-Jun  |  Automating tasks in R __Final Exam Handed out__
+| Tue 1:10 - 5:00   |  6-Jun  |  BUFFER  __Final Exam Handed out__
 | Thur 1:10 - 5:00  |  8-Jun  |  Open office hours for final exam questions 
 |                   |         |
 | __Mon 9:00 AM__   |  12-Jun | __Final Exam Due 9AM__
