@@ -12,7 +12,7 @@ Schedule is subject to change (but not the exam dates)
 | Fri 1:10 - 2:00   |  7-Apr  |  Discussion: Seq Alignment
 |                   |         |  
 | Tue 1:10 - 5:00   |  11-Apr |  Seq Alignment continued
-| Thur 1:10 - 5:00  |  13-Apr |  BLAST
+| Thur 1:10 - 5:00  |  13-Apr |  For Loops; BLAST
 | Fri 1:10 - 2:00   |  14-Apr |  BLAST
 |                   |         |  
 | Tue 1:10 - 5:00   |  18-Apr |  Discussion: BLAST & Seq Alignment ; R: Intro

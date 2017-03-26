@@ -11,7 +11,7 @@ Right click on the link to download the markdown template.  Edit the markdown te
 |---------------|--------------------|----------------------------------------------|----------------|
 | __April 14__  | Sequence Alignment | [SA_template](Assignment_1.5_SA_template.md) | __April 19, 1PM__  |
 | __April 14__  | BLAST              | [BLAST template](assignment2-worksheet.md)   | __April 19, 1PM__  |
-| __April 21__  | Intro to R         | [See Exercises in lab]({{site.baseurl}}/{% post_url 2016-04-21-R-intro%}) | __April 28, 1pm__  |
+| __April 21__  | Intro to R         | [See Exercises in lab]({{site.baseurl}}/{% post_url 2017-04-18-R-intro%}) | __April 28, 1pm__  |
 | __April 28__  | Pop Struc and GWAS | Template pushed to your github repository    | __May 5, 1pm__ |
 | __May 5__       | Create a Shiny App | [See lab]({{site.baseurl}}/{% post_url 2016-05-05-Shiny%}) | __May 13, 1pm__ |
 | __May 6__     | Midterm             | See your github                             | __May 12, 1pm__ |
