@@ -3,7 +3,7 @@ layout: page
 title: Assignments
 ---
 
-__THESE DATES ARE NOT UDATED FOR 2017__
+__THESE DATES ARE NOT UPDATED FOR 2017__
 
 ### Instructions
 
