@@ -5,7 +5,7 @@ tags:
 hidden: 
 ---
 
-If you want to try doing the labs directly on your Mac instead of in Virtual Box here is how you can.
+If you want to try doing the labs directly on your Mac instead of on AWS here is how you can.
 
 ## web downloads
 
