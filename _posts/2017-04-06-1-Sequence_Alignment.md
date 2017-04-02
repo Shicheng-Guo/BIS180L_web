@@ -19,10 +19,22 @@ thaliana_ files are in separate chromosomes while the worm and fly have
 all the sequences in a single file).
 
 Now lets organize the files a little to make our lives easier. Create a
-subdirectory in your home directory called `Data` and make the end
-result look like the following:
+subdirectory in your home directory called `Data`. Create
+sub-directories for each species, and alias the sequences into each
+directory. Also create sub-directories under `Data` that organize by
+sequence type rather than species. In the end, your hierarchical
+structure should look like this.
 
 	Data
+		Sequences
+			Genome
+				A.thaliana.fa
+				C.elegans.fa
+				D.melanogaster.fa
+			Proteome
+				A.thaliana.fa
+				C.elegans.fa
+				D.melanogaster.fa
 		Species
 			A.thaliana
 				genome.fa
@@ -36,21 +48,22 @@ result look like the following:
 
 Note that the files do not have `.gz` extensions because they have been
 uncompressed. Furthermore, the A.thaliana chromosomes have all been
-merged into a single file. As a final step, change the file permissions
-to be read-only so that you don't accidentally delete or edit them. When
-you have completed these tasks, change directory to your home directory
-and run the following command.
+merged into a single file. You should not need to duplicate sequences.
+That is, `Sequences/Genome/A.thaliana.fa` and
+`Species/A.thaliana/genome.fa` should contain the same thing, so no need
+to duplicate the data unnecessarily (i.e. make an alias). Lastly, the
+file permissions should be "appropriate". When you have completed these
+tasks, change directory to your home directory and run the following
+command.
 
 	ls -lR Data
 
-This should indicated that there are 6 files with read-only permission.
+This should indicated that there are 6 aliases to 6 files.
 
 ## Part 2: Lab Notebook ##
 
 It is now time to start doing some bioinformatics experiments. Create a
-new directory to organize your thoughts and files. In the example below,
-the directory is called `Lab1` but you can call it something more
-descriptive, like `Lab1_Sequence_Alignment`.
+new directory to organize your thoughts and files.
 
 	mkdir ~/Lab1
 	cd ~/Lab1
@@ -60,7 +73,7 @@ start a log where you can keep notes. This will be your laboratory
 notebook for this unit.
 
 	cd ~/Lab1
-	nano README.md
+	nano lab1_notebook.md
 
 Instead of editing in nano, you could also write your lab notebook while
 using Markdown preview in the program Remarkable which is already 
@@ -242,7 +255,7 @@ have time to discuss.
 
 	grep Score 1k.water | awk '{sum+=$3} END {print sum/NR}'
 
-Answer the following questions in your notebook (aka `README.md` file).
+Answer the following questions in your notebook.
 
 1. Is the shape of the curve normal? Do you expect it to be normal?
 2. Do you expect all protein comparisons to have the same distribution?
@@ -283,4 +296,3 @@ sources.
 * How different is your best score from random?
 * How statistically significant is this score?
 * How biologically significant is this score?
-
