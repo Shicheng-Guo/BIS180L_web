@@ -48,7 +48,7 @@ The command line is where you type instructions for what you want the computer t
 
 ### Terminal Basics ###
 
-Launch the terminal application (the name of this will differ from one operating system to another and even within a particular OS you will have several options). In this case launch `LXterminal` by clicking on the icon near the bottom left of your screen.  Run the `date` command by typing in the terminal and ending with the **return** key.
+Launch the terminal application (the name of this will differ from one operating system to another and even within a particular OS you will have several options). In this case launch `Terminal - fish` by clicking on the icon near the bottom left of your screen.  Run the `date` command by typing in the terminal and ending with the **return** key.
 
 	date
 
@@ -170,7 +170,7 @@ Whenever you are using a terminal, your focus is a particular directory. The fil
 
 	pwd
 
- This will tell you your location is `/home/bis180lstudent` (or maybe
+ This will tell you your location is `/home/ubuntu` (or maybe
  not if you're reading this outside the context of the class or if the
  documentation is out of date - it doesn't matter, this is your home
  directory). The current directory is also known by the single letter `.`
@@ -236,7 +236,7 @@ Now go back to the root directory and create a file in your home directory. Ther
 
 Now create a couple more files but using absolute and relative paths rather than short-cuts.
 
-	touch /home/bis180lstudent/file3
+	touch /home/ubuntu/file3
 	cd ~/Documents
 	pwd
 	ls
