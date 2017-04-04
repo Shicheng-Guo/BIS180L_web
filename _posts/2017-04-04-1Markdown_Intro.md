@@ -44,7 +44,11 @@ done
 
 ## Exercise
 
-Use the Remarkable editor to write a brief biography of your lab partner.
+Use the Atom editor to write a brief biography of your lab partner. 
+* Open Atom by clicking on the icon on the dock at the bottom of the screen.
+* You may want to close some of the "Welcome" screens.  Or explore them and then close.
+* If there is not a blank document open already, type ctrl-N or select new file from the File menu
+* If you want to see a Markdown Preview as you work, select Packages > Mardown Preview > Toggle
 
 Include:
 
@@ -54,4 +58,4 @@ Include:
 * their year (in _italics_)
 * a bulleted list of likes
 
-Save the file.  You will be asked to turn it in next class.
+Save the file and give it a `.md` extension.  You will be asked to turn it in next class.
