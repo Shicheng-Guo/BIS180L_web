@@ -1,14 +1,16 @@
 Welcome to BIS180L 
 ========================================================
 author: Julin Maloof
-date: March 30, 2015
+date: April 04, 2017
 
 Course Personnel
 =======================================================
 
 __Instructor:__ Julin Maloof <jnmaloof@ucdavis.edu>
 
-__Teaching Assitant:__ Kristen Beck <kbeck@ucdavis.edu>
+__Teaching Assistant:__ Gina Turco <gmturco@ucdavis.edu>
+
+__Extra Help (today):__ John Davis
 
 What this course is about
 ========================================================
@@ -23,12 +25,12 @@ The goal of this course is to introduce you to the _tools_ and _thinking_ requir
 
 This is a computer-based class.  No bench work.
 
-Why R and linux?
+Why R and Linux?
 ================
 incremental:true
 * Both R and Linux have command-line interfaces
 * Antiquated?
-* NO! Writen code provides __flexibility, creativity, and power__ not available in any other way
+* NO! Written code provides __flexibility, creativity, and power__ not available in any other way
 * Linux (or Unix / Mac)
   * Outstanding built-in tools for data crunching
   * Provides access to hundreds of bioinformatics programs
@@ -51,6 +53,7 @@ And
 Course Schedule
 ========================================================
 
+
 * __Tuesdays, Thursdays__ 
   * Lecture 1:10 - 2:00
   * Lab 2:10 - 5:00
@@ -59,20 +62,11 @@ Course Schedule
 *** 
 
 * __Fridays__
-  * TA Office hours 12:10 - 1:00 (in this room)
   * Discussion 1:10 - 2:00
     * Varied use
       * Q & A 
-      * Student presentations
+      * Student presentation(?)
       * Keep on working
-
-Course History
-========================================================
-
-* Third year of the course
-* Previous two years team taught
-* This year it is all me...
-* Some flexibility required...
 
 (Tentative) Course Outline
 ==============
@@ -83,16 +77,17 @@ incremental: true
   * Sequence analysis and BLAST
 * Week 3: 
   * R fundamentals
-* Weeks 4-5:
-  * Illumina short reads
-  * Calling SNPs
-  * GWAS
+* Week 4:
+  * SNPs
+  * population structure, GWAS
+* Week 5:
+  * Build a web-app
   
 *** 
 
 * Weeks 6-7:
+  * Illumina reads
   * RNAseq
-  * ChIPseq
 * Week 8: 
   * Genetic Networks
 * Week 9:
@@ -123,13 +118,27 @@ Course Website
 * Main website: http://jnmaloof.github.io/BIS180L_web/
   * Lab instructions
   * Course Schedule
-  * Helpful Links (coming soon!)
-  * Reading assignments (coming soon!)
+  * Helpful Links (to be updated as we go)
+  * Reading assignments (to be updated as we go)
   
-* Smartsite
+* Canvas
   * Gradebook
-  * Chatroom 
-  
+
+Reference Text
+==============
+
+![text](Buffalo.jpeg)
+
+***
+
+This is an excellent book that covers much of the material that is covered in lab.
+
+You can use this to help with ideas that are not clear from class, or for more in depth coverage of the material.
+
+I particularly recommend reading it in depth for anyone planning to build on the skills learned in this class.
+
+It is available online for free, through UCD library.  See links on course website.
+
 Why are we here?
 ================
 incremental: true
@@ -150,20 +159,40 @@ Today's Lab
 type: section
 transition: rotate
 
-1. Get a virtual linux machine running
+1. __Get a virtual linux machine running__
 2. Learn a little markdown
-3. Learn about linux
+3. Learn a little Linux command line
 
-Virtual linux machine
+Virtual Linux machine
 =====================
 incremental: true
 
 * The computer lab machines run Windows
-* Bioinformatics on a Windows machine is painful or worse (R is OK)
+* Bioinformatics on a Windows machine is painful (although getting better) (R is OK)
 * Solution: virtual machine!
-* Use [VirtualBox](https://www.virtualbox.org/) to run a virtual linux machine
-* Your virtual machine is pre-loaded on a flash drive
-* You can download virtualbox to your personal computer and run the machine at home
+* Use [Amazon Web Services](https://aws.amazon.com/) to run a virtual Linux machine in the cloud
+* You can connect to your virtual machine from any computer, including your laptop or home computer
+
+What is a virtual machine?
+==========================
+incremental: true
+
+* Amazon has many very large computers (a.k.a. servers) in various places around the country
+* These servers can be split up to be many separate "virtual" machines, each emulating an individual computer
+* You can connect to these virtual machines and it just like having your own computer, but it is in the "cloud"
+* Terminology:
+  * Each virtual machine is an __instance__ of a machine __image__.
+  * You can think of the image as a snapshot of a machine that captures the OS, the installed programs, etc.  
+  * The image that you are using is called BIS180L and was created by John Davis and myself for this class.
+
+Connecting to the virtual machine
+=================================
+incremental: true
+
+* There are two ways to connect to your instance:
+
+1. Using a Virtual Network Connection (VNC).  This allows the graphical display of the instance to be displayed on your local computer
+2. Using a secure shell (SSH).  This provides a text connection to your instance.  An advantage for slow internet connections.
 
 Other virtual machine notes
 =======
@@ -171,15 +200,26 @@ incremental:true
 
 As detailed in the lab notes for today:
 
-* Use the USB 3 (Right hand) USB ports
-* It is imperative that you properly shutdown the virtual machine before removing the flash drive
-* Data will be backed up in the cloud using MEGA
-* If you are already running linux, or want to try installing the relevant software on your Mac, I can give you installation notes.  __But we will not be able to help you troubleshoot installation problems__
+* You will need to register for an account at AWS
+* As you UC Davis student you get $100 credit.  That should easily be enough to complete this class (800 - 1500 hours of compute time) __If you stop your machine when not in use__
+* __It is very important that you stop your machine when not in use__
+* If you are already running Linux, or want to try installing the relevant software on your Mac, I can give you installation notes. 
+
+Today's Lab
+==========
+type: section
+transition: rotate
+
+1. Get a virtual Linux machine running
+2. __Learn a little markdown__
+3. Learn a little Linux command line
 
 Markdown
 ========
 
 Markdown is a text-based formatting system for quickly and easily generating nicely formatted output.
+
+This presentation as well as the entire BIS180L website was written in markdown.
 
 It helps achieve all three guiding principles:
 
@@ -196,6 +236,7 @@ What is we want to produce this:
 ***
 
 The markdown file that generates it is
+
 ![](MDScreenShot.png)
 
 Markdown vs docx
@@ -209,6 +250,26 @@ What is we want to produce this:
 The word file that generates it is
 ![](WordScreenShot.png)
 
+Today's Lab
+==========
+type: section
+transition: rotate
+
+1. Get a virtual Linux machine running
+2. Learn a little markdown
+3. __Learn a little Linux command line__
+
+Linux Command Line
+===================
+
+We will work through a tutorial developed by Ian Korf.
+
+You are learning a new language; treat it as such.
+* Keep notes
+* Be patient
+* Practice and repetition help
+* It will get easier
+
 Assignments to turn in for this lab
 ==============
 We will provide a system for turning in assignments later this week or next week.
@@ -216,8 +277,8 @@ We will provide a system for turning in assignments later this week or next week
 In the meantime, keep:
 
 * The file from the markdown tutorial
-* The notes (in Markdown!) from the linux tutorial
-* The answer to "Excercise 1" from the linux tutorial
+* The notes (in Markdown!) from the Linux tutorial
+* The answer to "Exercise 1" from the Linux tutorial
 
 Lets go have fun!
 =================
