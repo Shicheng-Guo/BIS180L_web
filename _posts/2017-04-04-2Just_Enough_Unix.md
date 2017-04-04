@@ -42,7 +42,9 @@ This document was authored by Ian Korf with minor modifications by Julin Maloof.
 
 ## Terminal, Command Line, and Shell ##
 
-Your interface to Unix will be through a **shell** program using the **command line interface** within a **terminal** application. There are several types of shells and terminals, but the details of these are unnecessary for us. The command line is where you type instructions for what you want the computer to do. Some of these statements are "do this now" while others are "let's get ready to do this." It may seem silly in this high-tech age to type your commands when you could simply point and click or maybe even use voice activation or gesturing. It is easier to automate typing though. So when it comes time to work with thousands of files, it will be much easier through a command line interface.
+Your interface to Unix will be through a **shell** program using the **command line interface** within a **terminal** application. There are several types of shells and terminals, but the details of these are mostly unnecessary for us. You should know that we are using the [fish](https://fishshell.com/) shell which has some [nice features](https://fishshell.com/docs/current/tutorial.html) compared to other shells.  However the most commonly used shell is [bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)).  If you use another Linux computer probably it will be running bash by default.
+
+The command line is where you type instructions for what you want the computer to do. Some of these statements are "do this now" while others are "let's get ready to do this." It may seem silly in this high-tech age to type your commands when you could simply point and click or maybe even use voice activation or gesturing. It is easier to automate typing though. So when it comes time to work with thousands of files, it will be much easier through a command line interface.
 
 ### Terminal Basics ###
 
@@ -79,9 +81,7 @@ To see your entire history of commands in this session, use the
 
 	history
 
-If you want to repeat a particular command line, you can select a specific line of your history. For example, to re-run command line #7, you type the following:
-
-	!7
+This displays commands in reverse-chronological order (the most recent is at the top).  Type `q` to return to the command line.  If there is more than a screenful of history then a `:` will be displayed at the bottom of the page.  In that case you press the `space` bar to see more of your history.
 
 Probably the most important finger saver in Unix is **tab completion**. When you hit the tab key, it completes the rest of the word for you. For example, instead of typing out `history` you can instead type `his` followed by the tab key, the rest of the word will be completed. If you use something less specific, can hit the tab key a second time and Unix will show you the various legal words. Try typing `h` and then the tab key twice. Those are all the commands that begin with the letter h. We will use tab completion constantly. Not only does it save you key presses and time, it also ensures that your spelling is correct. Try misspelling the `history` command to observe the error it reports.
 
@@ -100,7 +100,7 @@ We won't use variables much, but it's important to know they exist because some 
 
 ## Files & Directories ##
 
-Unix is mostly a text environment. You will be reading and writing a lot of text files. To do this you will use a text editor. There are many, many text editors, and some people are insanely passionate about one or the other. We don't have time for that. We'll use two: **nano**, which works from your command line interface, and also **atom** that works like a word processor.
+Unix is mostly a text environment. You will be reading and writing a lot of text files. To do this you will use a text editor. There are many, many text editors, and some people are insanely passionate about one or the other. We don't have time for that. We'll use two: **nano**, which works from your command line interface, and **atom** which you can use the desktop and is more like a word processor.
 
 In Unix, pretty much everything is a file. You need to be able to create, edit, and delete files and directories to do anything. You can do some of these things from the graphical desktop interface, but resist this. The more comfortable you are using the command line for everything, the better off you will be.
 
