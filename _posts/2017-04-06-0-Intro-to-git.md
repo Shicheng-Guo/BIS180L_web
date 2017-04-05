@@ -42,6 +42,18 @@ Keep track of what each command that you learn does by making notes for yourself
 
 First get a [GitHub](https://github.com/) account
 
+Second, do some initial configuration on your AWS instance:
+
+1. Connect to your instance with TigerVNC 
+2. Open terminal
+3. Enter the following commands to configure git.  Replace the username and email with yours!
+
+```
+git config --global user.name "Linda Katehi"
+git config --global user.email lkat@ucdavis.edu
+git config --global push.default simple
+```
+
 ### Make a repository and collaborate
 
 Work in a group of 2 or 3 people. Each partner should follow along with what the others are doing so you are versed in all steps.
