@@ -7,7 +7,7 @@ tags:
 - sequence
 ---
 ## Background reading
-There is good background information on sequence analysis [elsewhere on this site]({{site.baseurl}}/docs/SequenceAnalysisPrimer.pdf)
+There is good background information on sequence analysis at [Readings and Resources]({{site.baseurl}}/readings_resources/)
 
 ## Part 1: Getting Organized ##
 

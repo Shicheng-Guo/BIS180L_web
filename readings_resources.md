@@ -3,7 +3,7 @@ layout: page
 title: Readings and Resources
 ---
 
-## Day One (March 29)
+## Day One (Apr 04)
 [Noble: Organizing Bioinformatics Projects](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424#pcbi-1000424-g001)
 
 [(R) Markdown quick reference](http://rmarkdown.rstudio.com/authoring_basics.html)
@@ -12,10 +12,10 @@ title: Readings and Resources
 
 [How to make and configure your own virtual machine]({{ site.baseurl }}/Creating_VBox_machine)
 
-## Day Two (March 31)
-[Git increases reproducibility and transparency](http://www.scfbm.org/content/8/1/7)
+## Day Two (Apr 06)
 
-## April 07
+### Git
+[Git increases reproducibility and transparency](http://www.scfbm.org/content/8/1/7)
 
 ### Sequence Alignment Background
 
