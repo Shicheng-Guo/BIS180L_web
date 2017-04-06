@@ -54,6 +54,12 @@ git config --global user.email lkat@ucdavis.edu
 git config --global push.default simple
 ```
 
+Now lets set git so it only asks for your password once every four hours (time is in seconds):
+
+```
+git config --global credential.helper 'cache --timeout=14400'
+```
+
 ### Make a repository and collaborate
 
 Work in a group of 2 or 3 people. Each partner should follow along with what the others are doing so you are versed in all steps.
@@ -115,7 +121,7 @@ __OR__
 	* Run git log and save the output to a file.
 
 * Want a graphical view of what is going on?
-	* type `gitk` at the command line when you are in the directory of a git repository.
+	* type `gitk` at the command line when you are in the directory of a git repository, or click on the "gitk" icon on your dock.
 
 ### Fork a project
 
