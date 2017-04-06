@@ -10,8 +10,6 @@ title: Readings and Resources
 
 [Linux quick reference](http://www.linuxdevcenter.com/excerpt/LinuxPG_quickref/linux.pdf)
 
-[How to make and configure your own virtual machine]({{ site.baseurl }}/Creating_VBox_machine)
-
 ## Day Two (Apr 06)
 
 ### Git
