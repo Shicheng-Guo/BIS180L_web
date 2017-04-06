@@ -97,7 +97,7 @@ is named after the **Smith-Waterman** algorithm. This comes from the
 **EMBOSS** suite of bioinformatics programs, which is installed on your
 system. One of the first things you should do when using a new program
 is to skim the documentation. Some bioinformatics programs will have
-`man` pages, but not all. `water` doesn't come with a `man` page, but
+`man` pages, but not all. `water` does come with a `man` page, 
 there is good documentation online at the EMBOSS site. Most
 bioinformatics programs will have a **usage statement** that gives you
 some help with the program. To display the usage statement, try the
