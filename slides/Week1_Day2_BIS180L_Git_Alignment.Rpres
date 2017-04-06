@@ -1,7 +1,7 @@
 Git and Sequence Alignment
 ========================================================
 author: Julin Maloof
-date: March 31, 2016
+date: April 06, 2017
 
 Today's Lab
 ========================================================
@@ -55,11 +55,22 @@ incremental: true
   * `git pull`
 * To upload changes to the remote repsoitory
   * `git push`
+* (Illustrate on Board)
+
+Git: Example
+============
+Show BIS180L_web example
+
   
 Seq Alignment
 =============
 
 A key tool in bioinformatics is sequence alignment.
+
+Why?
+
+Seq Alignment
+=============
 
 Questions:  
 1. How similar are two sequences?  
