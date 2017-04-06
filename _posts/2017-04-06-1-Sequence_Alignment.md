@@ -280,15 +280,9 @@ following questions?
 Write those down in your notebook. Now let's get back to the experiment.
 You want to find the A. thaliana and D. melanogaster orthologs of
 B0213.10. Set up the experiment any way you like. You need to be able to
-answer the following questions. Note that some questions are very
-open-ended and may be very difficult to answer. For these, do your best
+answer questions in the [Assignment Template](). Note that some questions may be
+open-ended and difficult to answer. For these, do your best
 and support your answer with scientific reasoning and/or appropriate
 sources.
 
-* What is the best match in each genome?
-* What protein is this?
-* What are the alignment properties (% identity, etc.)
-* What is the expected score of your alignment at random?
-* How different is your best score from random?
-* How statistically significant is this score?
-* How biologically significant is this score?
+
