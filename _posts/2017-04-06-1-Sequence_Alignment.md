@@ -68,7 +68,7 @@ new directory to organize your thoughts and files.
 	mkdir ~/Lab1
 	cd ~/Lab1
 
-You also need to keep a laboratory notebook for this unit.  Start `atom`, create w new file, and save it as `lab1_notebook.md` in the directory you just created.  Keep your notes and a log in this document.
+You also need to keep a laboratory notebook for this unit.  Start `atom`, create a new file, and save it as `lab1_notebook.md` in the directory you just created.  Keep your notes and a log in this document.
 
 Alternatively, if you want to work entirely at the command line, you could also write your notebook in nano:
 

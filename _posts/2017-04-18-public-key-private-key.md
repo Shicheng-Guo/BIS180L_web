@@ -16,9 +16,14 @@ __There is a solution__
 
 We will use an [ssh public key](https://help.ubuntu.com/community/SSH/OpenSSH/Keys) to authenticate your identity.
 
-In this method of authentication you generate a public key and a private key.  The private key stays on your computer (in this case your virtual computer) and the public key is given to 3rd parties who will want to verify your identity (in this case GitHub).
+In this method of authentication you generate a public key and a private key.  The private key stays on your computer (in this case your AWS instance) and the public key is given to 3rd parties who will want to verify your identity (in this case GitHub).
 
 When you attempt to login to GitHub a program called [SSH](https://help.ubuntu.com/community/SSH) tests to see if your computer has the matching private key.
+
+# note: this lab needs to be updated, this can be done within R studio.
+
+See https://www.r-bloggers.com/rstudio-and-github/
+
 
 ## Generate a ssh key pair
 
