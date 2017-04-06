@@ -68,18 +68,14 @@ new directory to organize your thoughts and files.
 	mkdir ~/Lab1
 	cd ~/Lab1
 
-Open up another terminal, change to the directory you just created, and
-start a log where you can keep notes. This will be your laboratory
-notebook for this unit.
+You also need to keep a laboratory notebook for this unit.  Start `atom`, create w new file, and save it as `lab1_notebook.md` in the directory you just created.  Keep your notes and a log in this document.
+
+Alternatively, if you want to work entirely at the command line, you could also write your notebook in nano:
 
 	cd ~/Lab1
 	nano lab1_notebook.md
 
-Instead of editing in nano, you could also write your lab notebook while
-using Markdown preview in the program Remarkable which is already 
-installed on your Virtual Machine.
-
-Create a simple table with the following information for each species.
+Create a simple (markdown formatted) table with the following information for each species.
 
 1. Size of the file
 2. Number of chromosomes
@@ -121,7 +117,7 @@ Unix community.
 There are not many options. We need to provide two sequence files,
 penalties for gap opening and extension, and an output file. The scoring
 matrix appears to BLOSUM62 by default but others are available (see
-`/usr/share/EMBOSS/data` or `/usr/local/share/EMBOSS/data`). Let's try
+`/usr/share/EMBOSS/data`). Let's try
 the interactive mode.
 
 	water
@@ -156,7 +152,7 @@ We can use the EMBOSS `shuffleseq` to create related sequences whose
 letters have been mixed up.
 
 	head ce1.fa
-	shuffleseq ce1.fa -outseq ce1.shuffle.fa 
+	shuffleseq ce1.fa -outseq ce1.shuffle.fa
 	head ce1.shuffle.fa
 
 Notice that the sequences are completely different. Now let's determine
@@ -229,7 +225,7 @@ Use `head` and `tail` to find the minimum and maximum values. Or you can
 use `less` and scroll the the output.
 
 To find the median score, sort the output as above, but pipe it to
-`head` to get the 500th and 501st value (with an even number of values, 
+`head` to get the 500th and 501st value (with an even number of values,
 you average the two middle values).
 
 	grep Score 1k.water | cut -d " " -f 3 | sort -n | head -501 | tail -2
@@ -242,7 +238,7 @@ to `tail` to complete the logical converse.
 There is an odd Unix command called `uniq` that compares adjacent lines
 in a file and reports when they are not the same. Since it is comparing
 adjacent lines, we will need to `sort` the scores again. To count when
-the lines are not the same, use `uniq` with the `-c` option. We can use 
+the lines are not the same, use `uniq` with the `-c` option. We can use
 that to make a histogram.
 
 	grep Score 1k.water | cut -d " " -f 3 | sort -n | uniq -c
@@ -285,8 +281,8 @@ Write those down in your notebook. Now let's get back to the experiment.
 You want to find the A. thaliana and D. melanogaster orthologs of
 B0213.10. Set up the experiment any way you like. You need to be able to
 answer the following questions. Note that some questions are very
-open-ended and may be very difficult to answer. For these, do your best 
-and support your answer with scientific reasoning and/or appropriate 
+open-ended and may be very difficult to answer. For these, do your best
+and support your answer with scientific reasoning and/or appropriate
 sources.
 
 * What is the best match in each genome?
