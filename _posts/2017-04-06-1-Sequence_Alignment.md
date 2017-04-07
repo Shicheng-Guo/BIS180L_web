@@ -280,7 +280,7 @@ following questions?
 Write those down in your notebook. Now let's get back to the experiment.
 You want to find the A. thaliana and D. melanogaster orthologs of
 B0213.10. Set up the experiment any way you like. You need to be able to
-answer questions in the [Assignment Template](). Note that some questions may be
+answer questions in the [Assignment Template]({{site.baseurl}}/Assignments/Assignment_1.5_SA_template.md). Note that some questions may be
 open-ended and difficult to answer. For these, do your best
 and support your answer with scientific reasoning and/or appropriate
 sources.
