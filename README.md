@@ -50,6 +50,10 @@ For a post to be listed on the front page, use:
 
 Save it in the '_posts' folder with a name that follows a format of `yyyy-mm-dd-title.md'.  This will automatically get added to the front page.
 
+### Assignments
+
+To keep it from showing up in the sidebar, include a markdown first level header that contains 'template' i.e. ("# Assignment1 template").  Save it in the "assignments" folder.  Link to it from assignments/Assignments.md.
+
 ## Setting up your computer to use jekyll
 
 On a mac you will need to update your ruby installation.  I like using [homebrew](https://brew.sh/).  Once homebrew in installed, then:

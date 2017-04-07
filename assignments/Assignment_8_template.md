@@ -1,4 +1,4 @@
-# Assignment 8: Sequence Composition
+# Assignment 8 Template: Sequence Composition
 
 __Name:__
 

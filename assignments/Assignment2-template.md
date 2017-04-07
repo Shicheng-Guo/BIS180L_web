@@ -1,4 +1,4 @@
-# BLAST, orthologs, and paralogs (Week 2, 20 pts possible)
+# Template for BLAST, orthologs, and paralogs (Week 2, 20 pts possible)
 
 __Name:__
 

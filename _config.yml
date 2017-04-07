@@ -24,5 +24,8 @@ show_drafts:      false
 # Custom vars
 version:          0.1.0
 
+# Exclude from conversion 
+# exclude: [ '*template*' ]
+
 #github:
 #  repo:           https://github.com/jnmaloof/BIS180L_web
