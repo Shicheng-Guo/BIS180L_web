@@ -1,23 +1,51 @@
 How to turn in Assignments
 ========================================================
 author: Julin Maloof
-date: April 07, 2015
+date: April 13, 2017
+
+Lab Partners
+============
+We are going to start working in teams.  
+The whole is greater than the sum of the parts...  Work __together__ with your lab partner(s) as you go through the lab.  Teach each other as you go.
+
+**Partner 1**|**Partner 2**|**Partner 3**
+-----|-----|-----
+Amber Jacobson|Koki Sasagawa|Mitali Singh
+Amy Wong|Wanqiu Ge| 
+Arin Sadeghi|Natalie Damrau| 
+Christopher Brooks|Yinjie Gao| 
+Eliza Tsang|Michelle Poling| 
+Helen Liu|Jia Wang| 
+Imran Meskienyar|Lilith Marinho-Davis| 
+Juliya Abbasi|Petra Dahms| 
+
+Lab Partners, continued
+=========================
+**Partner 1**|**Partner 2**|**Partner 3**
+-----|-----|-----
+Lai Chan|Wenyi Qiu| 
+Niba Nirmal|Jennifer Blanc| 
+Sequoia Sartori|Sarah Yam| 
+Tavneet Gill|Jenna Arciero| 
+Tu Le|Calen Badger| 
+Felicia Peng|Kataksha Kinra| 
+Deanna Murguia|Sana Fatima| 
+Dave Speca|Vasco Morais| 
+Lynn Ly|Chunmei Li| 
+
 
 I need your GitHub Username
 ========================================================
 
-I am missing usernames for:
+I am *STILL* missing usernames for:
 
-Daniel Aherns    
-Samuel Deck  
-Anjali Kadakia  
-Khoa Nguyen 
-***
-Scot Nicol  
-Nabeel Sami  
-Pallavi Setty  
-Gurkern Sufi  
-Igor Hiroshi Terayama de Oliveira
+Juliya Abbasi  
+Tavneet Gill  
+Tu Le  
+Abeer Rasai (Dropped?)  
+Eliza Tsang  
+Jia Wang  
+Sarah Yam  
 
 To give me your GitHub Username:
 ========================================================
@@ -37,14 +65,13 @@ Assignment turn-in
 incremental: true
 Assignments are to be turned in by pushing to a github repository
 
-I have created a private GitHub repository for each of you
+I will create a private GitHub repository for each of you for each assignment.  Assignment 1 and 2 are available.
 
 Short version:
 * Clone the repository
-* Create a directory in the repository "Assignment 1"
-* Copy your markdown file into the directory
-* Add the file to be tracked
-* Commit the change
+* Move your file(s) into the directory
+* `Git add` the file to be tracked
+* `Git commit` the change
 * Push to github
 * On the webpage for your repository create an issue "Please Grade Assignment 1"
 
@@ -55,10 +82,9 @@ type:section
 Clone the repository--part I
 =====================
 
-This only needs to be done once
 * go to GitHub.com and logon
-* If you haven't already done so, accept the invitation to join the UCDBIS180L team
-* Click on the link "UCDBIS180L/BIS180L_Assignments_..." link on the right hand side
+* If you haven't already done so, accept the invitation to join the UCDBIS180L-17 team
+* Click on the link "UCDBIS180L-17/BIS180L_Assignments_..." link on the right hand side
 
 ![assignments](git_clone_1.png)
 
@@ -77,14 +103,12 @@ Create a directory and move files
 =================================
 
 * `cd` into the repository (Change Stacey.Harmer to whatever is correct for your repo)
-* make a directory for the assignment and change to it
 * move the relevant file(s) to the directory.  (This will vary depending on where your files are)
 
 
-```
-cd BIS180L_Assignments_Stacey.Harmer
-mkdir Assignment_1 
-cd Assignment_1
+```r
+cd BIS180L_Assignment_1_Stacey.Harmer
+cd BIS180L_Assignment_1_Stacey.Harmer
 mv ~/Documents/BIS180L_Lab1/* ./
 ```
 
@@ -92,7 +116,7 @@ Check status; Git to track the files
 ====================================
 
 
-```
+```r
 git status
 git add ./* #adds all files
 git commit -m "added files for assignment 1"
@@ -113,13 +137,13 @@ When you are ready to submit push your changes to GitHub
 First set your git configuration options (only needs to be done once per machine)  
 
 
-```
+```r
 git config --global push.default simple
 ```
 
 Then
 
-```
+```r
 git push
 ```
 
@@ -142,12 +166,17 @@ Create an issue, 2
 * tell us that you are ready for your assignment to be graded
 ![](git_issues_3.png)
 
-Optional Lab Exercise
-====================
-type: section
+Future
+======
 
-Automating commands in the bash shell script
-============================================
-See new lab exercise for today (in "labs" on website)
+For subsequent exercises clone the repository *before* you start working on the lab.  
 
-This is optional but recommended.
+Do you work in the repository.
+
+Commit and push changes as you go (serves as a backup!)
+
+__DO NOT__ add large data files (they can be in the directory by do not ask git to track them)
+
+
+
+

@@ -1,10 +1,11 @@
 Orthlogs and Paralogs
 ========================================================
 author: Julin Maloof
-date: April 9, 2015
+date: April 13, 2017
 
 Alignment methods
 ========================================================
+incremental: true
 
 Why are sequence alignment methods important?
 
@@ -16,9 +17,9 @@ Why are sequence alignment methods important?
 
 GOALS
 ========================
+incremental: true
 
 Goals:
-
 * Familiarity with BLAST at the command line.
 * Orthology and Paralogy
 
@@ -30,6 +31,7 @@ We already learned about `water` why do we also need to know about `BLAST`?
 
 BLAST and Smith-Waterman compared
 ==================================================
+incremental: true
 
 * Both are both local alignment algorithms
   * What does "local" mean?  
@@ -40,6 +42,7 @@ BLAST and Smith-Waterman compared
 
 Orthologs and Paralogs
 ======================
+incremental: true
 
 * Two genes are __homologs__ if they have descended from a common ancestor.
 
@@ -55,11 +58,11 @@ For more info see [paper by Fitch](http://www.sciencedirect.com/science/article/
     
 For loops
 =========
+incremental:true
 
 Often it is necessary to repeat a computational task many times with subtle variation or to perform the same task on a large number of objects.
 
 We have already seen examples of this:
-
 * Run `water` many times but use different scoring matrices or penalties
 * In today's lab run `BLAST` many times with different word sizes
 * You can also imagine wanting to `BLAST` a gene against many different genomes, each separately.
@@ -68,6 +71,7 @@ We have already seen examples of this:
 
 For loop example
 ================
+incremental: true
 
 Imagine that we want to use a computer and robot to automatically measure the weight of every student in the room.  
 
@@ -77,14 +81,14 @@ First lets describe in detail what the steps would be for a single student.  We 
 pick up the student
 bring them to the scale
 record their weight
-return them to the scale
+return them to their seat
 ```
 
 For loop example: pseudo-code
 =====================
 How would we describe the process of measuring all the students?
 
-```
+```{}
 for each student in the classroom: 
   
     pick up the student
@@ -107,7 +111,7 @@ __Type the commands below into the Linux shell to see what happens__
 
 First we create a list of all the students, contained in the variable `classroom_students`
 
-    classroom_students="tyler anna leslie scot erik"
+    set classroom_students Chunmei Ari Yinjie Calen Koki
     echo $classroom_students
 
 We use the `echo` command to confirm that the classroom_students list has been created successfully
@@ -117,14 +121,14 @@ For loop example: real-code continued
 
 Now we run the loop.  The the following into your terminal.
 
-```
+```{}
 for student in $classroom_students
-  do
-    echo "picking up ${student}"
-    echo "bringing ${student} to the scale"
-    echo "recording the ${student}'s weight"
-    echo "returning ${student} to their seat"
-  done
+    echo "picking up $student"
+    echo "bringing $student to the scale"
+    echo "recording $student's weight"
+    echo "returning $student to their seat"
+    echo \n
+  end
 ```
 
-Note the use of __do__ and __done__ telling the computer the beginning and end of the loop.
+Note the use of `end` telling the computer the end of the loop.
