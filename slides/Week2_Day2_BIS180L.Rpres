@@ -1,7 +1,7 @@
 Orthlogs and Paralogs
 ========================================================
 author: Julin Maloof
-date: April 9, 2015
+date: April 13, 2017
 
 Alignment methods
 ========================================================
@@ -81,7 +81,7 @@ First lets describe in detail what the steps would be for a single student.  We 
 pick up the student
 bring them to the scale
 record their weight
-return them to the scale
+return them to their seat
 ```
 
 For loop example: pseudo-code
@@ -111,7 +111,7 @@ __Type the commands below into the Linux shell to see what happens__
 
 First we create a list of all the students, contained in the variable `classroom_students`
 
-    classroom_students="tyler anna leslie scot erik"
+    set classroom_students Chunmei Ari Yinjie Calen Koki
     echo $classroom_students
 
 We use the `echo` command to confirm that the classroom_students list has been created successfully
@@ -123,12 +123,12 @@ Now we run the loop.  The the following into your terminal.
 
 ```{}
 for student in $classroom_students
-  do
-    echo "picking up ${student}"
-    echo "bringing ${student} to the scale"
-    echo "recording the ${student}'s weight"
-    echo "returning ${student} to their seat"
-  done
+    echo "picking up $student"
+    echo "bringing $student to the scale"
+    echo "recording $student's weight"
+    echo "returning $student to their seat"
+    echo \n
+  end
 ```
 
-Note the use of __do__ and __done__ telling the computer the beginning and end of the loop.
+Note the use of `end` telling the computer the end of the loop.

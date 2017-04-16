@@ -784,7 +784,7 @@ hljs.initHighlightingOnLoad();
   <div class="slides">
 
 <section data-state="section" data-transition="linear" data-transition-speed="default">
-<h1>Orthlogs and Paralogs</h1><p>Julin Maloof<br/>April 9, 2015</p>
+<h1>Orthlogs and Paralogs</h1><p>Julin Maloof<br/>April 13, 2017</p>
 
 <div class="slideContent" >
 
@@ -891,7 +891,7 @@ hljs.initHighlightingOnLoad();
 <pre class="fragment"><code>pick up the student
 bring them to the scale
 record their weight
-return them to the scale
+return them to their seat
 </code></pre>
 
 </div>
@@ -927,7 +927,7 @@ return them to the scale
 
 <p>First we create a list of all the students, contained in the variable <code>classroom_students</code></p>
 
-<pre><code>classroom_students=&quot;tyler anna leslie scot erik&quot;
+<pre><code>set classroom_students Chunmei Ari Yinjie Calen Koki
 echo $classroom_students
 </code></pre>
 
@@ -942,15 +942,15 @@ echo $classroom_students
 <p>Now we run the loop.  The the following into your terminal.</p>
 
 <pre><code>for student in $classroom_students
-  do
-    echo &quot;picking up ${student}&quot;
-    echo &quot;bringing ${student} to the scale&quot;
-    echo &quot;recording the ${student}&#39;s weight&quot;
-    echo &quot;returning ${student} to their seat&quot;
-  done
+    echo &quot;picking up $student&quot;
+    echo &quot;bringing $student to the scale&quot;
+    echo &quot;recording $student&#39;s weight&quot;
+    echo &quot;returning $student to their seat&quot;
+    echo \n
+  end
 </code></pre>
 
-<p>Note the use of <strong>do</strong> and <strong>done</strong> telling the computer the beginning and end of the loop.</p>
+<p>Note the use of <code>end</code> telling the computer the end of the loop.</p>
 
 </div>
 
