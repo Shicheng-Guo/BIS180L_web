@@ -7,6 +7,20 @@ tags:
 - sequence
 ---
 
+## Clone the assignment two repository
+
+__Answers to the first two exercises will be turned in as part of Assignment 2 (See BLAST lab)__
+
+I have created a repository for this lab and the BLAST lab, to be turned in together.  To get started, clone the repository now.  You can find the appropriate URL by going to github.  
+
+	cd 
+	git clone YOUR_URL
+	cd Assignment_2_XXXXXX.XXXXXX
+	touch lab2_notebook.md
+	git add lab2_notebook.md
+
+Keep a list of your the commands that you used in your lab2_notebook.md file. 
+
 ## Background
 
 I have claimed that there are tools at the command line that make automating tasks easier. You are probably wondering when you will get to see that.  Now is the time.
@@ -120,7 +134,7 @@ You can also the for loop to create new files, i.e.
     
     ls
 
-__Exercise Four__: Write a for loop that runs the `water` command from the Sequence Alignment lab three times, (once per loop) each time using a different scoring matrix.  Be sure that the results from each call to `water` is saved in a different file with the file name indicating the parameters that were used.
+__Optional Exercise Four__: Write a for loop that runs the `water` command from the Sequence Alignment lab three times, (once per loop) each time using a different scoring matrix.  Be sure that the results from each call to `water` is saved in a different file with the file name indicating the parameters that were used.
 
 ## Nested for Loops
 
