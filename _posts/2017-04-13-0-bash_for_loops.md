@@ -154,11 +154,14 @@ For some reason we want to add the numbers 1 to 10 after each of our fruit names
 
 For each fruit we now loop through each of the numbers...
 
-__Exercise Five:__ Use a nested for loop to run water for each scoring matrix and gap extension penalties from 3 through 9
+__Optional Exercise Five:__ Use a nested for loop to run water for each scoring matrix and gap extension penalties from 3 through 9
 
 
 # BASH version
 
+__OPTIONAL: BIS180L Students do not need to do this__
+
+This is here as a reference in case you are working in the Bash shell
 
 ## For Loops
 
