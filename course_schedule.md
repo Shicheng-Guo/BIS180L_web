@@ -15,9 +15,9 @@ Schedule is subject to change (but not the exam dates)
 | Thur 1:10 - 5:00  |  13-Apr |  For Loops; BLAST          |
 | Fri 1:10 - 2:00   |  14-Apr |  BLAST                     |
 |                   |         |  
-| Tue 1:10 - 5:00   |  18-Apr |  Discussion: BLAST & Seq Alignment ; R: Intro | Buffalo: 175 - 206
-| Thur 1:10 - 5:00  |  20-Apr |  R: ggplot                 | Buffalo: 207 - 224
-| Fri 1:10 - 2:00   |  21-Apr |  More R                    | 
+| Tue 1:10 - 5:00   |  18-Apr |  BLAST + BLAST DISCUSSION  |
+| Thur 1:10 - 5:00  |  20-Apr |  R: Intro                  | Buffalo: 175 - 206                 
+| Fri 1:10 - 2:00   |  21-Apr |  R: ggplot                 | Buffalo: 207 - 224
 |                   |         |  
 | Tue 1:10 - 5:00   |  25-Apr |  R and SNP analysis        |
 | Thur 1:10 - 5:00  |  27-Apr |  R and GWAS                |

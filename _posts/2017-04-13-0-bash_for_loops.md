@@ -108,18 +108,18 @@ Note that we could be more shorthand about this and not bother defining `$myfile
 
 __Exercise Three__ Modify the above loop to produce the following output
 
-> file file1.txt contains: this
-> file file2.txt contains: is
-> file file3.txt contains: silly
+> file file1.txt contains: this  
+> file file2.txt contains: is  
+> file file3.txt contains: silly  
 
 _hint 1_ you will want the command inside the loop to start with `echo`
 _hint 2_ you will need to enclose something in parentheses
 
 If you want a bit more of a challenge, try this (optional)
 
-> file "file1.txt" contains: "this"
-> file "file2.txt" contains: "is"
-> file "file3.txt" contains: "silly"
+> file "file1.txt" contains: "this"  
+> file "file2.txt" contains: "is"  
+> file "file3.txt" contains: "silly"  
 
 _hint_ click [here](http://fishshell.com/docs/current/index.html#syntax) and scroll down to "Quotes" and then "Escaping Characters"
 
@@ -154,11 +154,14 @@ For some reason we want to add the numbers 1 to 10 after each of our fruit names
 
 For each fruit we now loop through each of the numbers...
 
-__Exercise Five:__ Use a nested for loop to run water for each scoring matrix and gap extension penalties from 3 through 9
+__Optional Exercise Five:__ Use a nested for loop to run water for each scoring matrix and gap extension penalties from 3 through 9
 
 
 # BASH version
 
+__OPTIONAL: BIS180L Students do not need to do this__
+
+This is here as a reference in case you are working in the Bash shell
 
 ## For Loops
 
