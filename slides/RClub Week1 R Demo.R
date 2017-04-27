@@ -1,5 +1,7 @@
+library(ggplot2)
+
 #read the data
-data <- read.csv("TomatoR2CSHL.csv")
+data <- read.csv("~/git/BIS180L_web/data/Tomato.csv")
 
 #get a quick summary
 summary(data)
@@ -8,24 +10,23 @@ summary(data)
 head(data)
 
 #a histogram
-hist(data$hyp)
-
-#load the lattice package.  Allows splitting up graphs by different categories
-library(lattice) #contains the histogram() function, used below.
-#hist() is for a single histogram, whereas histogram() is for splitting up the data
+ggplot(data,aes(x=hyp)) + geom_histogram()
 
 
 #histograms of hyp, split by treatment
-histogram(~data$hyp | data$trt)
+ggplot(data,aes(x=hyp)) + 
+  geom_histogram() +
+  facet_grid(. ~ trt)
 
 #histograms of hyp, split by species
-histogram(~data$hyp | data$species)
+ggplot(data,aes(x=hyp)) + 
+  geom_histogram() +
+  facet_grid(. ~ species)
 
 #histograms of hyp, split by treatment and species
-histogram(~data$hyp | data$species+data$trt)
-
-#another plotting package
-library(ggplot2) #contains the function qplot, used below
+ggplot(data,aes(x=hyp)) + 
+  geom_histogram() +
+  facet_grid(trt ~ species)
 
 #look at individual data points
 qplot(x=1,y=hyp,data=data, xlab="")
