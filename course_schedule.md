@@ -19,12 +19,12 @@ Schedule is subject to change (but not the exam dates)
 | Thur 1:10 - 5:00  |  20-Apr |  R: Intro                  | Buffalo: 175 - 206                 
 | Fri 1:10 - 2:00   |  21-Apr |  R: ggplot                 | Buffalo: 207 - 224
 |                   |         |  
-| Tue 1:10 - 5:00   |  25-Apr |  R and SNP analysis        |
-| Thur 1:10 - 5:00  |  27-Apr |  R and GWAS                |
+| Tue 1:10 - 5:00   |  25-Apr |  More R Intro        |
+| Thur 1:10 - 5:00  |  27-Apr |  R and SNP analysis        |
 | Fri 1:10 - 2:00   |  29-Apr |  Discussion: SNPs/ GWAS    |
 |                   |         |  |
-| Tue 1:10 - 5:00   |  2-May  |  Shiny                     |
-| Thur 1:10 - 5:00  |  4-May  |  Shiny, cont.  Midterm Q and A review session |
+| Tue 1:10 - 5:00   |  2-May  |  R and GWAS                      |
+| Thur 1:10 - 5:00  |  4-May  |  Shiny Midterm Q and A review session |
 | Fri 1:10 - 2:00   |  5-May  |   __Midterm Handed out__
 |                   |         |  
 | Tue 1:10 - 5:00   |  9-May  | Illumina Sequence Data: QC and mapping | Buffalo: p. 339 - 351
