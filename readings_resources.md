@@ -37,10 +37,12 @@ Extra Info: [Combined Unabridged Sequence Analysis Primer](../docs/SequenceAnaly
 ## April 28
 [Rice Diversity](../docs/Kovach2007_Trends Genet.pdf)
 
-## May 03
+## May 02
 [Wikipedia GWAS](http://en.wikipedia.org/wiki/Genome-wide_association_study)
 
 [GWAS Q & A](../docs/Brookfield2010_BMC_Biol.pdf)
+
+[GWAS protocol](../docs/Al-Chalabi_2009_Cold Spring Harbor protocols.pdf)
 
 [Rice GWAS](../docs/Zhao2011_Nat Commun.pdf)
 

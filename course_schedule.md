@@ -23,7 +23,7 @@ Schedule is subject to change (but not the exam dates)
 | Thur 1:10 - 5:00  |  27-Apr |  R and SNP analysis        |
 | Fri 1:10 - 2:00   |  29-Apr |  Discussion: SNPs/ GWAS    |
 |                   |         |  |
-| Tue 1:10 - 5:00   |  2-May  |  R and GWAS                      |
+| Tue 1:10 - 5:00   |  2-May  |  R and GWAS                      | [Wikipedia GWAS](http://en.wikipedia.org/wiki/Genome-wide_association_study) <br>  [GWAS Q & A](../docs/Brookfield2010_BMC_Biol.pdf) <br> [GWAS protocol](../docs/Al-Chalabi_2009_Cold Spring Harbor protocols.pdf)
 | Thur 1:10 - 5:00  |  4-May  |  Shiny Midterm Q and A review session |
 | Fri 1:10 - 2:00   |  5-May  |   __Midterm Handed out__
 |                   |         |  
