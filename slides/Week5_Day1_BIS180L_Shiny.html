@@ -784,7 +784,7 @@ hljs.initHighlightingOnLoad();
   <div class="slides">
 
 <section data-state="section" data-transition="linear" data-transition-speed="default">
-<h1>Make a web application with Shiny!</h1><p>Julin Maloof<br/>May 05, 2016</p>
+<h1>Make a web application with Shiny!</h1><p>Julin Maloof<br/>May 04, 2017</p>
 
 <div class="slideContent" >
 
@@ -899,8 +899,12 @@ shinyServer(function(input, output) {
 <section data-transition="linear" data-transition-speed="default">
 <h3>Running on your computer</h3>
 <div class="slideContent" >
-<p>To try the app on your computer, save the above scripts in ui.R and server.R, respectively, in a directory for this app.
-Then from the R console:</p>
+<p>To try the app on your computer, save the above scripts in ui.R and server.R, respectively, in a directory for this app.</p>
+
+<ul>
+<li>Click on the <code>RunApp</code> Button in R studio</li>
+<li>OR from the R console:</li>
+</ul>
 
 <pre><code class="r">library(shiny)
 runApp(&#39;PATH_TO_APP_DIRECTORY&#39;)    
@@ -939,8 +943,8 @@ runGitHub(repo = &quot;HamiltonDemos&quot;,username = &quot;jnmaloof&quot;, subd
 <p>You can use Rstudio&#39;s <strong>free</strong> <a href="http://www.shinyapps.io/">shiny server</a>
 Once you have signed up for an account and authenticated it a simple as:</p>
 
-<pre><code class="r">library(shinyapps)
-shinyapps::deployApp(&#39;path/to/your/app&#39;)
+<pre><code class="r">library(rsconnect)
+rsconnect::deployApp(&#39;path/to/your/app&#39;)
 </code></pre>
 
 <p>You can see my version <a href="https://jnmaloof.shinyapps.io/irisApp/">here</a></p>
@@ -967,101 +971,129 @@ shinyapps::deployApp(&#39;path/to/your/app&#39;)
 
 <table><thead>
 <tr>
-<th>Student 1</th>
-<th>Student 2</th>
-<th>Student 3</th>
-<th>Repository</th>
+<th align="center"><strong>Student 1</strong></th>
+<th align="center"><strong>Student 2</strong></th>
+<th align="center"><strong>Student 3</strong></th>
+<th align="center"><strong>Repository</strong></th>
 </tr>
 </thead><tbody>
 <tr>
-<td>Alla Hussein</td>
-<td>Dylan Antonious</td>
-<td>Chris Campbell</td>
-<td></td>
+<td align="center">Amber Jacobson</td>
+<td align="center">Tavneet Gill</td>
+<td align="center"></td>
+<td align="center">Shiny_Amber_Tavneet</td>
 </tr>
 <tr>
-<td>Avery Wang</td>
-<td>Caitlin Clark-Wiest</td>
-<td>Gina De La O</td>
-<td></td>
+<td align="center">Mitali Singh</td>
+<td align="center">Koki Sasagawa</td>
+<td align="center"></td>
+<td align="center">Shiny_Mitali_Koki</td>
 </tr>
 <tr>
-<td>Siddharth Bhadra-Lobo</td>
-<td>Jay Boinapalli</td>
-<td>Anh Nguyen</td>
-<td></td>
+<td align="center">Amy Wong</td>
+<td align="center">Lai Chan</td>
+<td align="center"></td>
+<td align="center">Shiny_Amy_Lai</td>
 </tr>
 <tr>
-<td>Weston Selna</td>
-<td>Smia Sahebi</td>
-<td>Miranda Stever</td>
-<td></td>
+<td align="center">Arin Sadeghi</td>
+<td align="center">Imran Meskienyar</td>
+<td align="center"></td>
+<td align="center">Shiny_Arin_Imran</td>
 </tr>
 <tr>
-<td>Amanda Everitt</td>
-<td>Brianna Daniels</td>
-<td>Saghi Nojoomi</td>
-<td></td>
+<td align="center">Eliza Tsang</td>
+<td align="center">Sarah Yam</td>
+<td align="center"></td>
+<td align="center">Shiny_Eliza_Sarah</td>
 </tr>
 <tr>
-<td>Ellis Anderson</td>
-<td>Claudia Dastmalchi</td>
-<td>Joyce Yu</td>
-<td></td>
+<td align="center">Sequoia Sartori</td>
+<td align="center">Vasco Morais</td>
+<td align="center"></td>
+<td align="center">Shiny_Sequoia_Vasco</td>
 </tr>
 <tr>
-<td>Garrett Eliot</td>
-<td>Henry Knight</td>
-<td>Anushriya Subedy</td>
-<td></td>
+<td align="center">Tu Le</td>
+<td align="center">Michelle Poling</td>
+<td align="center"></td>
+<td align="center">Shiny_Tu_Michelle</td>
+</tr>
+</tbody></table>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Teams, continued</h3>
+<div class="slideContent" >
+<table><thead>
+<tr>
+<th align="center"><strong>Student 1</strong></th>
+<th align="center"><strong>Student 2</strong></th>
+<th align="center"><strong>Student 3</strong></th>
+<th align="center"><strong>Repository</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">Calen Badger</td>
+<td align="center">Juliya Abbasi</td>
+<td align="center"></td>
+<td align="center">Shiny_Calen_Juliya</td>
 </tr>
 <tr>
-<td>Jordan Anderson</td>
-<td>Andy Pham</td>
-<td>Paul Zaman</td>
-<td></td>
+<td align="center">Deanna Murguia</td>
+<td align="center">Natalie Damrau</td>
+<td align="center"></td>
+<td align="center">Shiny_Deanna_Natalie</td>
 </tr>
 <tr>
-<td>Alina Orozco</td>
-<td>An Nguyen</td>
-<td>Kathleen Furtado</td>
-<td></td>
+<td align="center">Petra Dahms</td>
+<td align="center">Lilith Marinho-Davis</td>
+<td align="center"></td>
+<td align="center">Shiny_Petra_Lilith</td>
 </tr>
 <tr>
-<td>John Davis</td>
-<td>Shawn Higdon</td>
-<td>Maisee Yang</td>
-<td></td>
+<td align="center">Niba Nirmal</td>
+<td align="center">Felicia Peng</td>
+<td align="center"></td>
+<td align="center">Shiny_Niba_Felicia</td>
 </tr>
 <tr>
-<td>Bowen Noack</td>
-<td>Francesca Macarandang</td>
-<td>Xiaomeng Yang</td>
-<td></td>
+<td align="center">Yinjie Gao</td>
+<td align="center">Wenyi Qiu</td>
+<td align="center"></td>
+<td align="center">Shiny_Yinjie_Wenyi</td>
 </tr>
 <tr>
-<td>Chynna Gabotero</td>
-<td>Alexander Duveneck</td>
-<td>Jennifer Koo</td>
-<td></td>
+<td align="center">Lynn Ly</td>
+<td align="center">Chunmei Li</td>
+<td align="center">Seungmo Kim</td>
+<td align="center">Shiny_Lynn_Chunmei_Seungmo</td>
 </tr>
 <tr>
-<td>Aaron Baer</td>
-<td>Jacob North</td>
-<td>Sam Deck</td>
-<td></td>
+<td align="center">Helen Liu</td>
+<td align="center">Jenna Arciero</td>
+<td align="center"></td>
+<td align="center">Shiny_Helen_Jenna</td>
 </tr>
 <tr>
-<td>Andrew Katznelson</td>
-<td>Livingstone Nganga</td>
-<td>Mai Khanh Tran</td>
-<td></td>
+<td align="center">Kataksha Kinra</td>
+<td align="center">Jennifer Blanc</td>
+<td align="center"></td>
+<td align="center">Shiny_Kataksha_Jennifer</td>
 </tr>
 <tr>
-<td>Cassandra Baker</td>
-<td>Diane Nguyen</td>
-<td>Sarah Stinson</td>
-<td></td>
+<td align="center">Wanqiu Ge</td>
+<td align="center">Jia Wang</td>
+<td align="center"></td>
+<td align="center">Shiny_Wanqiu_Jia</td>
+</tr>
+<tr>
+<td align="center">Sana Fatima</td>
+<td align="center">Christopher Brooks</td>
+<td align="center"></td>
+<td align="center">Shiny_Sana_Christopher</td>
 </tr>
 </tbody></table>
 
@@ -1082,7 +1114,7 @@ shinyapps::deployApp(&#39;path/to/your/app&#39;)
 <h3>BLAST ideas</h3>
 <div class="slideContent" >
 <ul>
-<li>Interactive plot to explore different hypotheses for Exercise 13 from the <a href="%7B%7Bsite.url%7D%7D/%7B%%20post_url%202015-04-14-R-intro%20%%7D">R Intro lab</a>.
+<li>Interactive plot to explore different hypotheses for Exercise 13 from the <a href="%7B%7Bsite.url%7D%7D/%7B%%20post_url%202017-04-20-0-R-intro%20%%7D">R Intro lab</a>.
 
 <ul>
 <li>The user could select which trait might affect the sequence length vs score relationship.  The plot could be a scatter plot of score vs sequence length colored by the value of the user-selected variable.  If you want to get fancy add a <a href="http://shiny.rstudio.com/gallery/sliders.html">slider-bar</a> that allows the user to set the limits of the data ploted.<br/></li>

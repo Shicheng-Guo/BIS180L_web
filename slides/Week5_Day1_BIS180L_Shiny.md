@@ -1,7 +1,7 @@
 Make a web application with Shiny!
 ==================================
 author: Julin Maloof
-date: May 05, 2016
+date: May 04, 2017
 
 Goal
 =====
@@ -91,7 +91,9 @@ Running on your computer
 =========================
 
 To try the app on your computer, save the above scripts in ui.R and server.R, respectively, in a directory for this app.
-Then from the R console:
+
+* Click on the `RunApp` Button in R studio
+* OR from the R console:
 
 
 ```r
@@ -124,8 +126,8 @@ You can use Rstudio's __free__ [shiny server](http://www.shinyapps.io/)
 Once you have signed up for an account and authenticated it a simple as:
 
 ```r
-library(shinyapps)
-shinyapps::deployApp('path/to/your/app')
+library(rsconnect)
+rsconnect::deployApp('path/to/your/app')
 ```
 You can see my version [here](https://jnmaloof.shinyapps.io/irisApp/)
 
@@ -142,23 +144,30 @@ Today we will work in teams of three.
 
 Each team will produce and deploy a Shiny app that will be collectively graded.
 
-| Student 1              | Student 2              | Student 3      | Repository                 |
-|------------------------|------------------------|----------------|----------------------------|
-| Alla Hussein           | Dylan Antonious        | Chris Campbell |                            |
-| Avery Wang             | Caitlin Clark-Wiest    | Gina De La O   |                            |
-| Siddharth Bhadra-Lobo  | Jay Boinapalli         | Anh Nguyen     |                            |
-| Weston Selna           | Smia Sahebi            | Miranda Stever |                            |
-| Amanda Everitt         | Brianna Daniels        | Saghi Nojoomi  |                            |
-| Ellis Anderson         | Claudia Dastmalchi     | Joyce Yu       |                            |
-| Garrett Eliot          | Henry Knight           | Anushriya Subedy|                            |
-| Jordan Anderson        | Andy Pham              | Paul Zaman     |                            |
-| Alina Orozco           | An Nguyen              | Kathleen Furtado|                             |
-| John Davis             | Shawn Higdon           | Maisee Yang    |                            |
-| Bowen Noack            | Francesca Macarandang  | Xiaomeng Yang  |                            |
-| Chynna Gabotero        | Alexander Duveneck     | Jennifer Koo   |                            |
-| Aaron Baer             | Jacob North            | Sam Deck       |                            |
-| Andrew Katznelson      | Livingstone Nganga     | Mai Khanh Tran |                            |
-| Cassandra Baker        | Diane Nguyen             | Sarah Stinson  |                            |
+|  **Student 1**  |    **Student 2**     | **Student 3** |        **Repository**         |
+|:---------------:|:--------------------:|:-------------:|:-----------------------------:|
+| Amber Jacobson  |     Tavneet Gill     |               |     Shiny\_Amber\_Tavneet     |
+|  Mitali Singh   |    Koki Sasagawa     |               |      Shiny\_Mitali\_Koki      |
+|    Amy Wong     |       Lai Chan       |               |        Shiny\_Amy\_Lai        |
+|  Arin Sadeghi   |   Imran Meskienyar   |               |      Shiny\_Arin\_Imran       |
+|   Eliza Tsang   |      Sarah Yam       |               |      Shiny\_Eliza\_Sarah      |
+| Sequoia Sartori |     Vasco Morais     |               |     Shiny\_Sequoia\_Vasco     |
+|      Tu Le      |   Michelle Poling    |               |      Shiny\_Tu\_Michelle      |
+
+Teams, continued
+=================
+|  **Student 1**  |    **Student 2**     | **Student 3** |        **Repository**         |
+|:---------------:|:--------------------:|:-------------:|:-----------------------------:|
+|  Calen Badger   |    Juliya Abbasi     |               |     Shiny\_Calen\_Juliya      |
+| Deanna Murguia  |    Natalie Damrau    |               |    Shiny\_Deanna\_Natalie     |
+|   Petra Dahms   | Lilith Marinho-Davis |               |     Shiny\_Petra\_Lilith      |
+|   Niba Nirmal   |     Felicia Peng     |               |     Shiny\_Niba\_Felicia      |
+|   Yinjie Gao    |      Wenyi Qiu       |               |     Shiny\_Yinjie\_Wenyi      |
+|     Lynn Ly     |      Chunmei Li      |  Seungmo Kim  | Shiny\_Lynn\_Chunmei\_Seungmo |
+|    Helen Liu    |    Jenna Arciero     |               |      Shiny\_Helen\_Jenna      |
+| Kataksha Kinra  |    Jennifer Blanc    |               |   Shiny\_Kataksha\_Jennifer   |
+|    Wanqiu Ge    |       Jia Wang       |               |      Shiny\_Wanqiu\_Jia       |
+|   Sana Fatima   |  Christopher Brooks  |               |   Shiny\_Sana\_Christopher    |
 
 Assignment
 ==========
