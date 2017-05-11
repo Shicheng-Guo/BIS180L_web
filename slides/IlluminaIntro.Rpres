@@ -166,3 +166,13 @@ Workflow for today's lab
 2. Filter reads based on quality with `Trimmomatic`
 3. Split into samples based on barcodes with `auto_barcode`
 4. Map reads to find where the came from in the genome
+
+File types
+==========
+
+* .fastq -- file of short read data
+* .fa -- fasta files for reference genome
+* .sam -- [sequence alignment/map file for mapped reads](http://samtools.github.io/hts-specs/SAMv1.pdf)
+* .bam -- the binary version of a sam file
+* .bai -- index for bam files
+* .gff -- genome annotation: information about where the genes are in the genome
