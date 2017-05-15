@@ -192,7 +192,7 @@ We first call `bamaddrg` to add Read Groups to our bam files, enabling us to cal
     -b R500_rmdup.bam -s R500 -r R500 \
     | freebayes --fasta-reference ../Brapa_reference/BrapaV1.5_chrom_only.fa --stdin  > IMB211_R500.vcf 
 
-We will examine the VCF file in R on Tuesday.
+We will examine the VCF file in the second part of todays lab.
 
 ## Two other popular SNP callers:
 
