@@ -166,7 +166,7 @@ __b__ Go to A01:15,660,359-15,665,048 (you can cut and paste this into the viewe
 
 ## Calling SNPs
 
-The goal of this section is to find polymorphisms between IMB211 and R500.  There are many tools available.  We will use [FreeBayes](https://github.com/ekg/freebayes) (One you are on the FreeBayes page, scroll down to the README for more info on FreeBayes)
+The goal of this section is to find polymorphisms between IMB211 and R500.  There are many tools available.  We will use [FreeBayes](https://github.com/ekg/freebayes) (For more info click on the link above.  Once you are on the FreeBayes page, scroll down to the README for more info on FreeBayes)
 
 Make a new directory for this analysis inside the Assignment_5 directory
 
