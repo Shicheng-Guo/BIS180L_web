@@ -197,7 +197,7 @@ Next create an index for each of the new files
 
 Now we use `freebayes` to look for SNPs.  `freebayes` calculates the number of reference and alternate alleles at each position in the genome and genotype likelihoods.
 
-We first call `bamaddrg` to add Read Groups to our bam files, enabling us to call SNPs separately for the two genotypes.  The output from `bamaddrg` is a merged bam files which we pipe directly into `freebayes` instead of storing it first.
+We first call `bamaddrg` to add Read Groups to our bam files, enabling us to call SNPs separately for the two genotypes.  The output from `bamaddrg` is a merged bam file, which we then index and use as input for `freebayes`.
 
     bamaddrg -b IMB211_rmdup.bam -s IMB211 -r IMB211 \
     -b R500_rmdup.bam -s R500 -r R500 > combined_IMB211_R500.bam
