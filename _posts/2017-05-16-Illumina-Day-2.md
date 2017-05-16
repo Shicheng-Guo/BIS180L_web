@@ -23,7 +23,11 @@ Today we will pick up where we left off.  Our goals are to:
 
 ## Installations
 
-We need two additional piece of software.  First [bamaddrg](https://github.com/ekg/bamaddrg).  Go ahead and install this now, we will use it a bit later.  
+We need to install or update three additional pieces of software.  
+
+### bamaddrg
+
+First [bamaddrg](https://github.com/ekg/bamaddrg).  Go ahead and install this now, we will use it a bit later.  
 
     cd /usr/local/bin
     sudo git clone --recursive https://github.com/ekg/bamaddrg.git
@@ -34,7 +38,7 @@ We need two additional piece of software.  First [bamaddrg](https://github.com/e
     
 The `make` command compiles the code and "makes" the executable program
 
-## IGV
+### IGV
 
 The second software is IGV.  Unfortunately the version of IGV installed on your computers does not work and it must be reinstalled.
 
@@ -47,6 +51,16 @@ Unzip it and move the unzipped directory to BioinformaticsPackages
     set -U fish_user_paths /usr/local/bin/IGV_2.3.92/ $fish_user_paths
 
     
+    
+### Freebayes
+
+The third software is Freebayes.  Unfortunately the version on your computer does not work properly and must be downgraded.
+
+    cd /usr/src/freebayes # move to current installation directory
+    sudo git checkout 0cb2697 # checkout older, working version
+    sudo git submodule update --recursive # get correct version of related modules
+    sudo make # build the executable "binaries" from the source files
+    sudo make install # copy the binaries into there proper place
 
 ## Data files
 
@@ -186,8 +200,9 @@ Now we use `freebayes` to look for SNPs.  `freebayes` calculates the number of r
 We first call `bamaddrg` to add Read Groups to our bam files, enabling us to call SNPs separately for the two genotypes.  The output from `bamaddrg` is a merged bam files which we pipe directly into `freebayes` instead of storing it first.
 
     bamaddrg -b IMB211_rmdup.bam -s IMB211 -r IMB211 \
-    -b R500_rmdup.bam -s R500 -r R500 \
-    | freebayes --fasta-reference ../Brapa_reference/BrapaV1.5_chrom_only.fa --stdin  > IMB211_R500.vcf 
+    -b R500_rmdup.bam -s R500 -r R500 > combined_IMB211_R500.bam
+    samtools index combined_IMB211_R500.bam
+    | freebayes --fasta-reference ../Brapa_reference/BrapaV1.5_chrom_only.fa combined_IMB211_R500.bam  > IMB211_R500.vcf 
 
 We will examine the VCF file in the second part of todays lab.
 
