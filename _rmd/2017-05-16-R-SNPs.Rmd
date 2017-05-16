@@ -43,7 +43,7 @@ The header is tab delimited, so we split on tabs and use those as column names
 ```{r formatheader,eval=FALSE}
 vcf.header <- unlist(strsplit(vcf.header,split="\t"))
 colnames(vcf.data) <- vcf.header
-head(vcf.data)
+View(vcf.data)
 ```
 
 Now with the headers attached the file makes a bit more sense.  Detailed information [is here](https://samtools.github.io/hts-specs/VCFv4.2.pdf), but briefly:
@@ -52,13 +52,12 @@ Now with the headers attached the file makes a bit more sense.  Detailed informa
 * ID is not used here
 * REF is the reference sequence (From the fasta file)
 * ALT is the allele found in our sample(s)
-* QUAL is the PHRED scaled probability that the locus is actually homozygous for the reference allele, or 1 - P(locus is homozygous for the alternate allele).  So QUAL of 20 means that there is a 0.01 probablity that the locus is actually not polymorphic. _Note that the definition of this field varies depending on which SNP calling program you use._
+* QUAL is the PHRED scaled probability that the locus is actually homozygous for the _reference_ allele, or 1 - P(locus is homozygous for the alternate allele).  So QUAL of 20 means that there is a 0.01 probablity that the locus is actually not polymorphic (i.e. there is a 0.01 porbability that a SNP has been called incorrectly). _Note that the definition of this field varies depending on which SNP calling program you use._
 * FILTER is not used here.  There are programs that will place flags in this field to indicate that a SNP should be filtered out.
 * INFO lots of INFO.  We can learn about these from the beginning of the vcf file (See below)
 * FORMAT tells is the identity of the numbers in the next two fields
     * GT: The most probable genotype.  1/1 is homozygous alternate; 0/0 is homozygous reference; 0/1 is heterozygous.
     * DP: Read Depth
-    * DPR: Number of observation for each allele.  (Actually I think the first number is total counts and the second is alt counts)
     * RO: Reference allele observation count
     * QR: Sum of quality of the reference observations
     * AO: Alternate allele observation count
@@ -84,7 +83,7 @@ To be able to use the SNP data in R we need to break up the data in the final tw
 ```{r split,eval=FALSE}
 # Before splitting add NAs to blank cells
 
-vcf.data$IMB211[is.na(vcf.data$IMB211)] <- "NA:NA:NA:NA:NA:NA:NA:NA"
+vcf.data$IMB211[is.na(vcf.data$IMB211)] <- "NA:NA:NA:NA:NA:NA:NA"
 
 IMB211.tmp <- matrix(
   unlist(strsplit(vcf.data$IMB211,split = ":")),
@@ -92,9 +91,9 @@ IMB211.tmp <- matrix(
   byrow=TRUE
   )
 head(IMB211.tmp)
-colnames(IMB211.tmp) <- paste("IMB211",c("gt","tot.depth","allele.obs","ref.depth","ref.qual","alt.depth","alt.qual","gen.lik"),sep="_")
+colnames(IMB211.tmp) <- paste("IMB211",c("gt","tot.depth","ref.depth","ref.qual","alt.depth","alt.qual","gen.lik"),sep="_")
 
-vcf.data$R500[is.na(vcf.data$R500)] <- "NA:NA:NA:NA:NA:NA:NA:NA"
+vcf.data$R500[is.na(vcf.data$R500)] <- "NA:NA:NA:NA:NA:NA:NA"
 
 R500.tmp <- matrix(
   unlist(strsplit(vcf.data$R500,split = ":")),
@@ -102,7 +101,7 @@ R500.tmp <- matrix(
   byrow=TRUE
   )
 head(R500.tmp)
-colnames(R500.tmp) <- paste("R500",c("gt","tot.depth","allele.obs","ref.depth","ref.qual","alt.depth","alt.qual","gen.lik"),sep="_")
+colnames(R500.tmp) <- paste("R500",c("gt","tot.depth","ref.depth","ref.qual","alt.depth","alt.qual","gen.lik"),sep="_")
 
 vcf.data <- cbind(vcf.data,IMB211.tmp,R500.tmp,stringsAsFactors=FALSE)
 summary(vcf.data)
@@ -132,7 +131,7 @@ hist(vcf.data$QUAL[vcf.data$QUAL<500],breaks = 50)
 
 __Exercise 2__  
 We only want to keep positions that have a reasonable probabilty of being correct.  
-__a__ At a quality of 40 what is the probability that the genotype call is wrong?
+__a__ At a quality of 40 what is the probability that the SNP call is wrong?
 __b__Subset the data to only keep positions where the quality score is 40 or greater.  
 __c__What percentage of SNPs were retained?
 
@@ -154,14 +153,14 @@ ftable(vcf.data.good[,c("IMB211_gt","R500_gt")])
 ```
 
 __Exercise 3__  
-__a__ Which SNPS would be most useful for a downstream QTL analysis between IMB211 and R500?  (Ignore the allele categories that have "2", "3", or "4")  
-__b__ (optional) Subset the data frame so that you only have these SNPs.  
-__c__ (optional) How many SNPS are retained?
+__a__ Which SNPS would be most useful for a downstream QTL analysis of F2 progeny generated from a cross of IMB211 and R500?  (Ignore the allele categories that have "2", "3", or "4").  _Hint: you want SNPs that will unambiguously distinguish a locus as coming from IMB211 or R500._
+__b__ Subset the data frame so that you only have these SNPs.  
+__c__ How many SNPS are retained?
 
 __Exercise 4__  
 __a__ Using the higher quality SNP list, plot the position along the chromosome of each SNP (x axis), read depth (R500 and IMB211 combined) (y axis).  
-__b__ Why might there be gaps with no SNPs?  
 __Optional__: color each SNP for whether it is R500 specific, IMB specific, or common.
+__b__ Use the help function to learn about `xlim()`.  Use this function to plot only the region betweeen 20,000,000 and 25,000,000 bp.  Why might there be gaps with no SNPs? 
 ```{r, eval=FALSE, echo=FALSE}
 library(ggplot2)
 vcf.data.good$category <- NA                             
@@ -170,7 +169,10 @@ vcf.data.good$category[vcf.data.good$R500_gt=="0/0"] <- "IMB211_only"
 vcf.data.good$category[vcf.data.good$R500_gt!="0/0" & vcf.data.good$IMB211_gt!="0/0"] <- "Both"
 table(vcf.data.good$category)
 vcf.data.good$tot.depth <- vcf.data.good$IMB211_tot.depth+vcf.data.good$R500_tot.depth
-qplot(x=POS,y=tot.depth,color=category,pch=category,data=vcf.data.good)
+pl <- ggplot(vcf.data.good,aes(x=POS,y=tot.depth,color=category,pch=category))
+pl <- pl + geom_point()
+pl
+pl + xlim(20000000,25000000)
 ```
 
 __For Fun (?)--not graded--__  
