@@ -25,10 +25,12 @@ Today we will pick up where we left off.  Our goals are to:
 
 We need two additional piece of software.  First [bamaddrg](https://github.com/ekg/bamaddrg).  Go ahead and install this now, we will use it a bit later.  
 
-    cd ~/BioinformaticsPackages
-    git clone --recursive https://github.com/ekg/bamaddrg.git
+    cd /usr/local/bin
+    sudo git clone --recursive https://github.com/ekg/bamaddrg.git
     cd bamaddrg
-    make
+    sudo make #compiles source to an executable
+    set -U fish_user_paths /usr/local/bin/bamaddrg/ $fish_user_paths
+    
     
 The `make` command compiles the code and "makes" the executable program
 
@@ -40,20 +42,11 @@ Download the binary distribution from the [download page](https://www.broadinsti
 
 Unzip it and move the unzipped directory to BioinformaticsPackages
 
-    unzip IGV_2.3.72.zip
-    mv ~/Downloads/IGV_2.3.72 ~/BioinformaticsPackages/
-    
-## Edit your PATH
+    unzip IGV_2.3.92.zip
+    mv ~/Downloads/IGV_2.3.92 /usr/local//
+    set -U fish_user_paths /usr/local/bin/IGV_2.3.92/ $fish_user_paths
 
-Add the following line the very end of your `~/.bashrc` to include additional software in your path:
-
-    PATH=$HOME/BioinformaticsPackages/IGV_2.3.72:$HOME/BioinformaticsPackages/bamaddrg:$HOME/git/freebayes/bin:$PATH
     
-(Remember to include MEGAsync in your path to BioinformaticsPackages if appropriate.  You do not need to modify the path to freebayes.)
-    
-Now source it
-
-    source ~/.bashrc    
 
 ## Data files
 
@@ -120,9 +113,11 @@ To use IGV we need to create an index of our bam file
 
     samtools index accepted_hits_A01.bam
 
-Then start IGV by typing
+Then start IGV by typing 
 
     igv.sh
+    
+At the Linux command line.  **DO NOT START IGV BY CLICKING IN THE ICON. It will appear to work at first but won't actually work**
 
 ### Create a .genome file for IGV to use
 
@@ -138,6 +133,8 @@ Fill in the fields as follows:
 * Cytoband file: (leave blank)
 * Gene file: (click on Browse and point to the `Brapa_gene_v1.5.gff` file)
 * Alias file: (leave blank)
+
+Choose a directory to save it in and click "save".  This will take some minutes.
 
 ### Load some tracks
 
