@@ -47,7 +47,7 @@ Download the binary distribution from the [download page](https://www.broadinsti
 Unzip it and move the unzipped directory to BioinformaticsPackages
 
     unzip IGV_2.3.92.zip
-    mv ~/Downloads/IGV_2.3.92 /usr/local//
+    sudo mv ~/Downloads/IGV_2.3.92 /usr/local/bin/
     set -U fish_user_paths /usr/local/bin/IGV_2.3.92/ $fish_user_paths
 
     
@@ -157,8 +157,6 @@ Now to load our mapped reads:
 Click on File > Load From File ; then select the `accepted_hits_A01.bam` file
 
 Click on File > Load From File again ; then select the `junctions.bed` file
-
-Click OK to index junctions.bed and OK again to sort it.
 
 ### Take a look
 
