@@ -177,3 +177,7 @@ pl + xlim(20000000,25000000)
 
 __For Fun (?)--not graded--__  
 Plot the number of each type of base change (A->G, etc).  Are there differences?  Is this expected?
+
+## Additional options
+
+There is a an R package (vcfR)[https://cran.r-project.org/web/packages/vcfR/vignettes/intro_to_vcfR.html] that can help with import and analysis of vcf files in R.  This provides an alternative to the the tasks we did above such as adding the header info and extracting the genotype information.  It nay be worth exploring this package if you are doing a lot of this type of work.
