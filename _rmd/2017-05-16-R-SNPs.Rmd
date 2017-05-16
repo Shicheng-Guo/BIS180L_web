@@ -131,8 +131,11 @@ hist(vcf.data$QUAL[vcf.data$QUAL<500],breaks = 50)
 
 __Exercise 2__  
 We only want to keep positions that have a reasonable probabilty of being correct.  
+
 __a__ At a quality of 40 what is the probability that the SNP call is wrong?
+
 __b__Subset the data to only keep positions where the quality score is 40 or greater.  
+
 __c__What percentage of SNPs were retained?
 
 ```{r filter, echo=FALSE,eval=FALSE}
@@ -154,13 +157,18 @@ ftable(vcf.data.good[,c("IMB211_gt","R500_gt")])
 
 __Exercise 3__  
 __a__ Which SNPS would be most useful for a downstream QTL analysis of F2 progeny generated from a cross of IMB211 and R500?  (Ignore the allele categories that have "2", "3", or "4").  _Hint: you want SNPs that will unambiguously distinguish a locus as coming from IMB211 or R500._
+
 __b__ Subset the data frame so that you only have these SNPs.  
+
 __c__ How many SNPS are retained?
 
 __Exercise 4__  
 __a__ Using the higher quality SNP list, plot the position along the chromosome of each SNP (x axis), read depth (R500 and IMB211 combined) (y axis).  
+
 __Optional__: color each SNP for whether it is R500 specific, IMB specific, or common.
+
 __b__ Use the help function to learn about `xlim()`.  Use this function to plot only the region betweeen 20,000,000 and 25,000,000 bp.  Why might there be gaps with no SNPs? 
+
 ```{r, eval=FALSE, echo=FALSE}
 library(ggplot2)
 vcf.data.good$category <- NA                             
@@ -180,4 +188,4 @@ Plot the number of each type of base change (A->G, etc).  Are there differences?
 
 ## Additional options
 
-There is a an R package (vcfR)[https://cran.r-project.org/web/packages/vcfR/vignettes/intro_to_vcfR.html] that can help with import and analysis of vcf files in R.  This provides an alternative to the the tasks we did above such as adding the header info and extracting the genotype information.  It nay be worth exploring this package if you are doing a lot of this type of work.
+There is a an R package [vcfR](https://cran.r-project.org/web/packages/vcfR/vignettes/intro_to_vcfR.html) that can help with import and analysis of vcf files in R.  This provides an alternative to the the tasks we did above such as adding the header info and extracting the genotype information.  It nay be worth exploring this package if you are doing a lot of this type of work.
