@@ -24,7 +24,7 @@ Regarding normalization between samples, genes with very high expression levels 
 
 Two packages that effectively deal with the above issues are [DESeq](http://bioconductor.org/packages/release/bioc/html/DESeq.html) and [edgeR](http://www.bioconductor.org/packages/release/bioc/html/edgeR.html), both available through [Bioconductor](http://bioconductor.org/).  We will use edgeR for today's exercises.  
 
-If you are going to do RNAseq analyses of your samples at some later point I __strongly recommend__ that you thoroughly study the [edgeR user manual](http://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf) available both at the [link](http://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf) and by typing `edgeRUsersGuide()` in R (after you have loaded the library).
+If you are going to do your own RNAseq analyses at some later time, I __strongly recommend__ that you thoroughly study the [edgeR user manual](http://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf) available both at the [link](http://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf) and by typing `edgeRUsersGuide()` in R (after you have loaded the library).
 
 
 ## Set your working directory
@@ -51,6 +51,8 @@ gff$gene_id <- ifelse(is.na(gff$ID),gff$Parent,gff$ID)
 export(gff,"Brapa_reference/Brapa_gene_v1.5.gtf",format="gtf")
 ```
 
+
+
 ## Bam to read counts
 
 As you know from last week's lab, we mapped RNAseq reads to the _B. rapa_ genome.  In order to ask if reads are differentially expressed between cultivars (IMB211 vs. R500) or treatments (dense planting vs. non-dense planting) we need to know how many reads were sequenced from each gene.
@@ -66,6 +68,19 @@ readCounts <- featureCounts(
   files=c("../Assignment_5_Maloof.Julin/tophat_out-IMB211_All_A01_INTERNODE.fq/accepted_hits_A01.bam",
     "../Assignment_5_Maloof.Julin/tophat_out-R500_All_A01_INTERNODE.fq/accepted_hits_A01.bam"),
   annot.ext="Brapa_reference/Brapa_gene_v1.5.gtf", 
+  isGTFAnnotationFile=TRUE,
+  GTF.featureType="CDS", # This depends on GTF file.  Often it would be "exon"
+  GTF.attrType="gene_id"
+  )
+```
+
+
+```r
+library(Rsubread)
+readCounts <- featureCounts(
+  files=c("/home/ubuntu/Assignments/Assignment_5_Maloof.Julin/tophat_out-IMB211_All_A01_INTERNODE.fq/accepted_hits_A01.bam",
+    "/home/ubuntu/Assignments/Assignment_5_Maloof.Julin/tophat_out-R500_All_A01_INTERNODE.fq/accepted_hits_A01.bam"),
+  annot.ext="../data/Brapa_gene_v1.5.gtf", 
   isGTFAnnotationFile=TRUE,
   GTF.featureType="CDS", # This depends on GTF file.  Often it would be "exon"
   GTF.attrType="gene_id"
@@ -187,24 +202,6 @@ Now we use the edgeR function `calcNormFactors()` to calculate the effective lib
 
 ```r
 library(edgeR)
-```
-
-```
-## Loading required package: limma
-```
-
-```
-## 
-## Attaching package: 'limma'
-```
-
-```
-## The following object is masked from 'package:BiocGenerics':
-## 
-##     plotMA
-```
-
-```r
 dge.data <- DGEList(counts=counts.data, group=sample.description$group)
 dim(dge.data) 
 dge.data <- calcNormFactors(dge.data, method = "TMM")
@@ -340,16 +337,16 @@ topTags(gt.lrt) # the top 10 most differentially expressed genes
 ```
 ## Coefficient:  gtR500 
 ##                logFC   logCPM       LR        PValue           FDR
-## Bra033098 -12.153106 6.068467 998.6286 3.567444e-219 8.573994e-215
-## Bra023495 -11.889170 5.789511 974.7529 5.522556e-214 6.636456e-210
-## Bra016271 -14.250692 8.143807 891.5845 6.625961e-196 5.308278e-192
-## Bra020631 -11.318306 5.202817 871.9668 1.219006e-191 7.324399e-188
-## Bra011216 -11.258770 5.129307 853.8612 1.052269e-187 5.058046e-184
-## Bra020643 -14.383989 8.280215 841.6326 4.793719e-185 1.920204e-181
-## Bra009785   7.950946 6.020666 786.7807 4.038360e-173 1.386542e-169
-## Bra011765  -7.319948 6.340366 749.1397 6.172451e-165 1.854359e-161
-## Bra026924  -8.334015 5.024615 729.7444 1.018056e-160 2.718661e-157
-## Bra029392   8.339095 6.298419 725.1631 1.009170e-159 2.425439e-156
+## Bra033098 -12.153105 6.070823 998.8288 3.227382e-219 7.756690e-215
+## Bra023495 -11.889171 5.792298 974.5075 6.244234e-214 7.503696e-210
+## Bra016271 -14.250692 8.144467 891.3678 7.385330e-196 5.916634e-192
+## Bra020631 -11.318315 5.206858 870.7722 2.216713e-191 1.331912e-187
+## Bra011216 -11.258770 5.133650 853.8519 1.057197e-187 5.081734e-184
+## Bra020643 -14.383988 8.280736 841.0552 6.400269e-185 2.563734e-181
+## Bra009785   7.950946 6.018503 786.8300 3.939943e-173 1.352751e-169
+## Bra011765  -7.319947 6.341553 749.4443 5.299544e-165 1.592116e-161
+## Bra026924  -8.334013 5.028260 729.9894 9.005258e-161 2.404804e-157
+## Bra029392   8.339064 6.296476 723.1410 2.777521e-159 6.675494e-156
 ```
 
 In the resulting table,
