@@ -1,7 +1,7 @@
 RNAseq: Differential Expression
 ========================================================
 author: Julin Maloof
-date: May 19, 2016
+date: May 18, 2017
 autosize: true
 incremental: true
 

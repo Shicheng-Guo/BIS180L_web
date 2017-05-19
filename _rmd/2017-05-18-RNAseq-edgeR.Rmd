@@ -26,7 +26,7 @@ Regarding normalization between samples, genes with very high expression levels 
 
 Two packages that effectively deal with the above issues are [DESeq](http://bioconductor.org/packages/release/bioc/html/DESeq.html) and [edgeR](http://www.bioconductor.org/packages/release/bioc/html/edgeR.html), both available through [Bioconductor](http://bioconductor.org/).  We will use edgeR for today's exercises.  
 
-If you are going to do more RNAseq analyses I __strongly recommend__ that you thoroughly study the [edgeR user manual](http://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf) available both at the [link](http://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf) and by typing `edgeRUsersGuide()` in R (after you have loaded the library).
+If you are going to do your own RNAseq analyses at some later time, I __strongly recommend__ that you thoroughly study the [edgeR user manual](http://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf) available both at the [link](http://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf) and by typing `edgeRUsersGuide()` in R (after you have loaded the library).
 
 
 ## Set your working directory
@@ -52,6 +52,17 @@ gff$gene_id <- ifelse(is.na(gff$ID),gff$Parent,gff$ID)
 export(gff,"Brapa_reference/Brapa_gene_v1.5.gtf",format="gtf")
 ```
 
+```{r GFF2GTF_JM, eval=FALSE, echo=FALSE}
+library(rtracklayer)
+gff <- import.gff("../data/Brapa_gene_v1.5.gff.gz")
+gff #take a look
+
+#create a column "gene_id" that contains the gene name for every entry
+gff$gene_id <- ifelse(is.na(gff$ID),gff$Parent,gff$ID)
+
+export(gff,"../data/Brapa_gene_v1.5.gtf",format="gtf")
+```
+
 ## Bam to read counts
 
 As you know from last week's lab, we mapped RNAseq reads to the _B. rapa_ genome.  In order to ask if reads are differentially expressed between cultivars (IMB211 vs. R500) or treatments (dense planting vs. non-dense planting) we need to know how many reads were sequenced from each gene.
@@ -72,8 +83,20 @@ readCounts <- featureCounts(
   )
 ```
 
+```{r Rsubread_jm, eval=FALSE}
+library(Rsubread)
+readCounts <- featureCounts(
+  files=c("/home/ubuntu/Assignments/Assignment_5_Maloof.Julin/tophat_out-IMB211_All_A01_INTERNODE.fq/accepted_hits_A01.bam",
+    "/home/ubuntu/Assignments/Assignment_5_Maloof.Julin/tophat_out-R500_All_A01_INTERNODE.fq/accepted_hits_A01.bam"),
+  annot.ext="../data/Brapa_gene_v1.5.gtf", 
+  isGTFAnnotationFile=TRUE,
+  GTF.featureType="CDS", # This depends on GTF file.  Often it would be "exon"
+  GTF.attrType="gene_id"
+  )
+```
+
 __Exercise 1__  
-Read the help file for feature counts.  Be sure to look at the section "Value" where it describes the output.  
+Read the help file for `featureCounts()`.  Be sure to look at the section "Value" where it describes the output.  
 __a__ Provide a line of code that displays the counts of the first 6 genes.  (It is not very interesting because the first genes in the file are on chromosome A03 (strange numbering...) and our bam file only has counts from A01...  )  
 __b__ The gene `Bra011030` is on chromosome A01.  What are its read counts in the two files?  
 __c__ What percentage of reads (from each file) were assigned to a gene?  What percentage were unassigned because they were not located in a gene (aka "Feature")?  
