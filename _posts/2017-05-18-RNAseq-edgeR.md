@@ -74,19 +74,6 @@ readCounts <- featureCounts(
   )
 ```
 
-
-```r
-library(Rsubread)
-readCounts <- featureCounts(
-  files=c("/home/ubuntu/Assignments/Assignment_5_Maloof.Julin/tophat_out-IMB211_All_A01_INTERNODE.fq/accepted_hits_A01.bam",
-    "/home/ubuntu/Assignments/Assignment_5_Maloof.Julin/tophat_out-R500_All_A01_INTERNODE.fq/accepted_hits_A01.bam"),
-  annot.ext="../data/Brapa_gene_v1.5.gtf", 
-  isGTFAnnotationFile=TRUE,
-  GTF.featureType="CDS", # This depends on GTF file.  Often it would be "exon"
-  GTF.attrType="gene_id"
-  )
-```
-
 __Exercise 1__  
 Read the help file for `featureCounts()`.  Be sure to look at the section "Value" where it describes the output.  
 __a__ Provide a line of code that displays the counts of the first 6 genes.  (It is not very interesting because the first genes in the file are on chromosome A03 (strange numbering...) and our bam file only has counts from A01...  )  

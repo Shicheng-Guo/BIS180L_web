@@ -83,7 +83,7 @@ readCounts <- featureCounts(
   )
 ```
 
-```{r Rsubread_jm, eval=FALSE}
+```{r Rsubread_jm, eval=FALSE, echo=FALSE}
 library(Rsubread)
 readCounts <- featureCounts(
   files=c("/home/ubuntu/Assignments/Assignment_5_Maloof.Julin/tophat_out-IMB211_All_A01_INTERNODE.fq/accepted_hits_A01.bam",
