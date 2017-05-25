@@ -134,14 +134,60 @@ cor(m)
 
 ```
            a          b          c
-a  1.0000000 -1.0000000 -0.9030303
-b -1.0000000  1.0000000  0.9030303
-c -0.9030303  0.9030303  1.0000000
+a  1.0000000 -1.0000000  0.1393939
+b -1.0000000  1.0000000 -0.1393939
+c  0.1393939 -0.1393939  1.0000000
 ```
 
 
 How do we color each SNP for whether it is R500 specific, IMB specific, or common using vectors? (the "optional" question on Assignment 5.2)
 ===================
+
+
+```r
+my.data <- data.frame(
+  R500=sample(c("0/0","1/1"),10,replace=T),
+  IMB211=sample(c("0/0","1/1"),10,replace=T))
+my.data
+```
+
+```
+   R500 IMB211
+1   0/0    1/1
+2   0/0    0/0
+3   0/0    0/0
+4   1/1    1/1
+5   0/0    0/0
+6   1/1    1/1
+7   1/1    1/1
+8   1/1    1/1
+9   0/0    0/0
+10  0/0    1/1
+```
+
+```r
+my.data$type <- ifelse(my.data$R500=="0/0" &
+                         my.data$IMB211=="1/1","IMB.specific",
+                       ifelse(my.data$R500=="1/1" &
+                                my.data$IMB211=="0/0",
+                              "R500.specific","common"))
+my.data
+```
+
+```
+   R500 IMB211         type
+1   0/0    1/1 IMB.specific
+2   0/0    0/0       common
+3   0/0    0/0       common
+4   1/1    1/1       common
+5   0/0    0/0       common
+6   1/1    1/1       common
+7   1/1    1/1       common
+8   1/1    1/1       common
+9   0/0    0/0       common
+10  0/0    1/1 IMB.specific
+```
+
 
 When we are looking at the SNP data between IMB211 and R500 why do we have to look at when both are 0/0 and 1/1 or 1/1 and 0/0? 
 =========
