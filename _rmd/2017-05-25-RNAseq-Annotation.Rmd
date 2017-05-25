@@ -98,7 +98,7 @@ We need a list of expressed genes.  You could generate this yourself, or you can
 
     wget http://jnmaloof.github.io/BIS180L_web/data/internode_expressed_genes.txt
     
-Place this file in you `Assignment_6` directory.
+Place this file in your `Assignment_6` directory.
   
 ### Format data for GOseq
 
@@ -117,6 +117,30 @@ head(expressed.genes)
 names(expressed.genes) <- "GeneID"
 
 gene.lengths <- read.table("Brapa_reference/Brapa_CDS_lengths.txt",as.is=TRUE)
+head(gene.lengths)
+summary(gene.lengths)
+
+#we need to reduce the gene.length data to only contain entries for those genes in our expressed.genes set.  We also need this as a vector
+gene.lengths.vector <- gene.lengths$Length[gene.lengths$GeneID %in% expressed.genes$GeneID]
+names(gene.lengths.vector) <- gene.lengths$GeneID[gene.lengths$GeneID %in% expressed.genes$GeneID]
+head(gene.lengths.vector)
+
+#Do the reverse to make sure everything matches up (it seems that we don't have length info for some genes?)
+expressed.genes.match <- expressed.genes[expressed.genes$GeneID %in% names(gene.lengths.vector),]
+```
+
+```{r goseq_prep_jm, eval=FALSE, echo=FALSE}
+library(goseq)
+go.terms <- read.delim("../data/FileS11.txt",header=FALSE,as.is=TRUE)
+head(go.terms)
+names(go.terms) <- c("GeneID","GO")
+summary(go.terms)
+
+expressed.genes <- read.delim("../data/internode_expressed_genes.txt",as.is=TRUE)
+head(expressed.genes)
+names(expressed.genes) <- "GeneID"
+
+gene.lengths <- read.table("../data/Brapa_CDS_lengths.txt",as.is=TRUE)
 head(gene.lengths)
 summary(gene.lengths)
 
@@ -164,18 +188,20 @@ GO.out[GO.out$over_represented_pvalue < 0.05,]
 
 ### GO visualization
 
-Looking through a long list can be tough.  There is a nice visualizer called [REVIGO](http://revigo.irb.hr/).  To use it we need to cut and paste the column with the GO term and the one with the p-value.  Use the command below to print these to columns to the console:
+Looking through a long list can be tough.  There is a nice visualizer called [REVIGO](http://revigo.irb.hr/).  To use it we need to cut and paste the column with the GO term and the one with the p-value.  Use the command below to save these columns into a file:
 
 ```{r goseq_revigo, eval=FALSE}
 
-print(GO.out[GO.out$over_represented_pvalue < 0.05,1:2],row.names=FALSE)
+write.table(GO.out[GO.out$over_represented_pvalue < 0.05,1:2],row.names=FALSE,file="GO_terms.txt", quote = FALSE,col.names = FALSE)
 ```
 
 Cut and paste the GO terms and p-values into [REVIGO](http://revigo.irb.hr/).  You can use the default settings.  
 
-You will get a warning that Adobe Flash Player Plugin is out of date.  Although I wouldn't normally recommend doing this, click on the greyed out image and the click to allow the outdated flash player to run.
+Before the results can be visualized we need to install Adobe Flash.  When the results window opens click on the "Interactive Graph" tab and then click on the link to install Flash.
 
-There are three types of GO terms:
+Now we can take a look at the results.
+
+The top row of tabs allows you to choose among the three types of GO terms:
 
 * Biological Process (BP)
 * Cellular Compartment (CC)
@@ -183,7 +209,7 @@ There are three types of GO terms:
 
 Generally I find the BP terms most helpful but you can look at each type by clicking in the tabs.
 
-REVIGO has three types of visualizers.  The "TreeMap"  Can be particular nice because it groups the GO terms into a hierarchy.
+REVIGO has three types of visualizers.  These are selected by clicking among the second row of tabs.  The "TreeMap" can be particular nice because it groups the GO terms into a hierarchy.
 
 __Exercise 2__:  
 
@@ -239,7 +265,24 @@ promoters
 
 Load the motifs and convert to a good format for R
 ```{r load_motifs, eval=FALSE}
-motifs <- read.delim("Brapa_reference/element_name_and_motif_IUPACsupp.txt",header=FALSE,as.is=TRUE)
+motifs <- read.delim("../data/element_name_and_motif_IUPACsupp.txt",header=FALSE,as.is=TRUE)
+head(motifs)
+motifsV <- as.character(motifs[,2])
+names(motifsV) <- motifs[,1]
+motifsSS <- DNAStringSet(motifsV)
+motifsSS
+```
+
+```{r load_motifs_promoters_jm, eval=FALSE, echo=FALSE}
+library(Biostrings) #R package for handling DNA and protein data
+promoters <- readDNAStringSet("../data/BrapaV1.5_1000bp_upstream.fa.gz")
+
+#convert "N" to "-" in promoters.  otherwise motifs will match strings of "N"s
+promoters <- DNAStringSet(gsub("N","-",promoters))
+
+promoters
+
+motifs <- read.delim("../data/element_name_and_motif_IUPACsupp.txt",header=FALSE,as.is=TRUE)
 head(motifs)
 motifsV <- as.character(motifs[,2])
 names(motifsV) <- motifs[,1]
@@ -322,7 +365,7 @@ __Exercise 3__
 __a.__ How many motifs are enriched at P < 0.05?  
 __b.__ What is the identity of the most significantly over-enriched promoter?  
 __c.__ What percentage of genes in the "Universe" have this motif?  What percentage in our target set?  
-__d.__ You can find information on the motifs [here](http://arabidopsis.med.ohio-state.edu/AtcisDB/bindingsites.html).  Do you think that the most enriched motif represents a biologically meaningful result?  Discuss why or why not.
+__d.__ You can find information on the motifs [here](http://arabidopsis.med.ohio-state.edu/AtcisDB/bindingsites.html).  Given the experimental treatments used in this experiment, do you think that the most enriched motif represents a biologically meaningful result?  Discuss why or why not.
 
 
 
