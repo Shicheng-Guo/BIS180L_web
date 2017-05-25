@@ -8,28 +8,16 @@ Would there be any useful information by looking at allele categories that have 
 ========================================================
 What do you think these categories are?
 
+```{r, include=FALSE}
+vcf.data <- read.table("../data/IMB211_R500.vcf",as.is=T,na.strings = ".")
+vcf.header <- system("grep '#C' ../data/IMB211_R500.vcf",intern = TRUE) #might not work on Windows
+vcf.header <- sub("#","",vcf.header) #get rid of the pound sign
+vcf.header <- unlist(strsplit(vcf.header,split="\t"))
+colnames(vcf.data) <- vcf.header
+```
 
-
-
-```r
+```{r}
 head(subset(vcf.data,grepl("^2",IMB211),select=c(REF,ALT,IMB211)))
-```
-
-```
-             REF                        ALT
-7307    CTACAGCC          GTATAGCA,GTATAGCC
-7337 CCTGAAAAAAG GCTGAAAAAAAG,CCTGAAAAAAAAG
-7481         CTC          TTTT,TTTC,TTT,TTC
-7482        ACAA                   GCAA,GCA
-8026       CAAGC                AAAGC,AAAGT
-8082        AAAA                  GAAA,GAAC
-                                                                                                                                                             IMB211
-7307                                                                                             2/2:4:0:0:0,4:0,123:-11.1888,-14.0574,-10.8646,-3.61236,-3.91339,0
-7337                                                                                          2/2:19:0:0:2,15:65,500:-52.7588,-56.4005,-46.7946,-13.8474,-8.63683,0
-7481 2/4:20:0:0:0,13,0,7:0,501,0,260:-62.3078,-62.3078,-62.3078,-21.4759,-21.4759,-17.5626,-62.3078,-62.3078,-21.4759,-62.3078,-41.2052,-41.2052,0,-41.2052,-39.098
-7482                                                                                          2/2:12:0:0:1,11:25,346:-30.8414,-32.1867,-28.8753,-6.32163,-4.12403,0
-8026                                                                                              2/2:2:0:0:0,2:0,59:-8.74939,-8.74939,-8.74939,-0.90309,-0.90309,0
-8082                                                                                          2/2:11:0:0:1,10:26,343:-30.7745,-28.7445,-28.4435,-3.0103,-0.713051,0
 ```
 
 
@@ -44,48 +32,15 @@ What is a large list in R and what is the best way to extract information from i
 
 A List is an object where each element can be another complex object (and they don't all need to be of the same type).
 
-
-```r
+```{r}
 # a list of three items, a string, numbers, and a matrix
 my.list <- list(string="abbracadabra", joe=1:3, count=matrix(1:9,ncol=3))
 my.list[2] # a list of length 1, containing the second item in my.list
-```
-
-```
-$joe
-[1] 1 2 3
-```
-
-```r
 my.list[[2]] # the second item of my.list (a vector)
-```
 
-```
-[1] 1 2 3
-```
-
-```r
 # you can also extract by name
 my.list["count"]
-```
-
-```
-$count
-     [,1] [,2] [,3]
-[1,]    1    4    7
-[2,]    2    5    8
-[3,]    3    6    9
-```
-
-```r
 my.list[["count"]]
-```
-
-```
-     [,1] [,2] [,3]
-[1,]    1    4    7
-[2,]    2    5    8
-[3,]    3    6    9
 ```
 
 Large lists are the same as lists, but take up more memory.
@@ -119,73 +74,28 @@ psuedo-replication.
 How exactly do you use the pairs() function?
 =========================
 pairs will plot all possible pairs of columns against one another.  Similarly cor takes the pairwise correlation of all columns.
-
-```r
+```{r}
 m <- data.frame(
   a=1:10,b=10:1,c=sample(10))
 pairs(m)
-```
-
-![plot of chunk unnamed-chunk-4](Questions May19-figure/unnamed-chunk-4-1.png)
-
-```r
 cor(m)
-```
-
-```
-           a          b          c
-a  1.0000000 -1.0000000  0.1393939
-b -1.0000000  1.0000000 -0.1393939
-c  0.1393939 -0.1393939  1.0000000
 ```
 
 
 How do we color each SNP for whether it is R500 specific, IMB specific, or common using vectors? (the "optional" question on Assignment 5.2)
 ===================
 
-
-```r
+```{r}
 my.data <- data.frame(
   R500=sample(c("0/0","1/1"),10,replace=T),
   IMB211=sample(c("0/0","1/1"),10,replace=T))
 my.data
-```
-
-```
-   R500 IMB211
-1   0/0    1/1
-2   0/0    0/0
-3   0/0    0/0
-4   1/1    1/1
-5   0/0    0/0
-6   1/1    1/1
-7   1/1    1/1
-8   1/1    1/1
-9   0/0    0/0
-10  0/0    1/1
-```
-
-```r
 my.data$type <- ifelse(my.data$R500=="0/0" &
                          my.data$IMB211=="1/1","IMB.specific",
                        ifelse(my.data$R500=="1/1" &
                                 my.data$IMB211=="0/0",
                               "R500.specific","common"))
 my.data
-```
-
-```
-   R500 IMB211         type
-1   0/0    1/1 IMB.specific
-2   0/0    0/0       common
-3   0/0    0/0       common
-4   1/1    1/1       common
-5   0/0    0/0       common
-6   1/1    1/1       common
-7   1/1    1/1       common
-8   1/1    1/1       common
-9   0/0    0/0       common
-10  0/0    1/1 IMB.specific
 ```
 
 
@@ -247,5 +157,5 @@ https://software.broadinstitute.org/software/igv/GFF
 Though it should be easier to align a shorter sequence to a reference genome, I saw some examples of "over trimming" and sequences being too short for an alignment using tophat. What aspects about really short reads makes a sequence unmappable to the reference genome?
 =================
 
-Take this to the extreme.  What if you read was 3bp long.  What would happen?
+Take this to the extreme.  What if your read was 3bp long.  What would happen then?
 
