@@ -35,15 +35,15 @@ Schedule is subject to change (but not the exam dates)
 | Thur 1:10 - 5:00  |  18-May |  Illumina: RNAseq analysis |
 | Fri 1:10 - 2:00   |  19-May |  Discussion: RNAseq, etc |
 |                   |         |   |
-| Tue 1:10 - 5:00   |  23-May |  Expression clustering; Motif discovery |
-| Thur 1:10 - 5:00  |  25-May |  Genetic Networks|
-| Fri 1:10 - 2:00   |  26-May |  Discussion: Genetic Networks |
+| Tue 1:10 - 5:00   |  23-May |  Illumina: RNAseq analysis(Catch up day) |
+| Thur 1:10 - 5:00  |  25-May |  Expression clustering; Motif discovery |
+| Fri 1:10 - 2:00   |  26-May |  Discussion: RNAseq, etc |
 |                   |         |   |
 | Tue 1:10 - 5:00   |  30-May |   Genetic Networks |
-| Thur 1:10 - 5:00  |  1-Jun  |   Metagenomics|
-| Fri 1:10 - 2:00   |  2-Jun  |  Discussion: Metagenomics |
+| Thur 1:10 - 5:00  |  1-Jun  |   Genetic Networks |
+| Fri 1:10 - 2:00   |  2-Jun  |  Discussion: Genetic Networks |
 |                   |         |   |
-| Tue 1:10 - 5:00   |  6-Jun  |   Automating tasks in R __Final Exam Handed out__ |
+| Tue 1:10 - 5:00   |  6-Jun  |   Metagenomics OR Automating tasks in R __Final Exam Handed out__ |
 | Thur 1:10 - 5:00  |  8-Jun  |  Open office hours for final exam questions  |
 |                   |         | |
 | __Mon 9:00 AM__   |  12-Jun | __Final Exam Due 9AM__ |
