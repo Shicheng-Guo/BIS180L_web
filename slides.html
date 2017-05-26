@@ -29,6 +29,9 @@ title: Slides
                   {% if slide.pdf %}
                     <a href="{{ site.baseurl }}/slides/{{ slide.pdf }}" target="_blank">pdf</a>
                   {% endif %}
+                  {% if slide.code %}
+                    <a href="{{ site.baseurl }}/slides/{{ slide.code }}" target="_blank">code</a>
+                  {% endif %}
                 </td>
               </tr>
             {% endif %}
