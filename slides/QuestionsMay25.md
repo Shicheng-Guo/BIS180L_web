@@ -10,6 +10,10 @@ How does Revigo take the GO values and P values to get the results? What is the 
 * The GO values are identifiers for specific ontology terms
 * The p-values are whether specific GO terms are over-represented in our gene list
 
+How does Revigo take the GO values and P values to get the results? What is the relationship between these two values?
+=====================
+* The GO values are identifiers for specific ontology terms
+* The p-values are whether specific GO terms are over-represented in our gene list
 
 Can you go over the TreeMap in REVIGO?
 =====================
@@ -36,18 +40,18 @@ How do you plot multiple variables in a histogram without melting?
 Use a for loop to loop through the column names
 
 ```r
-madeUpData <- as.data.frame(matrix(rnorm(1000,mean = 10),ncol=10,dimnames=list(NULL,LETTERS[1:10])))
+madeUpData <- as.data.frame(matrix(rnorm(600,mean = 10),ncol=6,dimnames=list(NULL,LETTERS[1:6])))
 round(head(madeUpData),2)
 ```
 
 ```
-      A     B     C     D     E     F     G     H     I     J
-1  8.33 10.31  8.96  9.46  9.77 10.90 11.54 10.27  9.72 10.89
-2  9.13  9.29  9.91  8.04  9.91 10.91  9.50 10.49  9.26  9.02
-3 10.54  9.93 11.14 11.36 10.06  9.47  9.47 11.37  8.28  7.01
-4 10.46 10.28  9.52 10.11  7.60  9.03  9.08  9.28  8.61 10.54
-5 10.18  8.86 10.23  9.80  8.75  9.71 12.89  9.63 10.62 11.10
-6  9.52 11.29  7.40  8.98  9.78  8.27 10.67  8.30 11.40  9.31
+      A     B     C     D     E     F
+1  8.66 10.52 10.04  9.37 10.60 11.02
+2  8.06 12.04 10.00  8.93  8.54  8.43
+3  8.55  8.90 10.81 10.45  9.73 10.32
+4  9.42 11.38  8.91  8.84  9.80 10.43
+5  9.14 10.23  9.31 11.46 11.02  9.99
+6 10.99  9.29  8.42  9.30  8.72  9.61
 ```
 
 How do you plot multiple variables in a histogram without melting?
@@ -59,7 +63,7 @@ for(col in colnames(madeUpData))
   hist(get(col,madeUpData),main=paste("histogram of",col))
 ```
 
-![plot of chunk unnamed-chunk-2](QuestionsMay25-figure/unnamed-chunk-2-1.png)![plot of chunk unnamed-chunk-2](QuestionsMay25-figure/unnamed-chunk-2-2.png)![plot of chunk unnamed-chunk-2](QuestionsMay25-figure/unnamed-chunk-2-3.png)![plot of chunk unnamed-chunk-2](QuestionsMay25-figure/unnamed-chunk-2-4.png)![plot of chunk unnamed-chunk-2](QuestionsMay25-figure/unnamed-chunk-2-5.png)![plot of chunk unnamed-chunk-2](QuestionsMay25-figure/unnamed-chunk-2-6.png)![plot of chunk unnamed-chunk-2](QuestionsMay25-figure/unnamed-chunk-2-7.png)![plot of chunk unnamed-chunk-2](QuestionsMay25-figure/unnamed-chunk-2-8.png)![plot of chunk unnamed-chunk-2](QuestionsMay25-figure/unnamed-chunk-2-9.png)![plot of chunk unnamed-chunk-2](QuestionsMay25-figure/unnamed-chunk-2-10.png)
+![plot of chunk unnamed-chunk-2](QuestionsMay25-figure/unnamed-chunk-2-1.png)![plot of chunk unnamed-chunk-2](QuestionsMay25-figure/unnamed-chunk-2-2.png)![plot of chunk unnamed-chunk-2](QuestionsMay25-figure/unnamed-chunk-2-3.png)![plot of chunk unnamed-chunk-2](QuestionsMay25-figure/unnamed-chunk-2-4.png)![plot of chunk unnamed-chunk-2](QuestionsMay25-figure/unnamed-chunk-2-5.png)![plot of chunk unnamed-chunk-2](QuestionsMay25-figure/unnamed-chunk-2-6.png)
 
 What is the difference between read.table vs read.delim? When can each be used?
 =====================
@@ -77,9 +81,24 @@ For assignment 6, part 1, question 8a, how do you interpret the MDS plot?
 * Samples that are closer together have more similar expression.
 * So we hope that replicates are close and that conditions/treatments separate samples.
 
+For assignment 6, part 1, question 8a, how do you interpret the MDS plot?
+=====================
+(repeat text in case cutoff on previous slide)
+* This plot shows the two main components of variation among samples.
+* Samples that are closer together have more similar expression.
+* So we hope that replicates are close and that conditions/treatments separate samples.
+
 For assignment 6, I don't understand how to read the dispersion plot and what it means?
 =====================
 ![dispersion](../images/edgeR_Dispersion.png)
+* each point is a gene
+* y-axis is biological coefficient of variation ($ Std. Dev \div Mean), related to dispersion.
+* x-axis expression level
+* lines show "common" dispersion or dispersion trend by expression level
+
+For assignment 6, I don't understand how to read the dispersion plot and what it means?
+=====================
+(repeat text in case cutoff on previous slide)
 * each point is a gene
 * y-axis is biological coefficient of variation ($ Std. Dev \div Mean), related to dispersion.
 * x-axis expression level

@@ -10,6 +10,10 @@ How does Revigo take the GO values and P values to get the results? What is the 
 * The GO values are identifiers for specific ontology terms
 * The p-values are whether specific GO terms are over-represented in our gene list
 
+How does Revigo take the GO values and P values to get the results? What is the relationship between these two values?
+=====================
+* The GO values are identifiers for specific ontology terms
+* The p-values are whether specific GO terms are over-represented in our gene list
 
 Can you go over the TreeMap in REVIGO?
 =====================
@@ -35,7 +39,7 @@ How do you plot multiple variables in a histogram without melting?
 =====================
 Use a for loop to loop through the column names
 ```{r}
-madeUpData <- as.data.frame(matrix(rnorm(1000,mean = 10),ncol=10,dimnames=list(NULL,LETTERS[1:10])))
+madeUpData <- as.data.frame(matrix(rnorm(600,mean = 10),ncol=6,dimnames=list(NULL,LETTERS[1:6])))
 round(head(madeUpData),2)
 ```
 
@@ -63,9 +67,24 @@ For assignment 6, part 1, question 8a, how do you interpret the MDS plot?
 * Samples that are closer together have more similar expression.
 * So we hope that replicates are close and that conditions/treatments separate samples.
 
+For assignment 6, part 1, question 8a, how do you interpret the MDS plot?
+=====================
+(repeat text in case cutoff on previous slide)
+* This plot shows the two main components of variation among samples.
+* Samples that are closer together have more similar expression.
+* So we hope that replicates are close and that conditions/treatments separate samples.
+
 For assignment 6, I don't understand how to read the dispersion plot and what it means?
 =====================
 ![dispersion](../images/edgeR_Dispersion.png)
+* each point is a gene
+* y-axis is biological coefficient of variation ($ Std. Dev \div Mean), related to dispersion.
+* x-axis expression level
+* lines show "common" dispersion or dispersion trend by expression level
+
+For assignment 6, I don't understand how to read the dispersion plot and what it means?
+=====================
+(repeat text in case cutoff on previous slide)
 * each point is a gene
 * y-axis is biological coefficient of variation ($ Std. Dev \div Mean), related to dispersion.
 * x-axis expression level
