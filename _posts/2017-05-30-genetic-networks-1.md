@@ -31,7 +31,7 @@ An intuitive example is clustering the distances between know geographic locatio
 4. Merge the two closest points into one cluster (merge BOS and NY in our example data set)
 5. Repeat steps 3 and 4 until all the items belong to a single large cluster
 
-A special note: all the clusters at each merge take on the shortest distance between any one member of the cluster and the remaining clusters. For example, the distance between BOS and DC is 433 miles, but the distance between NY and DC is 233. Because BOS/NY are considered one cluster after our first round, their cluster distance to DC is 233. All three of these cities are then merged into one cluster DC/NY/BOS.  (Alternative approached could be used, such as takign the mean distance or the longest distance).
+A special note: all the clusters at each merge take on the shortest distance between any one member of the cluster and the remaining clusters. For example, the distance between BOS and DC is 429 miles, but the distance between NY and DC is 233. Because BOS/NY are considered one cluster after our first round, their cluster distance to DC is 233. All three of these cities are then merged into one cluster DC/NY/BOS.  (Alternative approached could be used, such as takign the mean distance or the longest distance).
 
 Change into your Assignment_7 directory and download the data
 
@@ -141,8 +141,13 @@ What is the general pattern in the h-clustering data?
 Using what you learned from the city example, what is the subcluster that appears to be very different than the rest of the samples? 
 *Hint: You will have to plot this yourself and stretch it out. The rendering on the website compresses the output.*
 
-We have obtained a visual summary using h-clustering. Now what? We can go a little further and start to define some important sub-clusters within our tree. We can do this using the following function. Once again make sure you plot it so you can stretch the axes. 
+We have obtained a visual summary using h-clustering. Now what? We can
+go a little further and start to define some important sub-clusters
+within our tree. We can do this using the following function. Once again
+make sure you plot it so you can stretch the axes. To view the plots
+better you can select the "Show in New Window" icon.
 
+![RStuido_new_window]({{ site.baseurl }}/images/RStuido_new_window.png)
 
 ```r
 ?rect.hclust

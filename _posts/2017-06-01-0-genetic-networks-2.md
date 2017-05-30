@@ -101,14 +101,6 @@ Now plot this example to see the connections based on the 2000 mile distance cut
 
 
 ```r
-install.packages("igraph") # Download and install the package
-```
-
-```
-## Error in install.packages : Updating loaded packages
-```
-
-```r
 library(igraph) # load package
 # make sure to use the 2000 mile distance cutoff 
 cities_graph2 <- graph.adjacency(cities_mat, mode = "undirected")
