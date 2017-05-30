@@ -139,7 +139,9 @@ plot(hc)
 **Exercise 2:**
 What is the general pattern in the h-clustering data? 
 Using what you learned from the city example, what is the subcluster that appears to be very different than the rest of the samples? 
-*Hint: You will have to plot this yourself and stretch it out. The rendering on the website compresses the output.  In your .Rmd file you can click on the left icon above the plot to display it in its own windows*
+*Hint: You will have to plot this yourself and stretch it out. The rendering on the website compresses the output.  In your .Rmd file you can click on the left icon above the plot to display it in its own window*
+
+![icon]({{ site.baseurl }}/images/RStuido_new_window.png)
 
 We have obtained a visual summary using h-clustering. Now what? We can go a little further and start to define some important sub-clusters within our tree. We can do this using the following function. Once again make sure you plot it so you can stretch the axes. 
 
