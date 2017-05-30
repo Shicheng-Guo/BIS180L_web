@@ -15,7 +15,7 @@ tags:
 _This lab was designed by [Cody Markelz](http://rjcmarkelz.github.io/) a postdoc in the Maloof Lab._
 
 ## Assignment repository
-Please clone your `Assignment_7` repository and place your answers in the `Assignment_7_template.Rmd` file.  When you are done push the .Rmd and a knitted .html file.
+Please clone your `Assignment_7` repository and place your answers in the `Assignment_7_template.Rmd` notebook file.  When you are done push the .Rmd .nb.html.
 
 ## Clustering Introduction
 As you learned last lab, when we are dealing with genome scale data it is hard to come up with good summaries of the data unless you know exactly the question you are trying to ask. Today we will be explore three different ways to cluster data and get visual summaries of the expression of all genes that had a significant GxE interaction. Once we have these clusters, it allows us to ask further, more detailed questions such as what GO categories are enriched in each cluster, or are there specific metabolic pathways contained in the clusters? While clustering can be used in an exploratory way, the basics you will be learning today have been extended to very sophisticated statistical/machine learning methods used across many disciplines. In fact, there are many different methods used for clustering in R outlined in this **[CRAN VIEW](http://cran.r-project.org/web/views/Cluster.html)**.
@@ -139,15 +139,10 @@ plot(hc)
 **Exercise 2:**
 What is the general pattern in the h-clustering data? 
 Using what you learned from the city example, what is the subcluster that appears to be very different than the rest of the samples? 
-*Hint: You will have to plot this yourself and stretch it out. The rendering on the website compresses the output.*
+*Hint: You will have to plot this yourself and stretch it out. The rendering on the website compresses the output.  In your .Rmd file you can click on the left icon above the plot to display it in its own windows*
 
-We have obtained a visual summary using h-clustering. Now what? We can
-go a little further and start to define some important sub-clusters
-within our tree. We can do this using the following function. Once again
-make sure you plot it so you can stretch the axes. To view the plots
-better you can select the "Show in New Window" icon.
+We have obtained a visual summary using h-clustering. Now what? We can go a little further and start to define some important sub-clusters within our tree. We can do this using the following function. Once again make sure you plot it so you can stretch the axes. 
 
-![RStuido_new_window]({{ site.baseurl }}/images/RStuido_new_window.png)
 
 ```r
 ?rect.hclust
@@ -166,46 +161,41 @@ __c__ Play with the k-values between 3 and 7. Describe how the size of the clust
 
 You may have noticed that your results and potential interpretation of the data could change very dramatically based on the how many subclusters you choose! This is one of the main drawbacks with this technique. Fortunately there are other packages such as `pvclust` that can help us determine which sub-clusters have good support. 
 
-The package pvclust assigns p-values to clusters.  It does this by bootstrap sampling of our dataset.
+The package pvclust assigns p-values to clusters.  It does this by bootstrap sampling of our dataset.  Bootstrapping is a popular resampling technique that you can read about more [here](http://en.wikipedia.org/wiki/Bootstrapping_%28statistics%29).  The basic idea is that many random samples of your data are taken and the clustering is done on each of these resampled data sets.  We then ask how often the branches present in the original data set appear in the resampled data set.  If a branch appears many times in the resampled data set that is good evidence that it is "real".
+
 
 
 ```r
 library(pvclust)
-```
-
-```
-## Error in library(pvclust): there is no package called 'pvclust'
-```
-
-```r
 ?pvclust #check out the documentation
-```
 
-```
-## No documentation for 'pvclust' in specified packages and libraries:
-## you could try '??pvclust'
-```
-
-```r
 set.seed(12456) #This ensure that we will have consistent results with one another
+
 fit <- pvclust(GxE_counts, method.hclust = "ward.D", method.dist = "euclidean", nboot = 50)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): could not find function "pvclust"
+## Bootstrap (r = 0.5)... Done.
+## Bootstrap (r = 0.6)... Done.
+## Bootstrap (r = 0.7)... Done.
+## Bootstrap (r = 0.8)... Done.
+## Bootstrap (r = 0.9)... Done.
+## Bootstrap (r = 1.0)... Done.
+## Bootstrap (r = 1.1)... Done.
+## Bootstrap (r = 1.2)... Done.
+## Bootstrap (r = 1.3)... Done.
+## Bootstrap (r = 1.4)... Done.
 ```
 
 ```r
 plot(fit) # dendogram with p-values
 ```
 
-```
-## Error in plot(fit): object 'fit' not found
-```
-Normally we would do 1000+ bootstrap samples, to get our support for each of the branches in the tree, but we do not have lots of time today. The red values are the "Approximate Unbiased" (AU) values with numbers closer to 100 providing more support. Bootstrapping is a popular resampling technique that you can read about more [here](http://en.wikipedia.org/wiki/Bootstrapping_%28statistics%29).
+![plot of chunk unnamed-chunk-8]({{ site.baseurl }}/figure/unnamed-chunk-8-1.png)
+The green values are the "Bootstrap Percentage" (BP) values, indicating the percentage of bootstramp samples where that branch was observed.  Red values are the "Approximate Unbiased" (AU) values which scale the BP based on the number of samples that were taken. In both cases numbers closer to 100 provide more support. 
 
 **Exercise 4:**
-After running the 50 bootstrap samples, leave the plot open. Then change nboot up to 500. In general what happens to AU? You can comparing the two plots by flipping between them.
+After running the 50 bootstrap samples, leave the plot open. Then change nboot up to 1000. In general what happens to BP and AU? You can comparing the two plots by flipping between them.
 
 
 We will be discussing more methods for choosing the number of clusters in the k-means section. Until then, we will expand what we learned about h-clustering to do a more sophisticated visualization of the data. 
@@ -218,13 +208,6 @@ Heatmaps are another way to visualize h-clustering results. Instead of looking a
 
 ```r
 library(gplots) #not to be confused with ggplot2!
-```
-
-```
-## Error in library(gplots): there is no package called 'gplots'
-```
-
-```r
 head(cities) # city example
 ```
 
@@ -242,20 +225,10 @@ head(cities) # city example
 cities_mat <- as.matrix(cities)
 cityclust <- hclust(dist(cities_mat))
 ?heatmap.2 #take a look at the arguments
-```
-
-```
-## No documentation for 'heatmap.2' in specified packages and libraries:
-## you could try '??heatmap.2'
-```
-
-```r
 heatmap.2(cities_mat, Rowv=as.dendrogram(cityclust), scale="row", density.info="none", trace="none")
 ```
 
-```
-## Error in eval(expr, envir, enclos): could not find function "heatmap.2"
-```
+![plot of chunk unnamed-chunk-9]({{ site.baseurl }}/figure/unnamed-chunk-9-1.png)
 **Exercise 5:**
 We used the scale rows option. This is necessary so that every *row* in the data set will be on the same scale when visualized in the heatmap. This is to prevent really large values somewhere in the data set dominating the heatmap signal. Remember if you still have this data set in memory you can take a look at a printed version to the terminal. Compare the distance matrix that you printed with the colors of the heat map. See the advantage of working with small test sets? Take a look at your plot of the cities heatmap and interpret what a dark red value and a light yellow value in the heatmap would mean in geographic distance. Provide an example of of each in your explanation.
 
@@ -274,9 +247,7 @@ plot(hr)
 heatmap.2(GxE_counts, Rowv = as.dendrogram(hr), scale = "row", density.info="none", trace="none")
 ```
 
-```
-## Error in eval(expr, envir, enclos): could not find function "heatmap.2"
-```
+![plot of chunk unnamed-chunk-10]({{ site.baseurl }}/figure/unnamed-chunk-10-2.png)
 **Exercise 6:** The genes are overplotted so we cannot distinguish one from another. However, what is the most obvious pattern that you can pick out from this data? Describe what you see. Make sure you plot this in your own session so you can stretch it out.
 
 **Exercise 7:** In the similar way that you interpreted the color values of the heatmap for the city example, come up with a biological interpretation of the yellow vs. red color values in the heatmap. What would this mean for the pattern that you described in exercise 6? Discuss.
@@ -333,7 +304,6 @@ ggplot(data = plotting, aes(x = PC1, y = PC2, label = Row.names, color = cluster
 
 ![plot of chunk unnamed-chunk-12]({{ site.baseurl }}/figure/unnamed-chunk-12-1.png)
 **Exercise 8:** Pretty Colors! Describe what you see visually with 2, 5, 9, and 15 clusters. Why would it be a bad idea to have to few or to many clusters? Discuss with a specific example comparing few vs. many k-means. Justify your choice of too many and too few clusters by describing what you see in each case.
-
 The final thing that we will do today is try to estimate, based on our data, what the ideal number of clusters is. For this we will use something called the Gap statistic. 
 
 
@@ -372,14 +342,3 @@ with(gap, maxSE(Tab[,"gap"], Tab[,"SE.sim"], method="firstSEmax"))
 **Exercise 10:** What did clusGap() calculate? How does this compare to your answer from Exercise 9? Make a plot using the kmeans functions as you did before, but choose the number of k-means you chose and the number of k-means that are calculated from the Gap Statistic. Describe the differences in the plots.
 
 Good Job Today! There was a lot of technical stuff to get through. If you want more, check out the "Genetic Networks-2" lab where you can build co-expression networks and study their properties using a few of the techniques that you learned today. 
-
-
-
-
-
-
-
-
-
-
-
