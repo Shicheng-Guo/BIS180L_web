@@ -113,6 +113,7 @@ The naming conventions of the Sample IDs are a little abstract, so I have create
 | NE = Nipponbare Early | M = 1mm soil     |
 | NL = Nipponbare Late  | B = root surface |
 | I  = IR50             | E = root inside  |
+
 \* Technical replicates are indicated with 1 or 2
 
 
