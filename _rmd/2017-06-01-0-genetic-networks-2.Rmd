@@ -11,7 +11,9 @@ tags:
      - graphs
 --- 
 
-
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=FALSE)
+```
 
 
 # Biological Context 
@@ -38,15 +40,13 @@ The relationships, or **edges**, between nodes were defined by measurements of g
 
 Okay, lets load up our city data again and get started by playing with some examples!
 
-
-```bash
+```{r, engine = 'bash', eval = FALSE}
 wget https://raw.githubusercontent.com/rjcmarkelz/BIS180L_web/feature-networks/data/us_cities.txt
 ```
 
 Infile the data into R. 
 
-
-```r
+```{r, eval = TRUE}
 # make sure to change the path
 cities <- read.table("../data/us_cities.txt", sep = "\t", header = TRUE)
 rownames(cities) <- cities$X #make first column the rownames
@@ -54,44 +54,17 @@ cities <- cities[,-1] #remove first column
 cities <- as.matrix(cities) #convert to matrix
 cities # print matrix
 ```
-
-```
-##       BOS   NY   DC  MIA  CHI  SEA   SF   LA  DEN
-## BOS     0  206  429 1504  963 2976 3095 2979 1949
-## NY    206    0  233 1308  802 2815 2934 2786 1771
-## DC    429  233    0 1075  671 2684 2799 2631 1616
-## MIA  1504 1308 1075    0 1329 3273 3053 2687 2037
-## CHI   963  802  671 1329    0 2013 2142 2054  996
-## SEA  2976 2815 2684 3273 2013    0  808 1131 1307
-## SF   3095 2934 2799 3053 2142  808    0  379 1235
-## LA   2979 2786 2631 2687 2054 1131  379    0 1059
-## DEN  1949 1771 1616 2037  996 1307 1235 1059    0
-```
 Take a look at the printed matrix. Imagine that we are an airline and want to calculate the best routes between cities. However, the planes that we have in our fleet have a maximum fuel range of only 1500 miles. This would put a constraint on our city network. Cities with distances greater than 1500 miles between them would no longer be reachable directly. Their edge value would become a zero.
 Likewise, if two cities are within 1500 miles, their edge value would become 1. This 1 or 0 representation of the network is called the network **adjacency** matrix. 
 
 Lets create an adjacency matrix for our test dataset.
 
-
-```r
+```{r, eval = TRUE}
 cities_mat <- cities # leave original matrix intact
 cities_mat[cities <= 1500] <- 1
 cities_mat[cities >= 1500] <- 0
 diag(cities_mat) <- 0 # we do not have to fly within each of cities :)
 cities_mat # check out the adjacency matrix
-```
-
-```
-##      BOS NY DC MIA CHI SEA SF LA DEN
-## BOS    0  1  1   0   1   0  0  0   0
-## NY     1  0  1   1   1   0  0  0   0
-## DC     1  1  0   1   1   0  0  0   0
-## MIA    0  1  1   0   1   0  0  0   0
-## CHI    1  1  1   1   0   0  0  0   1
-## SEA    0  0  0   0   0   0  1  1   1
-## SF     0  0  0   0   0   1  0  1   1
-## LA     0  0  0   0   0   1  1  0   1
-## DEN    0  0  0   0   1   1  1  1   0
 ```
 **Exercise 1:**
 Based on this 0 or 1 representation of our network, what city is the most highly connected? *Hint: sum the values down a column OR across a row for each city*
@@ -101,30 +74,11 @@ What if you were to extend the range to 2000 miles in the above code. Does the h
 ##Plotting networks
 Now plot this example to see the connections based on the 2000 mile distance cutoff. It should show the same connections as in your adjacency matrix. 
 
-
-```r
+```{r plotigraph1, eval = TRUE}
 library(igraph) # load package
-```
-
-```
-## Error in library(igraph): there is no package called 'igraph'
-```
-
-```r
 # make sure to use the 2000 mile distance cutoff 
 cities_graph2 <- graph.adjacency(cities_mat, mode = "undirected")
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "graph.adjacency"
-```
-
-```r
 plot.igraph(cities_graph2)
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "plot.igraph"
 ```
 **Exercise 2:**
 What is the total number of nodes in the plot? 
@@ -133,8 +87,7 @@ What is the total number of edges in the plot?
 **Exercise 3:**
 Re-calculate the adjacency matrix with the cutoff value at 2300. Calculate the number of edges using the following code. What do you get?
 
-
-```r
+```{r, eval = FALSE}
 sum(cities_mat)/2 # divide by 2 because the matrix has 2 values for each edge
 ```
 This 1 or 0 representation of the network is a very useful simplification that we will take advantage of when trying construct biological networks. We could define each gene as a node and the edges between the nodes as some value that we can calculate to make an adjacency matrix. 
@@ -178,15 +131,13 @@ In following up on the pattern that we observed in our clustering analysis on Tu
 
 Download the data.
 
-
-```bash
+```{r, engine = 'bash', eval = FALSE}
 wget https://raw.githubusercontent.com/rjcmarkelz/BIS180L_web/feature-networks/data/DEgenes_GxE.csv
 wget https://raw.githubusercontent.com/rjcmarkelz/BIS180L_web/feature-networks/data/voom_transform_brassica.csv
 ```
 Infile the data and calculate an adjacency matrix using a 0.85 correlation cutoff this time.
 
-
-```r
+```{r, eval = TRUE}
 genes <- read.table("voom_transform_brassica.csv", sep = ",", header = TRUE)
 genes <- genes[,-c(38,42,46)] # remove questionable library columns
 DE_genes <- read.table("DEgenes_GxE.csv", sep = ",")
@@ -203,91 +154,24 @@ Now we can do some calculations. If our cutoff is 0.85, how many edges do we hav
 **Exercise 6:**
 Use the following code to plot our networks using different thresholds for connectivity. What patterns do you see in the visualization of this data? *Note: the second plot will take a while to render*
 
-
-```r
+```{r plotgenenetwork, eval = TRUE}
 genes_adj95 <- abs(genes_cor) > 0.95
 diag(genes_adj95) <- 0 
 
 gene_graph95 <- graph.adjacency(genes_adj95, mode = "undirected") #convert adjacency to graph
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "graph.adjacency"
-```
-
-```r
 comps <- clusters(gene_graph95)$membership                        #define gene cluster membership
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "clusters"
-```
-
-```r
 colbar <- rainbow(max(comps)+1)                                   #define colors
-```
-
-```
-## Error in rainbow(max(comps) + 1): object 'comps' not found
-```
-
-```r
 V(gene_graph95)$color <- colbar[comps+1]                          #assign colors to nodes
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'colbar' not found
-```
-
-```r
 plot(gene_graph95, layout = layout.fruchterman.reingold, vertex.size = 6, vertex.label = NA)
-```
-
-```
-## Error in plot(gene_graph95, layout = layout.fruchterman.reingold, vertex.size = 6, : object 'gene_graph95' not found
-```
-
-```r
+  
 #this one will take a little while to render
 genes_adj85 <- abs(genes_cor) > 0.85
 diag(genes_adj85) <- 0 
 gene_graph85 <- graph.adjacency(genes_adj85, mode = "undirected")
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "graph.adjacency"
-```
-
-```r
 comps <- clusters(gene_graph85)$membership
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "clusters"
-```
-
-```r
 colbar <- rainbow(max(comps)+1)
-```
-
-```
-## Error in rainbow(max(comps) + 1): object 'comps' not found
-```
-
-```r
 V(gene_graph85)$color <- colbar[comps+1]
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'colbar' not found
-```
-
-```r
 plot(gene_graph85, layout=layout.fruchterman.reingold, vertex.size=6, vertex.label=NA)
-```
-
-```
-## Error in plot(gene_graph85, layout = layout.fruchterman.reingold, vertex.size = 6, : object 'gene_graph85' not found
 ```
 
 ##Graph Statistics for Network Comparison
@@ -298,84 +182,24 @@ Another really cool property of graphs is we can ask how connected any two nodes
 **Exercise 7:**
  Use the following code to answer these two questions: In gene_graph85, what is the total graph density? In gene_graph85, what is the average path length? 
 
-
-```r
+```{r plotdensity, eval = FALSE}
 graph.density(gene_graph85)
 average.path.length(gene_graph85)
 ```
 Now lets plot the distance between two specific nodes. Rather annoyingly igraph does not have an easy way to input gene names for the path analysis. It requires that you provide the numeric row number of gene A and how you want to compare that to the column number of gene B. I have written this additional piece of code to show you how this works. We get the shortest paths between ALL genes in the network and then print the results. We are interested in visualizing the path between Bra033034 (row number 2) and Bra009406 (column number 7). This is where the 2 and 6 arguments come from in *get.shortest.paths()*
 
-
-```r
+```{r plotgenegraph85, eval = TRUE}
 gene_graph85 <- graph.adjacency(genes_adj85, mode = "undirected")
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "graph.adjacency"
-```
-
-```r
 distMatrix <- shortest.paths(gene_graph85, v = V(gene_graph85), to = V(gene_graph85))
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "shortest.paths"
-```
-
-```r
 head(distMatrix)[,1:7]
-```
 
-```
-## Error in head(distMatrix): object 'distMatrix' not found
-```
-
-```r
 pl <- get.shortest.paths(gene_graph85, 2, 7)$vpath[[1]] # pull paths between node 2 and 7
-```
 
-```
-## Error in eval(expr, envir, enclos): could not find function "get.shortest.paths"
-```
-
-```r
 V(gene_graph85)[pl]$color <- paste("green")          # define node color
-```
-
-```
-## Error in V(gene_graph85)[pl]$color <- paste("green"): object 'gene_graph85' not found
-```
-
-```r
 E(gene_graph85)$color <- paste("grey")               # define default edge color
-```
-
-```
-## Error in E(gene_graph85)$color <- paste("grey"): object 'gene_graph85' not found
-```
-
-```r
 E(gene_graph85, path = pl)$color <- paste("blue")    # define edge color
-```
-
-```
-## Error in E(gene_graph85, path = pl)$color <- paste("blue"): object 'gene_graph85' not found
-```
-
-```r
 E(gene_graph85, path = pl)$width <- 10               # define edge width
-```
-
-```
-## Error in E(gene_graph85, path = pl)$width <- 10: object 'gene_graph85' not found
-```
-
-```r
 plot(gene_graph85, layout = layout.fruchterman.reingold, vertex.size = 6, vertex.label = NA)
-```
-
-```
-## Error in plot(gene_graph85, layout = layout.fruchterman.reingold, vertex.size = 6, : object 'gene_graph85' not found
 ```
 
 **Exercise 8:**
