@@ -37,6 +37,12 @@ The relationships, or **edges**, between nodes were defined by measurements of g
 
 **(NY)--MILES--(SF)**
 
+## Repository
+
+Clone the Assignment_8 repository
+
+## Get started
+
 Okay, let's load up our city data again and get started by playing with some examples!
 
 If you need to download the file again, here is the address:
@@ -106,26 +112,6 @@ Now plot this example to see the connections based on the 2000 mile distance cut
 
 ```r
 library(igraph) # load package
-```
-
-```
-## 
-## Attaching package: 'igraph'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     decompose, spectrum
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     union
-```
-
-```r
 # make sure to use the 2000 mile distance cutoff 
 cities_graph2 <- graph.adjacency(cities_mat, mode = "undirected")
 plot.igraph(cities_graph2)

@@ -39,6 +39,12 @@ The relationships, or **edges**, between nodes were defined by measurements of g
 
 **(NY)--MILES--(SF)**
 
+## Repository
+
+Clone the Assignment_8 repository
+
+## Get started
+
 Okay, let's load up our city data again and get started by playing with some examples!
 
 If you need to download the file again, here is the address:
