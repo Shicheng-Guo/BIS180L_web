@@ -9,17 +9,10 @@ tags:
 - Metagenomics
 ---
 
-# THIS LAB WILL NOT BE COVERED IN 2016.  I LEAVE IT HERE FOR THOSE THAT ARE INTERESTED.
 
-If you want to do the lab you will need to download [QIIME](www.qiime.org) (pronounced "chime") and run it as a virtual machine or use MacQiime.  
+# Assignment 9: Metagenomics
 
-You will also need to download the [data files]({{ site.baseurl }}/data/MetaGenomeData.tar.gz)
-
-# Assignment 9
-
-After setting up the QIIME Virtual Box, pull your repository for the assignment template. 
-
-# Background
+## Background
 
 Metagenomics is a rapidly expanding field with the power to explain microbial communities with a very high resolution by leveraging next generation sequencing data. There are applications in the clinic, ecological environments, food safety, and others. By definition, metagenomics is the study of a collection of genetic material (genomes) from a mixed community of organisms typically microbial.  
 
@@ -29,36 +22,82 @@ Today we will walk through a common metagenomics workflow using [QIIME](www.qiim
 2. Calculate the diversity within our sample (alpha diversity)
 3. Calculate the diversity between different sample types (beta diversity)
 
-*Acknowledgement must be paid to Professor Scott Dawson for sharing his original metagenomics lab that we have adapted for this class and to the Sundaresan Lab for sharing the data from their recent [publication](http://www.ncbi.nlm.nih.gov/pubmed/25605935).*
+*Acknowledgement must be paid to Professor Scott Dawson for sharing his original metagenomics lab that we have adapted for this class, to the Sundaresan Lab for sharing the data from their recent [publication](http://www.ncbi.nlm.nih.gov/pubmed/25605935), and to former TA Kristen Beck who wrote this version of the lab.*
 
 
 ## Getting Started with QIIME
 Quantitative Insights Into Microbial Ecology or QIIME is an open-source bioinformatics pipeline for performing microbiome analysis from raw DNA sequencing data. It has been cited by over 2,500 peer-reviewed journals since its [publication](http://www.nature.com/nmeth/journal/v7/n5/full/nmeth.f.303.html) in 2010.  
 
-QIIME requires many dependencies which can make installing it a bit of headache. However, the developers of QIIME have made a standalone Virtual Box with a complete install. Even though, we know you're pros at installations we will be working with this more convenient setup. The QIIME Virtual Box has been downloaded to the desktop of computers in SLB2020.
+QIIME requires many dependencies which can make installing it a bit of headache. However, the developers of QIIME have made a AWS image as well as a standalone Virtual Box with a complete install. For today's lab we will use the QIIME AWS image instead of trying to install the software on your BIS180L Image.
 
-To get QIIME:  
+### To start an instance of the AWS QIIME image:  
 
-+ Plug in your USB to a lab computer.
-+ Transfer the folder c:\QIIME to your USB by dragging and dropping (or copy and pasting).
-+ The folder should be ~12GB so the transfer will take 15 minutes or so. 
-+ Once the transfer completes, you should be able to double click the QIIME.vbox file to run the Virtual Machine
-+ The **password** for the QIIME Virtual Box is qiime
-+ QIIME is very RAM heavy. Therefore, some of the steps you'll complete today will take a couple of minutes to run. Please be patient.
+1. Logon to your AWS console
+2. Make sure that you normal BIS180L instance is stopped.
+3. Switch your region to `US East (N. Virginia)` -- This is necessary because the AMI is only available in this region.
+4. Click on `Launch Instance`
+5. Click on `Community AMIs`, search for `ami-1918ff72`, and select it.
+6. Select the `m3.medium` instance type and then click "Review and Launch"
+7. Create a new keypair and download the .pem file.
+8. Email this file to yourself or save it somewhere in addition to the lab PC that you are using.
 
-You will also need to clone your assignments repository so that you can submit your work for grading. You should be pros at this by now but just in case:
+## Access you QIIME instance
 
-+ Go your BIS180L\_Asssignments\_First.Last repository on Github.com
-+ Copy the link to clone your repository via HTTPS. See image below  
-![screenshot of git clone]({{ site.baseurl }}/figure/metagenomics_lab-clone_explanation.png) 
-+ Enter the following on the command line:
+The QIIME image does not have VNC installed, so we will be accessing it with `ssh` via `putty` (PC) or terminal (Linux/Max)
 
-```bash
-git clone [fill in your link to HTTPS repo]
-```
-+ Then `cd` into your BIS180L\_Assignments.First.Last/Assignment\_9 directory and `pull` your repository.
+For a windows computer see the section immediately below, using PuTTY.  If you are using a Mac (or Linux) computer to connect please skip to the next section.
+
+### PuTTY
+
+#### Convert Your Private Key Using PuTTYgen
+
+1. Start PuTTYgen (for example, from the **Start** menu, choose **All Programs > PuTTY > PuTTYgen**).
+2. Under **Type of key to generate**, choose **RSA**. ![puttygen-key-type]({{ site.baseurl }}/images/puttygen-key-type.png)
+3. Choose **Load**. By default, PuTTYgen displays only files with the
+   extension .ppk. To locate your .pem file, select the option to
+   display files of **all files** types. ![puttygen-load-key]({{ site.baseurl }}/images/puttygen-load-key.png)
+4. Select your **.pem** file for the key pair that you specified when you launched your instance, and then choose Open. Choose **OK** to dismiss the confirmation dialog box.
+5. Choose **Save private key** to save the key in the format that PuTTY can use. PuTTYgen displays a warning about saving the key without a passphrase. Choose **Yes**.
+6. Specify the **same** name for the key that you used for the key pair (for example, my-key-pair). PuTTY automatically adds the .ppk file extension.
+
+#### Connect to your server with Putty
+
+1. Start PuTTY (from the **Start** menu, choose **All Programs > PuTTY > PuTTY**).
+2. In the Category pane, select **Session** and enter user_name@public_dns_name. {IMAGE A}
+3. Under **Connection type**, select **SSH** and double check that the port is
+22 ![Putty-Session]({{ site.baseurl }}/images/Putty-Session.png)
+4. In the Category pane, expand **Connection**, expand **SSH**, and then select **Auth**.
+5. Click **Browse** and Select the **.ppk** file that you generated for your key pair, and then choose **Open**. ![Putty_Auth]({{ site.baseurl }}/images/Putty_Auth.png)
+6. If this is the first time you have connected to this instance, PuTTY displays a security alert dialog box that asks whether you trust the host you are connecting to. Choose **Yes**. 
+7. You should now be logged into your Instance 
+
+### Connecting to your Instance through terminal
+
+If you are on a Mac or Linux machine and want to make an SSH connection to your vritual machine, then:
+
+1. Save your .pem file somewhere and note the path.
+2. Open the Terminal application
+3. Type 
+
+    chmod 0400 qiime.pem #only needs to be done once
+
+    ssh -i qiime.pem ubuntu@52.53.117.125
+    
+But replace the "qiim.pem" with the path to your .pem file and the "52.53.117.125" with the IP address of your instance.
+
+## Clone your repository
+
+Clone your Assignment_9 repository
+
++ cd into the repository
 + There will be an assignment template for today's lab.
 
+## Data
+
+Download and unzip the data files:
+
+    wget http://jnmaloof.github.io/BIS180L_web/data/MetaGenomeData.tar.gz
+    tar -xvzf MetaGenomeData.tar.gz
 
 ## Background for our Data
 Today, we will be working with the samples collected from the rhizosphere of rice plants. The rhizosphere is an area of soil near the plant roots that contains both bacteria and other microbes associated with roots as well as secretions from the roots themselves. See diagram below from [Phillppot et al., *Nature*, 2013](http://www.nature.com/nrmicro/journal/v11/n11/full/nrmicro3109.html).
@@ -69,11 +108,11 @@ In order to classify microbial diversity, metagenomics often relies on sequencin
 
 The naming conventions of the Sample IDs are a little abstract, so I have created a **quick reference** table for you here.
 
-| Cultivar               |  Treatment       |
-|:-----------------------|:-----------------|
-| NE = Nipponbare Early  |  M = 1mm soil    |
-| NL = Nipponbare Late   |  B = root surface|
-| I  = IR50              |  E = root inside |
+| Cultivar              | Treatment        |
+|:----------------------|:-----------------|
+| NE = Nipponbare Early | M = 1mm soil     |
+| NL = Nipponbare Late  | B = root surface |
+| I  = IR50             | E = root inside  |
 \* Technical replicates are indicated with 1 or 2
 
 
@@ -100,7 +139,7 @@ Now that we've poked around in our raw data, let's carry on with analyzing the m
 Operational taxonomical units (OTUs) are used to describe the various microbes in a sample. OTUs are defined as a cluster of reads with 97% 16S rRNA sequence identity. We will use QIIME to classify OTUs into an OTU table.
 
 ```bash
-cd ~/Desktop 
+cd ../
 pick_de_novo_otus.py -i Data/RiceSeqs.fna -o otus_demo
 # use ctrl-c to stop this process, see note below
 ```
