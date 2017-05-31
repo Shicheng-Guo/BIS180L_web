@@ -107,25 +107,29 @@ library(igraph) # load package
 ```
 
 ```
-## Error in library(igraph): there is no package called 'igraph'
+## 
+## Attaching package: 'igraph'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     decompose, spectrum
+```
+
+```
+## The following object is masked from 'package:base':
+## 
+##     union
 ```
 
 ```r
 # make sure to use the 2000 mile distance cutoff 
 cities_graph2 <- graph.adjacency(cities_mat, mode = "undirected")
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "graph.adjacency"
-```
-
-```r
 plot.igraph(cities_graph2)
 ```
 
-```
-## Error in eval(expr, envir, enclos): could not find function "plot.igraph"
-```
+![plot of chunk plotigraph1]({{ site.baseurl }}/figure/plotigraph1-1.png)
 **Exercise 2:**
 What is the total number of nodes in the plot? 
 What is the total number of edges in the plot?
@@ -209,86 +213,26 @@ genes_adj95 <- abs(genes_cor) > 0.95
 diag(genes_adj95) <- 0 
 
 gene_graph95 <- graph.adjacency(genes_adj95, mode = "undirected") #convert adjacency to graph
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "graph.adjacency"
-```
-
-```r
 comps <- clusters(gene_graph95)$membership                        #define gene cluster membership
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "clusters"
-```
-
-```r
 colbar <- rainbow(max(comps)+1)                                   #define colors
-```
-
-```
-## Error in rainbow(max(comps) + 1): object 'comps' not found
-```
-
-```r
 V(gene_graph95)$color <- colbar[comps+1]                          #assign colors to nodes
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'colbar' not found
-```
-
-```r
 plot(gene_graph95, layout = layout.fruchterman.reingold, vertex.size = 6, vertex.label = NA)
 ```
 
-```
-## Error in plot(gene_graph95, layout = layout.fruchterman.reingold, vertex.size = 6, : object 'gene_graph95' not found
-```
+![plot of chunk plotgenenetwork]({{ site.baseurl }}/figure/plotgenenetwork-1.png)
 
 ```r
 #this one will take a little while to render
 genes_adj85 <- abs(genes_cor) > 0.85
 diag(genes_adj85) <- 0 
 gene_graph85 <- graph.adjacency(genes_adj85, mode = "undirected")
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "graph.adjacency"
-```
-
-```r
 comps <- clusters(gene_graph85)$membership
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "clusters"
-```
-
-```r
 colbar <- rainbow(max(comps)+1)
-```
-
-```
-## Error in rainbow(max(comps) + 1): object 'comps' not found
-```
-
-```r
 V(gene_graph85)$color <- colbar[comps+1]
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'colbar' not found
-```
-
-```r
 plot(gene_graph85, layout=layout.fruchterman.reingold, vertex.size=6, vertex.label=NA)
 ```
 
-```
-## Error in plot(gene_graph85, layout = layout.fruchterman.reingold, vertex.size = 6, : object 'gene_graph85' not found
-```
+![plot of chunk plotgenenetwork]({{ site.baseurl }}/figure/plotgenenetwork-2.png)
 
 ##Graph Statistics for Network Comparison
 Graph density is a measure of the total number of edges between nodes out of the total possible number of edges between nodes. It is a useful metric if you want to compare two networks with a similar number of nodes. We could have split our data into the two treatments (DP and NDP) at the beginning of our analysis, built separate networks for each, then used metrics like this to compare the network properties between treatments. 
@@ -308,75 +252,38 @@ Now lets plot the distance between two specific nodes. Rather annoyingly igraph 
 
 ```r
 gene_graph85 <- graph.adjacency(genes_adj85, mode = "undirected")
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "graph.adjacency"
-```
-
-```r
 distMatrix <- shortest.paths(gene_graph85, v = V(gene_graph85), to = V(gene_graph85))
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "shortest.paths"
-```
-
-```r
 head(distMatrix)[,1:7]
 ```
 
 ```
-## Error in head(distMatrix): object 'distMatrix' not found
+##           Bra010821 Bra033034 Bra035334 Bra003598 Bra016182 Bra013164
+## Bra010821         0       Inf       Inf       Inf       Inf       Inf
+## Bra033034       Inf         0       Inf       Inf       Inf         4
+## Bra035334       Inf       Inf         0       Inf       Inf       Inf
+## Bra003598       Inf       Inf       Inf         0       Inf       Inf
+## Bra016182       Inf       Inf       Inf       Inf         0       Inf
+## Bra013164       Inf         4       Inf       Inf       Inf         0
+##           Bra009406
+## Bra010821       Inf
+## Bra033034         6
+## Bra035334       Inf
+## Bra003598       Inf
+## Bra016182       Inf
+## Bra013164         3
 ```
 
 ```r
 pl <- get.shortest.paths(gene_graph85, 2, 7)$vpath[[1]] # pull paths between node 2 and 7
-```
 
-```
-## Error in eval(expr, envir, enclos): could not find function "get.shortest.paths"
-```
-
-```r
 V(gene_graph85)[pl]$color <- paste("green")          # define node color
-```
-
-```
-## Error in V(gene_graph85)[pl]$color <- paste("green"): object 'gene_graph85' not found
-```
-
-```r
 E(gene_graph85)$color <- paste("grey")               # define default edge color
-```
-
-```
-## Error in E(gene_graph85)$color <- paste("grey"): object 'gene_graph85' not found
-```
-
-```r
 E(gene_graph85, path = pl)$color <- paste("blue")    # define edge color
-```
-
-```
-## Error in E(gene_graph85, path = pl)$color <- paste("blue"): object 'gene_graph85' not found
-```
-
-```r
 E(gene_graph85, path = pl)$width <- 10               # define edge width
-```
-
-```
-## Error in E(gene_graph85, path = pl)$width <- 10: object 'gene_graph85' not found
-```
-
-```r
 plot(gene_graph85, layout = layout.fruchterman.reingold, vertex.size = 6, vertex.label = NA)
 ```
 
-```
-## Error in plot(gene_graph85, layout = layout.fruchterman.reingold, vertex.size = 6, : object 'gene_graph85' not found
-```
+![plot of chunk plotgenegraph85]({{ site.baseurl }}/figure/plotgenegraph85-1.png)
 
 **Exercise 8:**
 Using what you know about graphs, repeat the analysis for the smaller cities matrix. Show your code to answer these questions.
