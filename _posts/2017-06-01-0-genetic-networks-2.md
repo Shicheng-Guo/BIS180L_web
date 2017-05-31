@@ -148,7 +148,7 @@ There are **MANY** important caveats and limitations to this approach outlined *
 **(Gene3)--(-0.69)--(Gene4)**
 
 **Exercise 4:**
-Fill in the following 0 or 1 values for our gene network with a constraint of 0.7 or greater constraint.
+Fill in the following 0 or 1 values for our gene network with a constraint of 0.7 or greater.
 
 **(Gene1)--(?)--(Gene2)**
 
