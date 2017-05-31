@@ -151,24 +151,24 @@ genes_cor <- cor(t(GxE_counts)) # calculate the correlation between all gene pai
 
 **Exercise 5:**
 
-**a** Create an adjacency matrix called `genes_adj` for the genes use a cutoff of abs(correlation) > 0.85.  Remember to set the diagonal of the adjacency matrix to 0.  See above code for cities.
+**a** 
+Create an adjacency matrix called `genes_adj85` for the genes use a cutoff of abs(correlation) > 0.85.  Remember to set the diagonal of the adjacency matrix to 0.  Create a second adjacency matrix `genes_adj95` using a cutoff of abs(correlation) > 0.95. See above code for cities.
 
 ```{r, echo=FALSE}
-genes_adj <- abs(genes_cor) > 0.85
-diag(genes_adj) <- 0 # important step to set edge values of genes to themselves to 0
+genes_adj85 <- abs(genes_cor) > 0.85
+diag(genes_adj85) <- 0 # important step to set edge values of genes to themselves to 0
+
+genes_adj95 <- abs(genes_cor) > 0.95
+diag(genes_adj95) <- 0 # important step to set edge values of genes to themselves to 0
 ```
 
 **b**
-
 Now we can do some calculations. If our cutoff is 0.85, how many edges do we have in our 255 node network? What if we increase our cutoff to 0.95? *hint: sum( )*
 
 **Exercise 6:**
 Use the following code to plot our networks using different thresholds for connectivity. What patterns do you see in the visualization of this data? *Note: the second plot will take a while to render*
 
 ```{r plotgenenetwork, eval = TRUE}
-genes_adj95 <- abs(genes_cor) > 0.95
-diag(genes_adj95) <- 0 
-
 gene_graph95 <- graph.adjacency(genes_adj95, mode = "undirected") #convert adjacency to graph
 comps <- clusters(gene_graph95)$membership                        #define gene cluster membership
 colbar <- rainbow(max(comps)+1)                                   #define colors
@@ -176,8 +176,6 @@ V(gene_graph95)$color <- colbar[comps+1]                          #assign colors
 plot(gene_graph95, layout = layout.fruchterman.reingold, vertex.size = 6, vertex.label = NA)
   
 #this one will take a little while to render
-genes_adj85 <- abs(genes_cor) > 0.85
-diag(genes_adj85) <- 0 
 gene_graph85 <- graph.adjacency(genes_adj85, mode = "undirected")
 comps <- clusters(gene_graph85)$membership
 colbar <- rainbow(max(comps)+1)

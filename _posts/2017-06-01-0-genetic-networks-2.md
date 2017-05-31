@@ -106,6 +106,26 @@ Now plot this example to see the connections based on the 2000 mile distance cut
 
 ```r
 library(igraph) # load package
+```
+
+```
+## 
+## Attaching package: 'igraph'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     decompose, spectrum
+```
+
+```
+## The following object is masked from 'package:base':
+## 
+##     union
+```
+
+```r
 # make sure to use the 2000 mile distance cutoff 
 cities_graph2 <- graph.adjacency(cities_mat, mode = "undirected")
 plot.igraph(cities_graph2)
@@ -183,12 +203,12 @@ genes_cor <- cor(t(GxE_counts)) # calculate the correlation between all gene pai
 
 **Exercise 5:**
 
-**a** Create an adjacency matrix called `genes_adj` for the genes use a cutoff of abs(correlation) > 0.85.  Remember to set the diagonal of the adjacency matrix to 0.  See above code for cities.
+**a** 
+Create an adjacency matrix called `genes_adj85` for the genes use a cutoff of abs(correlation) > 0.85.  Remember to set the diagonal of the adjacency matrix to 0.  Create a second adjacency matrix `genes_adj95` using a cutoff of abs(correlation) > 0.95. See above code for cities.
 
 
 
 **b**
-
 Now we can do some calculations. If our cutoff is 0.85, how many edges do we have in our 255 node network? What if we increase our cutoff to 0.95? *hint: sum( )*
 
 **Exercise 6:**
@@ -196,9 +216,6 @@ Use the following code to plot our networks using different thresholds for conne
 
 
 ```r
-genes_adj95 <- abs(genes_cor) > 0.95
-diag(genes_adj95) <- 0 
-
 gene_graph95 <- graph.adjacency(genes_adj95, mode = "undirected") #convert adjacency to graph
 comps <- clusters(gene_graph95)$membership                        #define gene cluster membership
 colbar <- rainbow(max(comps)+1)                                   #define colors
@@ -210,8 +227,6 @@ plot(gene_graph95, layout = layout.fruchterman.reingold, vertex.size = 6, vertex
 
 ```r
 #this one will take a little while to render
-genes_adj85 <- abs(genes_cor) > 0.85
-diag(genes_adj85) <- 0 
 gene_graph85 <- graph.adjacency(genes_adj85, mode = "undirected")
 comps <- clusters(gene_graph85)$membership
 colbar <- rainbow(max(comps)+1)
