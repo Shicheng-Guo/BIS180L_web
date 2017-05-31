@@ -141,13 +141,15 @@ Operational taxonomical units (OTUs) are used to describe the various microbes i
 
 ```bash
 cd ../
-pick_de_novo_otus.py -i Data/RiceSeqs.fna -o otus_demo
-# use ctrl-c to stop this process, see note below
+pick_de_novo_otus.py -i Data/RiceSeqs.fna -o otus
 ```
 `-i` designates the input file with our DNA sequences  
 `-o` designates the folder for our output  
 The syntax to designate input and output files is consistent across QIIME commands.
-**Note:** this command takes ~45 minutes to run and uses all RAM for the Virtual Box basically freezing the system until it's complete so we have ran this for you and added the data in `~/Desktop/otus`.
+**Note:** this command takes ~15 minutes to run.  If you get tired of waiting, then type "ctrl-c" to stop and download our pre-run version with:
+
+wget http://malooflab.phytonetworks.org/downloads/BIS180L/otus.zip
+unzip otus.zip
 
 Let's view the statistics of the OTU table (a binary file) and save the output.
 
