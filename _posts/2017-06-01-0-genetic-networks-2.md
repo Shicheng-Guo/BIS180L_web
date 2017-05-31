@@ -13,15 +13,16 @@ tags:
 
 
 
+# Introduction
 
-# Biological Context 
+## Biological Context 
 In the past few weeks we have taken data off the sequencer, aligned the reads to our reference genome, calculated counts for the number of reads that mapped to each gene in our reference genome, found out what genes are differentially expressed between our genotype treatment combinations, and started to interpret the data using clustering. With these large data sets there is more than one way to look at the data. As biologists we need to critically evaluate what the data is telling us and interpret it using our knowledge of biological processes. In our case we have an environmental perturbation that we have imposed on the plants by altering the density of plants in a given pot. Understanding mechanistically how plants respond to crowding is important for understanding how plants grow and compete for resources in natural ecosystems, and how we might manipulate plants to grow optimally in agroecosystems. In our case, we have two genotypes of plants that show very different physiological and morphological responses to crowding. We have a lot of data, some quantitative, some observational, that support this. Plant growth, just like the growth of any organism, is a really complicated thing. Organisms have evolved to interact with the environment by taking in information from their surroundings and trying to alter their physiology and biochemistry to better live in that environment. We know a lot about the details of how these signals are intercepted by the organisms, but we know less how this translates to changes in biochemistry, physiology, development, growth, and ultimately reproductive outputs. In our case, plants receive information about their neighbors through detecting changes in light quality through the phytochrome light receptors. This is a focus of the Maloof lab. You can read more generally about the way plants perceive these changes **[here](http://www.bioone.org/doi/full/10.1199/tab.0157)**. We want to understand how plants connect the upstream perception of environmental signals (in this case the presence of neighbors) and how this information cascades through the biological network of the organism to affect the downstream outputs of physiological and developmental changes. To get an approximation of what is going on in the biological network we need to work with an intermediate form of biological information: gene expression. Although there are important limitations to only using gene expression data which we will discuss during the lecture, it should provide some clues as to how to best connect the upstream environmental perception with the downstream growth outputs.
 
-# Review
-In the last section you learned about techniques to reduce our high-dimensional gene expression data by projecting them onto a simpler two dimensional representation. The axes of this projection describes the two largest axes of variation contained within the dataset. Each of these axes of variation is called a principle component (PC for short). During the lecture last time, I used the example of trying to summarize a 3D object by projecting a shadow of the object on the dry erase board. If we can only observe the shadow of the object, we have reduced the object from being a 3D shape into a 2D summary. We also discussed how the shape of the 2D summary shadow would depend on how the 3D object was oriented in 3D space and what angle the light source was at to cast the shadow onto the dry erase board. In our high-dimensional gene expression data set we can define the largest axes of variation in the dataset and plot them onto a 2D plane. 
+## Review
+In the last section you learned about techniques to reduce our high-dimensional gene expression data by projecting them onto a simpler two dimensional representation. The axes of this projection describes the two largest axes of variation contained within the dataset. Each of these axes of variation is called a principle component (PC for short).  In our high-dimensional gene expression data set we can define the largest axes of variation in the dataset and plot them onto a 2D plane. 
 K-means clustering allows us to search this higher dimensional space for patterns in the data, find the patterns, and assign cluster numbers to each gene in the dataset. When we combine PC plots with k-means plots we can assign a color value to each cluster like you did for exercise 8. We will now build on these ideas of data reduction and visualization to build a correlation based gene co-expression network. 
 
-# Networks Intuition
+## Networks Intuition
 In our example dataset from last time we used US cities to represent individual nodes that cluster together with one another based on **relationships** of geographic distances between each city. To put this in network terminology, each individual city is a **node**.
 
 **(NY)**    
@@ -36,18 +37,19 @@ The relationships, or **edges**, between nodes were defined by measurements of g
 
 **(NY)--MILES--(SF)**
 
-Okay, lets load up our city data again and get started by playing with some examples!
+Okay, let's load up our city data again and get started by playing with some examples!
 
+If you need to download the file again, here is the address:
 
 ```bash
-wget https://raw.githubusercontent.com/rjcmarkelz/BIS180L_web/feature-networks/data/us_cities.txt
+wget http://jnmaloof.github.io/BIS180L_web/data/us_cities.txt
 ```
 
 Infile the data into R. 
 
 
 ```r
-# make sure to change the path
+# be sure to change the path
 cities <- read.table("../data/us_cities.txt", sep = "\t", header = TRUE)
 rownames(cities) <- cities$X #make first column the rownames
 cities <- cities[,-1] #remove first column
@@ -70,7 +72,7 @@ cities # print matrix
 Take a look at the printed matrix. Imagine that we are an airline and want to calculate the best routes between cities. However, the planes that we have in our fleet have a maximum fuel range of only 1500 miles. This would put a constraint on our city network. Cities with distances greater than 1500 miles between them would no longer be reachable directly. Their edge value would become a zero.
 Likewise, if two cities are within 1500 miles, their edge value would become 1. This 1 or 0 representation of the network is called the network **adjacency** matrix. 
 
-Lets create an adjacency matrix for our test dataset.
+let's create an adjacency matrix for our test dataset.
 
 
 ```r
@@ -96,7 +98,7 @@ cities_mat # check out the adjacency matrix
 **Exercise 1:**
 Based on this 0 or 1 representation of our network, what city is the most highly connected? *Hint: sum the values down a column OR across a row for each city*
 
-What if you were to extend the range to 2000 miles in the above code. Does the highest connected city change? If so explain. 
+Try extending the range to 2000 miles in the above code. Does the highest connected city change? If so explain. 
 
 ##Plotting networks
 Now plot this example to see the connections based on the 2000 mile distance cutoff. It should show the same connections as in your adjacency matrix. 
@@ -104,26 +106,6 @@ Now plot this example to see the connections based on the 2000 mile distance cut
 
 ```r
 library(igraph) # load package
-```
-
-```
-## 
-## Attaching package: 'igraph'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     decompose, spectrum
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     union
-```
-
-```r
 # make sure to use the 2000 mile distance cutoff 
 cities_graph2 <- graph.adjacency(cities_mat, mode = "undirected")
 plot.igraph(cities_graph2)
@@ -141,7 +123,7 @@ Re-calculate the adjacency matrix with the cutoff value at 2300. Calculate the n
 ```r
 sum(cities_mat)/2 # divide by 2 because the matrix has 2 values for each edge
 ```
-This 1 or 0 representation of the network is a very useful simplification that we will take advantage of when trying construct biological networks. We could define each gene as a node and the edges between the nodes as some value that we can calculate to make an adjacency matrix. 
+This 1 or 0 representation of the network is a very useful simplification that we will take advantage of when trying construct biological networks. We will define each gene as a node and the edges between the nodes as some value that we can calculate to make an adjacency matrix. 
 
 **(Gene1)**    
 
@@ -151,11 +133,11 @@ This 1 or 0 representation of the network is a very useful simplification that w
 
 **(Gene1)--Value?--(Gene2)**
 
-We do not have geographic distance between genes, but we do have observations of each gene's relative expression values across the Genotype by Environment by Tissue type combinations. We can reduce this data down if we did a simple correlation based analysis of the data. We could calculate a correlation coefficient (a value between -1 and +1) between each gene with every other gene in our data set. The network would look like this for all gene pairs:
+We do not have geographic distance between genes, but we do have observations of each gene's relative expression values across the Genotype by Environment by Tissue type combinations. We can reduce this data down by performing a simple correlation based analysis of the data. We could calculate a correlation coefficient (a value between -1 and +1) between each gene with every other gene in our data set. The network would look like this for all gene pairs:
 
 **(Gene1)--Correlation--(Gene2)**
 
-There are **MANY** important caveats and limitations to this approach outlined **[here](http://www.nature.com/nrg/journal/v16/n2/full/nrg3868.html)**, but for learning purposes correlation networks are great. To start constructing an adjacency matrix of a gene network lets put some constraints on what we want to call an edge. Lets say greater than 0.7 correlation (+ or -) between genes we will draw an edge value of 1, if not it will get a 0. This is called an unsigned network. There is no sign associated with the positive or negative correlation values represented in our adjacency matrix.
+There are **MANY** important caveats and limitations to this approach outlined **[here](http://www.nature.com/nrg/journal/v16/n2/full/nrg3868.html)**, but for learning purposes correlation networks are great. To start constructing an adjacency matrix of a gene network let's put some constraints on what we want to call an edge. Let's that if the absolute correlation coefficient between genes is greater than 0.7 (i.e. + or -) then we will assign an edge value of 1, if not it will get a 0. This is called an unsigned network. There is no sign associated with the positive or negative correlation values represented in our adjacency matrix.
 
 **(Gene1)--(+0.9)--(Gene2)**
 
@@ -176,7 +158,7 @@ Fill in the following 0 or 1 values for our gene network with a constraint of 0.
 
 **(Gene3)--(?)--(Gene4)**
 
-Okay, I think now that we have the basic concepts, lets work with the larger gene expression data set. 
+Okay, I think now that we have the basic concepts, let's work with the larger gene expression data set. 
 
 In following up on the pattern that we observed in our clustering analysis on Tuesday I found out that the leaf samples that appeared to be part of their own cluster (especially in the heat map) were bad libraries. **This demonstrates the importance of visualizing your data as often as possible during an analysis to catch potential errors.** We will remove these libraries from our analysis today.
 
@@ -197,11 +179,16 @@ DE_genes <- read.table("DEgenes_GxE.csv", sep = ",")
 DE_gene_names <- rownames(DE_genes)
 GxE_counts <- as.data.frame(genes[DE_gene_names,])
 genes_cor <- cor(t(GxE_counts)) # calculate the correlation between all gene pairs
-genes_adj <- abs(genes_cor) > 0.85
-diag(genes_adj) <- 0 # important step to set edge values of genes to themselves to 0
 ```
 
 **Exercise 5:**
+
+**a** Create an adjacency matrix called `genes_adj` for the genes use a cutoff of abs(correlation) > 0.85.  Remember to set the diagonal of the adjacency matrix to 0.  See above code for cities.
+
+
+
+**b**
+
 Now we can do some calculations. If our cutoff is 0.85, how many edges do we have in our 255 node network? What if we increase our cutoff to 0.95? *hint: sum( )*
 
 **Exercise 6:**
@@ -247,7 +234,7 @@ Another really cool property of graphs is we can ask how connected any two nodes
 graph.density(gene_graph85)
 average.path.length(gene_graph85)
 ```
-Now lets plot the distance between two specific nodes. Rather annoyingly igraph does not have an easy way to input gene names for the path analysis. It requires that you provide the numeric row number of gene A and how you want to compare that to the column number of gene B. I have written this additional piece of code to show you how this works. We get the shortest paths between ALL genes in the network and then print the results. We are interested in visualizing the path between Bra033034 (row number 2) and Bra009406 (column number 7). This is where the 2 and 6 arguments come from in *get.shortest.paths()*
+Now let's plot the distance between two specific nodes. Rather annoyingly `igraph` does not have an easy way to input gene names for the path analysis. It requires that you provide the numeric row number of gene A and how you want to compare that to the column number of gene B. I have written this additional piece of code to show you how this works. We get the shortest paths between ALL genes in the network and then print the results. We are interested in visualizing the path between Bra033034 (row number 2) and Bra009406 (column number 7). This is where the 2 and 7 arguments come from in *get.shortest.paths()*
 
 
 ```r
@@ -294,14 +281,5 @@ Find the shortest path between SEA and DC with 2300 mile flight range. Graph it.
 
 You have just done some complex analysis of networks. There are many more ways to think about this type of data. I hope that you can see the usefulness of this abstraction of the biological data. If you are interested in networks I recommend reading the igraph documentation. It has a lot of good information and citations for the theory of networks. 
 
-
-
-
-
-
-
-
-
-
-
+If you want to pursue more advanced methods of gene network construction, one that performs well and has excellent documentation and tutorials is Weighted Gene Correlation Network Analysis.  It is similar to what we did here but uses more sophisticated methods for determining correlations and cutoff thresholds.  [WGCNA website](https://labs.genetics.ucla.edu/horvath/htdocs/CoexpressionNetwork/Rpackages/WGCNA/)
 
