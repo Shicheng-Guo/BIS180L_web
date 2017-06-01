@@ -82,9 +82,7 @@ let's create an adjacency matrix for our test dataset.
 
 
 ```r
-cities_mat <- cities # leave original matrix intact
-cities_mat[cities <= 1500] <- 1
-cities_mat[cities >= 1500] <- 0
+cities_mat <- cities < 1500 # leave original matrix intact
 diag(cities_mat) <- 0 # we do not have to fly within each of cities :)
 cities_mat # check out the adjacency matrix
 ```
@@ -190,7 +188,7 @@ genes_cor <- cor(t(GxE_counts)) # calculate the correlation between all gene pai
 **Exercise 5:**
 
 **a** 
-Create an adjacency matrix called `genes_adj85` for the genes use a cutoff of abs(correlation) > 0.85.  Remember to set the diagonal of the adjacency matrix to 0.  Create a second adjacency matrix `genes_adj95` using a cutoff of abs(correlation) > 0.95. See above code for cities.
+Create an adjacency matrix called `genes_adj85` for the genes use a cutoff of abs(correlation) > 0.85.  Remember to set the diagonal of the adjacency matrix to 0.  Create a second adjacency matrix `genes_adj95` using a cutoff of abs(correlation) > 0.95.
 
 
 
