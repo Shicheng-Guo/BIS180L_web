@@ -1,0 +1,100 @@
+Gene Networks 2
+========================================================
+author: Julin Maloof
+date: June 01, 2017
+autosize: true
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(igraph)
+igraph_options(vertex.size=55,vertex.label.cex=2)
+library(tidyverse)
+```
+
+Clustering vs Networks
+======================
+* In the last lab you learned how to group genes into _clusters_ based on similar expression patterns.
+* In this lab we extend this concept to build _gene networks_
+* Gene networks are graphs that show connections between genes with similar expression.
+
+Correlation Network
+====================
+
+* The goal is to connect genes with the most similar expression
+* One simple way to do this is to use correlation as a measure of expression similarity
+* _Why_ might we want to do this?
+
+***
+
+```{r simple network, echo=FALSE}
+cor_mat <- frame_matrix(
+  ~GeneA, ~GeneB, ~GeneC, ~GeneD, ~GeneE, ~GeneF,
+  1,      .12,   .75,     .86,    .49,    .32,
+  .12,    1,     .92,     .08,    .88,    .08,
+  .75,    .92,     1,     .81,    .78,    .02,
+  .86,    .08,   .81,       1,    .28,    .59,
+  .49,    .88,   .78,     .28,      1,    .78,
+  .32,    .08,   .02,     .59,     .78,      1)
+rownames(cor_mat) <- colnames(cor_mat)
+
+adj_mat <- cor_mat > 0.7
+
+diag(adj_mat) <- 0
+
+simple_graph <- graph.adjacency(adj_mat,mode = "undirected")
+plot(simple_graph,layout=layout_with_kk)
+```
+
+Correlation Matrix
+===================
+First calculate the correlation between each gene's expression across samples
+```{r}
+knitr::kable(cor_mat)
+```
+***
+```{r}
+plot(simple_graph,layout=layout_with_kk)
+```
+
+Adjacency Matrix
+================
+
+Then create an adjacency matrix with "1" indicating genes that are correlated above a threshold, and "0" indicating below threshold.
+
+Connect genes with a "1"
+```{r}
+knitr::kable(adj_mat)
+```
+***
+```{r}
+plot(simple_graph,layout=layout_with_kk)
+```
+
+Terminology
+===========
+* Genes are _nodes_
+* Connections between genes are _edges_
+
+***
+```{r}
+plot(simple_graph,layout=layout_with_kk)
+```
+
+Limitations
+===========
+Correlation networks easy to make and easy to understand but have some limitations
+
+Limitations
+===========
+Correlation networks easy to make and easy to understand but have some limitations
+
+* Is a hard threshold proper?
+* What is the right threshold?
+* Are correlations even the right measure?
+* Directionality?
+
+More advanced methods:
+======================
+
+* Weighted Gene Correlation Networks [(WGCNA)](https://labs.genetics.ucla.edu/horvath/htdocs/CoexpressionNetwork/Rpackages/WGCNA/) (nice tutorials also Youtube videos)
+* [Mutual Rank networks](http://atted.jp/help/mr.shtml) also see [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2762411/)
