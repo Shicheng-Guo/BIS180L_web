@@ -5,3 +5,4 @@ BIS180L_web.sublime*
 .Rapp.history
 *cache
 slides/IlluminaIntro_files/*
+Gemfile.lock
