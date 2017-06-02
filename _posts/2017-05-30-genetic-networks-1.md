@@ -64,7 +64,7 @@ head(cities)
 plot(hclust(dist(cities))) 
 ```
 
-![plot of chunk unnamed-chunk-2]({{ site.baseurl }}/figure/unnamed-chunk-2-1.png)
+![plot of chunk unnamed-chunk-25]({{ site.baseurl }}/figure/unnamed-chunk-25-1.png)
 **Exercise 1:**
 Extending the example that I gave for BOS/NY/DC, what are the distances that define each split in the West Coast side of the hclust plot? 
 *Hint 1: Start with the distances between SF and LA. Then look at the difference between that cluster up to SEA*
@@ -126,7 +126,7 @@ hr <- hclust(dist(GxE_counts))
 plot(hr)
 ```
 
-![plot of chunk unnamed-chunk-5]({{ site.baseurl }}/figure/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-28]({{ site.baseurl }}/figure/unnamed-chunk-28-1.png)
 What a mess! We have clustered similar gene to one another but that are too many genes, so we are overplotted in this direction. How about if we cluster by column instead? Notice we have to transpose the data using `t()`. Also, make sure you stretch out the window so you can view it! 
 
 
@@ -135,13 +135,11 @@ hc <- hclust(dist(t(GxE_counts)))
 plot(hc)
 ```
 
-![plot of chunk unnamed-chunk-6]({{ site.baseurl }}/figure/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-29]({{ site.baseurl }}/figure/unnamed-chunk-29-1.png)
 **Exercise 2:**
 What is the general pattern in the h-clustering data? 
 Using what you learned from the city example, what is the subcluster that appears to be very different than the rest of the samples? 
-*Hint: You will have to plot this yourself and stretch it out. The rendering on the website compresses the output.  In your .Rmd file you can click on the left icon above the plot to display it in its own window*
-
-![icon]({{ site.baseurl }}/images/RStuido_new_window.png)
+*Hint: You will have to plot this yourself and stretch it out. The rendering on the website compresses the output.  In your .Rmd file you can click on the left icon above the plot to display it in its own windows*
 
 We have obtained a visual summary using h-clustering. Now what? We can go a little further and start to define some important sub-clusters within our tree. We can do this using the following function. Once again make sure you plot it so you can stretch the axes. 
 
@@ -153,7 +151,7 @@ plot(hc) #redraw the tree everytime before adding the rectangles
 rect.hclust(hc, k = 4, border = "red")
 ```
 
-![plot of chunk unnamed-chunk-7]({{ site.baseurl }}/figure/unnamed-chunk-7-1.png)
+![plot of chunk unnamed-chunk-30]({{ site.baseurl }}/figure/unnamed-chunk-30-1.png)
 **Exercise 3:**
 __a__ With k = 4 as one of the arguments to the rect.hclust() function, what is the largest and smallest group contained within the rectangles? 
 
@@ -193,7 +191,7 @@ fit <- pvclust(GxE_counts, method.hclust = "ward.D", method.dist = "euclidean", 
 plot(fit) # dendogram with p-values
 ```
 
-![plot of chunk unnamed-chunk-8]({{ site.baseurl }}/figure/unnamed-chunk-8-1.png)
+![plot of chunk unnamed-chunk-31]({{ site.baseurl }}/figure/unnamed-chunk-31-1.png)
 The green values are the "Bootstrap Percentage" (BP) values, indicating the percentage of bootstramp samples where that branch was observed.  Red values are the "Approximate Unbiased" (AU) values which scale the BP based on the number of samples that were taken. In both cases numbers closer to 100 provide more support. 
 
 **Exercise 4:**
@@ -230,7 +228,7 @@ cityclust <- hclust(dist(cities_mat))
 heatmap.2(cities_mat, Rowv=as.dendrogram(cityclust), scale="row", density.info="none", trace="none")
 ```
 
-![plot of chunk unnamed-chunk-9]({{ site.baseurl }}/figure/unnamed-chunk-9-1.png)
+![plot of chunk unnamed-chunk-32]({{ site.baseurl }}/figure/unnamed-chunk-32-1.png)
 **Exercise 5:**
 We used the scale rows option. This is necessary so that every *row* in the data set will be on the same scale when visualized in the heatmap. This is to prevent really large values somewhere in the data set dominating the heatmap signal. Remember if you still have this data set in memory you can take a look at a printed version to the terminal. Compare the distance matrix that you printed with the colors of the heat map. See the advantage of working with small test sets? Take a look at your plot of the cities heatmap and interpret what a dark red value and a light yellow value in the heatmap would mean in geographic distance. Provide an example of of each in your explanation.
 
@@ -243,13 +241,13 @@ hr <- hclust(dist(GxE_counts))
 plot(hr)
 ```
 
-![plot of chunk unnamed-chunk-10]({{ site.baseurl }}/figure/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-33]({{ site.baseurl }}/figure/unnamed-chunk-33-1.png)
 
 ```r
 heatmap.2(GxE_counts, Rowv = as.dendrogram(hr), scale = "row", density.info="none", trace="none")
 ```
 
-![plot of chunk unnamed-chunk-10]({{ site.baseurl }}/figure/unnamed-chunk-10-2.png)
+![plot of chunk unnamed-chunk-33]({{ site.baseurl }}/figure/unnamed-chunk-33-2.png)
 **Exercise 6:** The genes are overplotted so we cannot distinguish one from another. However, what is the most obvious pattern that you can pick out from this data? Describe what you see. Make sure you plot this in your own session so you can stretch it out.
 
 **Exercise 7:** In the similar way that you interpreted the color values of the heatmap for the city example, come up with a biological interpretation of the yellow vs. red color values in the heatmap. What would this mean for the pattern that you described in exercise 6? Discuss.
@@ -304,7 +302,7 @@ ggplot(data = plotting, aes(x = PC1, y = PC2, label = Row.names, color = cluster
   geom_point(alpha = 0.8, size = 4, stat = "identity") 
 ```
 
-![plot of chunk unnamed-chunk-12]({{ site.baseurl }}/figure/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-35]({{ site.baseurl }}/figure/unnamed-chunk-35-1.png)
 **Exercise 8:** Pretty Colors! Describe what you see visually with 2, 5, 9, and 15 clusters. Why would it be a bad idea to have to few or to many clusters? Discuss with a specific example comparing few vs. many k-means. Justify your choice of too many and too few clusters by describing what you see in each case.
 The final thing that we will do today is try to estimate, based on our data, what the ideal number of clusters is. For this we will use something called the Gap statistic. 
 
@@ -313,20 +311,29 @@ The final thing that we will do today is try to estimate, based on our data, wha
 ```r
 library(cluster)
 set.seed(125)
-gap <- clusGap(GxE_counts, FUN = kmeans, iter.max = 30, K.max = 20, B = 50, verbose=interactive())
+gap <- clusGap(GxE_counts, FUN = kmeans, iter.max = 30, K.max = 20, B = 500, verbose=interactive())
 ```
 
 ```
 ## Clustering k = 1,2,..., K.max (= 20): .. done
-## Bootstrapping, b = 1,2,..., B (= 50)  [one "." per sample]:
-## .................................................. 50
+## Bootstrapping, b = 1,2,..., B (= 500)  [one "." per sample]:
+## .................................................. 50 
+## .................................................. 100 
+## .................................................. 150 
+## .................................................. 200 
+## .................................................. 250 
+## .................................................. 300 
+## .................................................. 350 
+## .................................................. 400 
+## .................................................. 450 
+## .................................................. 500
 ```
 
 ```r
 plot(gap, main = "Gap Statistic")
 ```
 
-![plot of chunk unnamed-chunk-13]({{ site.baseurl }}/figure/unnamed-chunk-13-1.png)
+![plot of chunk unnamed-chunk-36]({{ site.baseurl }}/figure/unnamed-chunk-36-1.png)
 This is also part of the cluster package that you loaded earlier. It will take a few minutes to calculate this statistic. In the mean time, check out some more information about it in the ?clusGap documentation. We could imagine that as we increase the number of k-means to estimate, we are always going to increase the fit of the data. The extreme examples of this would be if we had k = 255 for the total number of genes in the data set or k = 1. We would be able to fit the data perfectly in the k = 255 case, but what has it told us? It has not really told us anything. Just like you played with the number of k-means in Exercise 8, we can also do this computationally! We want optimize to have the fewest number of clusters that  can explain the variance in our data set.
 
 **Exercise 9:** Based on this Gap statistic plot at what number of k clusters (x-axis) do you start to see diminishing returns? To put this another way, at what value of k does k-1 and k+1 start to look the same for the first time? Or yet another way, when are you getting diminishing returns for adding more k-means? See if you can make the trade off of trying to capture a lot of variation in the data as the Gap statistic increases, but you do not want to add too many k-means because your returns diminish as you add more. Explain your answer using the plot as a guide to help you interpret the data.
@@ -339,7 +346,7 @@ with(gap, maxSE(Tab[,"gap"], Tab[,"SE.sim"], method="firstSEmax"))
 ```
 
 ```
-## [1] 4
+## [1] 8
 ```
 **Exercise 10:** What did clusGap() calculate? How does this compare to your answer from Exercise 9? Make a plot using the kmeans functions as you did before, but choose the number of k-means you chose and the number of k-means that are calculated from the Gap Statistic. Describe the differences in the plots.
 

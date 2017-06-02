@@ -1,0 +1,199 @@
+June 02 Questions
+========================================================
+author: Julin Maloof
+date: June 02, 2017
+autosize: true
+
+
+
+What are some examples of edges in a transcriptional regulatory network?
+========================================================
+
+Discuss in class
+
+In the lab from yesterday,
+========================================================
+_In the lab from yesterday, when we set the threshold to 0.85 we saw one large cluster and the rest of the nodes were largely independent. Why was there only one large cluster and what information about the data set can we learn from it?_
+
+Discuss in class
+
+Can you go over the 'nboot' function? What does it do?
+========================================================
+
+`nboot` is an argument, not a function, but...
+
+bootstrapping is a method for determining error in estimates made from a given data set.
+
+new data sets are created by randomly samply the original data set, with replacement.  So the new data set will be similar to the original but not exactly the same.
+
+`nboot` controlls how many samples are taken.
+
+Explain what AU/BP represents.
+========================================================
+
+BP is "Bootstrap percentage": The percentage of times that the node was observed among the bootstrap samples.
+
+AU takes this, along with the number of bootstraps that were done to calculate a better estimate of confidence in the node.  
+
+Do you expect more bootstraps to increase, decrease, or not affect our confidence?
+
+
+Can you explain Gapk in the Gap statistic plot?
+========================================================
+
+As discussed in lecture:
+
+Gapk is the difference in the _expected_ within-cluster variance and the _observed_ within-cluster variance.  If our clusters are real then they should reduce variance, increasing the gap.
+
+From the clustering lab, when using clusGap, the y axis is the GAPk.
+========================================================
+_In this case are the terms "gap" and "variation" interchangeable? Is this referring the variation between each gene, or the variation between clusters as an average?_
+
+Gap is the _difference_ in variation between expected and observed.
+
+clusGap wierdness
+========================================================
+```
+gap <- clusGap(GxE_counts, FUN = kmeans, iter.max = 30, K.max = 20, B = 50, verbose=interactive())
+
+with(gap, maxSE(Tab[,""gap""], Tab[,""SE.sim""], method=""firstSEmax""))
+```
+
+_For k.max = 20; the command above gives k =4. Do we expect the out put of with command to change as we change the k.max value in the clusGap command?_
+
+No...although in this case I know that it does.  It turns out that this is a result of having a small number of bootstraps (B=50) so that the Gapk is not getting consistenly estimated.  B=500 solves the problem (and returns k=8 for both K.max = 20 and K.max = 10)
+
+let's look at the plot
+
+clusGap wierdness 50 bootstraps
+========================================================
+```{r, echo=FALSE}
+DE_genes <- read.table("../data/DEgenes_GxE.csv", sep = ",")
+DE_gene_names <- row.names(DE_genes)
+brass_voom_E <- read.table("../data/voom_transform_brassica.csv", sep = ",", header = TRUE)
+
+GxE_counts <- as.data.frame(brass_voom_E[DE_gene_names,])
+
+GxE_counts <- as.matrix(GxE_counts) # some of the downstream steps require a data matrix
+library(cluster)
+set.seed(125)
+gap50 <- clusGap(GxE_counts, FUN = kmeans, iter.max = 30, K.max = 20, B = 50, verbose=interactive())
+plot(gap50, main = "Gap Statistic, 50 Bootstraps")
+#with(gap50,abline(h=Tab[9,"gap"]-Tab[9,"SE.sim"],col="red",lty=2))
+#with(gap50, maxSE(Tab[,"gap"], Tab[,"SE.sim"], method="firstSEmax"))
+```
+
+k is "smallest k such that its Gap statistic is not more than 1 SE away from first local maximum".  It turns out that first local maximum is k=4
+
+
+clusGap wierdness 500 bootstraps
+=======
+```{r}
+set.seed(125)
+gap500 <- clusGap(GxE_counts, FUN = kmeans, iter.max = 30, K.max = 20, B = 500, verbose=interactive())
+plot(gap500, main = "Gap Statistic, 500 Bootstraps")
+#with(gap500,abline(h=Tab[8,"gap"]-Tab[8,"SE.sim"],col="red",lty=2))
+#with(gap500, maxSE(Tab[,"gap"], Tab[,"SE.sim"], method="firstSEmax"))
+```
+
+Can you explain the diminishing return?
+========================================================
+
+Adding more k gives you smaller and smaller improvements in fit (i.e. in reducing variance within clusters)
+
+Why did the R500 NDP Leaf data appear so unrelated to the rest of the sample data?
+========================================================
+_Was it for the purpose of the class or was that what was actually found?_
+
+That is what was acutally found.
+
+I need to go back and ensure that the data you received was normalized correctly.
+
+For assignment 8 exercise 8, is there a way to label nodes?
+========================================================
+
+Look at the code
+
+```{r}
+plot(gene_graph85, layout = layout.fruchterman.reingold, vertex.size = 6, vertex.label = NA)
+```
+
+Any guesses?
+
+"Is there any correlation between which are closer to each other and farther apart usually in a DNA strand?
+========================================================
+
+I have no idea what this is asking
+
+
+is there any evidence or method 
+========================================================
+_is there any evidence or method to detect that if expression of certain gene is binary (on/off) or gradual level of expression is desire (for example if that gene expression stay on for certain period of time)_
+
+* If you had a timecourse (repeated sampling over time) you could look for DE between time points
+
+* Clustering across a timecourse can be very helpful for this
+
+* You could explicitly test for expression being > 0 at different time points
+
+In modern bioinformatics, is h clustering or k means used more often?
+========================================================
+
+I use both.  Think of these as Exploratory Data Analysis.  Often it is helpful to explore your data in multiple ways.
+
+
+"How can you tell if your shortest path matrix is wrong? Is there another, similar graph/function you could use to double check your work?"
+========================================================
+
+I would manually spot-check a couple of calculations
+
+When are correlation networks
+========================================================
+_When are correlation networks the best option for data analysis in the context of biological experiments?_
+
+Generally I would use one of the more advanced methods (WGCNA or MR) mentioned in lecture.
+
+If you are talking about as compared to k-means, it depends if you care about specific gene-gene connections.
+
+Checking clustering
+========================================================
+_Although clustering is an imperative tool for correlated potentially related gene to one another, are there any protocols to check for and false-positives? Or are there so few genes which are clustered by pure chance that it does not meaningfully impact the end data?_
+
+I think the best is to randomize the data set.
+
+WGCNA also has some functions to do this.
+
+Why do we need to know the graph density? What is is used for?
+========================================================
+
+This is telling you about the number of connections relative to the total possible number of connections.
+
+
+Why are there infinite numbers inside of the distance matrix for the gene data for Assignment 8
+========================================================
+
+How do you tell if you have too many or too few clusters?
+========================================================
+
+Is the k-value set by Gap Statistic always the best number to use? 
+========================================================
+What would be good reasons for increasing or decreasing the number of clusters away from the Gap Statistic calculation?
+
+"Does the clusGap gives a true best value? What if we prefer 6, but clusGap gives number 4."
+========================================================
+
+How will I choose between k-means clustering vs hierarchical clustering to categorize data?
+========================================================
+
+Could you please explain why we have unassigned reads?
+========================================================
+
+Just as the ggplot had the option to add aesthetics, can you do the same in hclust?
+========================================================
+What are some useful subfeatures beyond the rect and the count?
+
+What is the difference between ggplot andÂ gplots?
+========================================================
+
+Other than using t(), what are some other features to make plots more legible?
+========================================================
