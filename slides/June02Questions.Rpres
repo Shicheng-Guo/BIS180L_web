@@ -138,8 +138,9 @@ _is there any evidence or method to detect that if expression of certain gene is
 
 In modern bioinformatics, is h clustering or k means used more often?
 ========================================================
+_How will I choose between k-means clustering vs hierarchical clustering to categorize data?_
 
-I use both.  Think of these as Exploratory Data Analysis.  Often it is helpful to explore your data in multiple ways.
+I use both.  Think of these as Exploratory Data Analyses.  Often it is helpful to explore your data in multiple ways.
 
 
 "How can you tell if your shortest path matrix is wrong? Is there another, similar graph/function you could use to double check your work?"
@@ -168,32 +169,36 @@ Why do we need to know the graph density? What is is used for?
 
 This is telling you about the number of connections relative to the total possible number of connections.
 
+Most interesting is to compare density either for different categories of genes or between different treatmetns.
+
 
 Why are there infinite numbers inside of the distance matrix for the gene data for Assignment 8
 ========================================================
 
+This is not in the distance matrix but in the shortest-path matrix.
+
+Infinity means "you can't get there from here"
+
 How do you tell if you have too many or too few clusters?
 ========================================================
 
+I do this by visual inspection of the clusters, plotting the expression of each gene along with the mean.
+
+Too many clusters: multiple clusters look the same.
+
+Too few clusters: individual genes in clusters to not look similar to the mean.
+
 Is the k-value set by Gap Statistic always the best number to use? 
 ========================================================
-What would be good reasons for increasing or decreasing the number of clusters away from the Gap Statistic calculation?
+_What would be good reasons for increasing or decreasing the number of clusters away from the Gap Statistic calculation?_
 
-"Does the clusGap gives a true best value? What if we prefer 6, but clusGap gives number 4."
-========================================================
+_Does the clusGap gives a true best value? What if we prefer 6, but clusGap gives number 4._
 
-How will I choose between k-means clustering vs hierarchical clustering to categorize data?
-========================================================
+I use this as guidance rather than absolute.  OK to vary.
 
 Could you please explain why we have unassigned reads?
 ========================================================
 
-Just as the ggplot had the option to add aesthetics, can you do the same in hclust?
-========================================================
-What are some useful subfeatures beyond the rect and the count?
+* Poor annotation (annotation does not contain all true genes)
+* Differences between reference strain and the strain you are using
 
-What is the difference between ggplot andÂ gplots?
-========================================================
-
-Other than using t(), what are some other features to make plots more legible?
-========================================================
