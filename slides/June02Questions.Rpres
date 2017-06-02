@@ -114,7 +114,7 @@ For assignment 8 exercise 8, is there a way to label nodes?
 
 Look at the code
 
-```{r}
+```{r, eval=FALSE}
 plot(gene_graph85, layout = layout.fruchterman.reingold, vertex.size = 6, vertex.label = NA)
 ```
 

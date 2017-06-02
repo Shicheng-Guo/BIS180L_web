@@ -95,9 +95,91 @@ For assignment 8 exercise 8, is there a way to label nodes?
 Look at the code
 
 
+```r
+plot(gene_graph85, layout = layout.fruchterman.reingold, vertex.size = 6, vertex.label = NA)
+```
+
+Any guesses?
+
+"Is there any correlation between which are closer to each other and farther apart usually in a DNA strand?
+========================================================
+
+I have no idea what this is asking
 
 
-```
-Error in plot(gene_graph85, layout = layout.fruchterman.reingold, vertex.size = 6,  : 
-  object 'gene_graph85' not found
-```
+is there any evidence or method 
+========================================================
+_is there any evidence or method to detect that if expression of certain gene is binary (on/off) or gradual level of expression is desire (for example if that gene expression stay on for certain period of time)_
+
+* If you had a timecourse (repeated sampling over time) you could look for DE between time points
+
+* Clustering across a timecourse can be very helpful for this
+
+* You could explicitly test for expression being > 0 at different time points
+
+In modern bioinformatics, is h clustering or k means used more often?
+========================================================
+_How will I choose between k-means clustering vs hierarchical clustering to categorize data?_
+
+I use both.  Think of these as Exploratory Data Analyses.  Often it is helpful to explore your data in multiple ways.
+
+
+"How can you tell if your shortest path matrix is wrong? Is there another, similar graph/function you could use to double check your work?"
+========================================================
+
+I would manually spot-check a couple of calculations
+
+When are correlation networks
+========================================================
+_When are correlation networks the best option for data analysis in the context of biological experiments?_
+
+Generally I would use one of the more advanced methods (WGCNA or MR) mentioned in lecture.
+
+If you are talking about as compared to k-means, it depends if you care about specific gene-gene connections.
+
+Checking clustering
+========================================================
+_Although clustering is an imperative tool for correlated potentially related gene to one another, are there any protocols to check for and false-positives? Or are there so few genes which are clustered by pure chance that it does not meaningfully impact the end data?_
+
+I think the best is to randomize the data set.
+
+WGCNA also has some functions to do this.
+
+Why do we need to know the graph density? What is is used for?
+========================================================
+
+This is telling you about the number of connections relative to the total possible number of connections.
+
+Most interesting is to compare density either for different categories of genes or between different treatmetns.
+
+
+Why are there infinite numbers inside of the distance matrix for the gene data for Assignment 8
+========================================================
+
+This is not in the distance matrix but in the shortest-path matrix.
+
+Infinity means "you can't get there from here"
+
+How do you tell if you have too many or too few clusters?
+========================================================
+
+I do this by visual inspection of the clusters, plotting the expression of each gene along with the mean.
+
+Too many clusters: multiple clusters look the same.
+
+Too few clusters: individual genes in clusters to not look similar to the mean.
+
+Is the k-value set by Gap Statistic always the best number to use? 
+========================================================
+_What would be good reasons for increasing or decreasing the number of clusters away from the Gap Statistic calculation?_
+
+_Does the clusGap gives a true best value? What if we prefer 6, but clusGap gives number 4._
+
+I use this as guidance rather than absolute.  OK to vary.
+
+Could you please explain why we have unassigned reads?
+========================================================
+
+* Poor annotation (annotation does not contain all true genes)
+* Differences between reference strain and the strain you are using
+

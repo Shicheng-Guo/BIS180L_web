@@ -915,9 +915,129 @@ with(gap, maxSE(Tab[,&quot;&quot;gap&quot;&quot;], Tab[,&quot;&quot;SE.sim&quot;
 <div class="slideContent" >
 <p>Look at the code</p>
 
-<pre><code>Error in plot(gene_graph85, layout = layout.fruchterman.reingold, vertex.size = 6,  : 
-  object &#39;gene_graph85&#39; not found
+<pre><code class="r">plot(gene_graph85, layout = layout.fruchterman.reingold, vertex.size = 6, vertex.label = NA)
 </code></pre>
+
+<p>Any guesses?</p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>&quot;Is there any correlation between which are closer to each other and farther apart usually in a DNA strand?</h3>
+<div class="slideContent" >
+<p>I have no idea what this is asking</p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>is there any evidence or method </h3>
+<div class="slideContent" >
+<p><em>is there any evidence or method to detect that if expression of certain gene is binary (on/off) or gradual level of expression is desire (for example if that gene expression stay on for certain period of time)</em></p>
+
+<ul>
+<li><p>If you had a timecourse (repeated sampling over time) you could look for DE between time points</p></li>
+<li><p>Clustering across a timecourse can be very helpful for this</p></li>
+<li><p>You could explicitly test for expression being &gt; 0 at different time points</p></li>
+</ul>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>In modern bioinformatics, is h clustering or k means used more often?</h3>
+<div class="slideContent" >
+<p><em>How will I choose between k-means clustering vs hierarchical clustering to categorize data?</em></p>
+
+<p>I use both.  Think of these as Exploratory Data Analyses.  Often it is helpful to explore your data in multiple ways.</p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>&quot;How can you tell if your shortest path matrix is wrong? Is there another, similar graph&#x2F;function you could use to double check your work?&quot;</h3>
+<div class="slideContent" >
+<p>I would manually spot-check a couple of calculations</p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>When are correlation networks</h3>
+<div class="slideContent" >
+<p><em>When are correlation networks the best option for data analysis in the context of biological experiments?</em></p>
+
+<p>Generally I would use one of the more advanced methods (WGCNA or MR) mentioned in lecture.</p>
+
+<p>If you are talking about as compared to k-means, it depends if you care about specific gene-gene connections.</p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Checking clustering</h3>
+<div class="slideContent" >
+<p><em>Although clustering is an imperative tool for correlated potentially related gene to one another, are there any protocols to check for and false-positives? Or are there so few genes which are clustered by pure chance that it does not meaningfully impact the end data?</em></p>
+
+<p>I think the best is to randomize the data set.</p>
+
+<p>WGCNA also has some functions to do this.</p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Why do we need to know the graph density? What is is used for?</h3>
+<div class="slideContent" >
+<p>This is telling you about the number of connections relative to the total possible number of connections.</p>
+
+<p>Most interesting is to compare density either for different categories of genes or between different treatmetns.</p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Why are there infinite numbers inside of the distance matrix for the gene data for Assignment 8</h3>
+<div class="slideContent" >
+<p>This is not in the distance matrix but in the shortest-path matrix.</p>
+
+<p>Infinity means &ldquo;you can&#39;t get there from here&rdquo;</p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>How do you tell if you have too many or too few clusters?</h3>
+<div class="slideContent" >
+<p>I do this by visual inspection of the clusters, plotting the expression of each gene along with the mean.</p>
+
+<p>Too many clusters: multiple clusters look the same.</p>
+
+<p>Too few clusters: individual genes in clusters to not look similar to the mean.</p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Is the k-value set by Gap Statistic always the best number to use? </h3>
+<div class="slideContent" >
+<p><em>What would be good reasons for increasing or decreasing the number of clusters away from the Gap Statistic calculation?</em></p>
+
+<p><em>Does the clusGap gives a true best value? What if we prefer 6, but clusGap gives number 4.</em></p>
+
+<p>I use this as guidance rather than absolute.  OK to vary.</p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Could you please explain why we have unassigned reads?</h3>
+<div class="slideContent" >
+<ul>
+<li>Poor annotation (annotation does not contain all true genes)</li>
+<li>Differences between reference strain and the strain you are using</li>
+</ul>
 
 </div>
 
