@@ -74,19 +74,7 @@ k is "smallest k such that its Gap statistic is not more than 1 SE away from fir
 
 clusGap wierdness 500 bootstraps
 =======
-
-```r
-set.seed(125)
-gap500 <- clusGap(GxE_counts, FUN = kmeans, iter.max = 30, K.max = 20, B = 500, verbose=interactive())
-plot(gap500, main = "Gap Statistic, 500 Bootstraps")
-```
-
 ![plot of chunk unnamed-chunk-2](June02Questions-figure/unnamed-chunk-2-1.png)
-
-```r
-#with(gap500,abline(h=Tab[8,"gap"]-Tab[8,"SE.sim"],col="red",lty=2))
-#with(gap500, maxSE(Tab[,"gap"], Tab[,"SE.sim"], method="firstSEmax"))
-```
 
 Can you explain the diminishing return?
 ========================================================

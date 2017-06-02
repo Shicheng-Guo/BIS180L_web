@@ -88,7 +88,7 @@ k is "smallest k such that its Gap statistic is not more than 1 SE away from fir
 
 clusGap wierdness 500 bootstraps
 =======
-```{r}
+```{r, echo=FALSE}
 set.seed(125)
 gap500 <- clusGap(GxE_counts, FUN = kmeans, iter.max = 30, K.max = 20, B = 500, verbose=interactive())
 plot(gap500, main = "Gap Statistic, 500 Bootstraps")
