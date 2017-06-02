@@ -224,7 +224,7 @@ The final thing that we will do today is try to estimate, based on our data, wha
 ```{r message=FALSE, warning=FALSE} 
 library(cluster)
 set.seed(125)
-gap <- clusGap(GxE_counts, FUN = kmeans, iter.max = 30, K.max = 20, B = 50, verbose=interactive())
+gap <- clusGap(GxE_counts, FUN = kmeans, iter.max = 30, K.max = 20, B = 500, verbose=interactive())
 plot(gap, main = "Gap Statistic")
 ```
 This is also part of the cluster package that you loaded earlier. It will take a few minutes to calculate this statistic. In the mean time, check out some more information about it in the ?clusGap documentation. We could imagine that as we increase the number of k-means to estimate, we are always going to increase the fit of the data. The extreme examples of this would be if we had k = 255 for the total number of genes in the data set or k = 1. We would be able to fit the data perfectly in the k = 255 case, but what has it told us? It has not really told us anything. Just like you played with the number of k-means in Exercise 8, we can also do this computationally! We want optimize to have the fewest number of clusters that  can explain the variance in our data set.
