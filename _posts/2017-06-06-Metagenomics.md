@@ -63,7 +63,7 @@ For a windows computer see the section immediately below, using PuTTY.  If you a
 #### Connect to your server with Putty
 
 1. Start PuTTY (from the **Start** menu, choose **All Programs > PuTTY > PuTTY**).
-2. In the Category pane, select **Session** and enter user_name@public_dns_name. {IMAGE A}
+2. In the Category pane, select **Session** and enter ubuntu@public_dns_name. {IMAGE A}
 3. Under **Connection type**, select **SSH** and double check that the port is
 22 ![Putty-Session]({{ site.baseurl }}/images/Putty-Session.png)
 4. In the Category pane, expand **Connection**, expand **SSH**, and then select **Auth**.
