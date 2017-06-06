@@ -124,7 +124,7 @@ In order to classify microbial diversity, metagenomics often relies on sequencin
 
 The naming conventions of the Sample IDs are a little abstract, so I have created a **quick reference** table for you here.
 
-| Cultivar              | Treatment        |
+| Cultivar              | Source        |
 |:----------------------|:-----------------|
 | NE = Nipponbare Early | M = 1mm soil     |
 | NL = Nipponbare Late  | B = root surface |
