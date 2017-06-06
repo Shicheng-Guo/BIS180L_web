@@ -200,7 +200,7 @@ summarize_taxa_through_plots.py -i otus/otu_table.biom -o otus/wf_taxa_summary -
 ```
 `-m` provides the path to the mapping file with sample meta data  
 
-Copy the HTML files from the `wf_taxa_summary/taxa_summary_plots` folder to your PC with `WinSCP`. Right-click on them top open them in your browser. Take a look at the different plots and tables that are generated. If it's hard to view the whole file, each of the plots are saved as PDFs in the `charts` folder within `taxa_summary_plots`.
+Copy the `wf_taxa_summary` folder to your PC with `WinSCP`.  Then right-click on the html files in the `wf_taxa_summary/taxa_summary_plots` folder to open them in your browser. Take a look at the different plots and tables that are generated. If it's hard to view the whole file, each of the plots are saved as PDFs in the `charts` folder within `taxa_summary_plots`.
 
 This is a helpful visualization but QIIME offers even more power. There is another command line option to group the bar plots based on a shared characteristic. Open the help page (`-h`) or the QIIME documentation online for `summarize_taxa_through_plots.py`. Can you figure out which option you should use to change the summarization?
 
@@ -213,6 +213,8 @@ summarize_taxa_through_plots.py -i otus/otu_table.biom -o otus/wf_taxa_summary_b
 summarize_taxa_through_plots.py -i otus/otu_table.biom -o otus/wf_taxa_summary_by_cultivar -m Data/RiceMappingFile.txt -c Cultivar
 </font>
 </p>
+
+Copy the resulting folders to your PC and then use the results to answer:
 
 **Exercise 4:**  
 
@@ -244,7 +246,7 @@ alpha_rarefaction.py -i otus/otu_table.biom -o otus/wf_arare -t otus/rep_set.tre
 `-p` passes the methods used to calculate the alpha diversity  
 `-t` passes the path to the phylogenetic tree file  
 
-Copy the `rarefaction_plots.html` to your PC, open it, and test different parameters to plot the metric tested against a category such as Sample ID, Treatment, or Cultivar.
+Copy the `wf_arare` folder to your PC and then open `rarefaction_plots.html`.  Test different parameters to plot the metric tested against a category such as Sample ID, Treatment, or Cultivar.
 
 **Exercise 5:**  
 Is there an alpha diversity metric that estimates the completeness of our sample diversity differently than the other metrics? If so, which one is it? Does this metric estimate a higher or lower sample diversity compared to the other metrics?
