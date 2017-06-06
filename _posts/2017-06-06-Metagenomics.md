@@ -203,7 +203,7 @@ __a.__ When comparing by treatment, which groups are the predominant phyla in th
 
 __b.__ When comparing by cultivar, are the predominant phyla consistent with those observed in Part A? Are there any predominant phyla unique to a specific cultivar? What does this indicate to you about the effect of the genotype and/or the effect of the treatment?  
 
-Now that we know a little more information about the OTUs in our sample, we'd like to calculate the diversity within a sample-the alpha diversity- and between our samples- the beta diversity.  
+Now that we know a little more information about the OTUs in our sample, we'd like to calculate the diversity within a sample --the alpha diversity-- and between our samples --the beta diversity.  
 
 ## Determine the Diversity Within a Sample
 Alpha diversity tells us about the richness of species diversity within our sample. It quantifies how many taxa are in one sample and allow us to answer questions like "Are polluted environments less diverse than pristine environments?". 
