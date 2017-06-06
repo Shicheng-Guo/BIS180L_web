@@ -26,7 +26,7 @@ Today we will walk through a common metagenomics workflow using [QIIME](www.qiim
 
 
 ## Getting Started with QIIME
-Quantitative Insights Into Microbial Ecology or QIIME is an open-source bioinformatics pipeline for performing microbiome analysis from raw DNA sequencing data. It has been cited by over 2,500 peer-reviewed journals since its [publication](http://www.nature.com/nmeth/journal/v7/n5/full/nmeth.f.303.html) in 2010.  
+Quantitative Insights Into Microbial Ecology or [QIIME](http://qiime.org/) is an open-source bioinformatics pipeline for performing microbiome analysis from raw DNA sequencing data. It has been cited by over 2,500 peer-reviewed journals since its [publication](http://www.nature.com/nmeth/journal/v7/n5/full/nmeth.f.303.html) in 2010.  
 
 QIIME requires many dependencies which can make installing it a bit of headache. However, the developers of QIIME have made a AWS image as well as a standalone Virtual Box with a complete install. For today's lab we will use the QIIME AWS image instead of trying to install the software on your BIS180L Image.
 
@@ -40,8 +40,9 @@ QIIME requires many dependencies which can make installing it a bit of headache.
 6. Select the `m3.medium` instance type and then click "Review and Launch"
 7. Create a new keypair and download the .pem file.
 8. Email this file to yourself or save it somewhere in addition to the lab PC that you are using.
+9. If desired, set up an Elastic IP (see the first lab).  This isn't really necessary in this case since you should finish this lab today.  It is no big deal; if you don't do this and need to stop and restart your instance just check the AWS console to determine your new IP address.
 
-## Access you QIIME instance
+## Access your QIIME instance
 
 The QIIME image does not have VNC installed, so we will be accessing it with `ssh` via `putty` (PC) or terminal (Linux/Max)
 
@@ -113,6 +114,7 @@ The naming conventions of the Sample IDs are a little abstract, so I have create
 | NE = Nipponbare Early | M = 1mm soil     |
 | NL = Nipponbare Late  | B = root surface |
 | I  = IR50             | E = root inside  |
+| M  = M104             |                  |
 
 \* Technical replicates are indicated with 1 or 2
 
@@ -148,8 +150,10 @@ pick_de_novo_otus.py -i Data/RiceSeqs.fna -o otus
 The syntax to designate input and output files is consistent across QIIME commands.
 **Note:** this command takes ~15 minutes to run.  If you get tired of waiting, then type "ctrl-c" to stop and download our pre-run version with:
 
+```
 wget http://malooflab.phytonetworks.org/downloads/BIS180L/otus.zip
 unzip otus.zip
+```
 
 Let's view the statistics of the OTU table (a binary file) and save the output.
 
@@ -158,13 +162,18 @@ biom summarize-table -i otus/otu_table.biom > otus/otu_class.txt
 ```
 **Exercise 2:**
 From the OTU summary, look at how many OTUs correspond to each sample ("counts/sample detail"). Do technical replicates agree with one another? At this stage, what conclusions can you draw about the number of OTUs in these samples?  
-</br>*Note:* The OTUs actually match 1:1 with the number of sequences per sample ID/barcode (good thing we explored the quality of the data in exercise 1). This is an artifact of creating the smallest demo data set to use on the Virtual Boxes. The OTUs are still representative of the microbial diversity in that sample though.
+
+*Note:* The OTUs actually match 1:1 with the number of sequences per sample ID/barcode (good thing we explored the quality of the data in exercise 1). This is an artifact of creating the smallest demo data set to use on the Virtual Boxes. The OTUs are still representative of the microbial diversity in that sample though.
 
 As we learned last week, we can rely on the human eye to help pick out patterns based on color. We are going to make a heat map of the OTUs per sample. The OTU table is visualized as a heat map where each row corresponds to an OTU and each column corresponds to a sample. The higher the relative abundance of an OTU in a sample, the more intense the color at the corresponding position in the heat map. OTUs are clustered by [UPGMA hierarchical clustering](http://en.wikipedia.org/wiki/UPGMA). QIIME indicates the biological classification by prefixing the level for example "p\_" indicates phylum and  "g\_" indicates genus. For a refresher on biological classification, view this [helpful wiki page](http://en.wikipedia.org/wiki/Bacterial_taxonomy).  
 
 ```bash
 make_otu_heatmap.py -i otus/otu_table.biom -o otus/OTU_Heatmap.pdf
 ```
+
+You can view this file by adding it to your git repository and pushing.  Then open or download it from github onto your PC.
+
+Alternatively you can use `WinSCP` to transfer data to the lab computers.  We will try to demo this in class.
 
 **Exercise 3:**
 Although, the resolution of the y-axis makes it difficult to read each OTU, it is still a valuable preliminary visualization. What types of information can you gain from this heat map? Are there any trends present at this stage with respect to the various samples?  
