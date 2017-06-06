@@ -106,7 +106,7 @@ Download and unzip the data files:
 We are going to need to move files from the QIIME instance to the PC so that you can view them.  On the lab PCs we will use the program `WinSCP`.  If you are using a Mac you could download and use [cyberduck](https://cyberduck.io/?l=en) or you can use `sftp` from the command line.  
 
 1. Go to the PC `START` menu and type in `WinSCP`
-2. In the window that opens, type in the IP address of your QIIME instance for the Host name,   and "ubuntu" for the User name  ![]({{ site.baseurl }}/images/WinSCP1.png)
+2. In the window that opens, type in the public IP address of your QIIME instance (get from the AWS console) for the Host name,   and "ubuntu" for the User name  ![]({{ site.baseurl }}/images/WinSCP1.png)
 3. Click on the "Advanced" button.  Once the "Advanced" window opens click on "Authentication".
 4. Click on the the dots next to "Private key file" and navigate to the .ppk file that was created by PuTTYgen.  ![]({{ site.baseurl }}/images/WinSCP2.png)
 5. Click on "OK"
