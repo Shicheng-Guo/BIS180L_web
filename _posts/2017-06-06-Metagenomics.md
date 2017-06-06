@@ -72,9 +72,9 @@ For a windows computer see the section immediately below, using PuTTY.  If you a
 6. If this is the first time you have connected to this instance, PuTTY displays a security alert dialog box that asks whether you trust the host you are connecting to. Choose **Yes**. 
 7. You should now be logged into your Instance 
 
-### Connecting to your Instance through terminal
+#### Connecting to your Instance through terminal
 
-If you are on a Mac or Linux machine and want to make an SSH connection to your vritual machine, then:
+If you are on a Mac or Linux machine and want to make an SSH connection to your virtual machine, then:
 
 1. Save your .pem file somewhere and note the path.
 2. Open the Terminal application
@@ -101,6 +101,19 @@ Download and unzip the data files:
     wget http://jnmaloof.github.io/BIS180L_web/data/MetaGenomeData.tar.gz
     tar -xvzf MetaGenomeData.tar.gz
 ```
+
+## Start WinSCP
+We are going to need to move files from the QIIME instance to the PC so that you can view them.  On the lab PCs we will use the program `WinSCP`.  If you are using a Mac you could download and use [cyberduck](https://cyberduck.io/?l=en) or you can use `sftp` from the command line.  
+
+1. Go to the PC `START` menu and type in `WinSCP`
+2. In the window that opens, type in the IP address of your QIIME instance for the Host name,   and "ubuntu" for the User name  ![]({{ site.baseurl }}/images/WinSCP1.png)
+3. Click on the "Advanced" button.  Once the "Advanced" window opens click on "Authentication".
+4. Click on the the dots next to "Private key file" and navigate to the .ppk file that was created by PuTTYgen.  ![]({{ site.baseurl }}/images/WinSCP2.png)
+5. Click on "OK"
+6. Click on "Login"
+7. You should see a window like this: ![]({{ site.baseurl }}/images/WinSCP3.png)
+
+The pane on the right shows you files on the QIIME instance.  The pane on the left shows you files on the PC.  You can move files from QIIME to the PC by dragging from one pane to the other.
 
 ## Background for our Data
 Today, we will be working with the samples collected from the rhizosphere of rice plants. The rhizosphere is an area of soil near the plant roots that contains both bacteria and other microbes associated with roots as well as secretions from the roots themselves. See diagram below from [Phillppot et al., *Nature*, 2013](http://www.nature.com/nrmicro/journal/v11/n11/full/nrmicro3109.html).
@@ -173,9 +186,7 @@ As we learned last week, we can rely on the human eye to help pick out patterns 
 make_otu_heatmap.py -i otus/otu_table.biom -o otus/OTU_Heatmap.pdf
 ```
 
-You can view this file by adding it to your git repository and pushing.  Then open or download it from github onto your PC.
-
-Alternatively you can use `WinSCP` to transfer data to the lab computers.  We will try to demo this in class.
+Use `WinSCP` to copy the file to your PC.  The right-click on it in the WinSCP pane and click "open".  (If you double-click it in WinSCP you will see the raw file).
 
 **Exercise 3:**
 Although, the resolution of the y-axis makes it difficult to read each OTU, it is still a valuable preliminary visualization. What types of information can you gain from this heat map? Are there any trends present at this stage with respect to the various samples?  
@@ -189,7 +200,7 @@ summarize_taxa_through_plots.py -i otus/otu_table.biom -o otus/wf_taxa_summary -
 ```
 `-m` provides the path to the mapping file with sample meta data  
 
-Double click the HTML files in the `wf_taxa_summary/taxa_summary_plots` folder. These should open in your browser. Take a look at the different plots and tables that are generated. If it's hard to view the whole file, each of the plots are saved as PDFs in the `charts` folder within `taxa_summary_plots`.
+Copy the `wf_taxa_summary` folder to your PC with `WinSCP`.  Then right-click on the html files in the `wf_taxa_summary/taxa_summary_plots` folder to open them in your browser. Take a look at the different plots and tables that are generated. If it's hard to view the whole file, each of the plots are saved as PDFs in the `charts` folder within `taxa_summary_plots`.
 
 This is a helpful visualization but QIIME offers even more power. There is another command line option to group the bar plots based on a shared characteristic. Open the help page (`-h`) or the QIIME documentation online for `summarize_taxa_through_plots.py`. Can you figure out which option you should use to change the summarization?
 
@@ -202,6 +213,8 @@ summarize_taxa_through_plots.py -i otus/otu_table.biom -o otus/wf_taxa_summary_b
 summarize_taxa_through_plots.py -i otus/otu_table.biom -o otus/wf_taxa_summary_by_cultivar -m Data/RiceMappingFile.txt -c Cultivar
 </font>
 </p>
+
+Copy the resulting folders to your PC and then use the results to answer:
 
 **Exercise 4:**  
 
@@ -233,7 +246,7 @@ alpha_rarefaction.py -i otus/otu_table.biom -o otus/wf_arare -t otus/rep_set.tre
 `-p` passes the methods used to calculate the alpha diversity  
 `-t` passes the path to the phylogenetic tree file  
 
-Open the `rarefaction_plots.html` and test different parameters to plot the metric tested against a category such as Sample ID, Treatment, or Cultivar.
+Copy the `wf_arare` folder to your PC and then open `rarefaction_plots.html`.  Test different parameters to plot the metric tested against a category such as Sample ID, Treatment, or Cultivar.
 
 **Exercise 5:**  
 Is there an alpha diversity metric that estimates the completeness of our sample diversity differently than the other metrics? If so, which one is it? Does this metric estimate a higher or lower sample diversity compared to the other metrics?
@@ -268,9 +281,8 @@ This script returns a distance matrix and principal coordinate analysis (PCoA) p
 PCoA is also known as multidimensional scaling and you should be familiar with it by now from our earlier labs. If you'd like more information about the differences between PCoA and PCA, check out this [helpful blog post](http://occamstypewriter.org/boboh/2012/01/17/pca_and_pcoa_explained/) or [this course website](http://ordination.okstate.edu/overview.htm#Principal_coordinates_analysis).
 
 **Exercise 7:**  
-__a.__ Open the weighted and unweighted PCoA plots by double clicking the index.html in their respective folders. How does adjusting the PCoA plots for taxa abundance (weighted) affect the clustering and principal coordinates?  
-*Hint* On the colors tab, explore coloring by cultivar, treatment, etc.  
-*Note:* These plots are very RAM heavy. You could email yourself the zipped `bf_bdiv_even289` folder and view them on the Windows machine, if the plots aren't working well on the Virtual Box.  
+__a.__ Open the weighted and unweighted PCoA plots by copying their folder to your PC and then right-clicking on the index.html in their respective folders. How does adjusting the PCoA plots for taxa abundance (weighted) affect the clustering and principal coordinates?  
+*Hint* On the colors tab, explore coloring by cultivar, treatment, etc.   
 
 __b.__ What are the significant correlations of particular samples? Does cultivar or treatment appear to have more of an influence on the clustering?  
 *Hint:* you can add labels to the plot to help visualize both characteristics at once.  
