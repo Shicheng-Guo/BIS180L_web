@@ -205,7 +205,7 @@ summarize_taxa_through_plots.py -i otus/otu_table.biom -o otus/wf_taxa_summary_b
 
 **Exercise 4:**  
 
-__a.__ When comparing by treatment, which groups are the predominant phyla in the different samples? (Remember phyla is designated by `-p`.) Are there any predominant groups unique to particular sample treatments?  
+__a.__ When comparing by treatment, which groups are the predominant phyla in the different samples? (Remember phyla is designated by `_p`.) Are there any predominant groups unique to particular sample treatments?  
 
 __b.__ When comparing by cultivar, are the predominant phyla consistent with those observed in Part A? Are there any predominant phyla unique to a specific cultivar? What does this indicate to you about the effect of the genotype and/or the effect of the treatment?  
 
