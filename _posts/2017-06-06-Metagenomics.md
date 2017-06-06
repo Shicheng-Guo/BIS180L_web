@@ -218,7 +218,7 @@ Copy the resulting folders to your PC and then use the results to answer:
 
 **Exercise 4:**  
 
-__a.__ When comparing by treatment, which groups are the predominant phyla in the different samples? (Remember phyla is designated by `-p`.) Are there any predominant groups unique to particular sample treatments?  
+__a.__ When comparing by treatment, which groups are the predominant phyla in the different samples? (Remember phyla is designated by `_p`.) Are there any predominant groups unique to particular sample treatments?  
 
 __b.__ When comparing by cultivar, are the predominant phyla consistent with those observed in Part A? Are there any predominant phyla unique to a specific cultivar? What does this indicate to you about the effect of the genotype and/or the effect of the treatment?  
 
@@ -235,7 +235,7 @@ Compute the alpha diversity by generating rarefaction curves.
 
 ```bash
 # first we must generate a file with parameters to be passed to the QIIME rarefaction script
-echo “alpha_diversity:metrics shannon,PD_whole_tree,chao1,observed_species” > otus/alpha_params.txt
+echo alpha_diversity:metrics shannon,PD_whole_tree,chao1,observed_species > otus/alpha_params.txt
 
 # make sure your file has been written to properly
 less otus/alpha_params.txt
