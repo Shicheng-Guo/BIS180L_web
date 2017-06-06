@@ -97,8 +97,10 @@ Clone your Assignment_9 repository
 
 Download and unzip the data files:
 
+```bash
     wget http://jnmaloof.github.io/BIS180L_web/data/MetaGenomeData.tar.gz
     tar -xvzf MetaGenomeData.tar.gz
+```
 
 ## Background for our Data
 Today, we will be working with the samples collected from the rhizosphere of rice plants. The rhizosphere is an area of soil near the plant roots that contains both bacteria and other microbes associated with roots as well as secretions from the roots themselves. See diagram below from [Phillppot et al., *Nature*, 2013](http://www.nature.com/nrmicro/journal/v11/n11/full/nrmicro3109.html).
@@ -193,13 +195,17 @@ This is a helpful visualization but QIIME offers even more power. There is anoth
 
 Give it your best shot and then highlight below this sentence to reveal how to summarize the OTU by category.
 <font color="white" face="menlo">
-summarize\_taxa\_through\_plots.py -i otus/otu\_table.biom -o otus/wf\_taxa\_summary\_by\_treatment -m Data/RiceMappingFile.txt -c Treatment
-</br></br>
-summarize\_taxa\_through\_plots.py -i otus/otu\_table.biom -o otus/wf\_taxa\_summary\_by\_cultivar -m Data/RiceMappingFile.txt -c Cultivar
+summarize_taxa_through_plots.py -i otus/otu_table.biom -o otus/wf_taxa_summary_by_treatment -m Data/RiceMappingFile.txt -c Treatment
 </font>
+<p>
+<font color="white" face="menlo">
+summarize_taxa_through_plots.py -i otus/otu_table.biom -o otus/wf_taxa_summary_by_cultivar -m Data/RiceMappingFile.txt -c Cultivar
+</font>
+</p>
 
 **Exercise 4:**  
-__a.__ When comparing by treatment, which groups are the predominant phyla in the different samples? (Remember phyla is designated by "_p".) Are there any predominant groups unique to particular sample treatments?  
+
+__a.__ When comparing by treatment, which groups are the predominant phyla in the different samples? (Remember phyla is designated by `-p`.) Are there any predominant groups unique to particular sample treatments?  
 
 __b.__ When comparing by cultivar, are the predominant phyla consistent with those observed in Part A? Are there any predominant phyla unique to a specific cultivar? What does this indicate to you about the effect of the genotype and/or the effect of the treatment?  
 
@@ -221,7 +227,7 @@ echo “alpha_diversity:metrics shannon,PD_whole_tree,chao1,observed_species” 
 # make sure your file has been written to properly
 less otus/alpha_params.txt
 
-alpha_rarefaction.py –i otus/otu_table.biom –m Data/RiceMappingFile.txt –o otus/wf_arare -p otus/alpha_params.txt –t otus/rep_set.tre
+alpha_rarefaction.py -i otus/otu_table.biom -o otus/wf_arare -t otus/rep_set.tre -m Data/RiceMappingFile.txt -p otus/alpha_params.txt
 ```
 `-m` passes the mapping information such as treatment or cultivar  
 `-p` passes the methods used to calculate the alpha diversity  
@@ -249,7 +255,7 @@ The definition of beta diversity has become quite contentious amongst ecologists
 Now we can compute the beta diversity and generate PCoA plots.
 
 ```bash
-beta_diversity_through_plots.py –i otus/otu_table.biom –m Data/RiceMappingFile.txt –o otus/wf_bdiv_even289 -t otus/rep_set.tre –e 289
+beta_diversity_through_plots.py -i otus/otu_table.biom -m Data/RiceMappingFile.txt -o otus/wf_bdiv_even289 -t otus/rep_set.tre -e 289
 ```
 *Note:* You may see an error about negative Eigenvalues, but the negative values are ~100x smaller than the positive values so we can ignore the warning.  
 
@@ -275,9 +281,9 @@ The distance matrix generated for beta diversity can also be used to make UPGMA 
 Let's utilize the beta diversity to generate UPGMA trees.  
 
 ```bash
-￼upgma_cluster.py –i wf_bdiv_even289/unweighted_unifrac_dm.txt –o ￼unweighted_upgma.tre
-￼upgma_cluster.py –i wf_bdiv_even289/weighted_unifrac_dm.txt –o weighted_upgma.tre
-```
+ upgma_cluster.py -i otus/wf_bdiv_even289/unweighted_unifrac_dm.txt -o unweighted_upgma.tre
+ upgma_cluster.py -i otus/wf_bdiv_even289/weighted_unifrac_dm.txt -o weighted_upgma.tre
+ ```
 
 + Upload the weighted and unweighted UPGMA trees to [Phylodendron](http://iubio.bio.indiana.edu/treeapp/treeprint-form.html).  
 + "Tree diag" and "Phenogram" provide useful displays.
