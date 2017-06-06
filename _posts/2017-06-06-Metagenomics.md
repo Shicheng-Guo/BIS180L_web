@@ -235,7 +235,7 @@ Compute the alpha diversity by generating rarefaction curves.
 
 ```bash
 # first we must generate a file with parameters to be passed to the QIIME rarefaction script
-echo “alpha_diversity:metrics shannon,PD_whole_tree,chao1,observed_species” > otus/alpha_params.txt
+echo alpha_diversity:metrics shannon,PD_whole_tree,chao1,observed_species > otus/alpha_params.txt
 
 # make sure your file has been written to properly
 less otus/alpha_params.txt
