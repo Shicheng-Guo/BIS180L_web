@@ -86,6 +86,16 @@ If you are on a Mac or Linux machine and want to make an SSH connection to your 
     
 But replace the "qiim.pem" with the path to your .pem file and the "52.53.117.125" with the IP address of your instance.
 
+
+#### copying file over through terminal
+
+  scp -i qiime.pem ubuntu@52.53.117.125:/home/ubuntu/path_to_file
+
+#### copying a dir over through terminal
+
+  scp -r -i qiime.pem ubuntu@52.53.117.125:/home/ubuntu/path_to_dir
+
+
 ## Clone your repository
 
 Clone your Assignment_9 repository
