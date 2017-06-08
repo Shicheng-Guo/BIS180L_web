@@ -60,7 +60,7 @@ The third software is Freebayes.  Unfortunately the version on your computer doe
     sudo git checkout 0cb2697 # checkout older, working version
     sudo git submodule update --recursive # get correct version of related modules
     sudo make # build the executable "binaries" from the source files
-    sudo make install # copy the binaries into there proper place
+    sudo make install # copy the binaries into their proper place
 
 ## Data files
 
