@@ -86,6 +86,16 @@ If you are on a Mac or Linux machine and want to make an SSH connection to your 
     
 But replace the "qiim.pem" with the path to your .pem file and the "52.53.117.125" with the IP address of your instance.
 
+
+#### copying file over through terminal
+
+  scp -i qiime.pem ubuntu@52.53.117.125:/home/ubuntu/path_to_file
+
+#### copying a dir over through terminal
+
+  scp -r -i qiime.pem ubuntu@52.53.117.125:/home/ubuntu/path_to_dir
+
+
 ## Clone your repository
 
 Clone your Assignment_9 repository
@@ -103,7 +113,7 @@ Download and unzip the data files:
 ```
 
 ## Start WinSCP
-We are going to need to move files from the QIIME instance to the PC so that you can view them.  On the lab PCs we will use the program `WinSCP`.  If you are using a Mac you could download and use [cyberduck](https://cyberduck.io/?l=en) or you can use `sftp` from the command line.  
+We are going to need to move files from the QIIME instance to the PC so that you can view them.  On the lab PCs we will use the program `WinSCP`.  If you are using a Mac you can use `scp` from the command line.  
 
 1. Go to the PC `START` menu and type in `WinSCP`
 2. In the window that opens, type in the public IP address of your QIIME instance (get from the AWS console) for the Host name,   and "ubuntu" for the User name  ![]({{ site.baseurl }}/images/WinSCP1.png)
