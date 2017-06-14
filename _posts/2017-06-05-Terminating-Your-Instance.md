@@ -15,4 +15,7 @@ hidden:
 6. After both instances are terminated select *Elastic IPs*
 7. Select *Actions > Release asddresses*
 ![]({{site.baseurl}}/images/AWS_Elastic_IP.png)
-
+8. Then go back to N. California
+9. Select Volumes on the left hand side
+10. Right click your Volume and select *Delete Volume*
+![]({{site.baseurl}}/images/AWS_Volume.png)
