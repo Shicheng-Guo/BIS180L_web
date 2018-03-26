@@ -1,6 +1,7 @@
 ---
 layout: post
 title: How to turn in your assignments
+hidden: true
 ---
 
 I have created a github repository for each of you for this assignment.

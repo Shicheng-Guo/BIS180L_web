@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Screenshot on your instance
+hidden: true
 ---
 
 How to take a screenshot on your AWS instance:

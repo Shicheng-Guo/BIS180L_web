@@ -1,6 +1,7 @@
 ---
 layout: post
 title: git and MEGA
+hidden: true
 ---
 You will remember in class today that some students had trouble with their git repositories.
 

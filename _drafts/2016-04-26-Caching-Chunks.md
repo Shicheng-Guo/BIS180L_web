@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Tired of slow knits?
+hidden: true
 ---
 Knitting can be very slow if you are plotting complex data sets or doing long calculations.  Wouldn't it be nice if there were a way for R not to have to recalculate or replot every time?
 

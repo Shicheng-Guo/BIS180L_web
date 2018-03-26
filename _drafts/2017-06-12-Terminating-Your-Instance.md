@@ -2,7 +2,7 @@
 title: "Terminating Your Instance"
 layout: post
 tags:
-hidden: 
+hidden: true
 ---
 
 1. Go to your AWS E2C machines

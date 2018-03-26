@@ -1,6 +1,7 @@
 ---
 layout: post
 title: How to save a screenshot in Linux
+hidden: true
 ---
 The GWAS lab asks you to include a screenshot.  Here are instructions on how to do that on your virtual Linux machine.
 

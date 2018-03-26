@@ -1,6 +1,7 @@
 ---
 layout: post
 title: BLAST results
+hidden: true
 ---
 
 If your BLAST run did not complete, you can download the output files:

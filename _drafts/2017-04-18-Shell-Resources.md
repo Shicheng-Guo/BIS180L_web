@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Additional help learning Linux shell
+hidden: true
 ---
 
 Some of you have requested additional resources for learning the shell.  Here are two:

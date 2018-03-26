@@ -2,7 +2,7 @@
 title: "Java Errors in R Studio"
 layout: post
 tags:
-hidden: 
+hidden: true
 ---
 
 If you are getting on of the following error message when opening R Studio
