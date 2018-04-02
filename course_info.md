@@ -37,3 +37,24 @@ Recent technological advances in the field of genomics over the last dozen years
 
 ## On Plagiarism
 You will often work with a lab partner as you do the lab exercises. However you must each write your own answers for worksheets and lab reports. In addition, while the web is a powerful resource for information it is plagiarism and a SJA violation to cut and paste information directly from web sources without indicating that you are quoting and providing a citation.
+
+## General Course Advice
+Learning is not a passive activity learning requires much time and active effort. To do well in this course you should do the problems yourself and ask questions.. Most people need to be exposed to information several times before they learn it. Reading the text, attending and participating lecture & discussion, and doing the problems is the best way to do well in this course. The lectures, office hours, Piazza, and discussion sections are there to provide you with an opportunity to ask questions. It is your responsibility to take advantage of these opportunities by asking questions.
+
+## Health and Wellness
+Challenges presented by university studies and life can result in a lack of attention to mental health, triggering anxiety, depression, and other problems. UC Davis offers various forms of support for students in addition to academic care. If you, or anybody you know, could benefit from mental health care, please refer to the following campus resources.
+
+__Counseling and Psychological Services (CAPS)__
+
+Location: North Hall
+Phone Number: (530) 752-2349
+
+https://shcs.ucdavis.edu/counseling-services
+
+__Urgent Care__
+
+Location: Student Health and Wellness Center
+
+24-Hour Advice Nurse
+
+Phone Number: (530) 752-2349 
