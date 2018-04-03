@@ -13,8 +13,8 @@ __Discussion:__  F  1:10-2:00 PM  SciLab2020
 __Instructor:__  Julin Maloof <jnmaloof@ucdavis.edu>   
 __Teaching Assistant:__ Jiadon Ni <jni@ucdavis.edu>  
 
-__TA Office Hours: Mondays 2:00-3:00 PM in SciLab2060  
-__TA Office Hours: Frdiays 3:00-4:00 PM in SciLab2060
+__TA Office Hours: Mondays 3:00-4:00 PM in 93 Hutchison  
+__TA Office Hours: Second hours is TBD
 
 
 
