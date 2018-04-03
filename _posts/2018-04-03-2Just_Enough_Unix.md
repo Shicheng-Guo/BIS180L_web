@@ -113,7 +113,7 @@ Another useful command is `du -h` (disk usage) which shows how much space each o
 
 ### Creating and Viewing Files ###
 
-(For the this exercise and others that follow, it may be useful to have your graphical desktop displaying the contents of your home directory. That way you can see that typing and clicking ar related.)
+(For the this exercise and others that follow, it may be useful to have your graphical desktop displaying the contents of your home directory. That way you can see that typing and clicking are related.)
 
 There are a number of ways to create a file. The `touch` command will create a file or change its modification time (Unix records when the last time a file was edited) if it already exists.
 
