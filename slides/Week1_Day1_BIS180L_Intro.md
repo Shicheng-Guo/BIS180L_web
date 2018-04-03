@@ -1,14 +1,14 @@
 Welcome to BIS180L 
 ========================================================
 author: Julin Maloof
-date: April 04, 2017
+date: April 03, 2018
 
 Course Personnel
 =======================================================
 
 __Instructor:__ Julin Maloof <jnmaloof@ucdavis.edu>
 
-__Teaching Assistant:__ Gina Turco <gmturco@ucdavis.edu>
+__Teaching Assistant:__ Jiadong Ni <jni@ucdavis.edu>
 
 __Extra Help (today):__ John Davis
 
@@ -64,8 +64,8 @@ Course Schedule
 * __Fridays__
   * Discussion 1:10 - 2:00
     * Varied use
-      * Q & A 
-      * Student presentation(?)
+      * Q & A (with student helping to A as well as Q)
+      * lecture
       * Keep on working
 
 (Tentative) Course Outline
@@ -99,8 +99,8 @@ Course Grading
 ==============
 
 * 45% Lab assignments
-* 25% Take home midterm (Available May 1, __Due May 5, 1:10 PM__)
-* 25% Take home final (Available June 2, __Due June 8, 9:00 AM__)
+* 25% Take home midterm (Available May 4, __Due May 10, 1:10 PM__)
+* 25% Take home final (Available June 5, __Due June 11, 9:00 AM__)
 
 Do your own work
 =================
@@ -138,6 +138,18 @@ You can use this to help with ideas that are not clear from class, or for more i
 I particularly recommend reading it in depth for anyone planning to build on the skills learned in this class.
 
 It is available online for free, through UCD library.  See links on course website.
+
+Reference Text2
+==============
+
+![text2](Had.png)
+
+***
+
+This is another excellent book that more generally covers data manipulation and analysis in R.
+
+The author, Hadely Wickham, has built some very nice additions to R that we will make use of in this class.
+
 
 Why are we here?
 ================
