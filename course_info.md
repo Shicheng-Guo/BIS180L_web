@@ -7,17 +7,30 @@ title: Course Info
 
 __Lecture:__  TR 1:10-2:00 PM  SciLab2020  
 __Lab:__    TR 2:10-5:00 PM  SciLab2020  
-__Discussion:__  F  1:10-2:00 PM  SciLab2020  
+__Discussion:__  F 1:10-2:00 PM  SciLab2020  
 
 
 __Instructor:__  Julin Maloof <jnmaloof@ucdavis.edu>   
-__Teaching Assistant:__ Jiadon Ni <jni@ucdavis.edu>  
+__Teaching Assistant:__ Jiadong Ni <jni@ucdavis.edu>  
 
 __TA Office Hours: TBD  
 __TA Office Hours: TBD
 
 
+## Learning Objectives
 
+At the end of this course you should be able to:
+
+* Use cloud computing resources like AWS
+* Perform reproducible data analyses via git version control and markdown note taking
+* Navigate the Linux operating system at the command line for file management and invocation of bioinformatics programs
+* Automate repetitive computational tasks using loops
+* Write scripts in R for data analysis and display
+* Perform a genome wide association study (GWAS)
+* Analyze Illumina sequencing data to find  SNPs and differentially expressed genes
+* Make and deploy Shiny web applications
+* Reconstruct genetic co-expression networks
+* Analyze metagenomics data
 
 ## Grading
 
