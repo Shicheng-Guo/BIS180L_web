@@ -5,13 +5,6 @@ title: FAQ
 
 ### General:
 
-**Q** Which computer labs on campus have Virtual Box?
->**A:** The following rooms have Virtual Box installed:  
-
->* 76 Hutchison
-* 2101 SCC
-
->The SciLab rooms have USB 3, but they also have classes. You can see when all those rooms are free [here](http://computerrooms.ucdavis.edu/rooms/available/) (click on "Next Day" to see the next 7 days).
 
 
 **Q:** When is my next assignment due?
@@ -34,7 +27,7 @@ title: FAQ
 	+ In Settings > System tab, change base memory to say 2500 MB
 3. If neither of these work
 	+ Reboot the Virtual Box, holding down shift as soon as reboot starts.  
-	+ Choose Advanced Options for Ubuntu. 
+	+ Choose Advanced Options for Ubuntu.
 	+ Choose Ubuntu, with Linux 3.1.16.0-33-generic (recovery mode).  
-	+ Select fsck. 
+	+ Select fsck.
 	+ Reboot again.
