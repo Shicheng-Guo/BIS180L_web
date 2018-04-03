@@ -18,12 +18,27 @@ incremental: true
 
 The goal of this course is to introduce you to the _tools_ and _thinking_ required for bioinformatics analysis.
 
-* Introduction to Linux command line
-* Introduction to R
-* Hands-on experience analyzing genomics data
-* Principles of good analysis
-
 This is a computer-based class.  No bench work.
+
+Learning Objectives
+==========================================================
+incremental: true
+At the end of this course you should be able to:
+* Use cloud computing resources like AWS
+* Navigate the Linux operating system at the command line for file management and invocation of bioinformatics programs
+* Automate repetitive computational tasks using loops
+* Write scripts in R for data analysis and display
+* Perform genome wide association studies (GWAS)
+* Analyze Illumina sequencing data to find sequence polymorphsims
+
+Learning Objectives, Continued
+==========================================================
+incremental: true
+* Analyze RNA-seq data to find differentially expressed genes
+* Make and deploy Shiny web applications
+* Reconstruct genetic co-expression networks
+* Analyze metagenomics data
+* Apply best practices for reproducible data analyses via git version control and markdown notebooks
 
 Why R and Linux?
 ================
@@ -34,9 +49,11 @@ incremental:true
 * Linux (or Unix / Mac)
   * Outstanding built-in tools for data crunching
   * Provides access to hundreds of bioinformatics programs
+  * Easy to automate repetitive tasks
 * R 
-  * Powerful statistical, data processing, and graphical capabilities
+  * Powerful scripting, statistical, data processing, and graphical capabilities
   * Many bioinformatics packages are developed in R
+  * Easy to automate repetitive tasks.
   
 And
 ===
@@ -101,6 +118,7 @@ Course Grading
 * 45% Lab assignments
 * 25% Take home midterm (Available May 4, __Due May 10, 1:10 PM__)
 * 25% Take home final (Available June 5, __Due June 11, 9:00 AM__)
+* 5% Discussion/participation (TBD)
 
 Do your own work
 =================
@@ -157,7 +175,7 @@ incremental: true
 And what is bioinformatics?
 * OK so it is a requirement, but what else?
 
-Three principles of bioinformatics
+Bbioinformatics best practices
 ==================================
 transition: rotate
 
