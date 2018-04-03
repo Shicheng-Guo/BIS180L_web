@@ -25,4 +25,4 @@ You can use colons in the header separating row to left or right (or center) jus
 
 Note that even if the spacing in your table is uneven (pipes don't line up) the table still looks good in the output.  (But try to make it like nice even in the unformatted text)
 
-For more details, [see here](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables).  For tool to help you geneate a table without all of that finicking typing, [see here](http://www.tablesgenerator.com/markdown_tables)
+For more details, [see here](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables).  For tool to help you generate a table without all of that finicking typing, [see here](http://www.tablesgenerator.com/markdown_tables)

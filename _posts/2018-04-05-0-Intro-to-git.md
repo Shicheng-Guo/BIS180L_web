@@ -54,7 +54,7 @@ git config --global user.email lkat@ucdavis.edu
 git config --global push.default simple
 ```
 
-Now lets set git so it only asks for your password once every four hours (time is in seconds):
+Now let's set git so it only asks for your password once every four hours (time is in seconds):
 
 ```
 git config --global credential.helper 'cache --timeout=14400'
@@ -120,8 +120,12 @@ __OR__
 	* Pull the changes back to your computer
 	* Run git log and save the output to a file.
 
+* Tired of using the command line to commit and push your changes?
+	- You can also use the git module in `Atom`.
+	- If you have a file open in `Atom` that is part of a git repository, then click on "packages > GitHub > Toggle Git Tab"
+
 * Want a graphical view of what is going on?
-	* type `gitk` at the command line when you are in the directory of a git repository, or click on the "gitk" icon on your dock.
+	* type `gitg` at the command line when you are in the directory of a git repository, or click on the "gitg" icon on your dock.
 
 ### Fork a project
 
@@ -132,7 +136,7 @@ Let's try it.  I need to collect everyone's GitHub usernames.  To do this we wil
 * Go the home page for that repository in your web browser.
 * Fork it using the button on the upper right hand side.
 * Clone your forked repository to your computer
-* Open the file "2017_Roster.csv" in `nano` or `atom`
+* Open the file "2018_Roster.csv" in `nano` or `atom`
 * Find your name in the file and add your github user name after the last comma (look at my entry for an example).  (If you can't find your name, add a new entry at the _bottom_ of the file.)
 * Add your email if it is missing
 * If your name is not on the list add it to the __end__ of the list
