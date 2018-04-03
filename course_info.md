@@ -14,7 +14,7 @@ __Instructor:__  Julin Maloof <jnmaloof@ucdavis.edu>
 __Teaching Assistant:__ Jiadong Ni <jni@ucdavis.edu>  
 
 __TA Office Hours: Mondays 3:00-4:00 PM in 93 Hutchison  
-__TA Office Hours: Second hours is TBD
+__TA Office Hours: Second hour is TBD
 
 
 ## Learning Objectives
