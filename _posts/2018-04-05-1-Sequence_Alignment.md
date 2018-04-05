@@ -18,6 +18,10 @@ There is good background information on sequence analysis at [Readings and Resou
 * go to your home directory (you may already be there)
 * create a new directory within your home directory called `Alignment_lab`
 
+### Download the assignment template
+
+You will record your answers to questions in the [Assignment Template]({{site.baseurl}}/assignments/Assignment_1_SA_template.md).  Download it now and place it in the 
+
 ### Next organize data
 
 If you look at the `/data` directory, you will see that there are 3
