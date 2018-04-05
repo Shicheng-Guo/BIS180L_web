@@ -10,7 +10,7 @@ tags:
 
 For an overview of how Git can be used in the biological sciences, please read this excellent [article by Ram](http://www.scfbm.org/content/8/1/7).
 
-For a practical introduction please read Chapter 5 in [Bioinformatics Data Skills](http://shop.oreilly.com/product/0636920030157.do) available from the library [here](https://harvest.lib.ucdavis.edu/F/CYUA711QE89QJB4FHK5GTGIKTQ7LLXY31UL9LXU2XUR7QUHXEH-06773?func=full-set-set&set_number=076035&set_entry=000002&format=999&local_base=ucd01pub)
+For a practical introduction please read Chapter 5 in [Bioinformatics Data Skills](http://shop.oreilly.com/product/0636920030157.do) available from the library [here](https://search.library.ucdavis.edu/primo-explore/fulldisplay?docid=01UCD_ALMA51247510250003126&context=L&vid=01UCD_V1&lang=en_US&search_scope=everything_scope&adaptor=Local%20Search%20Engine&tab=default_tab&query=any,contains,vince%20buffalo&mode=Basic)
 
 ## Git: reproducibility and collaboration
 
