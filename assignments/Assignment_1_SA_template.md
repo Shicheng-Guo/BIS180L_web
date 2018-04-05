@@ -29,6 +29,8 @@ Paste the URL for the shared github repository that you created with your lab pa
 
 *_Please answer the following questions Be clear and concise with any written answers._*
 
+** Unless otherwise noted we are not requiring you to include your code here.  However, I advise that you record it in a separate Markdown file for your reference.  That way if you need it again (e.g. for the midterm) you have a record of what you did**
+
 __1.__ Paste in the result of the `ls -lR Data` command.
 
 __2.__ Paste in the markdown table from the lab manual that includes for each genome:
@@ -41,7 +43,7 @@ __2.__ Paste in the markdown table from the lab manual that includes for each ge
 
 For _ONE_ of the files, provide the code that you used to answer these questions.
 
-__3.__ How do you know that when you use `shuffleseq` the sequences have the same exact composition?
+__3.__ How do you know that when you use `shuffleseq` that the sequences have the same exact composition?
 
 __4.__ Create a text based "histogram" as described in the lab manual
 that shows the distribution of scores when aligning shuffled sequences.

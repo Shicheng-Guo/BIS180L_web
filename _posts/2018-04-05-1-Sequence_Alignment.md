@@ -133,9 +133,7 @@ So where are we going to get our sequence files from? Let's grab the
 first protein from the A. thaliana, C. elegans, and D. melanogaster
 proteomes to begin. You can use `head` with a command line option for
 the number of lines and the `>` redirection symbol for this task. Save
-these files as `at1.fa`, `ce1.fa`, and `dm1.fa`. You might want to write
-a bit in your `lab1_notebook.md` file about how you did this. You can
-even paste in parts of your `history`.
+these files as `at1.fa`, `ce1.fa`, and `dm1.fa`.
 
 Now let's try aligning the various files to each other.
 
