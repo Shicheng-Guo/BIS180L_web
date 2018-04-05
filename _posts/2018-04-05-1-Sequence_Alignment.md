@@ -20,7 +20,9 @@ There is good background information on sequence analysis at [Readings and Resou
 
 ### Download the assignment template
 
-You will record your answers to questions in the [Assignment Template]({{site.baseurl}}/assignments/Assignment_1_SA_template.md).  Download it now and place it in the 
+You will record your answers to questions in the [Assignment Template]({{site.baseurl}}/assignments/Assignment_1_SA_template.md).  Download it now and place it in the `Assignment_1` directory.  Open it in `Atom`
+
+You will see that the template also has a place for you to put the answers from the previous labs.  Go ahead and paste those in.
 
 ### Next organize data
 
@@ -65,24 +67,18 @@ That is, `Sequences/Genome/A.thaliana.fa` should contain the real file and
 `Species/A.thaliana/genome.fa` should be an alias to that file so that you do not need
 to duplicate the data unnecessarily. Lastly, the
 file permissions should be "appropriate". When you have completed these
-tasks, change directory to your home directory and run the following
+tasks, change directory to your `Assignment_1` directory and run the following
 command.
 
 	ls -lR Data
 
 This should indicated that there are 6 aliases to 6 files.
 
-## Part 2: Lab Notebook ##
+Paste the output of the `ls -lR Data` command into your template
 
+## Part 2: File info ##
 
-You also need to keep a laboratory notebook for this unit.  Start `atom`, create a new file, and save it as `lab1_notebook.md` in the `Assignment_1` directory.  Keep your notes and a log in this document.
-
-Alternatively, if you want to work entirely at the command line, you could also write your notebook in nano:
-
-	cd ~/Assignment_1
-	nano lab1_notebook.md
-
-Create a simple (markdown formatted) table with the following information for each species.
+Create a simple (markdown formatted) table with the following information for each species in your `Assignment_1_SA_template` file.
 
 1. Size of the file
 2. Number of chromosomes
@@ -258,13 +254,12 @@ have time to discuss.
 
 	grep Score 1k.water | awk '{sum+=$3} END {print sum/NR}'
 
-Answer the following questions in your notebook.
+Answer the following questions in your the assignment template file.
 
 1. Is the shape of the curve normal? Do you expect it to be normal?
 2. Do you expect all protein comparisons to have the same distribution?
 3. How would protein composition and length affect the scores?
-4. How would the scoring matrix and gap penalites affect the scores?
-5. How might real sequences be different from random?
+4. How would the scoring matrix and gap penalties affect the scores?
 
 ## Part 5: Alignment Significance ##
 
@@ -273,6 +268,8 @@ your own. Your goal is to determine the statistical significance of an
 alignment. The query sequence is B0213.10, which can be found in the C.
 elegans proteome. Search this against all A. thaliana and D.
 melanogaster proteins to find its homologs.
+
+__Hint:__ when using `water` to search one protein against a whole proteome it matters which sequencing is given first.  Which is the query here?
 
 Before you begin, it's a good idea to get an idea how long it will take
 to do the experiment. Will your experiment take seconds, minutes, hours,
@@ -284,7 +281,7 @@ following questions?
 * How many amino acids do I need to align to do this experiment?
 * How long would it take to compare two proteomes?
 
-Write those down in your notebook. Now let's get back to the experiment.
+Write those down in your assignment template file. Now let's get back to the experiment.
 You want to find the A. thaliana and D. melanogaster orthologs of
 B0213.10. Set up the experiment any way you like. You need to be able to
 answer questions in the [Assignment Template]({{site.baseurl}}/assignments/Assignment_1_SA_template.md). Note that some questions may be
