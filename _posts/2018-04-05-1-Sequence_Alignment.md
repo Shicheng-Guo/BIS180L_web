@@ -11,6 +11,15 @@ There is good background information on sequence analysis at [Readings and Resou
 
 ## Part 1: Getting Organized ##
 
+
+### First make a directory for this lab
+
+* open terminal
+* go to your home directory (you may already be there)
+* create a new directory within your home directory called `Alignment_lab`
+
+### Next organize data
+
 If you look at the `/data` directory, you will see that there are 3
 sub-directories for 3 different genomes. Each of these files was
 downloaded directly from its source genome project (TAIR, WormBase,
@@ -19,9 +28,8 @@ thaliana_ files are in separate chromosomes while the worm and fly have
 all the sequences in a single file).
 
 Now lets organize the files a little to make our lives easier. Create a
-subdirectory in your home directory called `Data`. Create
-sub-directories for each species, and alias the sequences into each
-directory. Also create sub-directories under `Data` that organize by
+subdirectory in the `Assignment_1` directory called `Data`. Create
+sub-directories for each species. Also create sub-directories under `Data` that organize by
 sequence type rather than species. In the end, your hierarchical
 structure should look like this.
 
@@ -48,10 +56,10 @@ structure should look like this.
 
 Note that the files do not have `.gz` extensions because they have been
 uncompressed. Furthermore, the A.thaliana chromosomes have all been
-merged into a single file. You should not need to duplicate sequences.
-That is, `Sequences/Genome/A.thaliana.fa` and
-`Species/A.thaliana/genome.fa` should contain the same thing, so no need
-to duplicate the data unnecessarily (i.e. make an alias). Lastly, the
+merged into a single file. Place the uncompressed files in the Sequences/Genome and Sequences/Proteome directories and then create aliases from the species directories to these files. You should not need to duplicate sequences.
+That is, `Sequences/Genome/A.thaliana.fa` should contain the real file and
+`Species/A.thaliana/genome.fa` should be an alias to that file so that you do not need
+to duplicate the data unnecessarily. Lastly, the
 file permissions should be "appropriate". When you have completed these
 tasks, change directory to your home directory and run the following
 command.
@@ -62,13 +70,8 @@ This should indicated that there are 6 aliases to 6 files.
 
 ## Part 2: Lab Notebook ##
 
-It is now time to start doing some bioinformatics experiments. Create a
-new directory to organize your thoughts and files.
 
-	mkdir ~/Lab1
-	cd ~/Lab1
-
-You also need to keep a laboratory notebook for this unit.  Start `atom`, create a new file, and save it as `lab1_notebook.md` in the directory you just created.  Keep your notes and a log in this document.
+You also need to keep a laboratory notebook for this unit.  Start `atom`, create a new file, and save it as `lab1_notebook.md` in the `Assignent_1` directory.  Keep your notes and a log in this document.
 
 Alternatively, if you want to work entirely at the command line, you could also write your notebook in nano:
 
