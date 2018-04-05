@@ -16,7 +16,7 @@ There is good background information on sequence analysis at [Readings and Resou
 
 * open terminal
 * go to your home directory (you may already be there)
-* create a new directory within your home directory called `Alignment_lab`
+* create a new directory within your home directory called `Assignment_1`
 
 ### Next organize data
 
@@ -56,7 +56,7 @@ structure should look like this.
 
 Note that the files do not have `.gz` extensions because they have been
 uncompressed. Furthermore, the A.thaliana chromosomes have all been
-merged into a single file. Place the uncompressed files in the Sequences/Genome and Sequences/Proteome directories and then create aliases from the species directories to these files. You should not need to duplicate sequences.
+merged into a single file. Use the appropriate commands to achieve this and place the uncompressed files in the Sequences/Genome and Sequences/Proteome directories. Next create aliases from the species directories to these files. You should not need to duplicate sequences.
 That is, `Sequences/Genome/A.thaliana.fa` should contain the real file and
 `Species/A.thaliana/genome.fa` should be an alias to that file so that you do not need
 to duplicate the data unnecessarily. Lastly, the
@@ -71,11 +71,11 @@ This should indicated that there are 6 aliases to 6 files.
 ## Part 2: Lab Notebook ##
 
 
-You also need to keep a laboratory notebook for this unit.  Start `atom`, create a new file, and save it as `lab1_notebook.md` in the `Assignent_1` directory.  Keep your notes and a log in this document.
+You also need to keep a laboratory notebook for this unit.  Start `atom`, create a new file, and save it as `lab1_notebook.md` in the `Assignment_1` directory.  Keep your notes and a log in this document.
 
 Alternatively, if you want to work entirely at the command line, you could also write your notebook in nano:
 
-	cd ~/Lab1
+	cd ~/Assignment_1
 	nano lab1_notebook.md
 
 Create a simple (markdown formatted) table with the following information for each species.
