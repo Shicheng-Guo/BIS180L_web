@@ -784,9 +784,39 @@ hljs.initHighlightingOnLoad();
   <div class="slides">
 
 <section data-state="section" data-transition="linear" data-transition-speed="default">
-<h1>Git and Sequence Alignment</h1><p>Julin Maloof<br/>April 06, 2017</p>
+<h1>Git and Sequence Alignment</h1><p>Julin Maloof<br/>April 05, 2018</p>
 
 <div class="slideContent" >
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Office Hours</h3>
+<div class="slideContent" >
+<h2>Jiadong</h2>
+
+<ul>
+<li>Mondays 3:00-4:00 93 Hutchison</li>
+<li>Fridays 10:00-11:00 2060 SciLab (this building)</li>
+</ul>
+
+<h2>Maloof</h2>
+
+<ul>
+<li>By appointment</li>
+</ul>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Amazon limits</h3>
+<div class="slideContent" >
+<ul>
+<li><p>How many people still have &ldquo;0&rdquo; for t2.medium and t2.large instances?</p></li>
+<li><p>If you are still &ldquo;0&rdquo; in Oregon, please check the other US regions and see if you have anything there.</p></li>
+</ul>
 
 </div>
 
@@ -930,7 +960,82 @@ hljs.initHighlightingOnLoad();
 
 <p>Part 2 of today&#39;s lab will have you explore tools for doing alignments and homolgy searches.</p>
 
-<p>You can review principles of Sequence Analysis by looking at the Sequence Analysis Primer (linked to from the lab page).</p>
+<p>You can review principles of Sequence Alignment by looking at the Sequence Alignment Primer (linked to from the lab page).</p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>How to decide on best alignment?</h3>
+<div class="slideContent" >
+<pre><code>R I A C D H N
+R I A N H N
+</code></pre>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>How to decide on best alignment?</h3>
+<div class="slideContent" >
+<pre><code>R I A C D H N
+R I A N - H N
+</code></pre>
+
+<pre><code>R I A C D H N
+R I A - N H N
+</code></pre>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Scoring Matrix</h3>
+<div class="slideContent" >
+<p>Scoring matrices rate the matches in an alignment, based on evolutionary probability of occurence.
+There are different matrices for different evolutionary distance.</p>
+
+<p>(partial) BLOSUM62:</p>
+
+<pre><code>   A  R  N  D  C  Q  E  G  H  I
+A  4 -1 -2 -2  0 -1 -1  0 -2 -1
+R -1  5  0 -2 -3  1  0 -2  0 -3
+N -2  0  6  1 -3  0  0  0  1 -3
+D -2 -2  1  6 -3  0  2 -1 -1 -3
+C  0 -3 -3 -3  9 -3 -4 -3 -3 -1
+Q -1  1  0  0 -3  5  2 -2  0 -3
+E -1  0  0  2 -4  2  5 -2  0 -3
+G  0 -2  0 -1 -3 -2 -2  6 -2 -4
+H -2  0  1 -1 -3  0  0 -2  8 -3
+I -1 -3 -3 -3 -1 -3 -3 -4 -3  4
+</code></pre>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Scoring Matrix</h3>
+<div class="slideContent" >
+<pre><code>   A  R  N  D  C  Q  E  G  H  I
+A  4 -1 -2 -2  0 -1 -1  0 -2 -1
+R -1  5  0 -2 -3  1  0 -2  0 -3
+N -2  0  6  1 -3  0  0  0  1 -3
+D -2 -2  1  6 -3  0  2 -1 -1 -3
+C  0 -3 -3 -3  9 -3 -4 -3 -3 -1
+Q -1  1  0  0 -3  5  2 -2  0 -3
+E -1  0  0  2 -4  2  5 -2  0 -3
+G  0 -2  0 -1 -3 -2 -2  6 -2 -4
+H -2  0  1 -1 -3  0  0 -2  8 -3
+I -1 -3 -3 -3 -1 -3 -3 -4 -3  4
+</code></pre>
+
+<pre><code>R I A C D H N
+R I A N - H N
+</code></pre>
+
+<pre><code>R I A C D H N
+R I A - N H N
+</code></pre>
 
 </div>
 
@@ -945,6 +1050,18 @@ hljs.initHighlightingOnLoad();
 <p class="fragment">Permutation: Create a randomized data set.</p>
 
 <p class="fragment">How does the real data compare to randomized data?</p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Order of events today</h3>
+<div class="slideContent" >
+<ol>
+<li>Git lab</li>
+<li>Finish Unix lab if not yet done.</li>
+<li>Start Sequence alignment lab.</li>
+</ol>
 
 </div>
 

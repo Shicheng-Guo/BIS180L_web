@@ -122,18 +122,36 @@ Scoring matrices rate the matches in an alignment, based on evolutionary probabi
 There are different matrices for different evolutionary distance.
 
 (partial) BLOSUM62:
-```{r, echo=FALSE}
-library(Biostrings)
-data(BLOSUM62)
-BLOSUM62[1:10,1:10]
+
+```
+   A  R  N  D  C  Q  E  G  H  I
+A  4 -1 -2 -2  0 -1 -1  0 -2 -1
+R -1  5  0 -2 -3  1  0 -2  0 -3
+N -2  0  6  1 -3  0  0  0  1 -3
+D -2 -2  1  6 -3  0  2 -1 -1 -3
+C  0 -3 -3 -3  9 -3 -4 -3 -3 -1
+Q -1  1  0  0 -3  5  2 -2  0 -3
+E -1  0  0  2 -4  2  5 -2  0 -3
+G  0 -2  0 -1 -3 -2 -2  6 -2 -4
+H -2  0  1 -1 -3  0  0 -2  8 -3
+I -1 -3 -3 -3 -1 -3 -3 -4 -3  4
 ```
 
 Scoring Matrix
 ================
-```{r, echo=FALSE}
-library(Biostrings)
-data(BLOSUM62)
-BLOSUM62[1:10,1:10]
+
+```
+   A  R  N  D  C  Q  E  G  H  I
+A  4 -1 -2 -2  0 -1 -1  0 -2 -1
+R -1  5  0 -2 -3  1  0 -2  0 -3
+N -2  0  6  1 -3  0  0  0  1 -3
+D -2 -2  1  6 -3  0  2 -1 -1 -3
+C  0 -3 -3 -3  9 -3 -4 -3 -3 -1
+Q -1  1  0  0 -3  5  2 -2  0 -3
+E -1  0  0  2 -4  2  5 -2  0 -3
+G  0 -2  0 -1 -3 -2 -2  6 -2 -4
+H -2  0  1 -1 -3  0  0 -2  8 -3
+I -1 -3 -3 -3 -1 -3 -3 -4 -3  4
 ```
 
 ```
