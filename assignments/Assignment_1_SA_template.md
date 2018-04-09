@@ -1,7 +1,4 @@
-Assignment 1
-==============
-
-# Template for Unix, git, and Sequence Alignment Assignments (20 pts possible)
+# Template for Assignment1: Unix, git, and Sequence Alignment Assignments (20 pts possible)
 
 __Full Name:__
 
