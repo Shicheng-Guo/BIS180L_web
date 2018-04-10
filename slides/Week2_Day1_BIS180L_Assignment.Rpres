@@ -1,37 +1,27 @@
-How to turn in Assignments
+How to turn in Assignments (and other miscellany)
 ========================================================
 author: Julin Maloof
-date: April 13, 2017
+date: April 10, 2018
 
-Lab Partners
-============
-We are going to start working in teams.  
-The whole is greater than the sum of the parts...  Work __together__ with your lab partner(s) as you go through the lab.  Teach each other as you go.
 
-**Partner 1**|**Partner 2**|**Partner 3**
------|-----|-----
-Amber Jacobson|Koki Sasagawa|Mitali Singh
-Amy Wong|Wanqiu Ge| 
-Arin Sadeghi|Natalie Damrau| 
-Christopher Brooks|Yinjie Gao| 
-Eliza Tsang|Michelle Poling| 
-Helen Liu|Jia Wang| 
-Imran Meskienyar|Lilith Marinho-Davis| 
-Juliya Abbasi|Petra Dahms| 
+Available AWS Hours
+===================
+incremental:true
+I may have scared some of you away from using your AWS instance outside of class.  Really you have a lot of hours.
 
-Lab Partners, continued
-=========================
-**Partner 1**|**Partner 2**|**Partner 3**
------|-----|-----
-Lai Chan|Wenyi Qiu| 
-Niba Nirmal|Jennifer Blanc| 
-Sequoia Sartori|Sarah Yam| 
-Tavneet Gill|Jenna Arciero| 
-Tu Le|Calen Badger| 
-Felicia Peng|Kataksha Kinra| 
-Deanna Murguia|Sana Fatima| 
-Dave Speca|Vasco Morais| 
-Lynn Ly|Chunmei Li| 
+The instance costs $0.0464 per hour.  Rounding up to $0.05, then your $100 credit gets you 2,000 hours
+
+2,000 hours = 83 days if you left it on 24 hours a day.
+
+So...please feel free to use you instance as much as you would like.  
+
+**Still, turn it off when you aren't using it**
+
+Tiger VNC on your computer
+===========================
+There may have been a misunderstanding regarding ease of access to AWS from your personal computer.
+
+It is easy.  Just download TigerVNC (free) to your computer.  See the first lab AWS for download links.
 
 
 I need your GitHub Username
@@ -39,13 +29,13 @@ I need your GitHub Username
 
 I am *STILL* missing usernames for:
 
-Juliya Abbasi  
-Tavneet Gill  
-Tu Le  
-Abeer Rasai (Dropped?)  
-Eliza Tsang  
-Jia Wang  
-Sarah Yam  
+Mathew Elford  
+Gabriel Hargis  
+Derek Kawahara  
+Maylin Murdock  
+Dana Ngo  
+Brian Vo  
+Korey Vu  
 
 To give me your GitHub Username:
 ========================================================
@@ -65,7 +55,7 @@ Assignment turn-in
 incremental: true
 Assignments are to be turned in by pushing to a github repository
 
-I will create a private GitHub repository for each of you for each assignment.  Assignment 1 and 2 are available.
+I will create a private GitHub repository for each of you for each assignment.  Assignment 1 is available.
 
 Short version:
 * Clone the repository
@@ -83,8 +73,8 @@ Clone the repository--part I
 =====================
 
 * go to GitHub.com and logon
-* If you haven't already done so, accept the invitation to join the UCDBIS180L-17 team
-* Click on the link "UCDBIS180L-17/BIS180L_Assignments_..." link on the right hand side
+* If you haven't already done so, accept the invitation to join the UCDBIS180L-18 team
+* Click on the link "UCDBIS180L-18/BIS180L_Assignments_..." link on the right hand side
 
 ![assignments](git_clone_1.png)
 
