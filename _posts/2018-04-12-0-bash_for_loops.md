@@ -9,17 +9,17 @@ tags:
 
 ## Clone the assignment two repository
 
-__Answers to the first two exercises will be turned in as part of Assignment 2 (See BLAST lab)__
+__Answers to the first two exercises will be turned in as part of Assignment 2__
 
 I have created a repository for this lab and the BLAST lab, to be turned in together.  To get started, clone the repository now.  You can find the appropriate URL by going to github.  
 
 	cd 
 	git clone YOUR_URL
 	cd Assignment_2_XXXXXX.XXXXXX
-	touch lab2_notebook.md
-	git add lab2_notebook.md
+    ls # see what files are there
 
-Keep a list of your the commands that you used in your lab2_notebook.md file. 
+* Keep a list of your the commands that you used in your `lab2_notebook.md` file. (This is for your reference and will not be graded)
+* Answer the questions in the `Assignment_2_template.md`.  This will be graded.
 
 ## Background
 
