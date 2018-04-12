@@ -1,7 +1,19 @@
 Orthlogs and Paralogs
 ========================================================
 author: Julin Maloof
-date: April 13, 2017
+date: April 12, 2018
+
+A few pointers
+===============
+incremental: true
+
+* Do not just copy and paste the commands from the lab manual.
+  * You need to learn these commands and how they are working
+  * Cut and paste without thinking may save you time now, but will hurt you in the long run.
+  
+* You must look at the output and files that your commands create.
+  * IT is necessary to make sure that the command is doing what you think it should.
+  * example...
 
 Alignment methods
 ========================================================
@@ -62,8 +74,8 @@ incremental:true
 
 Often it is necessary to repeat a computational task many times with subtle variation or to perform the same task on a large number of objects.
 
-We have already seen examples of this:
-* Run `water` many times but use different scoring matrices or penalties
+For example, you might want to:
+* Run `water` many times but use different scoring matrices or penalties or queries
 * In today's lab run `BLAST` many times with different word sizes
 * You can also imagine wanting to `BLAST` a gene against many different genomes, each separately.
 * There are many other examples that you will encounter...
@@ -111,7 +123,7 @@ __Type the commands below into the Linux shell to see what happens__
 
 First we create a list of all the students, contained in the variable `classroom_students`
 
-    set classroom_students Chunmei Ari Yinjie Calen Koki
+    set classroom_students Irene Dana Arkin Nathan Melodie
     echo $classroom_students
 
 We use the `echo` command to confirm that the classroom_students list has been created successfully
@@ -132,3 +144,12 @@ for student in $classroom_students
 ```
 
 Note the use of `end` telling the computer the end of the loop.
+
+Discussion Questions
+====================
+incremental:true
+
+* Tomorrow's discussion will be a discussion in which both I and your peers answer questions about material in the first two weeks.
+* __Today__ go to canvas and take the "quiz"...list at least one question.  This is due by 6pm and will be part of the 5% "participation points".
+  * Don't be shy about asking questions that you think might be "too simple".  I won't judge and I won't include your name if I use your question.
+* __Tomorrow__ We will break up into groups to answer the most common questions.  Attendance and participation will be par5 of the 5% "participation points"

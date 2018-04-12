@@ -11,3 +11,4 @@ Right click on the link to download the markdown template.  Edit the markdown te
 | Date Assigned | Title                                                  | Links                                                                                                                                                   | Date Due          |
 |:--------------|:-------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------|
 | __April 05__  | Sequence Alignment                                     | [SA_template]({{site.baseurl}}/assignments/Assignment_1_SA_template.md)                                                                                 | __April 16, 9AM__ |
+| __April 12__  | Loops, BLAST | template in github repo | __April 23, 9AM__ |
