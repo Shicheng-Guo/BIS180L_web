@@ -1,0 +1,128 @@
+Q1
+=============
+How do I do a for loop in fish where I designate a number instead of it going through all the contents of a file? [group: type an example in your terminal and then I will display your screen]
+
+
+Q2
+=============
+I am still unsure of how to eliminate new line space from the character count of genome/proteome files.
+
+
+Q3
+=============
+Im still a little confused about what the "grep" command is, and when it should be used. Can you clarify the function of this command?
+
+
+Q4
+=============
+Why are the scores for aligning B0213.10 with the best-matching A.thaliana and D.melanogaster proteins so high, yet the % identities so low?
+
+
+Q5
+=============
+Could you please explain more about statistical significance and biological relevance. In case if your data is statistically significant but biologically not that relevant, how do you handle it?
+
+
+Q6
+============
+If we shuffle enough more times of a sequence, would the alignment of a protein with it will be normally distributed? or still skewed?
+
+
+
+Q7
+=============
+_If the distribution of the alignment score is not normal, how could we use z-score and determine the E-value?_
+
+Although skewed the distributsion is still unimodal so the Z-score is still informative about how many SDs away from the mean you sequence is. 
+
+You can then determine what percentage of your random sequences had at least that large of a Z-score.  So if your Z-score is 2.5 and only 3% of your random sequences have a Z-score > 2.5, then your E-value is ~ 3%.  
+
+Q8
+==========
+_Many questions about calculating speed of alignment_
+
+My recommended pipeline:
+
+* Align one protein sequence (query) against proteome#1 and time it.
+* Divide that time by the the number of amino acids in your query to give seconds/amino acids when aligning to proteome#1
+* Determine the number of amino acids in proteome#2
+* Multiple your rate (sec/aa) * number of amino acids in proteome#2
+
+Q9
+=============
+_What exactly is an alias?_
+
+It is a pointer to the files true location
+
+
+Q10
+===============
+_When doing BLAST, how do we decide what parameters to use when comparing two sequences?_
+
+Decide on your goals and priorties:
+
+* Sensitivity?
+* Speed?
+* Only closely related matches?
+* Distant matches?
+
+There is no one right answer, it is tradeoffs
+
+Q11
+========
+_Is there a limit to the number of pipelines one can create in a single command?_
+
+Not that I am aware of.  Readibility become limiting.
+
+Q12
+======
+_How to researchers determine what is a good cutoff at which point to consider two sequences homologous?¬† It all seems kinda arbitrary from the assignment._
+
+E-values and match length
+
+Q13
+========
+_Is there a way to visually see the overlap/comparison between two genomes/proteomes? Say like in a venn diagram?_
+
+Should be easy to do in R, maybe I will include this when we move to R
+
+
+Q14
+=======
+_Is there a particular programming language languages that are the best to know for programming in Bioinformatics?_
+
+R and Python, plus at leat a bit of Linux shell
+
+Q15
+======
+_Why do the 2 spaces after a line that separates the lines in markdown disappear when I save the file?_
+
+Sorry.  I thought I fixed this but I didn't.
+
+In Atom: Edit > Preferences > Packages.  Then search for "whitespace" and click disaable
+
+![](whitespace.png)
+
+Also, should be fixed in new installations of Atom.
+
+Q16
+========
+_this is my first time learning how to use GitHub - So I‚am a bit confused and was wondering how do we see our work as a site (like_
+
+Go to [](https://github.com/orgs/UCDBIS180L-18/) and then click on your repository.  You should be able to click on a filename and then see it in your web browser.
+
+Q17
+=====
+_"Can you talk more about awk?"_
+
+Powerful but cryptic text processing language.  There are books about it.  Probably better off learning Python.
+
+Q18
+=======
+_What is the difference between our t2 medium and t2 large instances, and in what situation would¬† we use one instead of the other?_
+
+t2.medium has 4GB RAM and t2.large has 8GB.  If we are doing a memory intensive task then we will switch to large.
+
+
+
+
