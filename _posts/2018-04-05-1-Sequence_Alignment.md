@@ -178,8 +178,8 @@ Well, that's not quite what happened. Even the FASTA header lines are
 slightly different. Apparently `shuffleseq` changes whitespace in the
 defline for some reason.
 
-Now let's try aligning the shuffled C. elegans protein against the A.
-thaliana protein.
+Now let's try aligning the A.
+thaliana protein against the shuffled C. elegans protein.
 
 	water at1.fa ce1.shuffle.fa -gapopen 10 -gapextend 5 -outfile 1.water
 
