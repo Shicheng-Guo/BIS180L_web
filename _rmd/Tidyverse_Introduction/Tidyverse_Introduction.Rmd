@@ -1,0 +1,118 @@
+---
+title: "Introduction to Tidyverse"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+tomato <- read_csv("Tomato.csv")
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Welcome to the TidyVerse
+
+The goal of this tutorial is to introduce the [tidyverse](https://www.tidyverse.org/) a series of R packages that make data manipulation and processing easier.  While most of what is covered here _could_ be accomplished using base R functions, the _tidy_ functions make things easier and more clear.
+
+The material covered here is also explained in greater detail in the course textbook [_R for Data Science_](http://r4ds.had.co.nz/) by Hadley Wickham and Garrett Grolemund.  I encourage you to use that book for clarification or greater depth.  It is free online.
+
+In R there are many add on packages, a.k.a. `libraries`.  Tidyverse is one such package.  We use the `library()` command to load a library for use in our current R session.  `library()` takes the package name as an argument.  Use `library` to load the `tidyverse` package using the window below.
+
+
+```{r load-tidyverse, exercise=TRUE}
+library(tidyverse)
+```
+
+## tibbles
+
+Optional reading: [tibbles](http://r4ds.had.co.nz/tibbles.html) in _R for Data Science_
+
+You were previously introduced to  `data.frame` objects as spreadsheet-like objects that are useful for handling data in R.  Tidyverse has a related data type, the `tibble`.  Details of the differences aren't important right now, but if you are already an R afficiando and are curious you can read about them in the  [tibbles](http://r4ds.had.co.nz/tibbles.html) chapter in _R for Data Science_
+
+To import data into R as a tibble it is convenient to have it saved as a [comma separated value (csv) file](https://en.wikipedia.org/wiki/Comma-separated_values).  For the rest of this tutorial we will work with a dataset of tomato measurements in the file `Tomato.csv`
+
+We import the data using the `read_csv()` function.  If you have used R before, please note that this is a different function than `read.csv()`.  `read_csv()` created a tibble upon import instead of a data frame.
+
+The `Tomato.csv` file is included in your `Assignment 3` repository that you cloned from github.  Modify the path below so that the file is imported.
+
+```{r data_import, exercise=TRUE, eval=FALSE}
+tomato <- read_csv("Tomato.csv")
+```
+
+Now use the `head` function to take a look at the imported data
+
+```{r look-at-tomato, exercise=TRUE}
+
+```
+
+## data transformation
+
+## tidy data
+
+## pipes
+
+## functions (later?)
+
+### Exercise 
+
+*Here's a simple exercise with an empty code chunk provided for entering the answer.*
+
+Write the R code required to add two plus two:
+
+```{r two-plus-two, exercise=TRUE}
+
+```
+
+### Exercise with Code
+
+*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
+
+Now write a function that adds any two numbers and then call it:
+
+```{r add-function, exercise=TRUE, exercise.lines = 5}
+add <- function() {
+  
+}
+```
+
+## Topic 2
+
+### Exercise with Hint
+
+*Here's an exercise where the chunk is pre-evaulated via the `exercise.eval` option (so the user can see the default output we'd like them to customize). We also add a "hint" to the correct solution via the chunk immediate below labeled `print-limit-hint`.*
+
+Modify the following code to limit the number of rows printed to 5:
+
+```{r print-limit, exercise=TRUE, exercise.eval=TRUE}
+mtcars
+```
+
+```{r print-limit-hint}
+head(mtcars)
+```
+
+### Quiz
+
+*You can include any number of single or multiple choice questions as a quiz. Use the `question` function to define a question and the `quiz` function for grouping multiple questions together.*
+
+Some questions to verify that you understand the purposes of various base and recommended R packages:
+
+```{r quiz}
+quiz(
+  question("Which package contains functions for installing other R packages?",
+    answer("base"),
+    answer("tools"),
+    answer("utils", correct = TRUE),
+    answer("codetools")
+  ),
+  question("Which of the R packages listed below are used to create plots?",
+    answer("lattice", correct = TRUE),
+    answer("tools"),
+    answer("stats"),
+    answer("grid", correct = TRUE)
+  )
+)
+```
+

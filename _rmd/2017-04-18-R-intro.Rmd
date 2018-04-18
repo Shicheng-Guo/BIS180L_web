@@ -107,6 +107,8 @@ If you wanted to save your script file then you could press `Ctrl-S` or choose "
 
 ### R Markdown files
 
+Recommended reading: [Chapter 27](http://r4ds.had.co.nz/r-markdown.html) in R for Data Science.
+
 As an alternative file type you can use an R-flavored version of Markdown, [RMarkdown](http://rmarkdown.rstudio.com/), with the file extension ".Rmd".  Rmarkdown comes pre-installed in RStudio.  R markdown is particularly nice for authoring reports, either for your scientific colleagues, or in this case, for _turning in your BIS180L homework_.  We will use RMarkdown for turning in assignments for this class.
 
 Lets try it.
