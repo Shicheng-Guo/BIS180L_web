@@ -15,17 +15,17 @@ Schedule is subject to change (but not the exam dates)
 | Thur 1:10 - 5:00  |  12-Apr |  For Loops; BLAST          |
 | Fri 1:10 - 2:00   |  13-Apr |  BLAST                     |
 |                   |         |  
-| Tue 1:10 - 5:00   |  17-Apr |  BLAST + BLAST DISCUSSION  |
-| Thur 1:10 - 5:00  |  19-Apr |  R: Intro                  | Buffalo: 175 - 206                 
-| Fri 1:10 - 2:00   |  20-Apr |  R: ggplot                 | Buffalo: 207 - 224
+| Tue 1:10 - 5:00   |  17-Apr |  BLAST                     |
+| Thur 1:10 - 5:00  |  19-Apr |  R: Intro                  | Buffalo: 175 - 206; [R for data science](http://r4ds.had.co.nz/) Chapters 27, 5, 10, 18
+| Fri 1:10 - 2:00   |  20-Apr |  BLAST DISCUSSION          | 
 |                   |         |  
-| Tue 1:10 - 5:00   |  24-Apr |  More R Intro        |
+| Tue 1:10 - 5:00   |  24-Apr |  More R Intro; R: ggplot   | Buffalo: 207 - 224; [R for data science Chapter 3](http://r4ds.had.co.nz/data-visualisation.html)
 | Thur 1:10 - 5:00  |  26-Apr |  R and SNP analysis        |
 | Fri 1:10 - 2:00   |  28-Apr |  Discussion: SNPs/ GWAS    |
 |                   |         |  |
 | Tue 1:10 - 5:00   |  1-May  |  R and GWAS                | [Wikipedia GWAS](http://en.wikipedia.org/wiki/Genome-wide_association_study) <br>  [GWAS Q & A](../docs/Brookfield2010_BMC_Biol.pdf) <br> [GWAS protocol](../docs/Al-Chalabi_2009_Cold Spring Harbor protocols.pdf)
-| Thur 1:10 - 5:00  |  3-May  |  Shiny Midterm Q and A review session |
-| Fri 1:10 - 2:00   |  4-May  |   __Midterm Handed out__
+| Thur 1:10 - 5:00  |  3-May  |  Shiny  |
+| Fri 1:10 - 2:00   |  4-May  |   Midterm Q and A review session __Midterm Handed out__
 |                   |         |  
 | Tue 1:10 - 5:00   |  8-May  | Continue Shiny OR work on midterm | 
 | __Thur 1:10 - 5:00__  |  10-May  | Illumina Sequence Data: QC and mapping <br>  __Midterm Due @ 1:10__ | Buffalo: p. 339 - 351 <br> [Wikipedia FastQ](https://en.wikipedia.org/wiki/FASTQ_format) <br> [U Mich SAM wiki](http://genome.sph.umich.edu/wiki/SAM)
