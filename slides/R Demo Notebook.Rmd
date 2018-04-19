@@ -1,50 +1,103 @@
+---
+title: "R Demo"
+output: html_notebook
+---
+
+### load extra library, import data
+```{r}
 library(tidyverse)
 
-#read the data
 data <- read_csv("~/git/BIS180L_web/data/Tomato.csv")
+```
 
+### summaries
+```{r}
 #get a quick summary
 summary(data)
 
 #look at the first few lines
 head(data)
+```
 
-#a histogram
+### a histogram
+
+```{r}
 ggplot(data,aes(x=hyp)) + geom_histogram()
+```
 
 
-#histograms of hyp, split by treatment
+
+### histograms of hyp, split by treatment
+
+```{r}
 ggplot(data,aes(x=hyp)) + 
   geom_histogram() +
   facet_grid(. ~ trt)
+```
 
-#histograms of hyp, split by species
+### histograms of hyp, split by species
+
+```{r}
 ggplot(data,aes(x=hyp)) + 
   geom_histogram() +
   facet_grid(. ~ species)
+```
 
-#histograms of hyp, split by treatment and species
+
+### histograms of hyp, split by treatment and species
+```{r}
 ggplot(data,aes(x=hyp)) + 
   geom_histogram() +
   facet_grid(trt ~ species)
+```
 
-#look at individual data points
+### look at individual data points
+```{r}
 qplot(x=1,y=hyp,data=data, xlab="")
+```
 
-#spread it out some
+### spread it out some
+```{r}
 qplot(x=1,y=hyp,data=data,geom="jitter", xlab="")
+```
 
-#split it by species
+### split it by species
+```{r}
 qplot(x=species,y=hyp,data=data,geom="jitter")
+```
 
-#indicate treatment by color
+
+### indicate treatment by color
+```{r}
 qplot(x=species,y=hyp,data=data,color=trt,geom="jitter")
+```
 
-#indicate measure by plotting symbol
+### indicate measure by plotting symbol
+```{r}
 qplot(x=species,y=hyp,data=data,colour=trt,shape=who,geom="jitter")
+```
 
-# some simple statistics:
 
+### scatter plots 
+```{r}
+#how about the relationship between two internodes?
+qplot(data$int1,data$int2)
+```
+
+```{r}
+#between all internode data?
+pairs(data[,c("int1","int2","int3","int4")])
+```
+
+```{r}
+cor(data[,c("int1","int2","int3","int4")],use="complete.obs")
+```
+
+
+
+## some simple statistics:
+
+```{r}
 #mean
 mean(data$hyp)
 
@@ -56,29 +109,51 @@ var(data$hyp)
 
 #standard dev
 sd(data$hyp)
+```
 
 #create our own sem function
+
+```{r}
 sem <- function(x) {
 	sd(x,na.rm=T)/sqrt(length(na.omit(x)))}
-
-#calculate means for each species and treatment separately
-hyp.mean <- tapply(data$hyp,list(species=data$trt,trt=data$species),mean,na.rm=T)
-
-#calculate s.e.m. for each species and treatment
-hyp.sem <- tapply(data$hyp,list(trt=data$trt,species=data$species),sem)
+```
 
 
-#simple statistical tests
-#T-test
+### calculate means for each species and treatment separately
+
+```{r}
+data %>% group_by(species,trt) %>%
+  summarize(mean=mean(hyp,na.rm = T))
+```
+
+
+## calculate mean and s.e.m. for each species and treatment
+
+```{r}
+data %>% group_by(species,trt) %>%
+  summarize(mean=mean(hyp,na.rm=TRUE),sem=sem(hyp))
+```
+
+### simple statistical tests
+
+```{r}
 t.test(data$hyp~data$trt)
+```
 
-#all species t tests
+### all species t tests
+```{r}
 pairwise.t.test(data$hyp,data$species)
 
-#calculate ANOVA, put results in an object and summarize
+```
+
+### calculate ANOVA, put results in an object and summarize
+```{r}
 aov1 <- aov(data$hyp~data$species)
 summary(aov1)
+```
 
+### more anova
+```{r}
 #two way
 aov2 <- aov(hyp~species+trt,data=data)
 summary(aov2)
@@ -86,7 +161,12 @@ summary(aov2)
 #two-way with interaction
 aov3 <- aov(hyp~species*trt,data=data)
 summary(aov3)
+```
 
+
+### linear regression
+
+```{r}
 #linear regressions have nicer outputs
 #calculate linear regression, put results in an object and summarize
 lm1 <- lm(hyp~species,data=data)
@@ -99,14 +179,5 @@ summary(lm2)
 #two way with interaction effect
 lm3 <- lm(hyp~species*trt,data=data)
 summary(lm3)
-
-
-#how about the relationship between two internodes?
-qplot(data$int1,data$int2)
-
-#between all internode data?
-pairs(data[,c("int1","int2","int3","int4")])
-
-cor(data[,c("int1","int2","int3","int4")],use="complete.obs")
-
+```
 
