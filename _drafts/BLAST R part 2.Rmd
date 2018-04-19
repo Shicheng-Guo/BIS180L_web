@@ -1,0 +1,51 @@
+---
+title: "BLAST part 2"
+author: "Julin N Maloof"
+date: "4/19/2018"
+output: html_document
+---
+
+** Exercise X**
+
+Reciprocal best hits...
+
+**Excercise 10**:
+It sometimes is useful to create a random subset of a large data set like the fly.worm results.  Create a new dataframe `fly.worm.small` that has 1,000 rows taken at random from the larger data set.  Hint: one way is to use the `sample()` function to create a vector of rownumbers to keep and then use the `[ ]` extractor.
+
+
+
+
+## Intro to plotting
+One of the strengths of R is its graphics.  We are going to take a break from the bioinformatics datasets and work on a tutorial made by the 2014 TA Ciera.  This dataset uses the [stereotypes.csv file](http://cierareports.org/downloads/r_tutorial/stereotypes.csv) which you can download by clicking on link.
+
+Ciera describes the dataset as follows: "799 individuals were surveyed from ages 18 to 26 about their weekly their consumption habits. They were further categorized based on their clothing and music choices and put into four stereotypes: nerds, hipsters, metalheads, and hippies. Consumption of coffee (per cup), computer usage (hourly), showers, beers(per 12oz), and tacos. Oh yeah, this dataset is fake."
+
+Before beginning, import the "stereotypes.csv" into an R object called "stereotypes"
+
+**Exercise 11**:
+Use the `summary()` and `head()` functions to examine the stereotypes object.
+
+### the subset command
+In `swirl` you learned how to subset objects using square brackets [].  An alternative method is to use the `subset()` command.  To learn about the subset command, go to [Ciera's tutorial](http://cierareports.org/blog/2013/10/18/rCourse2013/index.html) and scroll down until you get to the part on subset() (It is near "Question 1".  Work through the tutorial section on subsetting.  Record the answers to your "activity breaks" in your R Notebook.
+
+### Plotting tutorial
+Now that you know about `subsetting`, it is time to follow the plotting tutorial.
+
+Please follow the __visualization__ part of [Ciera's tutorial](http://cierareports.org/blog/2013/10/18/rCourse2013/index.html#section2).  You can stop when you get to "Basic Statistics".  Record the answers to the "activity break sections" in your R markdown file.
+
+Remember to save and commit your Rmarkdown file.
+
+### Visualization of the BLAST data set
+Now lets apply what we have learned to the BLAST data set.
+
+**Exercise 12**
+Use ggplot to explore the relationship between score ("Score") and alignment length("len").  Provide a plot that illustrates the relationship and describe the relationship in words.
+
+**Excercise 13**
+While you might expect that BLAST results with long alignments would have high scores, this is not always the case.  Form a hypothesis as to what might influence the relationship between alignment length and score.  Use ggplot to make a new plot to explore this hypothesis.  Does the plot support your hypothesis or not?  State your hypothesis, provide the code for your plot, and state your conclusion.
+
+** Turning in the assignment**
+
+* Click the "Preview" Button to generate an up-to-date html version of your notebook.  Check it to make sure you are happy with its content.
+* add your .Rmd and .nb.html files to the repository and commit the changes.
+* push the changes
