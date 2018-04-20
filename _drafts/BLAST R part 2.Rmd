@@ -9,6 +9,10 @@ output: html_document
 
 Reciprocal best hits...
 
+Venn Diagram...
+
+Relationship between E-value and score
+
 **Excercise 10**:
 It sometimes is useful to create a random subset of a large data set like the fly.worm results.  Create a new dataframe `fly.worm.small` that has 1,000 rows taken at random from the larger data set.  Hint: one way is to use the `sample()` function to create a vector of rownumbers to keep and then use the `[ ]` extractor.
 
