@@ -5,6 +5,33 @@ date: "4/19/2018"
 output: html_document
 ---
 
+For this lab we will continue to expand our R toolkit and apply what we learn to the BLAST results.
+
+## Joins
+
+Often we will have different data sets that we want to combine in some way.  For example, we might want to combine our reciprocal BLAST results into a single data frame.
+
+### Join Tutorial
+
+To learn how to do this please complete the tutorial that I wrote on joins.  You will need to re-install the tutorial package and then start the tutorial:
+
+```{r eval=FALSE}
+devtools::install_github("UCDBIS180L/BIS180LTutorials") # needs to be reinstalled to get the new tutorial
+
+learnr::run_tutorial("Joins", package = "BIS180LTutorials") 
+```
+
+### Join the blast results
+
+Let's say we want to find *all* of the Arabidopsis genes with reciprocal best hits in the worm genome.  How would we do that?  Let's think of the steps:
+
+1. For each query record the E-value of the second-best hit.
+2. Filter our hits to retain only the best hit. 
+3. Join the two data sets together
+4. Filter to keep genes with reciprical best hits.
+
+
+
 ** Exercise X**
 
 Reciprocal best hits...
