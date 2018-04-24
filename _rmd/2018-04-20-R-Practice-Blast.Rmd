@@ -30,6 +30,94 @@ Let's say we want to find *all* of the Arabidopsis genes with reciprocal best hi
 3. Join the two data sets together
 4. Filter to keep genes with reciprical best hits.
 
+Load the data.  Adjust the paths to work on your computer.
+```{r}
+library(tidyverse)
+plant_worm <- read_tsv("../data/plant_vs_worm.blastout.gz",col_names=c("query_id",
+                                                                       "subject_id",
+                                                                       "pct_ident",
+                                                                       "len",
+                                                                       "mis",
+                                                                       "gaps",
+                                                                       "qb",
+                                                                       "qe",
+                                                                       "sb",
+                                                                       "se",
+                                                                       "E",
+                                                                       "Score"))
+worm_plant <- read_tsv("../data/worm_vs_plant.blastout.gz",col_names=c("query_id",
+                                                                       "subject_id",
+                                                                       "pct_ident",
+                                                                       "len",
+                                                                       "mis",
+                                                                       "gaps",
+                                                                       "qb",
+                                                                       "qe",
+                                                                       "sb",
+                                                                       "se",
+                                                                       "E",
+                                                                       "Score"))
+
+```
+
+Make a column recording the next-best E-Score
+
+```{r}
+plant_worm <- plant_worm %>% 
+  arrange(query_id, E) %>% 
+  group_by(query_id) %>% 
+  mutate(nextE = lead(E))
+head(plant_worm,12)
+
+worm_plant <- worm_plant %>% 
+  arrange(query_id, E) %>% 
+  group_by(query_id) %>% 
+  mutate(nextE = lead(E))
+head(worm_plant,12)
+```
+
+** Exercise 1 **
+Look at the help page for `lead` and examine the `E` and `nextE` columns.  What does `lead()` do?  Why are there NAs in the `nextE` column?
+
+Now lets filter these to keep the best hit, as we did in the last lab.  Also use select to only keep relevant columns.
+
+```{r}
+plant_worm_best <- plant_worm %>%
+    arrange(query_id, E, desc(Score)) %>%
+    filter(!duplicated(query_id)) %>%
+    select(query_id, subject_id, pct_ident, len, E, nextE, Score)
+```
+
+```{r}
+worm_plant_best <- worm_plant %>%
+    arrange(query_id, E, desc(Score)) %>%
+    filter(!duplicated(query_id)) %>%
+    select(query_id, subject_id, pct_ident, len, E, nextE, Score)
+```
+
+
+The `subject_id` in the plant_worm_best set is too long and needs to be shortened to just the gene_id.  `str_replace` searches for its second argument and replaces it with its third.  We are using wildcards (techinically regular expressions) to search for strings that begin with "#" and replace them with nothing.  Hopefully there will be time to explain this in more detail in a later lab.
+
+```{r}
+head(plant_worm_best$subject_id) #yikes!
+
+plant_worm_best <- plant_worm_best %>%
+  mutate(subject_id=stringr::str_replace(subject_id,"#.*",""))
+
+head(plant_worm_best$subject_id) #better
+
+```
+
+Now let's create a table of Arabidopsis genes that includes the reciprocal blast results
+
+```{r}
+plant_with_recip <- left_join(plant_worm_best, worm_plant_best,
+                              by=c("subject_id"="query_id"),
+                              suffix = c(".plant_worm", ".worm_plant"))
+head(plant_with_recip)
+```
+
+
 
 
 ** Exercise X**
