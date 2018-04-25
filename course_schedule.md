@@ -20,10 +20,10 @@ Schedule is subject to change (but not the exam dates)
 | Fri 1:10 - 2:00   |  20-Apr |  BLAST DISCUSSION          | 
 |                   |         |  
 | Tue 1:10 - 5:00   |  24-Apr |  More R Intro; R: ggplot   | Buffalo: 207 - 224; [R for data science Chapter 3](http://r4ds.had.co.nz/data-visualisation.html)
-| Thur 1:10 - 5:00  |  26-Apr |  R and SNP analysis        |
-| Fri 1:10 - 2:00   |  28-Apr |  Discussion: SNPs/ GWAS    |
+| Thur 1:10 - 5:00  |  26-Apr |  R: ggplot, continued        |
+| Fri 1:10 - 2:00   |  28-Apr |  Discussion: R, ggplot,    |
 |                   |         |  |
-| Tue 1:10 - 5:00   |  1-May  |  R and GWAS                | [Wikipedia GWAS](http://en.wikipedia.org/wiki/Genome-wide_association_study) <br>  [GWAS Q & A](../docs/Brookfield2010_BMC_Biol.pdf) <br> [GWAS protocol](../docs/Al-Chalabi_2009_Cold Spring Harbor protocols.pdf)
+| Tue 1:10 - 5:00   |  1-May  |  R SNPS and GWAS                | [Wikipedia GWAS](http://en.wikipedia.org/wiki/Genome-wide_association_study) <br>  [GWAS Q & A](../docs/Brookfield2010_BMC_Biol.pdf) <br> [GWAS protocol](../docs/Al-Chalabi_2009_Cold Spring Harbor protocols.pdf)
 | Thur 1:10 - 5:00  |  3-May  |  Shiny  |
 | Fri 1:10 - 2:00   |  4-May  |   Midterm Q and A review session __Midterm Handed out__
 |                   |         |  
