@@ -7,6 +7,14 @@ hidden: true
 
 For this lab we will continue to expand our R toolkit and apply what we learn to the BLAST results.
 
+## Get the exercise template
+
+There is a second template to use to answer the exercises below.  To get it:
+
+* Commit any changes to your `Assignment_3_template_1` files
+* Pull your Assignment_3 repository
+* Open the `Assignment_3_template_2.Rmd` file.
+
 ## Joins
 
 Often we will have different data sets that we want to combine in some way.  For example, we might want to combine our reciprocal BLAST results into a single data frame.
@@ -168,7 +176,7 @@ Filter the results based on the above criteria to retain only those rows where t
 
 How many candidate orthologs do you have?
 
-```{r, eavl=FALSE, include=FALSE}
+```{r, eval=FALSE, include=FALSE}
 plant_with_worm_orthologs <- plant_with_recip %>%
   filter(query_id==subject_id.worm_plant,
          E.plant_worm < 1e-04,
@@ -241,7 +249,7 @@ worm_plant_best %>% ggplot(aes(x=Score,y=len,color=pct_ident)) + geom_point()
 **Exercise 7**
 Continuing to use the "worm_plant_best" data set, make a plot that shows the relationship between E-value ("E") and score ("Score").  If your plot looks like an "L" think about how to transform the axis or axes scale to make the plot more informative.  You may want to filter to remove E values that are 0.  Try it both ways.  
 
-```{r, include=FALSE}
+```{r, eval=FALSE, include=FALSE}
 worm_plant_best %>% filter(E!=0) %>% 
   ggplot(aes(x=Score,y=E)) + 
   geom_point() +

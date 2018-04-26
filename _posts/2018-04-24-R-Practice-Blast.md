@@ -7,6 +7,14 @@ hidden: true
 
 For this lab we will continue to expand our R toolkit and apply what we learn to the BLAST results.
 
+## Get the exercise template
+
+There is a second template to use to answer the exercises below.  To get it:
+
+* Commit any changes to your `Assignment_3_template_1` files
+* Pull your Assignment_3 repository
+* Open the `Assignment_3_template_2.Rmd` file.
+
 ## Joins
 
 Often we will have different data sets that we want to combine in some way.  For example, we might want to combine our reciprocal BLAST results into a single data frame.
