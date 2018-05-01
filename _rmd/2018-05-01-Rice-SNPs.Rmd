@@ -1,0 +1,455 @@
+---
+title: "Rice SNPs"
+layout: lab
+tags:
+- R
+- SNPs
+hidden: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE)
+```
+
+## Getting Started
+* I have created a new repository  called `Assignment_4` and have placed an `Assignment_4_template.Rmd` file there.  
+* Clone the repository into a new Rstudio Proect
+* Download the file [RiceSNPData.zip]({{site.baseurl}}/data/RiceSNPData.zip), unzip it, and place the files into the `Assigment_4` directory.
+* Open the `Assignment_4_worksheet.Rmd` file and use that for your answers 
+
+## Preliminaries
+
+Let's load the libraries we need:
+
+```{r}
+library(tidyverse)
+library(stringr)
+```
+
+
+## Some new tools
+
+We begin by learning a few new tools to help us with the upcoming data sets.
+    
+### reshaping data.
+
+Spreadsheet data is often organized in a "wide" format where there is one row per individual and then multiple traits measured on that individual are in separate columns.  This is a convenient format for data entry, but R often wants data in a "long" format with one observation per row.  Please work through the Gather And Spread tutorial to learn more about these formats and how to convert:
+
+```{r eval=FALSE}
+devtools::install_github("UCDBIS180L/BIS180LTutorials") # needs to be reinstalled to get the new tutorial
+
+learnr::run_tutorial("Gather_And_Spread", package = "BIS180LTutorials") 
+```
+
+
+### applying functions across rows or columns
+It is very common to want to apply a function to each row.  We can use the `apply()` function for this.  `apply` takes at least 3 arguments.
+
+`apply(X,MARGIN,FUN)`
+where
+* X is a data frame or matrix
+* MARGIN is whether to apply a function to each row (1) or each column (2)
+* FUN is the function that you want to use
+
+For example
+```{r}
+m <- matrix(rnorm(24),ncol=6) #create a matrix of numbers to illustrate apply
+m
+
+cat("\nrow minimums: \n")
+apply(m,1,min) # find the minimum value of each row
+```
+
+
+**PRACTICE (not graded)** find the mean of each _column_ of m using apply
+
+### Alternatives
+
+For some key functions there are pre-defined convience functions
+
+```{r}
+rowMeans(m)
+colMeans(m)
+rowSums(m)
+colSums(m)
+```
+
+## Lets get started with the real data
+
+### Data Import
+You learned how to import data last week using `read_csv()`.  Note that read.csv can read in a .gzipped file directly.  Today we will provide an additional argument to the read_csv function:
+```{r import_geno, results='hide', eval=TRUE}
+data.geno <- read_csv("../data/Rice_44K_genotypes.csv.gz",
+                      na=c("NA","00")) #this tells R that missing data is denoted as "NA" or "00"
+
+#Takes a minute or two to load
+
+# R tells us there is a duplicated column, let's remove that:
+
+data.geno <- data.geno %>% select(-`6_17160794_1`)
+```
+
+Use `dim()` to determine the numbers of rows and columns.  (You can also look at the info in the right-hand pane).  There are 413 rows and 36,901 columns.  Generally I recommend looking at files after they have been read in with the `head()` and `summary()` functions but here we must limit ourselves to looking at a subset of what we read in.
+
+```{r summary, eval=FALSE}
+head(data.geno[,1:20]) #first six rows of first 20 columns
+summary(data.geno[,1:20]) #summarizes the first 20 columns
+```
+
+In this file each row represents a different rice variety and each column a different SNP. The column "X1" ("NSFTV1") gives the ID of each variety.  "X1" is not a very informative name (that column did not have a name in the data file and R assigned it the name "X1".) Let's rename it:
+
+```{r}
+colnames(data.geno)[1] <- "ID"
+head(data.geno[,1:20]) #first six rows of first 20 columns
+```
+
+The column names give the chromosome and locations of each SNP.  For example, "1_151492" is a SNP on chromosome 1, base position 151492.
+
+### An MDS Plot.  
+Multi-Dimensional Scaling (MDS) plots can be used to display the genetic diversity in a 2D space.  The full 36,901 SNPs take too long to run for this class so we will subset the data.  
+
+To do this we take advantage of the `sample()` function.  Sample takes a random sample of the items it is given.
+
+```{r}
+sample(1:10,5) # takes 5 random samples from the numbers 1:10
+```
+
+We can use this to randomly sample a data frame by rows or columns.
+```{r}
+m2 <- matrix(1:100,nrow=10)
+m2
+```
+
+if we want to randomly sample 3 rows, then:
+
+```{r}
+m2[sample(1:10,3),]
+```
+
+** Exercise 1 **
+
+Now, create a data subset that contains a random sample of 5000 SNPs from the full data set.  Place the smaller data set in an object called `data.geno.5000`.  __Very important: you want to keep the first column, the one with the variety IDs, and you want it to be the first column.  AND You do not want it to show up randomly later on in the data set.__  Think about how to achieve this.
+
+Check the dimensions of your subset.  If you don't get the output below, you did something wrong:
+
+```{r subset,echo=FALSE, results='hide'}
+#first create a smaller dataset by randomly picking 5000 columns
+data.geno.5000 <- data.geno[,c(1,sample(x=2:ncol(data.geno),size=5000))]
+```
+
+```{r check_subset}
+dim(data.geno.5000)
+```
+
+Make sure that "ID" is the first column
+```{r}
+colnames(data.geno.5000) %>% str_which("ID") #returns the position of entries that match "ID".
+```
+
+
+Now that we have our smaller subset we can create the MDS plot
+```{r MDS, eval=FALSE}
+#convert the data matrix to numbers
+geno.numeric <- data.geno.5000[,-1] %>% # -1 to remove the first column, with names.
+  lapply(factor) %>% # convert charcters to "factors", where each category is internally represented as a number
+  as.data.frame() %>% # reformat
+  data.matrix() #  conver to numeric
+
+head(geno.numeric[,1:20])
+
+#calculate the Euclidian distance between each rice variety
+genDist <- as.matrix(dist(geno.numeric))
+
+#perform the multi-dimensional scaling
+geno.mds <- as.tibble(cmdscale(genDist))
+
+#Add the variety ID back into this
+geno.mds$ID <- data.geno.5000$ID 
+head(geno.mds) #now we have 2 dimensions + the ID
+```
+`geno.mds` contains the genotypic information rescaled to display in two dimensions.  Now lets plot it.  Make a x-y scatter plot of the data, with "V1" on one axis and "V2" on the other axis.
+
+```{r mdsPlot, results='hide', eval=FALSE, echo=FALSE}
+qplot(x=V1,y=V2,data=geno.mds,geom="point")
+```
+
+**EXERCISE 2:** Is there any evidence for populations structure (different sub populations)?  If so, how many sub populations do you think the MDS plot reveals?  What do you make of the individuals that are between the major groups?
+
+```{r PCA_Alternative, eval=FALSE,echo=FALSE}
+##Alternative method for PCA
+##Not used 2013
+
+#you must reduce the number of SNPS to be < = the number of observations
+geno.small <- geno.numeric[,sample(1:nrow(geno.numeric),size=nrow(geno.numeric))]
+geno.small[is.na(geno.small)] <- 0 #missing values not allowed
+geno.pc <- prcomp(geno.small)
+
+#Show variance explained by top PCs
+plot(geno.pc)
+
+#The PCs themselves are here
+head(geno.pc$x)
+
+#you can relate back to the original SNPs by:
+head(geno.pc$rotation) #tell you how much each SNP contributed to each PC
+
+pheno.PC <- merge(data.pheno,geno.pc$x,by="row.names")
+
+library(ggplot2)
+qplot(x=PC1,y=PC2,color=Region,data=pheno.PC) + scale_color_brewer(type="div")
+qplot(x=PC1,y=PC3,color=Region,data=pheno.PC) + scale_color_brewer(type="div")
+```
+
+### Adding phenotypes
+
+The file "RiceDiversity.44K.MSU6.Phenotypes.csv" contains information about the country of origin and phenotypes of most of these varieties.  
+
+**EXERCISE 3:** 
+* Use the `read_csv()` `head()` and `summary()` functions that you learned earlier to import and look at this file.  Import the file into an object called "data.pheno".
+* Use a `join` function to merge the MDS scaled genotype data with the phenotype data. Use summary and head to look at the new object and make sure that it is as you expect.
+* Include your code in the .Rmd
+
+```{r read_pheno, echo=FALSE, results='hide', eval=FALSE}
+data.pheno <- read_csv("../data/RiceDiversity.44K.MSU6.Phenotypes.csv")
+head(data.pheno)
+summary(data.pheno)
+```
+
+```{r merge, results='hide', eval=FALSE, echo=FALSE}
+data.pheno.mds <- geno.mds %>% left_join(data.pheno,by=c("ID"="NSFTVID"))
+```
+
+```{r check_merge, results='hide',echo=FALSE, eval=FALSE}
+summary(data.pheno.mds)
+head(data.pheno.mds)
+```
+We can now color points on our plot by characteristics in this data set.  
+
+**EXERCISE 4:** Prepare three different plots to explore if subgroups vary by 1) Amylose content; 2) Pericarp color; 3) Region.  Do any of these seem to be associated with the different population groups? Briefly discuss.
+
+*Hint 1* to refer to column names with spaces in the name you can surround the name with backticks, like this:
+
+```{r, eval=FALSE}
+data.pheno.mds %>% ggplot(aes(x=`Protein content`, y=`Amylose content`)) +
+  geom_point()
+``` 
+
+
+*Hint 2* use `color=` argument ggplot to color the point by the different traits
+
+*Hint 3* use `size=I(3)` as an argument to increase the point size (you can play with different values)
+
+*Hint 4* when plotting the Region data, the colors will be easier to interpret if you include the following in your ggplot code: ` + scale_color_brewer(type="div")` This specifies that a diverging set of colors is used.  (Try plotting with and without this).
+
+
+```{r MDS_color, results='hide', eval=FALSE,echo=FALSE}
+qplot(x=V1,y=V2,color=`Amylose content`,data=data.pheno.mds,size=I(3))
+qplot(x=V1,y=V2,color=`Pericarp color`,data=data.pheno.mds,size=I(3))
+qplot(x=V1,y=V2,color=Region,data=data.pheno.mds,size=I(3))
+```
+
+
+## Assign populations with FastStructure
+From the MDS plot it looks like there is structure in our population.  But how do we know which individual belongs in which population?  We can take an alternative approach and assign individuals to specific population classes with [FastStructure](https://rajanil.github.io/fastStructure/), a python program for accomplishing this task.
+
+We have to create three files in order to run fastStructure
+
+### genotype file
+First we have to convert our genotypes to the form that FastStructure expects.  FastStructure wants a separate row for each allele (two rows for each variety).  A couple of the commands below are a bit complex.  I will explain them in lab after this has been run.
+
+```{r convert_Structure, results='hide',eval=FALSE}
+
+#Create a new Matrix to hold reformatted data
+data.geno.5000.fs <- matrix("",nrow=nrow(data.geno.5000)*2,ncol=ncol(data.geno.5000)-1+6)
+
+#for each row of genotypes, create 2 rows, one with the first allele and one with the second allele.
+#additionally, fill the first 6 columns with the strain ID (could also be blank but we need something there)
+for (i in 1:nrow(data.geno.5000)) {
+  data.geno.5000.fs[(i-1)*2+1,1:6] <- data.geno.5000[[i,1]]
+  data.geno.5000.fs[(i-1)*2+2,1:6] <- data.geno.5000[[i,1]]
+  data.geno.5000.fs[(i-1)*2+1,-1:-6] <- substr(data.geno.5000[i,-1],1,1)
+  data.geno.5000.fs[(i-1)*2+2,-1:-6] <- substr(data.geno.5000[i,-1],2,2)
+}
+
+data.geno.5000.fs[is.na(data.geno.5000.fs)] <- -9 # fastStructure's code for missing data
+
+dim(data.geno.5000.fs)
+
+#take a look
+data.geno.5000.fs[1:10,1:10]
+
+write.table(data.geno.5000.fs,file="rice.data.fastStructure.input.str", col.names = FALSE, row.names = FALSE, quote = FALSE)
+```
+
+### Create the .fam file.
+
+The .fam file describes the individuals in the study.  It has a number of columns designed for human studies which do not exactly apply here.
+
+The fields are:
+
+1. Family ID ('FID')
+2. Within-family ID ('IID'; cannot be '0')
+3. Within-family ID of father ('0' if father isn't in dataset)
+4. Within-family ID of mother ('0' if mother isn't in dataset)
+5. Sex code ('1' = male, '2' = female, '0' = unknown)
+6. Phenotype value ('1' = control, '2' = case, '-9'/'0'/non-numeric = missing data if case/control)
+
+Since our samples are inbred strains we use the same ID for columns 1 and 2, and 0 for columns 3 and 4.  Rice plants are hemaphroditic, so we use "0" for the sex.  We don't have a phenotype for column 6 for we will put -9 there.
+
+```{r}
+fam <- tibble(
+  FID=data.geno.5000$ID,
+  IID=data.geno.5000$ID,
+  PID=0,
+  MID=0,
+  Sex=0,
+  Ptype=-9)
+
+head(fam)
+
+write.table(fam,file="rice.data.fastStructure.input.fam",col.names = FALSE, row.names = FALSE, quote = FALSE)
+```
+
+### create the bim
+
+The bim file provides information on the alleles.  
+
+It contains 6 fields:
+
+1. Chromosome code (either an integer, or 'X'/'Y'/'XY'/'MT'; '0' indicates unknown) or name
+2. Variant identifier
+3. Position in morgans or centimorgans (safe to use dummy value of '0')
+4. Base-pair coordinate (normally 1-based, but 0 ok; limited to 231-2)
+5. Allele 1 (corresponding to clear bits in .bed; usually minor)
+6. Allele 2 (corresponding to set bits in .bed; usually major)
+
+```{r}
+
+bim <- data.geno.5000.fs[,-1:-6]
+
+colnames(bim) <- colnames(data.geno.5000)[-1]
+
+bim[bim=="-9"] <- NA
+
+bim <- apply(bim,2,function(x) unique(na.omit(x))) 
+
+bim[,1:5]
+
+bim <- t(bim) %>%  # t transposes the matrix
+  as_tibble() %>%
+  mutate(SNP_ID=colnames(bim), cM=0) 
+
+head(bim) # now we have a table where each row is a SNP
+```
+
+Next step is to separate the SNP_ID to get chromosome and position
+```{r}
+bim <- bim %>% 
+  separate(SNP_ID,into = c("chromosome","position"),sep="_",remove=FALSE) %>% # create a column for chromosome and position
+  select(chromosome, SNP_ID, cM, position, allele1=V1, allele2=V2) # get columns in right order
+
+head(bim)
+
+write.table(bim,file="rice.data.fastStructure.input.bim",col.names = FALSE, row.names = FALSE, quote = FALSE)
+```
+
+
+### Run FastStructure
+
+Now we can run FastStructure  FastStructure will determine the proportion of each individual's genome that came from one of K ancestral populations.  This can take a long time to run, so you can just import the results of my previous run of the analysis if you prefer.  The files should be in the zip that you downloaded.
+
+fastStructure is run from the Linux command line.  Open up the terminal and type:
+
+```{r, engine="bash", eval=FALSE}
+python /usr/local/src/fastStructure/structure.py -K 4 --input=rice.data.fastStructure.input --output=rice.fastStructure.out --format=str
+```
+(this will take about 1 minute to run)
+
+In the above comand, `-K 4` specifies the number of ancestral populations that fastStructure should create
+
+### Load the FastStructure results
+
+The file `rice.fastStructure.out.4.meanQ` contains 1 row for each sample, and 1 column for each ancestral population.  The numbers give the proportion of the genome inferred to have come from the ancestral population.
+
+```{r PSMix_out,results='hide',eval=FALSE}
+fs_results <- read_delim("rice.fastStructure.out.4.meanQ", delim=" ", col_names = FALSE)
+```
+
+```{r}
+head(fs_results)
+```
+
+What happened?  FastStructure separates each column with two spaces and R interprets those extra spaces as extra columns.  Let's fix that, and add sample IDs back while we are at it.
+
+```{r}
+fs_results <- fs_results %>% mutate(ID=data.geno.5000$ID) %>% select(ID, pop1=X1, pop2=X3, pop3=X5, pop4=X7)
+head(fs_results)
+```
+
+In the fs_results table, each row is an individual and each column represents one of the hypothesized populations.  
+Genomes with substantial contributions from two ancestral genomes are said to be admixed
+
+Let's use these proportions to assign each individual to a particular population.  Of course this can be somewhat problematic for heavily admixed individuals.
+```{r PSMix_out2,results='hide',eval=FALSE}
+fs_results$assignedPop <- apply(fs_results[,-1], 1, which.max)
+head(fs_results)
+```
+
+If you want to know how many individuals were assigned to each population, you can use `table()`
+```{r table,eval=FALSE}
+table(fs_results$assignedPop)
+```
+
+The fastStructure output must be reformatted in order to plot it well.  Not all of the commands are fully explained below.  If you have questions we can go over this in Friday's discussion.
+
+For plotting it will be helpful to order the samples based on population identity and composition.  To do this, let's make a new column that has the maximum proportion for each sample and then rank them accordingly
+
+```{r}
+fs_results$maxPr <- apply(fs_results[,2:5],1,max) 
+fs_results <- fs_results %>% 
+  arrange(assignedPop,desc(maxPr)) %>%
+  mutate(plot.order=row_number())
+```
+
+Now convert to long format
+
+```{r}
+fs_results_long <- fs_results %>% gather(key="population",value="proportion",pop1:pop4)
+head(fs_results_long)
+```
+
+Finally we are ready to plot the results.  In the plot produced below, each column is a single rice variety. The colors correspond to ancestral genomes.  Do you see any evidence of admixture?
+```{r plot_PSMix data,results='hide',eval=FALSE}
+fs_results_long %>%
+  ggplot(aes(x=plot.order, y=proportion, color=population, fill=population)) + 
+  geom_col()  +
+  ylab("genome proportion") + 
+  scale_color_brewer(type="div") + scale_fill_brewer(type="div")
+```
+
+### How do these population assignments relate to the MDS plot? 
+
+**EXERCISE 5:** First, use a join function to combine the MDS data with the population assignments.  Then re plot the MDS data, but include the population assignment in an informative way.  How do the populations assignments relate to the MDS plot?
+
+**Hint** convert the `assignedPop` variable to a character type before starting, with:
+
+```{r}
+fs_results <- fs_results %>% mutate(assignedPop=as.character(assignedPop))
+```
+
+
+```{r AddpopToMDS, echo=FALSE, results='hide',eval=FALSE}
+geno.mds.pop <- left_join(geno.mds,fs_results, by="ID")
+```
+
+
+```{r eval=FALSE,echo=FALSE}
+qplot(x=V1,y=V2,color=assignedPop, data=geno.mds.pop,geom="point",size=I(3)) + scale_color_brewer(type="div")
+```
+
+We will use some of the objects that you have created today in Thursday's lab, so lets save them in an .Rdata file for easy loading on Thursday
+
+```{r eval=FALSE}
+save(data.pheno,geno.mds,fs_results,file="data_from_SNP_lab.Rdata")
+```
+
