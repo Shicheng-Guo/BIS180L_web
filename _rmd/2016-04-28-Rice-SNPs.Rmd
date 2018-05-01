@@ -21,83 +21,37 @@ knitr::opts_chunk$set(cache=TRUE)
     * Choosing "Set working directory" from the "Session" pull-down menu
     * Click on the "Files" tab in the lower right-hand pane, navigate to the folder, then choose "Set working directory" from the "More" menu in the lower right hand pane.
 * Open the `Assignment_4_worksheet.Rmd` file and use that for your answers 
+
+## Preliminaries
+
+Let's load the libraries we need:
+
+```{r}
+library(tidyverse)
+library(stringr)
+```
+
     
 ## In this lab we split questions into two types
 
 1. __Practice__.  These are important for you to do to get experience with new functions and concepts but will not be graded.  You can include them in your .Rmd if you want to.
 
 2. __Exercise__.  These answers to these questions will be turned in for homework and will be graded.
+
+## Some new tools
+
+We begin by learning a few new tools to help us with the upcoming data sets.
     
-## some new functions
-We will start by learning a few new functions.
-
-### Merging data
-Often we will have data in two or more spreadsheets that pertain to the same subjects.  They data may not be in the same order, and not all of the subjects may be represented in all spreadsheets. We can use the `merge()` function to help bring them together.  Lets start with some made-up data for practice.  __Adjust the paths below as needed for your setup (probably by removing `../data/` from each path)__
-```{r merge1}
-fruit.size <- read.csv("../data/fruit_size.csv")
-fruit.color <- read.csv("../data/fruit_color.csv")
-fruit.shape <- read.csv("../data/fruit_shape.csv")
-
-fruit.color
-fruit.shape
-
-fruit.color.shape <- merge(fruit.color,fruit.shape,by="fruit")
-fruit.color.shape
-```
-
-**PRACTICE 1:** 
-
-**a.** What does "by" do? In the command above (hint: look at the help page for `merge()`)
-
-**b.** Why are there only seven rows in the merged data set even though fruit.shape had nine?  Read the help page for `merge()` to figure out how to keep all of the data in the original fruit.shape data sheet.
-
-**c.** Merge fruit.size with fruit.color.shape, keeping all of the rows from each original sheet.  Place the merged dataframe in `fruit.all`.  Note that the column that you want to merge on for fruit size has a different name.  Read help on `merge()` to figure out how to deal with this.  Provide the code that you used as your answer to this exercise.
-
-```{r reshape_prep,echo=FALSE,results='hide'}
-fruit.color.shape <- merge(fruit.color,fruit.shape,by="fruit",all=T)
-fruit.all <- merge(fruit.color.shape, fruit.size,by.x="fruit",by.y="name",all=T)
-```
-
-### sorting and ordering data
-We can use the `sort()` function to sort any single vector of data
-```{r}
-sort(fruit.shape$fruit)
-sort(fruit.shape$fruit,decreasing=T)
-```
-
-We can use `order()` to tell us how we could reorder the items to obtain a sorted list
-
-```{r}
-fruit.shape$fruit 
-order(fruit.shape$fruit)
-#order tells us that the third item (apple) should be first, the first item (banana) should be second, etc)
-
-#thus we can use the [] brackets to re-order things correctly.  this allows us to reorder a whole data.frame
-
-```
-**PRACTICE 2:** reorder fruit.all so that the whole data.frame is sorted by fruit shape.  Include the code.  Your output should look like:
-```{r echo=FALSE}
-fruit.all[order(fruit.all$shape),]
-```
-
-**PRACTICE 3:** reorder fruit.all so that the whole data.frame is sorted by fruit size, then by fruit shape. Include the code.  (hint: look at help for order)  Your output should look like:
-```{r echo=FALSE}
-fruit.all[order(fruit.all$size,fruit.all$shape),]
-```
-
 ### reshaping data.
-The fruit.color.shape.size data frame that you have created one row for each fruit type and one column for each measurement type.  This is called the "wide" format.  Often in R you will want data to be in a "long" format, where each row represents a single observation.  The `melt()` function in the reshape library can convert wide to long:
 
-```{r melt,eval=FALSE}
-library(reshape2)
-fruit.all
+Spreadsheet data is often organized in a "wide" format where there is one row per individual and then multiple traits measured on that individual are in separate columns.  This is a convenient format for data entry, but R often wants data in a "long" format with one observation per row.  Please work through the Gather And Spread tutorial to learn more about these formats and how to convert:
 
-#id.var specifies which column holds identifying information instead of measurements.
-#you could use meas.var instead. to specify which columns hold measurements
-fruit.all.melt <- melt(fruit.all,id.var="fruit") 
-fruit.all.melt
+```{r eval=FALSE}
+devtools::install_github("UCDBIS180L/BIS180LTutorials") # needs to be reinstalled to get the new tutorial
+
+learnr::run_tutorial("Gather_And_Spread", package = "BIS180LTutorials") 
 ```
-You can find more information on reshaping data via a webpage that I wrote [here](http://mfcovington.github.io/r_club/resources/2013/03/28/Reshape/)
+
 
 ### applying functions across rows or columns
 It is very common to want to apply a function to each row.  We can use the `apply()` function for this.  `apply` takes at least 3 arguments.
@@ -112,66 +66,121 @@ For example
 ```{r}
 m <- matrix(rnorm(24),ncol=6) #create a matrix of numbers to illustrate apply
 m
+
+cat("\nrow minimums: \n")
 apply(m,1,min) # find the minimum value of each row
 ```
 
-**PRACTICE 4:** find the mean of each column of m
+
+**PRACTICE 4:** find the mean of each _column_ of m using apply
+
+### Alternatives
+
+For some key functions there are pre-defined convience functions
+
+```{r}
+rowMeans(m)
+colMeans(m)
+rowSums(m)
+colSums(m)
+```
 
 ## Lets get started with the real data
+
 ### Data Import
-You learned how to import data last week using `read.csv()`.  Note that read.csv can read in a .gzipped file directly.  Today we will provide two additional arguments to read.csv function:
+You learned how to import data last week using `read_csv()`.  Note that read.csv can read in a .gzipped file directly.  Today we will provide an additional argument to the read_csv function:
 ```{r import_geno, results='hide', eval=TRUE}
-data.geno <- read.csv("../data/Rice_44K_genotypes.csv.gz",
-                      row.names=1, #this tells R to use the first column as row names
-                      na.strings=c("NA","00")) #this tells R that missing data is denoted as "NA" or "00"
+data.geno <- read_csv("../data/Rice_44K_genotypes.csv.gz",
+                      na=c("NA","00")) #this tells R that missing data is denoted as "NA" or "00"
 
 #Takes a minute or two to load
 ```
 
 Use `dim()` to determine the numbers of rows and columns.  (You can also look at the info in the right-hand pane).  There are 413 rows and 36,901 columns.  Generally I recommend looking at files after they have been read in with the `head()` and `summary()` functions but here we must limit ourselves to looking at a subset of what we read in.
+
 ```{r summary, eval=FALSE}
 head(data.geno[,1:20]) #first six rows of first 20 columns
 summary(data.geno[,1:20]) #summarizes the first 20 columns
 ```
-In this file each row represents a different rice variety and each column a different SNP. The row names ("NSFTV1") give the ID of each variety.  The column names give the chromosome and locations of each SNP.  For example, "X1_151492" is a SNP on chromosome 1, base position 151492.
+
+In this file each row represents a different rice variety and each column a different SNP. The column "X1" ("NSFTV1") gives the ID of each variety.  "X1" is not a very informative name (that column did not have a name in the data file and R assigned it the name "X1".) Let's rename it:
+
+```{r}
+colnames(data.geno)[1] <- "ID"
+head(data.geno[,1:20]) #first six rows of first 20 columns
+```
+
+The column names give the chromosome and locations of each SNP.  For example, "1_151492" is a SNP on chromosome 1, base position 151492.
 
 ### An MDS Plot.  
 Multi-Dimensional Scaling (MDS) plots can be used to display the genetic diversity in a 2D space.  The full 36,901 SNPs take too long to run for this class so we will subset the data.  
 
-Using the techniques that you learned last week, create a data subset that contains a random sample of 2500 SNPs from the full data set.  Place the smaller data set in an object called `data.geno.2500`
+To do this we take advantage of the `sample()` function.  Sample takes a random sample of the items it is given.
+
+```{r}
+sample(1:10,5) # takes 5 random samples from the numbers 1:10
+```
+
+We can use this to randomly sample a data frame by rows or columns.
+```{r}
+m2 <- matrix(1:100,nrow=10)
+m2
+```
+
+if we want to randomly sample 3 rows, then:
+
+```{r}
+m2[sample(1:10,3),]
+```
+
+** Exercise 1 **
+
+Now, create a data subset that contains a random sample of 2500 SNPs from the full data set.  Place the smaller data set in an object called `data.geno.2500`.  __Very important: you want to keep the first column, the one with the variety IDs, and you want it to be the first column.  AND You do not want it to show up randomly later on in the data set.__  Think about how to achieve this.
 
 Check the dimensions of your subset.  If you don't get the output below, you did something wrong:
 
 ```{r subset,echo=FALSE, results='hide'}
 #first create a smaller dataset by randomly picking 2500 columns
-data.geno.2500 <- data.geno[,sample(x=1:ncol(data.geno),size=2500)]
+data.geno.2500 <- data.geno[,c(1,sample(x=2:ncol(data.geno),size=2500))]
 ```
 
 ```{r check_subset}
 dim(data.geno.2500)
 ```
 
+Make sure that "ID" is the first column
+```{r}
+colnames(data.geno.2500) %>% str_which("ID") #returns the position of entries that match "ID".
+```
+
+
 Now that we have our smaller subset we can create the MDS plot
 ```{r MDS, eval=FALSE}
 #convert the data matrix to numbers
-geno.numeric <- data.matrix(data.geno.2500)
+geno.numeric <- data.geno.2500[,-1] %>% # -1 to remove the first column, with names.
+  lapply(factor) %>% # convert charcters to "factors", where each category is internally represented as a number
+  as.data.frame() %>% # reformat
+  data.matrix() #  conver to numeric
+
 head(geno.numeric[,1:20])
 
 #calculate the Euclidian distance between each rice variety
 genDist <- as.matrix(dist(geno.numeric))
 
 #perform the multi-dimensional scaling
-geno.mds <- as.data.frame(cmdscale(genDist))
-head(geno.mds) #now we have 2 dimensions
+geno.mds <- as.tibble(cmdscale(genDist))
+
+#Add the variety ID back into this
+geno.mds$ID <- data.geno.2500$ID 
+head(geno.mds) #now we have 2 dimensions + the ID
 ```
-`geno.mds` contains the genotypic information rescaled to display in two dimensions.  Now lets plot it.  Use one of the plotting functions that you learned about last week to make a x-y scatter plot of the data, with "V1" on one axis and "V2" on the other axis.
+`geno.mds` contains the genotypic information rescaled to display in two dimensions.  Now lets plot it.  Make a x-y scatter plot of the data, with "V1" on one axis and "V2" on the other axis.
 
 ```{r mdsPlot, results='hide', eval=FALSE, echo=FALSE}
-library(ggplot2) #helpful plotting routines
 qplot(x=V1,y=V2,data=geno.mds,geom="point")
 ```
 
-**EXERCISE 1:** Is there any evidence for populations structure (different sub populations)?  If so, how many sub populations do you think the MDS plot reveals?  What do you make of the individuals that are between the major groups?
+**EXERCISE 2:** Is there any evidence for populations structure (different sub populations)?  If so, how many sub populations do you think the MDS plot reveals?  What do you make of the individuals that are between the major groups?
 
 ```{r PCA_Alternative, eval=FALSE,echo=FALSE}
 ##Alternative method for PCA
@@ -202,19 +211,19 @@ qplot(x=PC1,y=PC3,color=Region,data=pheno.PC) + scale_color_brewer(type="div")
 
 The file "RiceDiversity.44K.MSU6.Phenotypes.csv" contains information about the country of origin and phenotypes of most of these varieties.  
 
-**EXERCISE 2:** 
-* Use the `read.csv()` `head()` and `summary()` functions that you learned earlier to import and look at this file.  Import the file into an object called "data.pheno".
-* Use merge() to merge the MDS scaled genotype data with the phenotype data.  Here the column that we are merging on is the "row.name" column.  So you can use `by="row.names"` or `by=1` in your call to merge.  Use summary and head to look at the new object and make sure that it is as you expect.
+**EXERCISE 3:** 
+* Use the `read_csv()` `head()` and `summary()` functions that you learned earlier to import and look at this file.  Import the file into an object called "data.pheno".
+* Use a `join` function to merge the MDS scaled genotype data with the phenotype data. Use summary and head to look at the new object and make sure that it is as you expect.
 * Include your code in the .Rmd
 
 ```{r read_pheno, echo=FALSE, results='hide', eval=FALSE}
-data.pheno <- read.csv("../data/RiceDiversity.44K.MSU6.Phenotypes.csv",row.names=1)
+data.pheno <- read_csv("../data/RiceDiversity.44K.MSU6.Phenotypes.csv")
 head(data.pheno)
 summary(data.pheno)
 ```
 
 ```{r merge, results='hide', eval=FALSE, echo=FALSE}
-data.pheno.mds <- merge(geno.mds,data.pheno,by="row.names",all=T)
+data.pheno.mds <- geno.mds %>% left_join(data.pheno,by=c("ID"="NSFTVID"))
 ```
 
 ```{r check_merge, results='hide',echo=FALSE, eval=FALSE}
@@ -223,18 +232,26 @@ head(data.pheno.mds)
 ```
 We can now color points on our plot by characteristics in this data set.  
 
-**EXERCISE 3:** Prepare three different plots to explore if subgroups vary by 1) Amylose content; 2) Pericarp color; 3) Region.  Do any of these seem to be associated with the different population groups? Briefly discuss.
+**EXERCISE 4:** Prepare three different plots to explore if subgroups vary by 1) Amylose content; 2) Pericarp color; 3) Region.  Do any of these seem to be associated with the different population groups? Briefly discuss.
 
-*Hint 1* use `color=` argument to qplot or ggplot to color the point by the different traits
+*Hint 1* to refer to column names with spaces in the name you can surround the name with backticks, like this:
 
-*Hint 2* use `size=I(3)` as an argument to increase the point size (you can play with different values)
+```{r, eval=FALSE}
+data.pheno.mds %>% ggplot(aes(x=`Protein content`, y=`Amylose content`)) +
+  geom_point()
+``` 
 
-*Hint 3* when plotting the Region data, the colors will be easier to interpret if you include the following at the end of the line with your qplot command: ` + scale_color_brewer(type="div")` This specifies that a diverging set of colors is used.  (Try plotting with and without this).
+
+*Hint 2* use `color=` argument ggplot to color the point by the different traits
+
+*Hint 3* use `size=I(3)` as an argument to increase the point size (you can play with different values)
+
+*Hint 4* when plotting the Region data, the colors will be easier to interpret if you include the following in your ggplot code: ` + scale_color_brewer(type="div")` This specifies that a diverging set of colors is used.  (Try plotting with and without this).
 
 
 ```{r MDS_color, results='hide', eval=FALSE,echo=FALSE}
-qplot(x=V1,y=V2,color=Amylose.content,data=data.pheno.mds,size=I(3))
-qplot(x=V1,y=V2,color=Pericarp.color,data=data.pheno.mds,size=I(3))
+qplot(x=V1,y=V2,color=`Amylose content`,data=data.pheno.mds,size=I(3))
+qplot(x=V1,y=V2,color=`Pericarp color`,data=data.pheno.mds,size=I(3))
 qplot(x=V1,y=V2,color=Region,data=data.pheno.mds,size=I(3))
 ```
 
@@ -351,7 +368,7 @@ geno.mds <- cbind(geno.mds,ps4$AmPr)
 head(geno.mds)
 ```
 
-**EXERCISE 4:** Re plot the MDS data, but include the population assignment in an informative way.  How do the populations assignments relate to the MDS plot?
+**EXERCISE 5:** Re plot the MDS data, but include the population assignment in an informative way.  How do the populations assignments relate to the MDS plot?
 
 ```{r eval=FALSE,echo=FALSE}
 qplot(x=V1,y=V2,color=popID,data=geno.mds,geom="point",size=I(3)) + scale_color_brewer(type="div")
