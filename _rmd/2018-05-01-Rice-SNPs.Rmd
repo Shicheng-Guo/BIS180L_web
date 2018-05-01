@@ -429,7 +429,7 @@ fs_results_long %>%
 
 ### How do these population assignments relate to the MDS plot? 
 
-**EXERCISE 5:** First, use a join function to combine the MDS data with the population assignments.  Then re plot the MDS data, but include the population assignment in an informative way.  How do the populations assignments relate to the MDS plot?
+**EXERCISE 5:** First, use a join function to combine the MDS data with the population assignments and place the result in `geno.mds.  Then re plot the MDS data, but include the population assignment in an informative way.  How do the populations assignments relate to the MDS plot?
 
 **Hint** convert the `assignedPop` variable to a character type before starting, with:
 
@@ -439,12 +439,12 @@ fs_results <- fs_results %>% mutate(assignedPop=as.character(assignedPop))
 
 
 ```{r AddpopToMDS, echo=FALSE, results='hide',eval=FALSE}
-geno.mds.pop <- left_join(geno.mds,fs_results, by="ID")
+geno.mds <- left_join(geno.mds,fs_results, by="ID")
 ```
 
 
 ```{r eval=FALSE,echo=FALSE}
-qplot(x=V1,y=V2,color=assignedPop, data=geno.mds.pop,geom="point",size=I(3)) + scale_color_brewer(type="div")
+qplot(x=V1,y=V2,color=assignedPop, data=geno.mds,geom="point",size=I(3)) + scale_color_brewer(type="div")
 ```
 
 We will use some of the objects that you have created today in Thursday's lab, so lets save them in an .Rdata file for easy loading on Thursday
