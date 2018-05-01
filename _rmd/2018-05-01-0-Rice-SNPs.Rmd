@@ -8,7 +8,7 @@ hidden: true
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache=TRUE)
+knitr::opts_chunk$set(cache = TRUE,autodep = TRUE)
 ```
 
 ## Getting Started
@@ -371,7 +371,7 @@ In the above command, `-K 4` specifies the number of ancestral populations that 
 
 The file `rice.fastStructure.out.4.meanQ` contains 1 row for each sample, and 1 column for each ancestral population.  The numbers give the proportion of the genome inferred to have come from the ancestral population.
 
-```{r PSMix_out,results='hide',eval=FALSE}
+```{r PSMix_out,results='hide'}
 fs_results <- read_delim("rice.fastStructure.out.4.meanQ", delim=" ", col_names = FALSE)
 ```
 
@@ -390,7 +390,7 @@ In the fs_results table, each row is an individual and each column represents on
 Genomes with substantial contributions from two ancestral genomes are said to be admixed
 
 Let's use these proportions to assign each individual to a particular population.  Of course this can be somewhat problematic for heavily admixed individuals.
-```{r PSMix_out2,results='hide',eval=FALSE}
+```{r PSMix_out2,results='hide',eval=TRUE}
 fs_results$assignedPop <- apply(fs_results[,-1], 1, which.max)
 head(fs_results)
 ```
