@@ -32,7 +32,7 @@ head(geno.mds)
 
 _If your geno.mds file does not have the columns indicated above, then go back to Tuesday's lab, and re-make it._
 
-Now use a join functino to combine the genotype and phenotype data frames.
+Now use a join function to combine the genotype and phenotype data frames.
 ```{r }
 
 data.pheno.mds <- left_join(geno.mds,data.pheno,by=c("ID"="NSFTVID")) #even if you already have this object, rerun it so that the AmID and pr1-4 columns are brought in
@@ -81,7 +81,7 @@ If you choose `Alu.Tol`, The "Alu.Tol" column indicates the ratio of root growth
 
 * Plot your chosen trait data
   * as a **single histogram** for all of the data
-  * as **separate histograms** for each of the 4 population assignments made by FastStructure
+  * as **separate histograms** for each of the 4 population assignments made by fastStructure
   * as a **boxplot** separated by population. 
 * Based on these histograms do you think that your trait varies by population? 
 * **optional** Try using the "violin" geom.  
