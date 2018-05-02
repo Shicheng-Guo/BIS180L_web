@@ -20,22 +20,22 @@ Schedule is subject to change (but not the exam dates)
 | Fri 1:10 - 2:00   |  20-Apr |  BLAST DISCUSSION          | 
 |                   |         |  
 | Tue 1:10 - 5:00   |  24-Apr |  More R Intro; R: ggplot   | Buffalo: 207 - 224; [R for data science Chapter 3](http://r4ds.had.co.nz/data-visualisation.html)
-| Thur 1:10 - 5:00  |  26-Apr |  R: ggplot, continued        |
+| Thur 1:10 - 5:00  |  26-Apr |  R: ggplot, continued      |
 | Fri 1:10 - 2:00   |  28-Apr |  Discussion: R, ggplot,    |
 |                   |         |  |
-| Tue 1:10 - 5:00   |  1-May  |  R SNPS and GWAS                | [Wikipedia GWAS](http://en.wikipedia.org/wiki/Genome-wide_association_study) <br>  [GWAS Q & A](../docs/Brookfield2010_BMC_Biol.pdf) <br> [GWAS protocol](../docs/Al-Chalabi_2009_Cold Spring Harbor protocols.pdf)
-| Thur 1:10 - 5:00  |  3-May  |  Shiny  |
-| Fri 1:10 - 2:00   |  4-May  |   Midterm Q and A review session __Midterm Handed out__
+| Tue 1:10 - 5:00   |  1-May  |  R SNPS                    | 
+| Thur 1:10 - 5:00  |  3-May  |  GWAS                      | [Wikipedia GWAS](http://en.wikipedia.org/wiki/Genome-wide_association_study) <br>  [GWAS Q & A](../docs/Brookfield2010_BMC_Biol.pdf) <br> [GWAS protocol](../docs/Al-Chalabi_2009_Cold Spring Harbor protocols.pdf)
+| Fri 1:10 - 2:00   |  4-May  |  Midterm Q and A review session __Midterm Handed out__
 |                   |         |  
-| Tue 1:10 - 5:00   |  8-May  | Continue Shiny OR work on midterm | 
-| __Thur 1:10 - 5:00__  |  10-May  | Illumina Sequence Data: QC and mapping <br>  __Midterm Due @ 1:10__ | Buffalo: p. 339 - 351 <br> [Wikipedia FastQ](https://en.wikipedia.org/wiki/FASTQ_format) <br> [U Mich SAM wiki](http://genome.sph.umich.edu/wiki/SAM)
-| Fri 1:10 - 2:00   |  11-May  |  Discussion: Illumina Sequencing, etc |
+| Tue 1:10 - 5:00   |  8-May  | Work on midterm | 
+| __Thur 1:10 - 5:00__  |  10-May  |  Shiny <br>  __Midterm Due @ 1:10__ | 
+| Fri 1:10 - 2:00   |  11-May  |  Continue Shiny |
 |                   |         |  |
-| Tue 1:10 - 5:00   |  15-May |   Illumina: SNPs and IGV | Buffalo 355 - 377
-| Thur 1:10 - 5:00  |  17-May |  Illumina: RNAseq analysis |
-| Fri 1:10 - 2:00   |  18-May |  Discussion: RNAseq, etc |
+| Tue 1:10 - 5:00   |  15-May |   | Illumina Sequence Data: QC and mapping | Buffalo: p. 339 - 351 <br> [Wikipedia FastQ](https://en.wikipedia.org/wiki/FASTQ_format) <br> [U Mich SAM wiki](http://genome.sph.umich.edu/wiki/SAM)
+| Thur 1:10 - 5:00  |  17-May |   Illumina: SNPs and IGV | Buffalo 355 - 377
+| Fri 1:10 - 2:00   |  18-May |  Discussion: Illumina, etc |
 |                   |         |   |
-| Tue 1:10 - 5:00   |  22-May |  Illumina: RNAseq analysis(Catch up day) |
+| Tue 1:10 - 5:00   |  22-May |  Illumina: RNAseq  |
 | Thur 1:10 - 5:00  |  24-May |  Expression clustering; Motif discovery |
 | Fri 1:10 - 2:00   |  25-May |  Discussion: RNAseq, etc |
 |                   |         |   |
