@@ -8,7 +8,7 @@ hidden: true
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache = TRUE,autodep = TRUE)
+#knitr::opts_chunk$set(cache = TRUE,autodep = TRUE)
 ```
 
 ## Getting Started
@@ -148,7 +148,7 @@ colnames(data.geno.5000) %>% str_which("ID") #returns the position of entries th
 
 
 Now that we have our smaller subset we can create the MDS plot
-```{r MDS, eval=FALSE}
+```{r MDS, eval=TRUE, results='hide'}
 #convert the data matrix to numbers
 geno.numeric <- data.geno.5000[,-1] %>% # -1 to remove the first column, with names.
   lapply(factor) %>% # convert charcters to "factors", where each category is internally represented as a number
@@ -209,13 +209,13 @@ The file "RiceDiversity.44K.MSU6.Phenotypes.csv" contains information about the 
 * Use a `join` function to merge the MDS scaled genotype data with the phenotype data. Use summary and head to look at the new object and make sure that it is as you expect.
 * Include your code in the .Rmd
 
-```{r read_pheno, echo=FALSE, results='hide', eval=FALSE}
+```{r read_pheno, echo=FALSE, results='hide', eval=TRUE}
 data.pheno <- read_csv("../data/RiceDiversity.44K.MSU6.Phenotypes.csv")
 head(data.pheno)
 summary(data.pheno)
 ```
 
-```{r merge, results='hide', eval=FALSE, echo=FALSE}
+```{r merge, results='hide', eval=TRUE, echo=FALSE}
 data.pheno.mds <- geno.mds %>% left_join(data.pheno,by=c("ID"="NSFTVID"))
 ```
 
@@ -257,7 +257,7 @@ We have to create three files in order to run fastStructure
 ### genotype file
 First we have to convert our genotypes to the form that fastStructure expects.  fastStructure wants a separate row for each allele (two rows for each variety).  A couple of the commands below are a bit complex.  I will explain them in lab after this has been run.
 
-```{r convert_Structure, results='hide',eval=FALSE}
+```{r convert_Structure, results='hide',eval=TRUE}
 
 #Create a new Matrix to hold reformatted data
 data.geno.5000.fs <- matrix("",nrow=nrow(data.geno.5000)*2,ncol=ncol(data.geno.5000)-1+6)
