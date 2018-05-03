@@ -21,7 +21,7 @@ We need to get the population assignments from fastStructure in the same data fr
 
 
 ```{r ,eval = FALSE}
-load("data_from_SNP_lab.RData")
+load("data_from_SNP_lab.Rdata")
 ```
 
 check it
