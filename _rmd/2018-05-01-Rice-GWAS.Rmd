@@ -201,6 +201,14 @@ We use a co-dominant model of allelic affects (allowing each allele to act addit
 
 Substitute your chosen trait for "Alu.Tol" below if you are not working on Aluminum Tolerance.
 
+If you want to use a trait with a space in it, change the name of the column, like this:
+
+
+```{r, eval=FALSE}
+colnames(snps3)[colnames(snps3)=="Amylose content"] <- "Amylose.content"
+```
+
+
 ```{r GWAS,eval=FALSE}
 #analysis without population structure correction
 #this takes ~ 5 minutes to run.
@@ -249,12 +257,8 @@ cbind(snpinfo3[codominant(wg3.corrected) < 1e-5,],codominant(wg3.corrected)[codo
 
 To take a screenshot on your instance, go to Applications (top left) > Accessories > Screenshot
 
-To include your saved image in your R notebook, use `knitr::include_graphics()` in a code chunk, like this:
+To include your saved image in your Rmd file, use the markdown notation for including an image.
 
-```
-knitr::include_graphics("~/Desktop/Screen Shot 2017-05-02 at 2.54.52 PM.png")
-replacing the path with the one to your file.
-```
 
 
 ```{r LD,eval=FALSE,echo=FALSE}
