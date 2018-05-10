@@ -1,7 +1,7 @@
 Make a web application with Shiny!
 ==================================
 author: Julin Maloof
-date: May 04, 2017
+date: May 10, 2018
 
 Goal
 =====
@@ -10,7 +10,7 @@ incremental: true
 * Make and deploy interactive web applications with [Shiny](http://shiny.rstudio.com/).
 * Shiny allows you to display your R analysis on the web to anyone.  For example:  
 * I used Shiny to write an app to visualize a [Markov Chain simulation of genetic drift](http://symposium.plb.ucdavis.edu:3838/MarkovDrift/).  
-* A student from last years BIS180L is now working in my lab and is working up a [visualizer for QTL data and gene expression](http://symposium.plb.ucdavis.edu:3838/QTL-Visualization/).  
+* A student from a previous year of BIS180L is now working in my lab and is working up a [visualizer for QTL data and gene expression](http://symposium.plb.ucdavis.edu:3838/QTL-Visualization/).  
 * The Shiny website has plenty of [additional examples](http://shiny.rstudio.com/gallery/).
 
 Components of a Shiny App
@@ -132,35 +132,36 @@ If you are advanced you can [run your own server](http://www.rstudio.com/product
 
 Teams
 ======
+We will work in teams.  Each team will produce and deploy a Shiny app that will be collectively graded.
 
-Today we will work in teams of three.
+| **Student 1** | **Student 2** |  **Repository**           |
+|--------------|---------------|-----------------------------|
+| Jaclyn       | Connie        |  Shiny\_Jaclyn.Connie        |
+| Krista       | Joann         |  Shiny\_Krista.Joann         |
+| Gareth       | Mathew        |  Shiny\_Gareth.Mathew        |
+| Botao        | Josh          |  Shiny\_Botao.Josh           |
+| Chris        | Gautham       |  Shiny\_Chris.Gautham        |
+| Jacob        | Andrew        |  Shiny\_Jacob.Andrew         |
+| Camille      | Ani           |  Shiny\_Camille.Ani          |
+| Dana         | Sagaya        |  Shiny\_Dana.Sagaya          |
+| Evan         | Chad          |  Shiny\_Evan.Chad            |
 
-Each team will produce and deploy a Shiny app that will be collectively graded.
-
-|  **Student 1**  |    **Student 2**     | **Student 3** |        **Repository**         |
-|:---------------:|:--------------------:|:-------------:|:-----------------------------:|
-| Amber Jacobson  |     Tavneet Gill     |               |     Shiny\_Amber\_Tavneet     |
-|  Mitali Singh   |    Koki Sasagawa     |               |      Shiny\_Mitali\_Koki      |
-|    Amy Wong     |       Lai Chan       |               |        Shiny\_Amy\_Lai        |
-|  Arin Sadeghi   |   Imran Meskienyar   |               |      Shiny\_Arin\_Imran       |
-|   Eliza Tsang   |      Sarah Yam       |               |      Shiny\_Eliza\_Sarah      |
-| Sequoia Sartori |     Vasco Morais     |               |     Shiny\_Sequoia\_Vasco     |
-|      Tu Le      |   Michelle Poling    |               |      Shiny\_Tu\_Michelle      |
 
 Teams, continued
 =================
-|  **Student 1**  |    **Student 2**     | **Student 3** |        **Repository**         |
-|:---------------:|:--------------------:|:-------------:|:-----------------------------:|
-|  Calen Badger   |    Juliya Abbasi     |               |     Shiny\_Calen\_Juliya      |
-| Deanna Murguia  |    Natalie Damrau    |               |    Shiny\_Deanna\_Natalie     |
-|   Petra Dahms   | Lilith Marinho-Davis |               |     Shiny\_Petra\_Lilith      |
-|   Niba Nirmal   |     Felicia Peng     |               |     Shiny\_Niba\_Felicia      |
-|   Yinjie Gao    |      Wenyi Qiu       |               |     Shiny\_Yinjie\_Wenyi      |
-|     Lynn Ly     |      Chunmei Li      |  Seungmo Kim  | Shiny\_Lynn\_Chunmei\_Seungmo |
-|    Helen Liu    |    Jenna Arciero     |               |      Shiny\_Helen\_Jenna      |
-| Kataksha Kinra  |    Jennifer Blanc    |               |   Shiny\_Kataksha\_Jennifer   |
-|    Wanqiu Ge    |       Jia Wang       |               |      Shiny\_Wanqiu\_Jia       |
-|   Sana Fatima   |  Christopher Brooks  |               |   Shiny\_Sana\_Christopher    |
+| **Student 1**  | **Student 2**  |  **Repository**           |
+|--------------|---------------|-----------------------------|
+| Aaron        | Arkin         |  Shiny\_Aaron.Arkin          |
+| Minyoung     | Binh          |  Shiny\_Minyoung.Binh        |
+| Alex         | Jordan        |  Shiny\_Alex.Jordan          |
+| Christian    | Veronica      |  Shiny\_Christian.Veronica   |
+| Eleanor      | Ruihan        |  Shiny\_Eleanor.Ruihan       |
+| Yingtong     | Skylar        |  Shiny\_Yingtong.Skylar      |
+| Bismita      | Eunice        |  Shiny\_Bismita.Eunice       |
+| Korey        | Maylin        |  Shiny\_Korey.Maylin         |
+| Laurel       | Melodie       |  Shiny\_Melodie.Laurel       |
+| Ashley       | Irene         |  Shiny\_Ashley.Irene         |
+
 
 Assignment
 ==========
@@ -172,7 +173,7 @@ I have listed some ideas below, __but feel free to choose something else__
 BLAST ideas
 ===========
 
-* Interactive plot to explore different hypotheses for Exercise 13 from the [R Intro lab]({{site.url}}/{% post_url 2017-04-20-0-R-intro %}).
+* Interactive plot to explore different hypotheses for Exercise 10 from the [R Intro lab]({{site.url}}/{% post_url 2018-04-19-2-R-Practice %}).
   * The user could select which trait might affect the sequence length vs score relationship.  The plot could be a scatter plot of score vs sequence length colored by the value of the user-selected variable.  If you want to get fancy add a [slider-bar](http://shiny.rstudio.com/gallery/sliders.html) that allows the user to set the limits of the data ploted.    
   * Or the plot could be a boxplot of score faceted by high and low sequence length and high and low values of the user-selected variable (you could split these by median length).  Again you could add a [slider-bar](http://shiny.rstudio.com/gallery/sliders.html) that allows the user to set the split point for the graph facets.
   
