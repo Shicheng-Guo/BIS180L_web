@@ -60,14 +60,10 @@ structure should look like this.
 				genome.fa
 				protein.fa
 
-Note that the files do not have `.gz` extensions because they have been
-uncompressed. Furthermore, the A.thaliana chromosomes have all been
-merged into a single file. Use the appropriate commands to achieve this and place the uncompressed files in the Sequences/Genome and Sequences/Proteome directories. Next create aliases from the species directories to these files. You should not need to duplicate sequences.
-That is, `Sequences/Genome/A.thaliana.fa` should contain the real file and
-`Species/A.thaliana/genome.fa` should be an alias to that file so that you do not need
-to duplicate the data unnecessarily. Lastly, the
-file permissions should be "appropriate". When you have completed these
-tasks, change directory to your `Assignment_1` directory and run the following
+Note: you will need to uncompress the files. Additionally you will need to merge the A.thaliana chromosomes into a single file. Use the appropriate commands to achieve this and place the uncompressed files in the Sequences/Genome and Sequences/Proteome directories. Next create aliases from the species directories to these files. You should not need to duplicate sequences.  That is, `Sequences/Genome/A.thaliana.fa` should contain the real file and
+`Species/A.thaliana/genome.fa` should be an alias to that file so that you do not need to duplicate the data unnecessarily. Lastly, the file permissions should be "appropriate". You learned the commands that you need for all of these steps in Tuesday's lab.
+
+When you have completed these tasks, change directory to your `Assignment_1` directory and run the following
 command.
 
 	ls -lR Data
@@ -182,8 +178,8 @@ Well, that's not quite what happened. Even the FASTA header lines are
 slightly different. Apparently `shuffleseq` changes whitespace in the
 defline for some reason.
 
-Now let's try aligning the shuffled C. elegans protein against the A.
-thaliana protein.
+Now let's try aligning the A.
+thaliana protein against the shuffled C. elegans protein.
 
 	water at1.fa ce1.shuffle.fa -gapopen 10 -gapextend 5 -outfile 1.water
 

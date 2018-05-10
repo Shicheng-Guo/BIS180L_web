@@ -6,3 +6,4 @@ BIS180L_web.sublime*
 *cache
 slides/IlluminaIntro_files/*
 Gemfile.lock
+*.nb.html

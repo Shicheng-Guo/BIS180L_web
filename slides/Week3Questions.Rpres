@@ -1,0 +1,206 @@
+Week3Questions
+========================================================
+author: Julin Maloof
+date: April 20, 2018
+autosize: true
+
+Q1
+==========
+When would we prefer to use Linux vs R?
+
+Q2
+====
+Is the terminal tab on the R left screen the same as using the terminal we've been using? Or is it a special R terminal?
+
+
+Q3
+====
+In assignment 2, question 7, it says to find a worm gene with single plant ortholog. However, I am not quite sure about what does single mean here. If I found more than one genes in plant that could hit the worm gene, would each one of the plant genes still be single orthologs of the worm gene, or I should choose the best one out of the plant genes to be the single ortholog of the worm gene?
+
+Q4
+======
+When would it be helpful to use the 'dim' function?
+
+
+Q5
+=======
+Since orthology is difficult to determine by the reciprocal BLAST method, what other method would you use to ascertain whether two genes are actually orthologous?
+
+Q6
+=====
+How can we use BLAST to distinguish paralogs from orthologs from homologs?
+
+
+Q7
+=====
+How do you know if a file is in the BLAST database format or not and when not to use the formatdb code?
+
+Q8
+======
+What does the str() function do? How do I read it?
+
+Q9
+=======
+How is the tidyverse package related to the tidyr package and/or the plyr package? (hint: go to tidyverse.org)
+
+
+Q10
+=====
+How do you decide which matrix and threshold is best for your data?
+
+What BLAST parameters are usually used when trying to find homologs in distantly related organisms?
+
+Q11
+======
+How to decide on the best word_size and threshold values for your alignment (specially for proteome alignment as it takes so long)? What factors would you consider while deciding these values?
+
+Q12
+===
+_Are there software packages that integrate all of the tools we have learned about (BLAST, general sequence analysis/inspection, R statistical analysis) into one place?_
+
+BIS180L AWS image?
+
+More seriously, Python and perl have interfaces to BLAST.  R does as well although I am not sure if it is as well developed.
+
+Programs like CLC workbench (not free) integrate a fair number of sequence analysis tools, but you lose flexibility.
+
+Q13
+===
+_What are the advantages of GG plots vs regular plots?_
+
+1) extremely easy to assign your variables to plot aesthetics, e.g. color points by treatment, etc.
+
+2) default plots look much nicer than plots using base R graphics.
+
+
+Q14
+===
+_In what scenario will we prefer to use && to compare only the first element of the vector, instead of &?_
+
+I don't think I have ever used &&
+
+Q15
+=====
+_Is it possible to do 3 proteome comparisons on either platform? For example... if i wanted to compare A, B, C. (AB, BC, AC).. Could this be done in one blastp_
+
+No, needs to be done sequentially
+
+Q16
+====
+_Also, is there a generally accepted rule for determining cutoff values for E-value other than trial and error?_
+
+You have to think about what your biological question is.
+
+Q17
+====
+"Why is it that when I click on knit in R markdown, I get this error?
+
+Error in eval(parse(text = name)) : object 'R_lab_notebook' not found
+Calls: <Anonymous> -> create_output_format -> eval -> eval
+Execution halted
+
+Please ask me or Jiadong
+
+Q18
+===
+_When did you (Maloof) begin coding?_
+
+I was 11 or 12 when the first Apple (Apple II) came out.  My school had a couple and then my Dad got one.  So I started playing around then.  
+
+I had an account on a Unix main-frame in highschool and played around some then to, but nothing serious.
+
+Took two programming classed in college.
+
+Got serious as a postdoc and professor as Biology became more data-intensive.
+
+Q19
+====
+_Since orthology is difficult to determine by the reciprocal BLAST method, what other method would you use to ascertain whether two genes are actually orthologous?_
+
+reciprocal BLAST is good for genome-level analyses.  Incoroporating next-best hit is helpful.
+
+phylogentic trees are the best on a case-by-case basis but hard to do genome-wide.
+
+Q20
+====
+_"when E values is zero or relatively close to zero, why the actual best hit sequence can still have lots of AA variations compared to query sequence?_
+
+See Assignment 3...
+
+Q21
+====
+_Why we use BLOUSM62 as the default search parameters? What is the advantage of using it compared to other BLOUSM scoring matrix?"_
+
+Good middle-of-the road matrix.  Higher BLOSUMs make it harder to find distant relatives.  Lower BLOSUMS may make it hard to distinguish the "best" hit among closely related proteins.  Also probably slower. 
+
+Q22
+=====
+_If I modify the file structure of my documents the links I made to the affect files no longer work. Is there an easy way to make or edit links to multiple documents using one line of code, or do you have to address each link individually? This occurred when I moved my Assignment_1 folder into my git directory for Assignment 1._
+
+It might be able to do this with a for loop.
+
+Q23
+===
+_"The `swirl()` tutorial mentions that missing values are important to note and further analyze when looking at a data set. What are some real life examples/methods of interpreting information from missing values?_
+
+Need to know why the data is missing.  Does missing mean "0" or just that the measurment wasn't taken.
+
+_Also, why is it important to concatenate all of the missing values to begin with, outside of realizing that the data may be lacking?_
+
+Not sure what this is referring to.
+
+Q24
+===
+_Are there a lot of packages available to visualize data in such a way that you do not need to code in R?_
+
+Python has good plotting but I assume you mean without having to code at all.
+
+People like [PRISM](https://www.graphpad.com/scientific-software/prism/)
+
+Q25
+=====
+_What does "best match" mean? Does it all related to E-value, score or other parameters?_
+
+_How does BLAST determine the ""best 4 matches"" ?_
+
+This is based on score.
+
+Q26
+====
+_Why are there more than 4 hits shown even when using ""-max_target_seqs 4""?_
+
+4 for EACH query sequence.
+
+Q27
+====
+_When working with programs like Blast the time is still very long.Â  I know there has been a push to move to more GPU based analysis to take the load off the CPU.Â  Do you feel that push has been successful or are most of the programs like BLAST very CPU dependent?_
+
+I think that there is a GPU version of BLAST.  My understanding is that the GPU speed-up depends a lot on the specifics of the task.
+
+I don't see that many bioinformatics programs taking advantage of GPU but I am not sure if that is because the people writing these programs don't take the time to optimize them for GPU or if there isn't a big advantage.  (I do see that most programs can take advantage of parallel processing on multiple CPUs).
+
+Q28
+====
+_In what situation would we rely on a property other than E value, like percent identity, to determine if two proteins are paralogs. In other words is there ever a situation where it is especially bad to use E values to determine the relatedness of two proteins?_
+
+_What exactly makes something a paralog? Similar function and a low E-value, but how do you know when an E-value becomes too big to be considered a paralog?_
+
+I like looking at p-value and the length of the alignment relative to the length of the query and subject.
+
+
+Q29
+===
+_How can you determine which genes are isoforms and which ones are identical to the query?_
+
+Truly identical should have the same name.
+
+ISoforms: We could do some parsing of the names.
+
+Combine that with the BLAST results; 100% match across the full length of the query and subject...
+
+
+
+
+
+
+

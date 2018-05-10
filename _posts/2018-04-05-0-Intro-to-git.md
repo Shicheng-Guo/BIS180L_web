@@ -70,6 +70,8 @@ There are two ways to make a new repository and get the local and remote version
 
 1) Create the repository on Github first.
 
+**Do NOT type `git init`.** In this case, since you already initialized a repository on github it is not needed
+
 1. From your github.com home page click on the green "+ New Repository" button (right hand side of screen)
 2. On the resulting page give it a name, check the "Initialize this repository with a  README" box and press the "Create Repository" button.
 3. Click on the clipboard icon to copy the URL
@@ -82,7 +84,7 @@ __OR__
 
 1. `cd` to the parent directory of where you want the repository to reside.
 2. `mkdir NAME` where NAME is the name you want for your repository.
-3. `cd NAME` to move into the repository
+3. **Very Important** `cd NAME` to move into the repository
 4. `git init` to initialize a repository in the current directory
 5. Add a file to the repository.  For example:  
 
@@ -134,8 +136,8 @@ The above exercise illustrate one way to collaborate: each collaborator is added
 Let's try it.  I need to collect everyone's GitHub usernames.  To do this we will each add a file to a shared repository with our details.  I have created a repository [https://github.com/UCDBIS180L/gh-usernames](https://github.com/UCDBIS180L/gh-usernames) for this purpose.
 
 * Go the home page for that repository in your web browser.
-* Fork it using the button on the upper right hand side.
-* Clone your forked repository to your computer
+* **Fork** it using the button on the upper right hand side.
+* Clone your **forked** repository to your computer (NOT my original repository)
 * Open the file "2018_Roster.csv" in `nano` or `atom`
 * Find your name in the file and add your github user name after the last comma (look at my entry for an example).  (If you can't find your name, add a new entry at the _bottom_ of the file.)
 * Add your email if it is missing

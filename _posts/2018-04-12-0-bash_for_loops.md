@@ -9,25 +9,25 @@ tags:
 
 ## Clone the assignment two repository
 
-__Answers to the first two exercises will be turned in as part of Assignment 2 (See BLAST lab)__
+__Answers to the first two exercises will be turned in as part of Assignment 2__
 
 I have created a repository for this lab and the BLAST lab, to be turned in together.  To get started, clone the repository now.  You can find the appropriate URL by going to github.  
 
 	cd 
 	git clone YOUR_URL
 	cd Assignment_2_XXXXXX.XXXXXX
-	touch lab2_notebook.md
-	git add lab2_notebook.md
+    ls # see what files are there
 
-Keep a list of your the commands that you used in your lab2_notebook.md file. 
+* Keep a list of your the commands that you used in your `lab2_notebook.md` file. (This is for your reference and will not be graded)
+* Answer the questions in the `Assignment_2_template.md`.  This will be graded.
 
 ## Background
 
 I have claimed that there are tools at the command line that make automating tasks easier. You are probably wondering when you will get to see that.  Now is the time.
 
-For the sequence alignment task you were asked to run the random alignments against three different scoring matrices and two different gap extend penalties.  This means that you needed to type almost the same command six times.  Tedious, right?  What if there were 100 scoring matricies?  Then it would get super tedious.
+As you know, in WATER you can only use one sequence at a time as the query.  What if you had 100 sequences that you wanted to use as the query?  You would need to run WATER 100 times, one for each query sequence.  Tedious. Or what if you wanted to run the same query but try using different scoring matrices?
 
-What we want is a method to automatically run the command with the variations that we care about.  To do this we want a __for loop__
+What we want is a method to automatically run the command with each of the query sequences or scoring matrices.  To do this we want a __for loop__
 
 ## Fish and Bash
 
@@ -89,6 +89,8 @@ First set it up:
 Now to use these files in a for loop:
 
     set myfiles (ls)
+    
+This runs the commands `ls` and places the results in the variable `myfiles`.  The parentheses are important and indicate that the `ls` command is to be executed.
                      
     echo $myfiles         # make sure it really does have a list of files
     
@@ -96,7 +98,6 @@ Now to use these files in a for loop:
         cat $file
     end
     
-What are the parentheses doing with the ls command in `set myfiles (ls)`??  by enclosing "ls" in parentheses we tell fish to run the ls command and place the results in the variable "myfiles"
                  
 __Exercise Two__ In your own words provide a "translation" of the above loop.
 
@@ -138,7 +139,7 @@ __Optional Exercise Four__: Write a for loop that runs the `water` command from 
 
 ## Nested for Loops
 
-In our case, for each type of scoring matrix we want to use two different gap extension penalties.  Can we automate this also?  Yes!  We could just write two for loops, or include two calls to `water` in our single for loop.  But what if we wanted to go through 10 different gap extension penalties?  In this case we could use a __nested for loop__
+What if we had 100 query sequences and for each sequence we wanted to run WATER twice, with two different gap extension penalties.  Can we automate this also?  Yes!  We could just write two for loops, or include two calls to `water` in our single for loop.  But what if we wanted to go through 10 different gap extension penalties?  In this case we could use a __nested for loop__
 
 ### fruit example
 

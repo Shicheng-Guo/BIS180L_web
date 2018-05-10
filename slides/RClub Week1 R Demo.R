@@ -1,7 +1,7 @@
-library(ggplot2)
+library(tidyverse)
 
 #read the data
-data <- read.csv("~/git/BIS180L_web/data/Tomato.csv")
+data <- read_csv("~/git/BIS180L_web/data/Tomato.csv")
 
 #get a quick summary
 summary(data)
@@ -102,7 +102,7 @@ summary(lm3)
 
 
 #how about the relationship between two internodes?
-plot(data$int1,data$int2)
+qplot(data$int1,data$int2)
 
 #between all internode data?
 pairs(data[,c("int1","int2","int3","int4")])
