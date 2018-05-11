@@ -46,7 +46,8 @@ upgrade homebrew
 
 install the following packages through homebrew
 
-    brew tap homebrew/science # additional packages
+    #brew tap homebrew/science # deprecated?
+    brew tap brewsci/bio # additional packages
     brew install htop
     brew install git
     brew install igv
