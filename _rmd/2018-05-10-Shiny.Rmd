@@ -19,27 +19,27 @@ The [tutorial at Rstudio](http://shiny.rstudio.com/tutorial/) is good but pretty
 
 Today we will work in teams of two (or three).  Each team will produce and deploy a Shiny app that will be collectively graded.
 
-|  **Student 1**  |    **Student 2**     | **Student 3** |        **Repository**         |
-|:---------------:|:--------------------:|:-------------:|:-----------------------------:|
-| Amber Jacobson  |     Tavneet Gill     |               |     Shiny\_Amber\_Tavneet     |
-|  Mitali Singh   |    Koki Sasagawa     |               |      Shiny\_Mitali\_Koki      |
-|    Amy Wong     |       Lai Chan       |               |        Shiny\_Amy\_Lai        |
-|  Arin Sadeghi   |   Imran Meskienyar   |               |      Shiny\_Arin\_Imran       |
-|   Eliza Tsang   |      Sarah Yam       |               |      Shiny\_Eliza\_Sarah      |
-| Sequoia Sartori |     Vasco Morais     |               |     Shiny\_Sequoia\_Vasco     |
-|      Tu Le      |   Michelle Poling    |               |      Shiny\_Tu\_Michelle      |
-|  Calen Badger   |    Juliya Abbasi     |               |     Shiny\_Calen\_Juliya      |
-| Deanna Murguia  |    Natalie Damrau    |               |    Shiny\_Deanna\_Natalie     |
-|   Petra Dahms   | Lilith Marinho-Davis |               |     Shiny\_Petra\_Lilith      |
-|   Niba Nirmal   |     Felicia Peng     |               |     Shiny\_Niba\_Felicia      |
-|   Yinjie Gao    |      Wenyi Qiu       |               |     Shiny\_Yinjie\_Wenyi      |
-|     Lynn Ly     |      Chunmei Li      |  Seungmo Kim  | Shiny\_Lynn\_Chunmei\_Seungmo |
-|    Helen Liu    |    Jenna Arciero     |               |      Shiny\_Helen\_Jenna      |
-| Kataksha Kinra  |    Jennifer Blanc    |               |   Shiny\_Kataksha\_Jennifer   |
-|    Wanqiu Ge    |       Jia Wang       |               |      Shiny\_Wanqiu\_Jia       |
-|   Sana Fatima   |  Christopher Brooks  |               |   Shiny\_Sana\_Christopher    |
-
-
+| Student 1    | Student 2     | Student 3 | Repository                 |
+|--------------|---------------|-----------|----------------------------|
+| Jaclyn       | Connie        |           | Shiny_Jaclyn.Connie        |
+| Krista       | Joann         |           | Shiny_Krista.Joann         |
+| Gareth       | Mathew        |           | Shiny_Gareth.Mathew        |
+| Botao        | Josh          |           | Shiny_Botao.Josh           |
+| Chris        | Gautham       |           | Shiny_Chris.Gautham        |
+| Jacob        | Andrew        |           | Shiny_Jacob.Andrew         |
+| Camille      | Ani           |           | Shiny_Camille.Ani          |
+| Dana         | Sagaya        |           | Shiny_Dana.Sagaya          |
+| Evan         | Chad          |           | Shiny_Evan.Chad            |
+| Aaron        | Arkin         |           | Shiny_Aaron.Arkin          |
+| Minyoung     | Binh          |           | Shiny_Minyoung.Binh        |
+| Alex         | Jordan        |           | Shiny_Alex.Jordan          |
+| Christian    | Veronica      |           | Shiny_Christian.Veronica   |
+| Eleanor      | Ruihan        |           | Shiny_Eleanor.Ruihan       |
+| Yingtong     | Skylar        |           | Shiny_Yingtong.Skylar      |
+| Bismita      | Eunice        |           | Shiny_Bismita.Eunice       |
+| Korey        | Maylin        |           | Shiny_Korey.Maylin         |
+| Laurel       | Melodie       |           | Shiny_Melodie.Laurel       |
+| Ashley       | Irene         |           | Shiny_Ashley.Irene         |
 
 ## Components of a Shiny App
 
@@ -54,21 +54,20 @@ These two scripts must be saved together in a single directory.  Each app much b
 
 Here is a sample ui.R script.  This script makes use of R's built in data set on iris.  For more information on this data set you can type `?iris` in R.
 
-
-```r
+``` {r, eval=FALSE}
 library(shiny)
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage( #create the overall page
-
+  
   # Application title
   titlePanel("Iris Data"),
-
+  
   # Some helpful information
   helpText("This application creates a boxplot to show difference between",
            "iris species.  Please use the radio box below to choose a trait",
            "for plotting"),
-
+  
   # Sidebar with a radio box to input which trait will be plotted
   sidebarLayout(
     sidebarPanel(
@@ -79,12 +78,14 @@ shinyUI(fluidPage( #create the overall page
                      "Petal.Length",
                      "Petal.Width")
       )),
-
+      
       # Show a plot of the generated distribution
       mainPanel(plotOutput("boxPlot")
       )
     )
   ))
+
+
 ```
 
 There are several components in the above script (and note that they are nested)
@@ -93,7 +94,7 @@ There are several components in the above script (and note that they are nested)
   * `fluidPage` This creates the layout for our webpage.  The webpage has three components:
   * `titlePanel` Should be obvious
   * `sidebarLayout` Creates a sidebar layout within fluidpage
-    * `sidebarPanel` specifies the sidebar panel.
+    * `sidebarPanel` specifies the sidebar panel.  
       * `radioButtons` specifies that we want radio buttons in this sidebar panel.  We could have additional input functions here.
     * `mainPanel` specifics that we want a main panel as well
     * `plotOutput` what we want on the main panel.  We could have more than one of these, or could have tables, etc.
@@ -109,23 +110,22 @@ To see all the types of input and output that can be included, see the [Shiny re
 ### server.R
 Below is an example of a server script to accompany the ui script above
 
-
-```r
+```{r server, eval=FALSE}
 library(shiny)
 library(ggplot2)
 
 # Define server logic required to draw a boxplot
 shinyServer(function(input, output) {
-
+  
   # Expression that generates a boxplot. The expression is
   # wrapped in a call to renderPlot to indicate that:
   #
   #  1) It is "reactive" and therefore should re-execute automatically
   #     when inputs change
   #  2) Its output type is a plot
-
+    
   output$boxPlot <- renderPlot({
-
+    
     # set up the plot
     pl <- ggplot(data = iris,
                  #Use aes_string below so that input$trait is interpreted
@@ -135,7 +135,7 @@ shinyServer(function(input, output) {
                             fill="Species"
                             )
     )
-
+    
     # draw the boxplot for the specified trait
     pl + geom_boxplot()
   })
@@ -154,13 +154,12 @@ The key elements of the above script:
 
 ### trying it
 
-To try the app on your computer, save the above scripts in ui.R and server.R, respectively, in a new directory for this app.
-Then click on the "RunApp" button in Rstudio, OR from the R console:
+To try the app on your computer, save the above scripts in ui.R and server.R, respectively, in a directory for this app.
+Then either press the "RunApp" button in Rstudio, or, from the R console:
 
-
-```r
+```{r runapp, eval=FALSE}
 library(shiny)
-runApp('PATH_TO_APP_DIRECTORY')
+runApp('PATH_TO_APP_DIRECTORY')    
 ```
 
 ## deployment
@@ -171,25 +170,13 @@ Multiple options:
 
 1. If you are sharing it with someone that uses R and has the shiny library installed, then you can just send it to them, they can download it, and run it as above.
 2. If you have it on GitHub and the person you want to share it with has R they can use:
-
-```r
+```{r rungitapp,eval=FALSE}
 library(shiny)
 runGitHub(repo = "HamiltonDemos",username = "jnmaloof", subdir = "BinomialDrift")
 ```
-
 3. You can use Rstudio's __free__ [shiny server](http://www.shinyapps.io/)
 
 To use their server (required to complete the assignment)
-
-First: Install the `rsconnect` package:
-
-From Rstudio, at the console, type:
-
-```
-install.packages("rsconnect")
-```
-
-Then:
 
 * Go to the [shiny io website](http://www.shinyapps.io/) and register for an account.  You can use your github or google ID.
 * After registering go to account > tokens.  Click on "show" and then "copy to clipboard"
@@ -199,18 +186,19 @@ Then:
 
 Once you have signed up for an account and authenticated it a simple as:
 
-```r
+```{r deploy, eval=FALSE}
 library(rsconnect)
-rsconnect::deployApp('path/to/your/app')
+deployApp('path/to/your/app')
 ```
+
 You can see my version [here](https://jnmaloof.shinyapps.io/irisApp/)
 4. If you are advanced you can [run your own server](http://www.rstudio.com/products/shiny/shiny-server/) (I actually set up a server my lab--it isn't that hard)
 
-## Practice 1
+## Practice 1 (not graded)
 
 Change the scripts above so that a violin plot is produced instead of a boxplot.
 
-## Practice 2
+## Practice 2 (not graded)
 
 Change the scripts above so that all of the traits are plotted as a boxplot but only for a single species.  (The x-axis should be trait; the user selects species).
 
@@ -222,7 +210,7 @@ I have listed some ideas below, __but feel free to choose something else__
 
 ### BLAST ideas
 
-* Interactive plot to explore different hypotheses for Exercise 13 from the [R Intro lab]({{site.url}}/{% post_url 2018-04-19-0-R-intro %}).
+* Interactive plot to explore different hypotheses for Exercise 10 from the [R Practice lab]({{site.baseurl}}{% post_url 2018-04-19-2-R-Practice %}).
   * The user could select which trait might affect the sequence length vs score relationship.  The plot could be a scatter plot of score vs sequence length colored by the value of the user-selected variable.  If you want to get fancy add a [slider-bar](http://shiny.rstudio.com/gallery/sliders.html) that allows the user to set the limits of the data ploted.
   * Or the plot could be a boxplot of score faceted by high and low sequence length and high and low values of the user-selected variable (you could split these by median length).  Again you could add a [slider-bar](http://shiny.rstudio.com/gallery/sliders.html) that allows the user to set the split point for the graph facets.
 

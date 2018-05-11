@@ -156,7 +156,7 @@ Unfortunately, having multiple isoforms makes this hard to sort through.  It wou
 plant_with_recip <- plant_with_recip %>%
   mutate(query_id=str_sub(query_id,1,9), 
          subject_id.worm_plant=str_sub(subject_id.worm_plant,1,9)) %>%
-  arrange(query_id,Score.plant_worm) %>%
+  arrange(query_id,desc(Score.plant_worm)) %>%
   filter(!duplicated(query_id)) %>%
   ungroup()
 
@@ -198,7 +198,7 @@ Hint: The code needed to remove isoforms is a little bit different for the worm 
 worm_with_recip <- worm_with_recip %>%
   mutate(query_id=str_replace(query_id,"[a-z]$",""), 
          subject_id.plant_worm=str_replace(subject_id.plant_worm,"[a-z]$","")) %>%
-  arrange(query_id,Score.worm_plant) %>%
+  arrange(query_id,desc(Score.worm_plant)) %>%
   filter(!duplicated(query_id)) %>%
   ungroup()
 ```
