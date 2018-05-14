@@ -23,7 +23,7 @@ Today we will pick up where we left off.  Our goals are to:
 
 ## Installations
 
-We need to install or update three additional pieces of software.  
+We need to install one additional pieces of software.  
 
 ### bamaddrg
 
@@ -38,29 +38,6 @@ First [bamaddrg](https://github.com/ekg/bamaddrg).  Go ahead and install this no
     
 The `make` command compiles the code and "makes" the executable program
 
-### IGV
-
-The second software is IGV.  Unfortunately the version of IGV installed on your computers does not work and it must be reinstalled.
-
-Download the binary distribution from the [download page](https://www.broadinstitute.org/software/igv/download)
-
-Unzip it and move the unzipped directory to BioinformaticsPackages
-
-    unzip IGV_2.3.92.zip
-    sudo mv ~/Downloads/IGV_2.3.92 /usr/local/bin/
-    set -U fish_user_paths /usr/local/bin/IGV_2.3.92/ $fish_user_paths
-
-    
-    
-### Freebayes
-
-The third software is Freebayes.  Unfortunately the version on your computer does not work properly and must be downgraded.
-
-    cd /usr/src/freebayes # move to current installation directory
-    sudo git checkout 0cb2697 # checkout older, working version
-    sudo git submodule update --recursive # get correct version of related modules
-    sudo make # build the executable "binaries" from the source files
-    sudo make install # copy the binaries into their proper place
 
 ## Data files
 
@@ -131,7 +108,7 @@ Then start IGV by typing
 
     igv.sh
     
-At the Linux command line.  **DO NOT START IGV BY CLICKING IN THE ICON. It will appear to work at first but won't actually work**
+At the Linux command line, or by clicking on the IGV icon at the bottom of the screen.
 
 ### Create a .genome file for IGV to use
 
