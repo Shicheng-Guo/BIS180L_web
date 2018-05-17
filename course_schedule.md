@@ -31,7 +31,7 @@ Schedule is subject to change (but not the exam dates)
 | __Thur 1:10 - 5:00__  |  10-May  |  Shiny <br>  __Midterm Due @ 1:10__ | 
 | Fri 1:10 - 2:00   |  11-May  |  Continue Shiny |
 |                   |         |  |
-| Tue 1:10 - 5:00   |  15-May |   | Illumina Sequence Data: QC and mapping | Buffalo: p. 339 - 351 <br> [Wikipedia FastQ](https://en.wikipedia.org/wiki/FASTQ_format) <br> [U Mich SAM wiki](http://genome.sph.umich.edu/wiki/SAM)
+| Tue 1:10 - 5:00   |  15-May |    Illumina Sequence Data: QC and mapping | Buffalo: p. 339 - 351 <br> [Wikipedia FastQ](https://en.wikipedia.org/wiki/FASTQ_format) <br> [U Mich SAM wiki](http://genome.sph.umich.edu/wiki/SAM)
 | Thur 1:10 - 5:00  |  17-May |   Illumina: SNPs and IGV | Buffalo 355 - 377
 | Fri 1:10 - 2:00   |  18-May |  Discussion: Illumina, etc |
 |                   |         |   |
