@@ -14,15 +14,17 @@ tags:
 
 ## Background
 
-The principle behind calling differentially expressed genes is similar to that for other hypothesis-based tests such as ANOVA or t-tests.  We will call genes differentially expressed if the mean expression between treatments is larger than would be expected by chance given the amount of variance among replicates within a treatment type.  However there are several important issues to consider: the first is multiple testing.  Imagine doing a t-test for differential expression on 30,000 genes.  At p < .05 you would expect 5% (600!) of the genes to be called as significantly different by random chance.  This is known as the multiple testing problem and the p-values must be adjusted to compensate for the large number of tests.  Second there are typically very few replicates per treatment reducing power; thankfully techniques have been developed to “share” information between genes to somewhat deal with this issue.  Third, the methods developed for microarray analysis are not directly applicable. Log-transformed microarray data can be effectively modeled as normally distributed.  In contrast RNAseq data is count data and therefore has a different (non-normal) numerical distribution. Consequently statistical models require a different error distribution.
+Differential expression analysis is a powerful tool in genomics.  The goal is to detect transcripts that are present at different levels in different samples.  Samples could be diseased versus healthy tissue, individuals treated with a drug versus controls, individuals from different populations, etc.  The determination and subsequent analysis of genes that are differentially expresseed can give insight into the biological processes affected by the disease/treatement/population, or whatever factor(s) are being used to contrast the samples. 
+
+The principle behind determining which genes are differentially expressed is similar to that for other hypothesis-based tests such as ANOVA or t-tests.  We will call genes differentially expressed if the mean expression between treatments is larger than would be expected by chance given the amount of variance among replicates within a treatment type.  However there are several important issues to consider: the first is multiple testing.  Imagine doing a t-test for differential expression on 30,000 genes.  At p < .05 you would expect 5% (600!) of the genes to be called as significantly different by random chance.  This is known as the multiple testing problem and the p-values must be adjusted to compensate for the large number of tests.  Second there are typically very few replicates per treatment reducing power; thankfully techniques have been developed to “share” information between genes to somewhat deal with this issue.  Third, the methods developed for microarray analysis are not directly applicable. Log-transformed microarray data can be effectively modeled as normally distributed.  In contrast RNAseq data is count data and therefore has a different (non-normal) numerical distribution. Consequently statistical models require a different error distribution.
 
 At first glance one might think that the [Poisson distribution](http://en.wikipedia.org/wiki/Poisson_distribution) would be an appropriate model for RNAseq data: reads are discrete events and the chance of a read landing in any particular gene is very low.  Indeed Poisson models were originally tried.  However, in the Poisson distribution the expected mean and variance should be equal.  For most RNAseq data this is not true; the data is over-dispersed: the variance is larger than the mean.  Alternatives are the [Negative Binomial](http://en.wikipedia.org/wiki/Negative_binomial_distribution) and Quasi-Poisson models.
 
-It is important to consider an appropriate measure of expression.  While some favor RPKM (Reads per kilobase exon length per million reads mapped), for finding DE genes it is better to normalize counts between samples using a different method (discussed below) and to not adjust for gene length.  Why?  1) the number of reads is not always a linear function of gene length. 2) dividing by gene length causes a loss of information.  By RPKM a gene of 1kb with 10 counts would be treated the same as a 100bp gene with 1 count, but clearly we are much more confident of the expression level when we have 10 counts instead of 1.  This information is lost in RPKM.
+It is important to consider an appropriate measure of expression and normalization.  Normalization is important: if you have a total of 10,000,000 reads from 1 sample and 5,000,000 reads from another sample clearly an adjustment for the total number of reads (a.k.a library size) must be done.  While some favor RPKM (Reads per kilobase exon length per million reads mapped), for finding DE genes it is better to normalize counts between samples using a different method (discussed below) and to not adjust for gene length.  Why?  1) the number of reads is not always a linear function of gene length. 2) dividing by gene length causes a loss of information.  By RPKM a gene of 1kb with 10 counts would be treated the same as a 100bp gene with 1 count, but clearly we are much more confident of the expression level when we have 10 counts instead of 1.  This information is lost in RPKM.
 
 Regarding normalization between samples, genes with very high expression levels can skew RPKM type normalization.  Consider two samples where gene expression is the same except that in the first sample RUBISCO is expressed at a very high level, taking up half of the reads.  In the second sample RUBISCO is expressed at a lower level, accounting for 25% of the reads.  By RPKM all non RUBISCO genes will appear to be expressed more highly in the second sample because RUBISO “takes up” fewer reads.  Methods such as [TMM normalization](http://genomebiology.com/2010/11/3/R25) can account for this.
 
-Two packages that effectively deal with the above issues are [DESeq](http://bioconductor.org/packages/release/bioc/html/DESeq.html) and [edgeR](http://www.bioconductor.org/packages/release/bioc/html/edgeR.html), both available through [Bioconductor](http://bioconductor.org/).  We will use edgeR for today's exercises.  
+Two packages that effectively deal with the above issues are [DESeq](http://bioconductor.org/packages/release/bioc/html/DESeq.html) and [edgeR](http://www.bioconductor.org/packages/release/bioc/html/edgeR.html), both available through [Bioconductor](http://bioconductor.org/).  Both are recommened.  We will use edgeR for today's exercises.  
 
 If you are going to do your own RNAseq analyses at some later time, I __strongly recommend__ that you thoroughly study the [edgeR user manual](http://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf) available both at the [link](http://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf) and by typing `edgeRUsersGuide()` in R (after you have loaded the library).
 
@@ -35,12 +37,13 @@ You can open the `Assignment_6_Part_1.Rmd` file there to record you answers.
 
 ## GFF to GTF
 
-There are two closely related file formats that describe genomic features, [GFF](http://www.sequenceontology.org/gff3.shtml) and [GTF](http://mblab.wustl.edu/GTF22.html).  Unfortunately we have a GFF but we need a GTF.  Fortunately the conversion is pretty easy.
+There are two closely related file formats that describe genomic features (like where genes, introns, and exons are in the genome), [GFF](http://www.sequenceontology.org/gff3.shtml) and [GTF](http://mblab.wustl.edu/GTF22.html).  Unfortunately we have a GFF but we need a GTF.  Fortunately the conversion is pretty easy.
 
 Remember that the reference files are in the `Assignment_5_Last.First/Brapa_reference` .  Create a symbolic link called `Brapa_reference` in the Assignment_6 directory that points to the original `Brapa_reference` directory (you can review how to so this in the Linux tutorial from the first week).
 
 
 ```r
+library(tidyverse)
 library(rtracklayer)
 gff <- import.gff("Brapa_reference/Brapa_gene_v1.5.gff")
 gff #take a look
@@ -74,10 +77,12 @@ readCounts <- featureCounts(
   )
 ```
 
+
+
 __Exercise 1__  
 Read the help file for `featureCounts()`.  Be sure to look at the section "Value" where it describes the output.  
 __a__ Provide a line of code that displays the counts of the first 6 genes.  (It is not very interesting because the first genes in the file are on chromosome A03 (strange numbering...) and our bam file only has counts from A01...  )  
-__b__ The gene `Bra011030` is on chromosome A01.  What are its read counts in the two files?  
+__b__ The gene `Bra011030` is on chromosome A01.  What are its read counts in the two files?  (Show code)
 __c__ What percentage of reads (from each file) were assigned to a gene?  What percentage were unassigned because they were not located in a gene (aka "Feature")?  
 __d__ What are 2 possible reasons why there are reads that cannot be assigned to a gene?  
 
@@ -97,38 +102,61 @@ The steps for finding differentially expressed genes are to:
 
 ### Get the counts data
 
-We will study gene expression levels in _Brassica rapa_ internodes grown under two treatments, Dense Planting (DP) and Not Dense Planting (NDP).  We will study the response to DP in two cultivars, IMB211 and R500.  Click to download the [internode count data]({{site.baseurl}}/data/gh_internode_counts.tsv).  This data set has 12 samples with counts of 40991 genes.
+We will study gene expression levels in _Brassica rapa_ internodes grown under two treatments, Dense Planting (DP) and Not Dense Planting (NDP).  We will study the response to DP in two cultivars, IMB211 and R500.  Click to download the [internode count data]({{site.baseurl}}/data/gh_internode_counts2.tsv).  This data set has 12 samples with counts of 40991 genes.
 
 __Exercise 2__  
 Move the downloaded data to your current working directory.
 
-__a__. Create a new object in R called `counts.data` with either the leaf data or the internode data.  
+__a__. Create a new object in R called `counts.data` with the internode data.  (Use `read_tsv()` to import)
 __b__. Check to make sure that the data looks as expected.  (What do you expect and how do you confirm?  Show your commands and output.)
 
 
 
-You may have noticed that the first row is labelled "*".  These are the reads that did not map to a gene.  Let's remove this row from the data.  Also let's replace any "NA" records with "0" because that is what NA means in this case
+
+
+
+```
+## Parsed with column specification:
+## cols(
+##   gene_id = col_character(),
+##   IMB211_DP_1_INTERNODE.1_matched.merged.fq.bam = col_integer(),
+##   IMB211_DP_2_INTERNODE.1_matched.merged.fq.bam = col_integer(),
+##   IMB211_DP_3_INTERNODE.1_matched.merged.fq.bam = col_integer(),
+##   IMB211_NDP_1_INTERNODE.1_matched.merged.fq.bam = col_integer(),
+##   IMB211_NDP_2_INTERNODE.1_matched.merged.fq.bam = col_integer(),
+##   IMB211_NDP_3_INTERNODE.1_matched.merged.fq.bam = col_integer(),
+##   R500_DP_1_INTERNODE.1_matched.merged.fq.bam = col_integer(),
+##   R500_DP_2_INTERNODE.1_matched.merged.fq.bam = col_integer(),
+##   R500_DP_3_INTERNODE.1_matched.merged.fq.bam = col_integer(),
+##   R500_NDP_1_INTERNODE.1_matched.merged.fq.bam = col_integer(),
+##   R500_NDP_2_INTERNODE.1_matched.merged.fq.bam = col_integer(),
+##   R500_NDP_3_INTERNODE.1_matched.merged.fq.bam = col_integer()
+## )
+```
+
+You may have noticed that the first gene_id is labelled "*".  These are the reads that did not map to a gene.  Let's remove this row from the data.  Also let's replace any "NA" records with "0" because that is what NA means in this case
 
 
 ```r
-counts.data <- counts.data[rownames(counts.data)!="*",]
+counts.data <- counts.data %>% filter(gene_id!="*")
 counts.data[is.na(counts.data)] <- 0
 ```
 
 
 __Exercise 3__  
-The column names are too long.  Use the `sub()` command to remove the ".1_matched.merged.fq.bam" suffix from each column name.  Although it doesn't matter in this case, using the argument "fixed=TRUE" is a good idea because "." is a wildcard character.
+The column names are too long.  Use the `str_replace()` command to remove the ".1_matched.merged.fq.bam" suffix from each column name.  Although it doesn't matter in this case, surrounding the "pattern" inside of the function `fixed()` would be a good idea,  because "." is a wildcard character.
 
-When you are done, then typing `names(counts.data)` should give results below
+When you are done, then typing `colnames(counts.data)` should give results below
 
 
 ```
-##  [1] "IMB211_DP_1_INTERNODE"  "IMB211_DP_2_INTERNODE" 
-##  [3] "IMB211_DP_3_INTERNODE"  "IMB211_NDP_1_INTERNODE"
-##  [5] "IMB211_NDP_2_INTERNODE" "IMB211_NDP_3_INTERNODE"
-##  [7] "R500_DP_1_INTERNODE"    "R500_DP_2_INTERNODE"   
-##  [9] "R500_DP_3_INTERNODE"    "R500_NDP_1_INTERNODE"  
-## [11] "R500_NDP_2_INTERNODE"   "R500_NDP_3_INTERNODE"
+##  [1] "gene_id"                "IMB211_DP_1_INTERNODE" 
+##  [3] "IMB211_DP_2_INTERNODE"  "IMB211_DP_3_INTERNODE" 
+##  [5] "IMB211_NDP_1_INTERNODE" "IMB211_NDP_2_INTERNODE"
+##  [7] "IMB211_NDP_3_INTERNODE" "R500_DP_1_INTERNODE"   
+##  [9] "R500_DP_2_INTERNODE"    "R500_DP_3_INTERNODE"   
+## [11] "R500_NDP_1_INTERNODE"   "R500_NDP_2_INTERNODE"  
+## [13] "R500_NDP_3_INTERNODE"
 ```
 
 ### Data exploration
@@ -136,7 +164,7 @@ When you are done, then typing `names(counts.data)` should give results below
 __Exercise 4__  
 __a.__ Make a histogram of counts for each of the samples.  
 __b.__ Is the data normally distributed?  Make a new set of histograms after applying an appropriate transformation if needed.
-__Hint 1__: _see the use of the `melt()` function in the Rice-SNP lab_.  __Hint 2__: _You can transform the axes in ggplot by adding_ `scale_x_log10()` or `scale_x_sqrt()` _to the plot.  One of these should be sufficient if you need to transorm, but for other ideas see the [Cookbook for R page](http://www.cookbook-r.com/Graphs/Axes_%28ggplot2%29/#axis-transformations-log-sqrt-etc)_.  
+__Hint 1__: _You probably need to `gather` the data into long format.  See the Rice SNP lab and spread and gather tutorial if you need a review_.  __Hint 2__: _You can transform the axes in ggplot by adding_ `scale_x_log10()` or `scale_x_sqrt()` _to the plot.  One of these should be sufficient if you need to transorm, but for other ideas see the [Cookbook for R page](http://www.cookbook-r.com/Graphs/Axes_%28ggplot2%29/#axis-transformations-log-sqrt-etc)_.  
 
 
 
@@ -144,11 +172,13 @@ For our subsequent analyses we want to reduce the data set to only those genes w
 
 
 ```r
-counts.data <- counts.data[rowSums(counts.data > 10) >= 3,]
+counts.data <- counts.data[rowSums(counts.data[,-1] > 10) >= 3,]
 ```
 
 __Exercise 5:__  
 We expect that read counts, especially from biological replicates, will be highly correlated.  Check to see if this is the case using the `pairs()` function and the `cor()` function.  Explain what each of these functions does and comment on the results.  __Important Hint:__ _`pairs` is slow on the full dataset.  Try it on the first 1,000 genes.  Do you need to transform to make the pairs output more meaningful?_
+
+_Hint 2: remember that you will need to remove the "gene_id" column before using the data in `pairs` or `cor`_
 
 
 
@@ -162,34 +192,43 @@ Before we can normalize the data we need to be able to tell edgeR which groups t
 
 
 ```r
-sample.description <- data.frame(
-  sample=colnames(counts.data),
-  
+sample.description <- tibble(sample=colnames(counts.data)[-1])
+
+sample.description <- sample.description %>% 
   #This next line searches for IMB211 or R500 in the colnames of counts.data and returns anything that matches
   #In this way we can extract the genotype info.
-  gt=regmatches(colnames(counts.data),regexpr("R500|IMB211",colnames(counts.data))),
+  mutate(gt=str_extract(sample,"R500|IMB211")) %>%
   
   #Now we use the same method to get the treatment
-  trt=regmatches(colnames(counts.data),regexpr("NDP|DP",colnames(counts.data)))
-  )
+  mutate(trt=str_extract(sample,"NDP|DP")) %>%
+  
+  # Now we can paste the trt and gt columns together to give a group identifier
 
-# Now we can paste the trt and gt columns together to give a group identifier
-sample.description$group <- paste(sample.description$gt,sample.description$trt,sep="_")
+  mutate(group=str_c(gt,trt,sep = "_"))
 
-# set the reference treatment to "NDP"
-sample.description$trt <- relevel(sample.description$trt,ref="NDP")
+sample.description
+
+#next convert gt and trt into group variables (factors)
+
+sample.description <- sample.description %>%
+  mutate(gt=factor(gt), 
+         trt=factor(trt,levels = c("NDP","DP"))) # setting the levels in this way makes "NDP" the refernce  
 
 sample.description
 ```
 
 #### Calculate normalization factors
 
-Now we use the edgeR function `calcNormFactors()` to calculate the effective library size and normalization factors using the TMM method on our counts data.  First we create a DGEList object, which is an object class defined by edgeR to hold the data for differential expression analysis.
+Now we use the edgeR function `calcNormFactors()` to calculate the effective library size and normalization factors using the TMM method on our counts data.  First we create a DGEList object, which is an object class defined by edgeR to hold the data for differential expression analysis.  DGEList wants a numeric matrix as input, so need to convert our counts.data
 
 
 ```r
 library(edgeR)
-dge.data <- DGEList(counts=counts.data, group=sample.description$group)
+counts.matrix <- counts.data %>% select(-gene_id) %>% as.matrix()
+rownames(counts.matrix) <- counts.data$gene_id
+
+dge.data <- DGEList(counts=counts.matrix, 
+                    group=sample.description$group)
 dim(dge.data) 
 dge.data <- calcNormFactors(dge.data, method = "TMM")
 dge.data$samples # look at the normalization factors
@@ -232,7 +271,11 @@ __Hint 1__: _log2 transform the counts before plotting.  Add a value of "1" befo
 counts.data.log <- log2(counts.data + 1)
 ```
 
-__Hint 2__: _If you don't want to bother with melting before going to ggplot, you can just use the `boxplot()` function and feed it the (transformed) matrix directly._
+```
+## Error in FUN(left, right): non-numeric argument to binary operator
+```
+
+__Hint 2__: _If you don't want to bother with gathering your data before going to ggplot, you can just use the `boxplot()` function and feed it the (transformed) matrix directly._
 
 
 
@@ -324,16 +367,16 @@ topTags(gt.lrt) # the top 10 most differentially expressed genes
 ```
 ## Coefficient:  gtR500 
 ##                logFC   logCPM       LR        PValue           FDR
-## Bra033098 -12.153105 6.070823 998.8288 3.227382e-219 7.756690e-215
-## Bra023495 -11.889171 5.792298 974.5075 6.244234e-214 7.503696e-210
-## Bra016271 -14.250692 8.144467 891.3678 7.385330e-196 5.916634e-192
-## Bra020631 -11.318315 5.206858 870.7722 2.216713e-191 1.331912e-187
-## Bra011216 -11.258770 5.133650 853.8519 1.057197e-187 5.081734e-184
-## Bra020643 -14.383988 8.280736 841.0552 6.400269e-185 2.563734e-181
-## Bra009785   7.950946 6.018503 786.8300 3.939943e-173 1.352751e-169
-## Bra011765  -7.319947 6.341553 749.4443 5.299544e-165 1.592116e-161
-## Bra026924  -8.334013 5.028260 729.9894 9.005258e-161 2.404804e-157
-## Bra029392   8.339064 6.296476 723.1410 2.777521e-159 6.675494e-156
+## Bra033098 -12.153106 6.068467 998.6286 3.567444e-219 8.573994e-215
+## Bra023495 -11.889170 5.789511 974.7529 5.522556e-214 6.636456e-210
+## Bra016271 -14.250692 8.143807 891.5845 6.625961e-196 5.308278e-192
+## Bra020631 -11.318306 5.202817 871.9668 1.219006e-191 7.324399e-188
+## Bra011216 -11.258770 5.129307 853.8612 1.052269e-187 5.058046e-184
+## Bra020643 -14.383989 8.280215 841.6326 4.793719e-185 1.920204e-181
+## Bra009785   7.950946 6.020666 786.7807 4.038360e-173 1.386542e-169
+## Bra011765  -7.319948 6.340366 749.1397 6.172451e-165 1.854359e-161
+## Bra026924  -8.334015 5.024615 729.7444 1.018056e-160 2.718661e-157
+## Bra029392   8.339095 6.298419 725.1631 1.009170e-159 2.425439e-156
 ```
 
 In the resulting table,
@@ -362,7 +405,7 @@ If we want to create a table of all differentially expressed genes at a given FD
 
 ```r
 #Extract genes with a FDR < 0.01 (could also use 0.05)
-DEgene.gt <- topTags(gt.lrt,n = Inf)$table[topTags(gt.lrt,n = Inf)$table$FDR<0.01,]
+DEgene.gt <- topTags(gt.lrt,n = Inf,p.value = 0.01)$table
 
 #save to a file
 write.csv(DEgene.gt,"DEgenes.gt.csv")
