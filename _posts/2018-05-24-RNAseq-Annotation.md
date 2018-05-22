@@ -10,17 +10,15 @@ tags:
 - RNAseq
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache=TRUE)
-```
+
 
 # Assignment
 
 Pull your repository.
 
-There are three questions below.  Please answer them using the new file `Assignment_6_Part_2.Rmd` in your `Assignment_6` directory.
+There are three questions below.  Please answer them using the file `Assignment_6_Part_2.Rmd` in your `Assignment_6` directory.
 
-Knit the file and submit the .Rmd and .html when you are done.  Open an issue indicating that the assignment is ready to be graded.
+Knit the file and submit the .Rmd and .html when you are done.  
 
 # Background
 
@@ -46,25 +44,11 @@ __Exercise 1__
 
 (Note: you should have these gene lists from the previous lab (Assignment_6_Part_1).  And they should have been saved as files `DEgenes.trt.csv` and `DEgenes.interaction.csv`, so you can load them in from these files).
 
-__a.__ Use `merge()` to add gene descriptions for the genes found to be regulated by the DP treatment.  Output a table of the top 10 genes that includes the output from edgeR and the descriptions.  __Important: Pay attention to the "sort="" argument to `merge()`.  Should it be TRUE or FALSE?
+__a.__ Load the gene descriptions; pay attention to the "col_names" argument.  What is appropritae here?  Use one of the `join()` funtions (which one?) to add gene descriptions for the genes found to be regulated by the DP treatment.  Output a table of the top 10 genes that includes the output from edgeR and the descriptions.
 
 __b.__ Repeat this for  genes with a genotype x trt interaction.
 
-```{r Ex1 ,echo=FALSE,eval=FALSE}
-#a
-annotation <- read.delim("../data/FileS9.txt",header=FALSE,row.names=1) #path will be different for students
-head(annotation)
-DEgene.trt <- read.csv("DEgenes.trt.csv",row.names=1)
-head(DEgene.trt)
-DE.trt.annotated <- merge(DEgene.trt,annotation,by="row.names",sort=FALSE)
-head(DE.trt.annotated,10)
 
-#b
-DEgene.interaction <- read.csv("DEgenes.interaction.csv",row.names=1)
-head(DEgene.interaction)
-DE.interaction.annotated <- merge(DEgene.interaction,annotation,by="row.names",sort=FALSE)
-head(DE.interaction.annotated,10)
-```
 
 By looking at the annotated interaction gene list we can see that many of the identified genes code for proteins that modify the plant cell wall (I wouldn't expect you to know this unless you are a plant biologist).  This might relate to the different properties of the two cultivars, IMB211 and R500, and their different responses to the treatment.  Depending on our interests and knowledge of the system we might at this point choose follow up study on specific genes.
 
@@ -105,20 +89,20 @@ Place this file in your `Assignment_6` directory.
 We need to do a bit of data wrangling to get things in the correct format for GOSeq.  First we import the gene lengths and GO terms.  We also import a table of all expressed genes in the experiment (you could have gotten this from Tuesday's data)
 
 Get the data
-```{r goseq_prep, eval=FALSE}
-library(goseq)
-go.terms <- read.delim("Brapa_reference/FileS11.txt",header=FALSE,as.is=TRUE)
-head(go.terms)
-names(go.terms) <- c("GeneID","GO")
-summary(go.terms)
 
-expressed.genes <- read.delim("internode_expressed_genes.txt",as.is=TRUE)
+```r
+library(goseq)
+go.terms <- read_tsv("Brapa_reference/FileS11.txt",col_names=FALSE)
+head(go.terms)
+colnames(go.terms) <- c("GeneID","GO")
+head(go.terms)
+
+expressed.genes <- read_tsv("internode_expressed_genes.txt")
 head(expressed.genes)
 names(expressed.genes) <- "GeneID"
 
-gene.lengths <- read.table("Brapa_reference/Brapa_CDS_lengths.txt",as.is=TRUE)
+gene.lengths <- read_tsv("Brapa_reference/Brapa_CDS_lengths.txt")
 head(gene.lengths)
-summary(gene.lengths)
 
 #we need to reduce the gene.length data to only contain entries for those genes in our expressed.genes set.  We also need this as a vector
 gene.lengths.vector <- gene.lengths$Length[gene.lengths$GeneID %in% expressed.genes$GeneID]
@@ -129,42 +113,22 @@ head(gene.lengths.vector)
 expressed.genes.match <- expressed.genes[expressed.genes$GeneID %in% names(gene.lengths.vector),]
 ```
 
-```{r goseq_prep_jm, eval=FALSE, echo=FALSE}
-library(goseq)
-go.terms <- read.delim("../data/FileS11.txt",header=FALSE,as.is=TRUE)
-head(go.terms)
-names(go.terms) <- c("GeneID","GO")
-summary(go.terms)
 
-expressed.genes <- read.delim("../data/internode_expressed_genes.txt",as.is=TRUE)
-head(expressed.genes)
-names(expressed.genes) <- "GeneID"
-
-gene.lengths <- read.table("../data/Brapa_CDS_lengths.txt",as.is=TRUE)
-head(gene.lengths)
-summary(gene.lengths)
-
-#we need to reduce the gene.length data to only contain entries for those genes in our expressed.genes set.  We also need this as a vector
-gene.lengths.vector <- gene.lengths$Length[gene.lengths$GeneID %in% expressed.genes$GeneID]
-names(gene.lengths.vector) <- gene.lengths$GeneID[gene.lengths$GeneID %in% expressed.genes$GeneID]
-head(gene.lengths.vector)
-
-#Do the reverse to make sure everything matches up (it seems that we don't have length info for some genes?)
-expressed.genes.match <- expressed.genes[expressed.genes$GeneID %in% names(gene.lengths.vector),]
-```
 
 Format go.terms for goseq.  We want them in list format, and we need to separate the terms into separate elements.
-```{r goseq_prep2,eval=FALSE}
+
+```r
 go.list <- strsplit(go.terms$GO,split=",")
 names(go.list) <- go.terms$GeneID
 head(go.list)
 ```
 
 Format gene expression data for goseq.  We need a vector for each gene with 1 indicating differential expression and 0 indicating no differential expression.
-```{r goseq_prep3, eval=FALSE}
-DE.interaction <- expressed.genes.match %in% rownames(DEgene.interaction) 
+
+```r
+DE.interaction <- expressed.genes.match$GeneID %in% DEgene.interaction$GeneID
     #for each gene in expressed gene, return FALSE if it is not in DEgene.trt and TRUE if it is.
-names(DE.interaction) <- expressed.genes.match
+names(DE.interaction) <- expressed.genes.match$GeneID
 head(DE.interaction)
 DE.interaction <- as.numeric(DE.interaction) #convert to 0s and 1s
 head(DE.interaction)
@@ -174,7 +138,8 @@ sum(DE.interaction) # number of DE genes
 ### Calculate over-representation
 
 Now we can look for GO enrichment
-```{r goseq, eval=FALSE}
+
+```r
 #determines if there is bias due to gene length.  The plot shows the relationship.
 nullp.result <- nullp(DEgenes = DE.interaction,bias.data = gene.lengths.vector)
 
@@ -190,8 +155,8 @@ GO.out[GO.out$over_represented_pvalue < 0.05,]
 
 Looking through a long list can be tough.  There is a nice visualizer called [REVIGO](http://revigo.irb.hr/).  To use it we need to cut and paste the column with the GO term and the one with the p-value.  Use the command below to save these columns into a file:
 
-```{r goseq_revigo, eval=FALSE}
 
+```r
 write.table(GO.out[GO.out$over_represented_pvalue < 0.05,1:2],row.names=FALSE,file="GO_terms.txt", quote = FALSE,col.names = FALSE)
 ```
 
@@ -253,7 +218,8 @@ Siobhan Brady has compiled a file of plant transcription factor binding motifs. 
 Place these in your `Brapa_reference` directory
 
 Load the promoter sequences
-```{r load_promoters, eval=FALSE}
+
+```r
 library(Biostrings) #R package for handling DNA and protein data
 promoters <- readDNAStringSet("../Brapa_reference/BrapaV1.5_1000bp_upstream.fa.gz")
 
@@ -264,7 +230,8 @@ promoters
 ```
 
 Load the motifs and convert to a good format for R
-```{r load_motifs, eval=FALSE}
+
+```r
 motifs <- read.delim("../data/element_name_and_motif_IUPACsupp.txt",header=FALSE,as.is=TRUE)
 head(motifs)
 motifsV <- as.character(motifs[,2])
@@ -273,25 +240,11 @@ motifsSS <- DNAStringSet(motifsV)
 motifsSS
 ```
 
-```{r load_motifs_promoters_jm, eval=FALSE, echo=FALSE}
-library(Biostrings) #R package for handling DNA and protein data
-promoters <- readDNAStringSet("../data/BrapaV1.5_1000bp_upstream.fa.gz")
 
-#convert "N" to "-" in promoters.  otherwise motifs will match strings of "N"s
-promoters <- DNAStringSet(gsub("N","-",promoters))
-
-promoters
-
-motifs <- read.delim("../data/element_name_and_motif_IUPACsupp.txt",header=FALSE,as.is=TRUE)
-head(motifs)
-motifsV <- as.character(motifs[,2])
-names(motifsV) <- motifs[,1]
-motifsSS <- DNAStringSet(motifsV)
-motifsSS
-```
 
 Next we need to subset the promoters into those in our DE genes and those in the "Universe"
-```{r subset_promoters, eval=FALSE}
+
+```r
 #get names to match...there are are few names in the DEgene list not in the promoter set
 DEgene.interaction.match <- row.names(DEgene.interaction)[row.names(DEgene.interaction) %in% names(promoters)]
 
@@ -303,7 +256,8 @@ target.promoters <- promoters[DEgene.interaction.match]
 ### Look for over-represented motifs
 
 I have written a function to wrap up the required code.  Paste this into R to create the function
-```{r motif_enrich, eval=FALSE}
+
+```r
 #create a function to summarize the results and test for significance
 motifEnrichment <- function(target.promoters,universe.promoters,all.counts=F,motifs=motifsSS) {
   
@@ -353,7 +307,8 @@ motifEnrichment <- function(target.promoters,universe.promoters,all.counts=F,mot
 ```
 
 Now with the function entered we can do the enrichment
-```{r enrich_finally, eval=FALSE}
+
+```r
 motif.results <- motifEnrichment(target.promoters,universe.promoters)
 head(motif.results)
 ```

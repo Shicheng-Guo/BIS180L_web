@@ -268,14 +268,13 @@ __Hint 1__: _log2 transform the counts before plotting.  Add a value of "1" befo
 
 
 ```r
-counts.data.log <- log2(counts.data + 1)
-```
-
-```
-## Error in FUN(left, right): non-numeric argument to binary operator
+counts.data.log <- log2(counts.data[,-1] + 1)
 ```
 
 __Hint 2__: _If you don't want to bother with gathering your data before going to ggplot, you can just use the `boxplot()` function and feed it the (transformed) matrix directly._
+
+__Hint 3__: Why do I use `[,-1]` above?  Do you need to use this on `counts.data.normal`?
+
 
 
 

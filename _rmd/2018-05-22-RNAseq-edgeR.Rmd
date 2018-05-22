@@ -281,13 +281,16 @@ To get a graphical idea for what the normalization does, make box plots of the c
 __Hint 1__: _log2 transform the counts before plotting.  Add a value of "1" before log2 transforming to avoid having to take the log2 of 0.  Your transformation will look something like this:
 
 ```{r}
-counts.data.log <- log2(counts.data + 1)
+counts.data.log <- log2(counts.data[,-1] + 1)
 ```
 
 __Hint 2__: _If you don't want to bother with gathering your data before going to ggplot, you can just use the `boxplot()` function and feed it the (transformed) matrix directly._
 
+__Hint 3__: Why do I use `[,-1]` above?  Do you need to use this on `counts.data.normal`?
+
+
 ```{r Ex 8,eval=FALSE,echo=FALSE}
-boxplot(log2(counts.data + 1),main="counts before transformation",ylab = "log2(counts)")
+boxplot(log2(counts.data[,-1] + 1),main="counts before transformation",ylab = "log2(counts)")
 boxplot(log2(counts.data.normal + 1),main="cpm after transformation",ylab = "log2(cpm)")
 ```
 
