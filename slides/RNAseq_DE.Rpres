@@ -1,7 +1,7 @@
 RNAseq: Differential Expression
 ========================================================
 author: Julin Maloof
-date: May 18, 2017
+date: May 22, 2018
 autosize: true
 incremental: true
 
@@ -55,3 +55,82 @@ Outline
 * Determine appropriate statistical models (EdgeR)
 * Find differentially expressed genes (EdgeR)
 * Examine results
+
+Additive and Interaction effects
+=========================================
+
+(On board)
+
+Model Matrix
+========================================
+incremental:false
+In edgeR a `model matrix` is created to describe the possible experimental effects on gene expression.  
+
+Our additive model matrix will look like this:
+
+
+```{r design, echo=FALSE}
+library(tidyverse)
+counts.data <- read_tsv("../data/gh_internode_counts2.tsv")
+sample.description <- tibble(sample=colnames(counts.data)[-1])
+sample.description <- sample.description %>%
+mutate(gt=str_extract(sample,"R500|IMB211")) %>%
+mutate(trt=str_extract(sample,"NDP|DP")) %>%
+mutate(group=str_c(gt,trt,sep = "_"))
+sample.description <- sample.description %>%
+mutate(gt=factor(gt),
+trt=factor(trt,levels = c("NDP","DP"))) # setting the levels in this way makes "NDP" the refernce
+design <- model.matrix(~gt+trt,data = sample.description)
+rownames(design) <- sample.description$sample %>% str_replace(fixed("_INTERNODE.1_matched.merged.fq.bam"),"")
+kable(design)
+```
+
+
+Model Matrix
+========================================
+incremental:false
+
+The 1s and 0s specify which effects are present in each sample and are used in the statistical model:
+
+$$
+expression \sim intercept + gt + trt
+$$
+
+
+```{r design2, echo=FALSE}
+kable(design)
+```
+
+Model Matrix
+========================================
+incremental:false
+
+The 1s and 0s specify which effects are present in each sample and are used in the statistical model:
+
+$$
+expression \sim intercept + gt + trt
+$$
+
+Which is shorthand for
+
+$$
+expression \sim intercept + gtR500\_Effect*gtR500 + trtDP\_Effect*trtDP
+$$
+
+```{r design3, echo=FALSE}
+kable(design)
+```
+
+Testing model terms
+==================================
+
+To test for whether a particular factor is an important determinant of a gene's expression level, we compare models with and without that term.  For example, to test if genotype is important, we would compare
+
+__(full model)__    $expression \sim intercept + gt + trt$
+
+to
+
+__(reduced model)__   $expression \sim intercept + trt$
+
+
+If the full model its the data significantly better than the reduced model, then we conclude that genotype is important.
