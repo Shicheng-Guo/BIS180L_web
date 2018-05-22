@@ -163,8 +163,9 @@ When you are done, then typing `colnames(counts.data)` should give results below
 
 __Exercise 4__  
 __a.__ Make a histogram of counts for each of the samples.  
-__b.__ Is the data normally distributed?  Make a new set of histograms after applying an appropriate transformation if needed.
-__Hint 1__: _You probably need to `gather` the data into long format.  See the Rice SNP lab and spread and gather tutorial if you need a review_.  __Hint 2__: _You can transform the axes in ggplot by adding_ `scale_x_log10()` or `scale_x_sqrt()` _to the plot.  One of these should be sufficient if you need to transorm, but for other ideas see the [Cookbook for R page](http://www.cookbook-r.com/Graphs/Axes_%28ggplot2%29/#axis-transformations-log-sqrt-etc)_.  
+__b.__ Is the data normally distributed?  Make a new set of histograms after applying an appropriate transformation if needed.  
+
+__Hint 1__: _You probably need to `gather` the data into long format.  See the Rice SNP lab and spread and gather tutorial if you need a review_.  __Hint 2__: _You can transform the axes in ggplot by adding_ `scale_x_log10()` or `scale_x_sqrt()` _to the plot.  One of these should be sufficient if you need to transform, but for other ideas see the [Cookbook for R page](http://www.cookbook-r.com/Graphs/Axes_%28ggplot2%29/#axis-transformations-log-sqrt-etc)_.  
 
 
 
