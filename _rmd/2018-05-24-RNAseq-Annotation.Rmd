@@ -46,7 +46,7 @@ __Exercise 1__
 
 (Note: you should have these gene lists from the previous lab (Assignment_6_Part_1).  And they should have been saved as files `DEgenes.trt.csv` and `DEgenes.interaction.csv`, so you can load them in from these files).
 
-__a.__ Load the gene descriptions; pay attention to the "col_names" argument.  What is appropritae here?  Use one of the `join()` funtions (which one?) to add gene descriptions for the genes found to be regulated by the DP treatment.  Output a table of the top 10 genes that includes the output from edgeR and the descriptions.
+__a.__ Load the gene descriptions; pay attention to the "col_names" argument.  What is appropriate here?  Use one of the `join()` funtions (which one?) to add gene descriptions for the genes found to be regulated by the DP treatment.  Output a table of the top 10 genes that includes the output from edgeR and the descriptions.
 
 __b.__ Repeat this for  genes with a genotype x trt interaction.
 
