@@ -46,12 +46,13 @@ __Exercise 1__
 
 (Note: you should have these gene lists from the previous lab (Assignment_6_Part_1).  And they should have been saved as files `DEgenes.trt.csv` and `DEgenes.interaction.csv`, so you can load them in from these files).
 
-When you read in the DEgene files the first column won't have a column name, so add one:
+When you read in the DEgene files the first column won't have an informative column name, so add one:
 
-```{r eval=FALSE}
+```{r}
 DEgene.trt <- read_csv("DEgenes.trt.csv")
 head(DEgene.trt)
 colnames(DEgene.trt)[1] <- "GeneID"
+head(DEgene.trt)
 ```
 
 
