@@ -289,7 +289,7 @@ promoters
 Load the motifs and convert to a good format for R
 
 ```r
-motifs <- read.delim("../data/element_name_and_motif_IUPACsupp.txt",header=FALSE,as.is=TRUE)
+motifs <- read.delim("../Brapa_reference/element_name_and_motif_IUPACsupp.txt",header=FALSE,as.is=TRUE)
 head(motifs)
 motifsV <- as.character(motifs[,2])
 names(motifsV) <- motifs[,1]
@@ -303,10 +303,10 @@ Next we need to subset the promoters into those in our DE genes and those in the
 
 ```r
 #get names to match...there are are few names in the DEgene list not in the promoter set
-DEgene.interaction.match <- row.names(DEgene.interaction)[row.names(DEgene.interaction) %in% names(promoters)]
+DEgene.interaction.match <- DEgene.interaction$GeneID[DEgene.interaction$GeneID %in% names(promoters)]
 
 #subset promoter files
-universe.promoters <- promoters[expressed.genes.match]
+universe.promoters <- promoters[expressed.genes.match$GeneID]
 target.promoters <- promoters[DEgene.interaction.match]
 ```
 
