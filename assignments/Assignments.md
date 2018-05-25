@@ -16,3 +16,4 @@ Right click on the link to download the markdown template.  Edit the markdown te
 | __May 1__           | R SNPs and GWAS    | See Assignment 4 in github                                              | __May 4, 11:59PM__ |
 | __May10__           | Shiny              | See Shiny Lab Page                                                      | __May 15, 1PM__    |
 | __May15__          | Illumina, IGV, SNPs | See Assignment 5 in Github | __May 22, 1:10PM__  |
+| __May 22__  | Differential expression, GO, promoters  | See Assignment 6 in Github | __May 29, 1:10PM__  |
