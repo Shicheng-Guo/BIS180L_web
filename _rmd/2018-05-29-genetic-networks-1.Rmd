@@ -12,10 +12,10 @@ tags:
      - RNA-seq 
 ---
 
-_This lab was designed by [Cody Markelz](http://rjcmarkelz.github.io/) a postdoc in the Maloof Lab._
+_This lab was designed by [Cody Markelz](http://rjcmarkelz.github.io/) a former postdoc in the Maloof Lab._
 
 ## Assignment repository
-Please clone your `Assignment_7` repository and place your answers in the `Assignment_7_template.Rmd` notebook file.  When you are done push the .Rmd .nb.html.
+Please clone your `Assignment_7` repository and place your answers in the `Assignment_7_template.Rmd` notebook file.  When you are done push the .Rmd .html files
 
 ## Clustering Introduction
 As you learned last lab, when we are dealing with genome scale data it is hard to come up with good summaries of the data unless you know exactly the question you are trying to ask. Today we will be explore three different ways to cluster data and get visual summaries of the expression of all genes that had a significant GxE interaction. Once we have these clusters, it allows us to ask further, more detailed questions such as what GO categories are enriched in each cluster, or are there specific metabolic pathways contained in the clusters? While clustering can be used in an exploratory way, the basics you will be learning today have been extended to very sophisticated statistical/machine learning methods used across many disciplines. In fact, there are many different methods used for clustering in R outlined in this **[CRAN VIEW](http://cran.r-project.org/web/views/Cluster.html)**.
@@ -33,21 +33,34 @@ An intuitive example is clustering the distances between know geographic locatio
 
 A special note: all the clusters at each merge take on the shortest distance between any one member of the cluster and the remaining clusters. For example, the distance between BOS and DC is 429 miles, but the distance between NY and DC is 233. Because BOS/NY are considered one cluster after our first round, their cluster distance to DC is 233. All three of these cities are then merged into one cluster DC/NY/BOS.  (Alternative approached could be used, such as takign the mean distance or the longest distance).
 
-Change into your Assignment_7 directory and download the data
+Change into your Assignment_7 directory.
+
+You should have a file `us_cities.txt` in your Assignment 7 directory.  If not, or if you are not in BIS180L, you can download it as indicated below and move it to your Assignment_7 directory.
 
 ```{r, engine = 'bash', eval = FALSE}
 wget http://jnmaloof.github.io/BIS180L_web/data/us_cities.txt
 ```
 
-BIS180L_web/data/us_cities.txt
+Import the data
 
-```{r  warning=FALSE} 
+```{r  eval=FALSE} 
 # make sure to change the path to where you downloaded this using wget
+library(tidyverse)
+cities <- read.delim("us_cities.txt",row.names = 1)
+
+head(cities)
+plot(hclust(dist(cities))) 
+```
+
+```{r  echo=FALSE} 
+# make sure to change the path to where you downloaded this using wget
+library(tidyverse)
 cities <- read.delim("../data/us_cities.txt",row.names = 1)
 
 head(cities)
 plot(hclust(dist(cities))) 
 ```
+
 **Exercise 1:**
 Extending the example that I gave for BOS/NY/DC, what are the distances that define each split in the West Coast side of the hclust plot? 
 *Hint 1: Start with the distances between SF and LA. Then look at the difference between that cluster up to SEA*
