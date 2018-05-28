@@ -12,10 +12,10 @@ tags:
      - RNA-seq 
 ---
 
-_This lab was designed by [Cody Markelz](http://rjcmarkelz.github.io/) a postdoc in the Maloof Lab._
+_This lab was designed by [Cody Markelz](http://rjcmarkelz.github.io/) a former postdoc in the Maloof Lab._
 
 ## Assignment repository
-Please clone your `Assignment_7` repository and place your answers in the `Assignment_7_template.Rmd` notebook file.  When you are done push the .Rmd .nb.html.
+Please clone your `Assignment_7` repository and place your answers in the `Assignment_7_template.Rmd` notebook file.  When you are done push the .Rmd .html files
 
 ## Clustering Introduction
 As you learned last lab, when we are dealing with genome scale data it is hard to come up with good summaries of the data unless you know exactly the question you are trying to ask. Today we will be explore three different ways to cluster data and get visual summaries of the expression of all genes that had a significant GxE interaction. Once we have these clusters, it allows us to ask further, more detailed questions such as what GO categories are enriched in each cluster, or are there specific metabolic pathways contained in the clusters? While clustering can be used in an exploratory way, the basics you will be learning today have been extended to very sophisticated statistical/machine learning methods used across many disciplines. In fact, there are many different methods used for clustering in R outlined in this **[CRAN VIEW](http://cran.r-project.org/web/views/Cluster.html)**.
@@ -33,22 +33,38 @@ An intuitive example is clustering the distances between know geographic locatio
 
 A special note: all the clusters at each merge take on the shortest distance between any one member of the cluster and the remaining clusters. For example, the distance between BOS and DC is 429 miles, but the distance between NY and DC is 233. Because BOS/NY are considered one cluster after our first round, their cluster distance to DC is 233. All three of these cities are then merged into one cluster DC/NY/BOS.  (Alternative approached could be used, such as takign the mean distance or the longest distance).
 
-Change into your Assignment_7 directory and download the data
+Change into your Assignment_7 directory.
+
+You should have a file `us_cities.txt` in your Assignment 7 directory.  If not, or if you are not in BIS180L, you can download it as indicated below and move it to your Assignment_7 directory.
 
 
 ```bash
 wget http://jnmaloof.github.io/BIS180L_web/data/us_cities.txt
 ```
 
-BIS180L_web/data/us_cities.txt
+Install a library  
+The `ggdendrogram` library makes nicer tree plots than the base package
+
+```r
+install.packages("ggdendro") #only needs to be done once
+```
 
 
 ```r
-# make sure to change the path to where you downloaded this using wget
-cities <- read.delim("../data/us_cities.txt",row.names = 1)
+library(tidyverse)
+library(ggdendro)
+```
+
+
+Import the data
+
+
+```r
+cities <- read.delim("us_cities.txt",row.names = 1)
 
 head(cities)
 ```
+
 
 ```
 ##       BOS   NY   DC  MIA  CHI  SEA   SF   LA  DEN
@@ -60,11 +76,16 @@ head(cities)
 ## SEA  2976 2815 2684 3273 2013    0  808 1131 1307
 ```
 
+The function `as.dist()` tells R that the `cities` matrix should be used as a matrix.  The function `hclust()` performs hierarchical clustering on the distance matrix.
+
 ```r
-plot(hclust(dist(cities))) 
+cities_hclust <- cities %>% as.dist() %>% hclust()
+ggdendrogram(cities_hclust)
 ```
 
-![plot of chunk unnamed-chunk-25]({{ site.baseurl }}/figure/unnamed-chunk-25-1.png)
+![plot of chunk unnamed-chunk-20]({{ site.baseurl }}/figure/unnamed-chunk-20-1.png)
+
+
 **Exercise 1:**
 Extending the example that I gave for BOS/NY/DC, what are the distances that define each split in the West Coast side of the hclust plot? 
 *Hint 1: Start with the distances between SF and LA. Then look at the difference between that cluster up to SEA*
@@ -76,7 +97,7 @@ Hint: Think Midwest.
 
 Now that we have that example out of the way, lets start using this technique on biological data. This week will be a review of all the cool data manipulation steps you have learned in past weeks. I would like to emphasize that printing dataframes (or parts of them) is a really fast way to get an idea about the data you are working with. Visual summaries like printed data, or plotting the data are often times the best way to make sure things are working the way they should be and you are more likely to catch errors. I have included visual summaries at all of the points where I would want to check on the data. 
 
-If you remember last week, you found some genes that had significant GxE in the internode tissue. We are going to be taking a look at those same genes again this week. That data set that you used only had 12 RNA-seq libraries in it. However, that subset of data was part of a much larger study that we are going to explore today. This data set consists of RNA-seq samples collected from 2 genotypes of *Brassica rapa* (R500 and IMB211) that were grown in either dense (DP) or non-dense planting (NDP) treatments. Upendra also collected tissue from multiple tissue types including: Leaf, Petiole, Internode (you worked with this last week), and silique (the plant seed pod). There were also 3 biological replicates of each combination (Rep 1, 2, 3). If your head is spinning thinking about all of this, do not worry, data visualization will come to the rescue here in a second.
+If you remember last week, you found some genes that had significant GxE in the internode tissue. We are going to be taking a look at those same genes again this week. That data set that you used only had 12 RNA-seq libraries in it. However, that subset of data was part of a much larger study that we are going to explore today. This data set consists of RNA-seq samples collected from 2 genotypes of *Brassica rapa* (R500 and IMB211) that were grown in either dense (DP) or non-dense planting (NDP) treatments. The researcher that did this stiudy, Upendra, also collected tissue from multiple tissue types including: Leaf, Petiole, Internode (you worked with this last week), and silique (the plant seed pod). There were also 3 biological replicates of each combination (Rep 1, 2, 3). If your head is spinning thinking about all of this, do not worry, data visualization will come to the rescue here in a second.
 
 Remember last week when we were concerned with what distribution the RNA-seq count data was coming from so that we could have a good statistical model of it? Well, if we want to perform good clustering we also need to think about this because most of the simplest clustering assumes data to be from a normal distribution. I have transformed the RNAseq data to be normally distributed for you, but if you every need to do it yourself you can do so with the function `voom` from the `limma` package.  
 
@@ -91,67 +112,158 @@ wget http://jnmaloof.github.io/BIS180L_web/data/voom_transform_brassica.csv
 
 ```r
 # make sure to change the path to where you downloaded this using wget
-DE_genes <- read.table("../data/DEgenes_GxE.csv", sep = ",")
+DE_genes <- read_csv("../data/DEgenes_GxE.csv")
 head(DE_genes) #check out the data
 ```
 
 ```
-##               logFC   logCPM        LR       PValue          FDR
-## Bra010821  6.657165 6.040918 153.15544 3.542436e-35 8.513891e-31
-## Bra033034 -4.639893 6.611694  71.26078 3.129960e-17 3.761273e-13
-## Bra035334 -4.142456 4.665331  68.34729 1.370938e-16 1.098304e-12
-## Bra003598 -4.893648 3.900122  54.16121 1.846974e-13 1.109755e-09
-## Bra016182  7.714360 6.330237  49.61407 1.871665e-12 8.996719e-09
-## Bra013164  4.098373 9.329089  47.94483 4.383823e-12 1.756013e-08
+## # A tibble: 6 x 6
+##   GeneID    logFC logCPM    LR   PValue      FDR
+##   <chr>     <dbl>  <dbl> <dbl>    <dbl>    <dbl>
+## 1 Bra010821  6.66   6.04 153.  3.54e-35 8.51e-31
+## 2 Bra033034 -4.64   6.61  71.3 3.13e-17 3.76e-13
+## 3 Bra035334 -4.14   4.67  68.3 1.37e-16 1.10e-12
+## 4 Bra003598 -4.89   3.90  54.2 1.85e-13 1.11e- 9
+## 5 Bra016182  7.71   6.33  49.6 1.87e-12 9.00e- 9
+## 6 Bra013164  4.10   9.33  47.9 4.38e-12 1.76e- 8
 ```
 
 ```r
-DE_gene_names <- row.names(DE_genes)
-
 # make sure to change the path to where you downloaded this using wget
-brass_voom_E <- read.table("../data/voom_transform_brassica.csv", sep = ",", header = TRUE)
+brass_voom_E <- read_csv("../data/voom_transform_brassica.csv")
+head(brass_voom_E)
+```
 
-GxE_counts <- as.data.frame(brass_voom_E[DE_gene_names,])
+```
+## # A tibble: 6 x 49
+##   GeneID    IMB211_DP_1_INTERNODE IMB211_DP_1_LEAF IMB211_DP_1_PETIOLE
+##   <chr>                     <dbl>            <dbl>               <dbl>
+## 1 Bra000002                 1.86             -3.43                4.22
+## 2 Bra000003                 5.37              6.35                6.52
+## 3 Bra000004                 0.624             2.00                1.99
+## 4 Bra000005                 5.90              4.85                5.75
+## 5 Bra000006                 4.35              3.20                4.73
+## 6 Bra000007                 1.18              1.53                2.70
+## # ... with 45 more variables: IMB211_DP_1_SILIQUE <dbl>,
+## #   IMB211_DP_2_INTERNODE <dbl>, IMB211_DP_2_LEAF <dbl>,
+## #   IMB211_DP_2_PETIOLE <dbl>, IMB211_DP_2_SILIQUE <dbl>,
+## #   IMB211_DP_3_INTERNODE <dbl>, IMB211_DP_3_LEAF <dbl>,
+## #   IMB211_DP_3_PETIOLE <dbl>, IMB211_DP_3_SILIQUE <dbl>,
+## #   IMB211_NDP_1_INTERNODE <dbl>, IMB211_NDP_1_LEAF <dbl>,
+## #   IMB211_NDP_1_PETIOLE <dbl>, IMB211_NDP_1_SILIQUE <dbl>,
+## #   IMB211_NDP_2_INTERNODE <dbl>, IMB211_NDP_2_LEAF <dbl>,
+## #   IMB211_NDP_2_PETIOLE <dbl>, IMB211_NDP_2_SILIQUE <dbl>,
+## #   IMB211_NDP_3_INTERNODE <dbl>, IMB211_NDP_3_LEAF <dbl>,
+## #   IMB211_NDP_3_PETIOLE <dbl>, IMB211_NDP_3_SILIQUE <dbl>,
+## #   R500_DP_1_INTERNODE <dbl>, R500_DP_1_LEAF <dbl>,
+## #   R500_DP_1_PETIOLE <dbl>, R500_DP_1_SILIQUE <dbl>,
+## #   R500_DP_2_INTERNODE <dbl>, R500_DP_2_LEAF <dbl>,
+## #   R500_DP_2_PETIOLE <dbl>, R500_DP_2_SILIQUE <dbl>,
+## #   R500_DP_3_INTERNODE <dbl>, R500_DP_3_LEAF <dbl>,
+## #   R500_DP_3_PETIOLE <dbl>, R500_DP_3_SILIQUE <dbl>,
+## #   R500_NDP_1_INTERNODE <dbl>, R500_NDP_1_LEAF <dbl>,
+## #   R500_NDP_1_PETIOLE <dbl>, R500_NDP_1_SILIQUE <dbl>,
+## #   R500_NDP_2_INTERNODE <dbl>, R500_NDP_2_LEAF <dbl>,
+## #   R500_NDP_2_PETIOLE <dbl>, R500_NDP_2_SILIQUE <dbl>,
+## #   R500_NDP_3_INTERNODE <dbl>, R500_NDP_3_LEAF <dbl>,
+## #   R500_NDP_3_PETIOLE <dbl>, R500_NDP_3_SILIQUE <dbl>
+```
 
-GxE_counts <- as.matrix(GxE_counts) # some of the downstream steps require a data matrix
+```r
+GxE_counts <- DE_genes %>% select(GeneID) %>% left_join(brass_voom_E) #get count data specifically for the GxE genes
+head(GxE_counts)
+```
+
+```
+## # A tibble: 6 x 49
+##   GeneID    IMB211_DP_1_INTERNODE IMB211_DP_1_LEAF IMB211_DP_1_PETIOLE
+##   <chr>                     <dbl>            <dbl>               <dbl>
+## 1 Bra010821              -3.46                1.70               0.134
+## 2 Bra033034               8.32               -3.43              -1.24 
+## 3 Bra035334               6.01                2.62               2.81 
+## 4 Bra003598               4.05                6.09               5.10 
+## 5 Bra016182              -0.00370            -1.84               5.38 
+## 6 Bra013164               4.25               -3.43               2.64 
+## # ... with 45 more variables: IMB211_DP_1_SILIQUE <dbl>,
+## #   IMB211_DP_2_INTERNODE <dbl>, IMB211_DP_2_LEAF <dbl>,
+## #   IMB211_DP_2_PETIOLE <dbl>, IMB211_DP_2_SILIQUE <dbl>,
+## #   IMB211_DP_3_INTERNODE <dbl>, IMB211_DP_3_LEAF <dbl>,
+## #   IMB211_DP_3_PETIOLE <dbl>, IMB211_DP_3_SILIQUE <dbl>,
+## #   IMB211_NDP_1_INTERNODE <dbl>, IMB211_NDP_1_LEAF <dbl>,
+## #   IMB211_NDP_1_PETIOLE <dbl>, IMB211_NDP_1_SILIQUE <dbl>,
+## #   IMB211_NDP_2_INTERNODE <dbl>, IMB211_NDP_2_LEAF <dbl>,
+## #   IMB211_NDP_2_PETIOLE <dbl>, IMB211_NDP_2_SILIQUE <dbl>,
+## #   IMB211_NDP_3_INTERNODE <dbl>, IMB211_NDP_3_LEAF <dbl>,
+## #   IMB211_NDP_3_PETIOLE <dbl>, IMB211_NDP_3_SILIQUE <dbl>,
+## #   R500_DP_1_INTERNODE <dbl>, R500_DP_1_LEAF <dbl>,
+## #   R500_DP_1_PETIOLE <dbl>, R500_DP_1_SILIQUE <dbl>,
+## #   R500_DP_2_INTERNODE <dbl>, R500_DP_2_LEAF <dbl>,
+## #   R500_DP_2_PETIOLE <dbl>, R500_DP_2_SILIQUE <dbl>,
+## #   R500_DP_3_INTERNODE <dbl>, R500_DP_3_LEAF <dbl>,
+## #   R500_DP_3_PETIOLE <dbl>, R500_DP_3_SILIQUE <dbl>,
+## #   R500_NDP_1_INTERNODE <dbl>, R500_NDP_1_LEAF <dbl>,
+## #   R500_NDP_1_PETIOLE <dbl>, R500_NDP_1_SILIQUE <dbl>,
+## #   R500_NDP_2_INTERNODE <dbl>, R500_NDP_2_LEAF <dbl>,
+## #   R500_NDP_2_PETIOLE <dbl>, R500_NDP_2_SILIQUE <dbl>,
+## #   R500_NDP_3_INTERNODE <dbl>, R500_NDP_3_LEAF <dbl>,
+## #   R500_NDP_3_PETIOLE <dbl>, R500_NDP_3_SILIQUE <dbl>
+```
+
+```r
+GxE_counts <- GxE_counts %>% column_to_rownames("GeneID") %>% as.matrix(GxE_counts) # some of the downstream steps require a data matrix
+head(GxE_counts[,1:6])
+```
+
+```
+##           IMB211_DP_1_INTERNODE IMB211_DP_1_LEAF IMB211_DP_1_PETIOLE
+## Bra010821          -3.463127655         1.701664           0.1337041
+## Bra033034           8.321098205        -3.427619          -1.2448076
+## Bra035334           6.006514162         2.616775           2.8083038
+## Bra003598           4.052572183         6.092017           5.0986003
+## Bra016182          -0.003696037        -1.842657           5.3816316
+## Bra013164           4.251117862        -3.427619           2.6427177
+##           IMB211_DP_1_SILIQUE IMB211_DP_2_INTERNODE IMB211_DP_2_LEAF
+## Bra010821           2.4624596             -1.601140         2.942148
+## Bra033034           0.7124379              8.236488        -3.597011
+## Bra035334           1.7765682              6.769547         1.612442
+## Bra003598           1.5009338              4.281503         5.753928
+## Bra016182           1.7765682             -1.601140        -2.012048
+## Bra013164           6.5337770              5.353056        -2.012048
 ```
 
 Be sure that you understand how the above steps worked!
 
 Now that we have a dataframe containing our 255 significant GxE genes from the internode tissue, we can take a look at how these genes are acting across all tissues.
 
-
-```r
-hr <- hclust(dist(GxE_counts))
-plot(hr)
-```
-
-![plot of chunk unnamed-chunk-28]({{ site.baseurl }}/figure/unnamed-chunk-28-1.png)
-What a mess! We have clustered similar gene to one another but that are too many genes, so we are overplotted in this direction. How about if we cluster by column instead? Notice we have to transpose the data using `t()`. Also, make sure you stretch out the window so you can view it! 
+We use the `dist()`function to compute the Euclidean distance between our data points.  (Other distance metrics are available, look at `?dist` if you are curious.)
 
 
 ```r
-hc <- hclust(dist(t(GxE_counts)))
-plot(hc)
+gene_hclust_row <- GxE_counts %>% dist() %>% hclust()
+ggdendrogram(gene_hclust_row)
 ```
 
-![plot of chunk unnamed-chunk-29]({{ site.baseurl }}/figure/unnamed-chunk-29-1.png)
+![plot of chunk unnamed-chunk-23]({{ site.baseurl }}/figure/unnamed-chunk-23-1.png)
+What a mess! We have clustered similar genes to one another but that are too many genes, so we are overplotted in this direction. How about if we cluster by column instead? Notice we have to transpose the data using `t()`. Also, make sure you stretch out the window so you can view it! 
+
+
 **Exercise 2:**
 What is the general pattern in the h-clustering data? 
 Using what you learned from the city example, what is the subcluster that appears to be very different than the rest of the samples? 
-*Hint: You will have to plot this yourself and stretch it out. The rendering on the website compresses the output.  In your .Rmd file you can click on the left icon above the plot to display it in its own windows*
+*Hint: You may need to plot this yourself and stretch it out if the rendering on the website compresses the output.  In your .Rmd file you can click on the left icon above the plot to display it in its own windows*
 
 We have obtained a visual summary using h-clustering. Now what? We can go a little further and start to define some important sub-clusters within our tree. We can do this using the following function. Once again make sure you plot it so you can stretch the axes. 
+
+Here we have to use the "base" plotting function...
 
 
 ```r
 ?rect.hclust
-hc <- hclust(dist(t(GxE_counts)))
-plot(hc) #redraw the tree everytime before adding the rectangles
-rect.hclust(hc, k = 4, border = "red")
+plot(gene_hclust_col) #redraw the tree everytime before adding the rectangles
+rect.hclust(gene_hclust_col, k = 4, border = "red")
 ```
 
-![plot of chunk unnamed-chunk-30]({{ site.baseurl }}/figure/unnamed-chunk-30-1.png)
+![plot of chunk unnamed-chunk-25]({{ site.baseurl }}/figure/unnamed-chunk-25-1.png)
 **Exercise 3:**
 __a__ With k = 4 as one of the arguments to the rect.hclust() function, what is the largest and smallest group contained within the rectangles? 
 
@@ -191,11 +303,11 @@ fit <- pvclust(GxE_counts, method.hclust = "ward.D", method.dist = "euclidean", 
 plot(fit) # dendogram with p-values
 ```
 
-![plot of chunk unnamed-chunk-31]({{ site.baseurl }}/figure/unnamed-chunk-31-1.png)
+![plot of chunk unnamed-chunk-26]({{ site.baseurl }}/figure/unnamed-chunk-26-1.png)
 The green values are the "Bootstrap Percentage" (BP) values, indicating the percentage of bootstramp samples where that branch was observed.  Red values are the "Approximate Unbiased" (AU) values which scale the BP based on the number of samples that were taken. In both cases numbers closer to 100 provide more support. 
 
 **Exercise 4:**
-After running the 50 bootstrap samples, leave the plot open. Then change nboot up to 1000. In general what happens to BP and AU? You can comparing the two plots by flipping between them.
+After running the 50 bootstrap samples, make a new plot but change nboot up to 1000. In general what happens to BP and AU?
 
 
 We will be discussing more methods for choosing the number of clusters in the k-means section. Until then, we will expand what we learned about h-clustering to do a more sophisticated visualization of the data. 
@@ -222,13 +334,11 @@ head(cities) # city example
 ```
 
 ```r
-cities_mat <- as.matrix(cities)
-cityclust <- hclust(dist(cities_mat))
 ?heatmap.2 #take a look at the arguments
-heatmap.2(cities_mat, Rowv=as.dendrogram(cityclust), scale="row", density.info="none", trace="none")
+heatmap.2(as.matrix(cities), Rowv=as.dendrogram(cities_hclust), scale="row", density.info="none", trace="none")
 ```
 
-![plot of chunk unnamed-chunk-32]({{ site.baseurl }}/figure/unnamed-chunk-32-1.png)
+![plot of chunk unnamed-chunk-27]({{ site.baseurl }}/figure/unnamed-chunk-27-1.png)
 **Exercise 5:**
 We used the scale rows option. This is necessary so that every *row* in the data set will be on the same scale when visualized in the heatmap. This is to prevent really large values somewhere in the data set dominating the heatmap signal. Remember if you still have this data set in memory you can take a look at a printed version to the terminal. Compare the distance matrix that you printed with the colors of the heat map. See the advantage of working with small test sets? Take a look at your plot of the cities heatmap and interpret what a dark red value and a light yellow value in the heatmap would mean in geographic distance. Provide an example of of each in your explanation.
 
@@ -237,18 +347,10 @@ We used the scale rows option. This is necessary so that every *row* in the data
 
 
 ```r
-hr <- hclust(dist(GxE_counts))
-plot(hr)
+plot(gene_hclust_row)
+heatmap.2(GxE_counts, Rowv = as.dendrogram(gene_hclust_row), scale = "row", density.info="none", trace="none")
 ```
-
-![plot of chunk unnamed-chunk-33]({{ site.baseurl }}/figure/unnamed-chunk-33-1.png)
-
-```r
-heatmap.2(GxE_counts, Rowv = as.dendrogram(hr), scale = "row", density.info="none", trace="none")
-```
-
-![plot of chunk unnamed-chunk-33]({{ site.baseurl }}/figure/unnamed-chunk-33-2.png)
-**Exercise 6:** The genes are overplotted so we cannot distinguish one from another. However, what is the most obvious pattern that you can pick out from this data? Describe what you see. Make sure you plot this in your own session so you can stretch it out.
+**Exercise 6:** The genes are overplotted so we cannot distinguish one from another. However, what is the most obvious pattern that you can pick out from this data? Describe what you see. 
 
 **Exercise 7:** In the similar way that you interpreted the color values of the heatmap for the city example, come up with a biological interpretation of the yellow vs. red color values in the heatmap. What would this mean for the pattern that you described in exercise 6? Discuss.
 
@@ -301,8 +403,6 @@ ggplot(data = plotting, aes(x = PC1, y = PC2, label = Row.names, color = cluster
   geom_vline(xintercept = 0, colour = "gray65") +
   geom_point(alpha = 0.8, size = 4, stat = "identity") 
 ```
-
-![plot of chunk unnamed-chunk-35]({{ site.baseurl }}/figure/unnamed-chunk-35-1.png)
 **Exercise 8:** Pretty Colors! Describe what you see visually with 2, 5, 9, and 15 clusters. Why would it be a bad idea to have to few or to many clusters? Discuss with a specific example comparing few vs. many k-means. Justify your choice of too many and too few clusters by describing what you see in each case.
 The final thing that we will do today is try to estimate, based on our data, what the ideal number of clusters is. For this we will use something called the Gap statistic. 
 
@@ -312,28 +412,8 @@ The final thing that we will do today is try to estimate, based on our data, wha
 library(cluster)
 set.seed(125)
 gap <- clusGap(GxE_counts, FUN = kmeans, iter.max = 30, K.max = 20, B = 500, verbose=interactive())
-```
-
-```
-## Clustering k = 1,2,..., K.max (= 20): .. done
-## Bootstrapping, b = 1,2,..., B (= 500)  [one "." per sample]:
-## .................................................. 50 
-## .................................................. 100 
-## .................................................. 150 
-## .................................................. 200 
-## .................................................. 250 
-## .................................................. 300 
-## .................................................. 350 
-## .................................................. 400 
-## .................................................. 450 
-## .................................................. 500
-```
-
-```r
 plot(gap, main = "Gap Statistic")
 ```
-
-![plot of chunk unnamed-chunk-36]({{ site.baseurl }}/figure/unnamed-chunk-36-1.png)
 This is also part of the cluster package that you loaded earlier. It will take a few minutes to calculate this statistic. In the mean time, check out some more information about it in the ?clusGap documentation. We could imagine that as we increase the number of k-means to estimate, we are always going to increase the fit of the data. The extreme examples of this would be if we had k = 255 for the total number of genes in the data set or k = 1. We would be able to fit the data perfectly in the k = 255 case, but what has it told us? It has not really told us anything. Just like you played with the number of k-means in Exercise 8, we can also do this computationally! We want optimize to have the fewest number of clusters that  can explain the variance in our data set.
 
 **Exercise 9:** Based on this Gap statistic plot at what number of k clusters (x-axis) do you start to see diminishing returns? To put this another way, at what value of k does k-1 and k+1 start to look the same for the first time? Or yet another way, when are you getting diminishing returns for adding more k-means? See if you can make the trade off of trying to capture a lot of variation in the data as the Gap statistic increases, but you do not want to add too many k-means because your returns diminish as you add more. Explain your answer using the plot as a guide to help you interpret the data.
@@ -344,10 +424,6 @@ Now we can take a look at the plot again and also print to the terminal what clu
 ```r
 with(gap, maxSE(Tab[,"gap"], Tab[,"SE.sim"], method="firstSEmax"))
 ```
-
-```
-## [1] 8
-```
 **Exercise 10:** What did clusGap() calculate? How does this compare to your answer from Exercise 9? Make a plot using the kmeans functions as you did before, but choose the number of k-means you chose and the number of k-means that are calculated from the Gap Statistic. Describe the differences in the plots.
 
-Good Job Today! There was a lot of technical stuff to get through. If you want more, check out the "Genetic Networks-2" lab where you can build co-expression networks and study their properties using a few of the techniques that you learned today. 
+Good Job Today! There was a lot of technical stuff to get through. If you want more (or even if you don't), check out the "Genetic Networks-2" lab where you can build co-expression networks and study their properties using a few of the techniques that you learned today. BIS180L will do this on Thursday.
