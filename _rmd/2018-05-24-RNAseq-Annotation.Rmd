@@ -46,6 +46,16 @@ __Exercise 1__
 
 (Note: you should have these gene lists from the previous lab (Assignment_6_Part_1).  And they should have been saved as files `DEgenes.trt.csv` and `DEgenes.interaction.csv`, so you can load them in from these files).
 
+When you read in the DEgene files the first column won't have an informative column name, so add one:
+
+```{r}
+DEgene.trt <- read_csv("DEgenes.trt.csv")
+head(DEgene.trt)
+colnames(DEgene.trt)[1] <- "GeneID"
+head(DEgene.trt)
+```
+
+
 __a.__ Load the gene descriptions; pay attention to the "col_names" argument.  What is appropriate here?  Use one of the `join()` funtions (which one?) to add gene descriptions for the genes found to be regulated by the DP treatment.  Output a table of the top 10 genes that includes the output from edgeR and the descriptions.
 
 __b.__ Repeat this for  genes with a genotype x trt interaction.
@@ -266,7 +276,7 @@ promoters
 
 Load the motifs and convert to a good format for R
 ```{r load_motifs, eval=FALSE}
-motifs <- read.delim("../data/element_name_and_motif_IUPACsupp.txt",header=FALSE,as.is=TRUE)
+motifs <- read.delim("../Brapa_reference/element_name_and_motif_IUPACsupp.txt",header=FALSE,as.is=TRUE)
 head(motifs)
 motifsV <- as.character(motifs[,2])
 names(motifsV) <- motifs[,1]
@@ -294,10 +304,10 @@ motifsSS
 Next we need to subset the promoters into those in our DE genes and those in the "Universe"
 ```{r subset_promoters, eval=FALSE}
 #get names to match...there are are few names in the DEgene list not in the promoter set
-DEgene.interaction.match <- row.names(DEgene.interaction)[row.names(DEgene.interaction) %in% names(promoters)]
+DEgene.interaction.match <- DEgene.interaction$GeneID[DEgene.interaction$GeneID %in% names(promoters)]
 
 #subset promoter files
-universe.promoters <- promoters[expressed.genes.match]
+universe.promoters <- promoters[expressed.genes.match$GeneID]
 target.promoters <- promoters[DEgene.interaction.match]
 ```
 

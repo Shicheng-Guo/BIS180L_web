@@ -44,6 +44,63 @@ __Exercise 1__
 
 (Note: you should have these gene lists from the previous lab (Assignment_6_Part_1).  And they should have been saved as files `DEgenes.trt.csv` and `DEgenes.interaction.csv`, so you can load them in from these files).
 
+When you read in the DEgene files the first column won't have an informative column name, so add one:
+
+
+```r
+DEgene.trt <- read_csv("DEgenes.trt.csv")
+```
+
+```
+## Warning: Missing column names filled in: 'X1' [1]
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   X1 = col_character(),
+##   logFC = col_double(),
+##   logCPM = col_double(),
+##   LR = col_double(),
+##   PValue = col_double(),
+##   FDR = col_double()
+## )
+```
+
+```r
+head(DEgene.trt)
+```
+
+```
+## # A tibble: 6 x 6
+##          X1     logFC   logCPM        LR       PValue          FDR
+##       <chr>     <dbl>    <dbl>     <dbl>        <dbl>        <dbl>
+## 1 Bra028803 -5.043456 3.514222 132.19855 1.353792e-30 3.253703e-26
+## 2 Bra019324  4.809736 2.209125  76.43637 2.274236e-18 2.732949e-14
+## 3 Bra034565  4.081287 2.159299  68.93415 1.018068e-16 8.156082e-13
+## 4 Bra025587  4.190919 3.298713  55.04401 1.178609e-13 7.081670e-10
+## 5 Bra029946  2.280844 5.364465  47.80174 4.715743e-12 1.898675e-08
+## 6 Bra026156  1.764672 6.467797  47.50653 5.482101e-12 1.898675e-08
+```
+
+```r
+colnames(DEgene.trt)[1] <- "GeneID"
+head(DEgene.trt)
+```
+
+```
+## # A tibble: 6 x 6
+##      GeneID     logFC   logCPM        LR       PValue          FDR
+##       <chr>     <dbl>    <dbl>     <dbl>        <dbl>        <dbl>
+## 1 Bra028803 -5.043456 3.514222 132.19855 1.353792e-30 3.253703e-26
+## 2 Bra019324  4.809736 2.209125  76.43637 2.274236e-18 2.732949e-14
+## 3 Bra034565  4.081287 2.159299  68.93415 1.018068e-16 8.156082e-13
+## 4 Bra025587  4.190919 3.298713  55.04401 1.178609e-13 7.081670e-10
+## 5 Bra029946  2.280844 5.364465  47.80174 4.715743e-12 1.898675e-08
+## 6 Bra026156  1.764672 6.467797  47.50653 5.482101e-12 1.898675e-08
+```
+
+
 __a.__ Load the gene descriptions; pay attention to the "col_names" argument.  What is appropriate here?  Use one of the `join()` funtions (which one?) to add gene descriptions for the genes found to be regulated by the DP treatment.  Output a table of the top 10 genes that includes the output from edgeR and the descriptions.
 
 __b.__ Repeat this for  genes with a genotype x trt interaction.
@@ -232,7 +289,7 @@ promoters
 Load the motifs and convert to a good format for R
 
 ```r
-motifs <- read.delim("../data/element_name_and_motif_IUPACsupp.txt",header=FALSE,as.is=TRUE)
+motifs <- read.delim("../Brapa_reference/element_name_and_motif_IUPACsupp.txt",header=FALSE,as.is=TRUE)
 head(motifs)
 motifsV <- as.character(motifs[,2])
 names(motifsV) <- motifs[,1]
@@ -246,10 +303,10 @@ Next we need to subset the promoters into those in our DE genes and those in the
 
 ```r
 #get names to match...there are are few names in the DEgene list not in the promoter set
-DEgene.interaction.match <- row.names(DEgene.interaction)[row.names(DEgene.interaction) %in% names(promoters)]
+DEgene.interaction.match <- DEgene.interaction$GeneID[DEgene.interaction$GeneID %in% names(promoters)]
 
 #subset promoter files
-universe.promoters <- promoters[expressed.genes.match]
+universe.promoters <- promoters[expressed.genes.match$GeneID]
 target.promoters <- promoters[DEgene.interaction.match]
 ```
 
