@@ -1,7 +1,7 @@
 Genetic Networks 1: Clustering
 ========================================================
 author: Julin Maloof
-date: 05-30-2017
+date: 05-29-2018
 autosize: true
 
 Clustering
@@ -83,5 +83,5 @@ Gap-statistic
 ==============
 How many clusters are enough?
 
-Choose the number of clusters that maximizes the observed within-cluster variance as compared to expectation of random clusters.
+Choose the number of clusters that maximizes the "gap" between observed and expected within-cluster variance.
 
