@@ -162,10 +162,9 @@ Let's get started.
 
 Based on the pattern that we observed in our clustering analysis on Tuesday and further analysis, the leaf samples that appeared to be part of their own cluster (especially in the heat map) were bad libraries. **This demonstrates the importance of visualizing your data as often as possible during an analysis to catch potential errors.** We will remove these libraries from our analysis today.
 
-Either copy the files from Assignment_7 to your assignment_8 directory or re-download:
+Either copy the gene expression file from Assignment_7 to your assignment_8 directory or re-download:
 
 ```bash
-wget http://jnmaloof.github.io/BIS180L_web/data/DEgenes_GxE.csv
 wget http://jnmaloof.github.io/BIS180L_web/data/voom_transform_brassica.csv
 ```
 
@@ -181,56 +180,83 @@ head(DE_genes) #check out the data
 brass_voom_E <- read_csv("../data/voom_transform_brassica.csv")
 brass_voom_E[,-c(38,42,46)] # remove questionable library columns
 head(brass_voom_E)
+```
 
-GxE_counts <- DE_genes %>% select(GeneID) %>% left_join(brass_voom_E) #get count data specifically for the GxE genes
-head(GxE_counts)
+We will use the 300 genes showing the most variance across samples in the data set.
 
-GxE_counts <- GxE_counts %>% column_to_rownames("GeneID") %>% as.matrix(GxE_counts) # some of the downstream steps require a data matrix
-head(GxE_counts[,1:6])
+```r
+brass_voom_E$variance <- apply(brass_voom_E[,-1],1,var)
+
+gene_exp300 <- brass_voom_E %>% filter(rank(desc(variance)) <= 300) %>% select(-variance) %>% column_to_rownames("GeneID") %>% as.matrix()
+```
+
+```
+## Warning: Setting row names on a tibble is deprecated.
+```
+
+```r
+head(gene_exp300[,1:6])
+```
+
+```
+##           IMB211_DP_1_INTERNODE IMB211_DP_1_LEAF IMB211_DP_1_PETIOLE
+## Bra000059           6.008547559        -1.842657            7.643936
+## Bra000441          -0.293202654         4.392560            2.161185
+## Bra000615           8.199095650        -3.427619            3.948964
+## Bra000638           8.403764872        -3.427619            5.137168
+## Bra000815          -0.003696037        -3.427619           -1.981773
+## Bra001986          11.287212959        -1.105691            5.073509
+##           IMB211_DP_1_SILIQUE IMB211_DP_2_INTERNODE IMB211_DP_2_LEAF
+## Bra000059           -1.746994              7.620447        -3.597011
+## Bra000441           -1.162031             -1.601140         3.184349
+## Bra000615            7.491411              8.081854        -1.275083
+## Bra000638            4.308289              8.591153        -3.597011
+## Bra000815           10.022844             -1.601140        -2.012048
+## Bra001986            9.161399             11.097781        -0.789656
 ```
 
 To Illustrate the process let's begin with just 5 genes
 Subset the data to just five genes
 
 ```r
-GxE_subset <- GxE_counts[1:5,]
+gene_exp5 <- gene_exp300[1:5,]
 ```
 
 Create correlation matrix
 
 ```r
-GxE_cor <- cor(t(GxE_subset))
-GxE_cor %>% round(3)
+gene_exp5_cor <- cor(t(gene_exp5))
+gene_exp5_cor %>% round(3)
 ```
 
 Set the diagonal to 0:
 
 ```r
-diag(GxE_cor) <- 0
-GxE_cor
+diag(gene_exp5_cor) <- 0
+gene_exp5_cor
 ```
 
 
 Rank the correlations for each gene.  We will use the absolute corelation value, so + or - correlations will be treated the same.  This will lead to an __unsigned__ network.
 
 ```r
-GxE_rank <- apply(GxE_cor,2,function(x) rank(-abs(x)))
-GxE_rank
+gene_exp5_rank <- apply(gene_exp5_cor,2,function(x) rank(-abs(x)))
+gene_exp5_rank
 ```
 
 **Exercise 4:**
-(**A**) Describe what is meant by the "1" in the ["Bra035334", "Bra033034"] cell.
+(**A**) Describe what is meant by the "1" in the ["Bra000059", "Bra000441"] cell.
 
-(**B**) Do ["Bra035334", "Bra033034"] and ["Bra033034", "Bra035334"] have different values?  If so, why?
+(**B**) Do ["Bra000059", "Bra000441"] and ["Bra000441", "Bra000059"] have different values?  If so, why?
 
 Now compute the pairwise mutual ranks (aka average ranks):
 
 ```r
-GxE_MR <- sqrt(GxE_rank * t(GxE_rank))
-GxE_MR
+gene_exp5_MR <- sqrt(gene_exp5_rank * t(gene_exp5_rank))
+gene_exp5_MR
 ```
 
-(C) Do ["Bra035334", "Bra033034"] and ["Bra033034", "Bra035334"] have different values in the MR tables?  Why or why not?
+(**C**) Do ["Bra000059", "Bra000441"] and ["Bra000441", "Bra000059"] have different values in the MR tables?  Why or why not?
 
 We next need to construct an adjacency matrix of this gene network.  To do so, let's put some constraints on what we want to call an edge. In this case let's only place edges between genes when there mutual rank is 2 or less.
 
@@ -238,15 +264,15 @@ We next need to construct an adjacency matrix of this gene network.  To do so, l
 (**A**) _Create the adjacency matrix described above and place it in an object called `genes_adj_MR2`.  It should look like this:_
 
 ```
-##           Bra010821 Bra033034 Bra035334 Bra003598 Bra016182
-## Bra010821         0         0         0         0         1
-## Bra033034         0         0         1         0         0
-## Bra035334         0         1         0         1         0
-## Bra003598         0         0         1         0         0
-## Bra016182         1         0         0         0         0
+##           Bra000059 Bra000441 Bra000615 Bra000638 Bra000815
+## Bra000059         0         1         0         1         0
+## Bra000441         1         0         0         0         0
+## Bra000615         0         0         0         1         1
+## Bra000638         1         0         1         0         0
+## Bra000815         0         0         1         0         0
 ```
 
-(B) Which genes are connected to Bra035334?
+(**B**) Which genes are connected to Bra000615?
 
 Okay, I think now that we have the basic concepts, let's work with the larger gene expression data set. 
 
@@ -254,31 +280,32 @@ Okay, I think now that we have the basic concepts, let's work with the larger ge
 **Exercise 6:**
 
 (**A**)  
-__Working with the the full `GxE_counts` matrix__, create an adjacency matrix called `genes_adj_MR3` for the genes use a cutoff of MR < =  3.  Remember to set the diagonal of the adjacency matrix to 0.  Create a second adjacency matrix `genes_adj_MR10` using a cutoff of of MR < =  10.
+__Working with the the full `gene_exp300` matrix__, create an adjacency matrix called `genes_adj_MR4` for the genes use a cutoff of MR < =  4.  Remember to set the diagonal of the adjacency matrix to 0.  Create a second adjacency matrix `genes_adj_MR10` using a cutoff of of MR < =  10.
 
 
 
 (**B**)
-Now we can do some calculations. If our cutoff is MR3, how many edges do we have in our 255 node network? What if we increase our cutoff to MR10? *hint: sum( )*
+Now we can do some calculations. If our cutoff is MR4, how many edges do we have in our 300 node network? What if we increase our cutoff to MR10? *hint: sum( )*
 
 
 
 **Exercise 7:**
-Use the following code to plot our networks using different thresholds for connectivity. What do the colors represent?  What patterns do you see in the visualization of this data? 
+Use the following code to plot our networks using different thresholds for connectivity. What do the colors represent?  What patterns do you see in the visualization of this data? __You will need to click on the zoom button on the plot to be able to visualize this well.__
+
 
 
 ```r
-gene_graphMR3 <- graph.adjacency(genes_adj_MR3, mode = "undirected") #convert adjacency to graph
-comps <- clusters(gene_graphMR3)$membership                        #define gene cluster membership
+gene_graphMR4 <- graph.adjacency(genes_adj_MR4, mode = "undirected") #convert adjacency to graph
+comps <- clusters(gene_graphMR4)$membership                        #define gene cluster membership
 colbar <- rainbow(max(comps)+1)                                   #define colors
-V(gene_graphMR3)$color <- colbar[comps+1]                          #assign colors to nodes
-plot(gene_graphMR3, layout = layout_with_kk, vertex.size = 6, vertex.label = NA)
+V(gene_graphMR4)$color <- colbar[comps+1]                          #assign colors to nodes
+plot(gene_graphMR4, layout = layout_with_kk, vertex.size = 4, vertex.label = NA)
   
 gene_graphMR10 <- graph.adjacency(genes_adj_MR10, mode = "undirected") #convert adjacency to graph
 comps <- clusters(gene_graphMR10)$membership                        #define gene cluster membership
 colbar <- rainbow(max(comps)+1)                                   #define colors
 V(gene_graphMR10)$color <- colbar[comps+1]                          #assign colors to nodes
-plot(gene_graphMR10, layout = layout_with_kk, vertex.size = 6, vertex.label = NA)
+plot(gene_graphMR10, layout = layout_with_kk, vertex.size = 4, vertex.label = NA)
 ```
 
 ##Graph Statistics for Network Comparison
@@ -287,14 +314,10 @@ Graph density is a measure of the total number of edges between nodes out of the
 Another really cool property of graphs is we can ask how connected any two nodes are to one another by performing a path analysis through the network. Think about the cities network. If we wanted to get from BOS to SF but we had our plane fuel constraints we could not fly between the two cities on a direct flight. We will have to settle for a layover. A path analysis can find the flight path between cities connecting BOS and SF in the shortest number of layovers. In a biological context it is a little more abstract, but we are asking the network if there is a way that we can get from gene A to gene B by following the edges in the network. Plotting this will help understand!
 
 **Exercise 8:**
- Use the following code to answer these two questions: In gene_graphMR10, what is the total graph density? In gene_graphMR10, what is the average path length? 
+ The functions `graph.density()` and `average.path.length()` compute the graph density and average path length (big surprise.  Use these functions to determine which graph (MR4 or MR10) has the greater density and the greater average path length.  Are the results what you expected?
 
 
-```r
-graph.density(gene_graphMR10)
-average.path.length(gene_graphMR10)
-```
-Now let's plot the distance between two specific nodes. Rather annoyingly `igraph` does not have an easy way to input gene names for the path analysis. It requires that you provide the numeric row number of gene A and how you want to compare that to the column number of gene B. I have written this additional piece of code to show you how this works. We get the shortest paths between ALL genes in the network and then print the results. We are interested in visualizing the path between Bra033034 (row number 2) and Bra009406 (column number 7). This is where the 2 and 7 arguments come from in *get.shortest.paths()*
+Now let's plot the distance between two specific nodes. Rather annoyingly `igraph` does not have an easy way to input gene names for the path analysis. It requires that you provide the numeric row number of gene A and how you want to compare that to the column number of gene B. I have written this additional piece of code to show you how this works. We get the shortest paths between ALL genes in the network and then print the results. We are interested in visualizing the path between Bra038955 (row number 132) and Bra019098 (column number 45). This is where the 132 and 45 arguments come from in *get.shortest.paths()*
 
 
 ```r
@@ -302,7 +325,7 @@ gene_graphMR10 <- graph.adjacency(genes_adj_MR10, mode = "undirected")
 distMatrix <- shortest.paths(gene_graphMR10, v = V(gene_graphMR10), to = V(gene_graphMR10))
 head(distMatrix)[,1:7]
 
-pl <- get.shortest.paths(gene_graphMR10, 2, 7)$vpath[[1]] # pull paths between node 2 and 7
+pl <- get.shortest.paths(gene_graphMR10, 132, 45)$vpath[[1]] # pull paths between node 132 and 45
 
 V(gene_graphMR10)[pl]$color <- paste("green")          # define node color
 E(gene_graphMR10)$color <- paste("grey")               # define default edge color
@@ -311,7 +334,7 @@ E(gene_graphMR10, path = pl)$width <- 10               # define edge width
 plot(gene_graphMR10, layout = layout_with_kk, vertex.size = 6, vertex.label = NA)
 ```
 
-You may need to click on the zoom button on the plot to be abel to visualize this well.
+You will need to click on the zoom button on the plot to be able to visualize this well.
 
 **Exercise 9:**
 Using what you know about graphs, repeat the analysis for the smaller cities matrix. Show your code to answer these questions.
