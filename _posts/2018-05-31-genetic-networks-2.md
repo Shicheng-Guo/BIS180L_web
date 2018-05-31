@@ -111,6 +111,50 @@ Now plot this example to see the connections based on the 2000 mile distance cut
 
 ```r
 library(igraph) # load package
+```
+
+```
+## 
+## Attaching package: 'igraph'
+```
+
+```
+## The following objects are masked from 'package:dplyr':
+## 
+##     as_data_frame, groups, union
+```
+
+```
+## The following objects are masked from 'package:purrr':
+## 
+##     compose, simplify
+```
+
+```
+## The following object is masked from 'package:tidyr':
+## 
+##     crossing
+```
+
+```
+## The following object is masked from 'package:tibble':
+## 
+##     as_data_frame
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     decompose, spectrum
+```
+
+```
+## The following object is masked from 'package:base':
+## 
+##     union
+```
+
+```r
 # make sure to use the 2000 mile distance cutoff 
 cities_graph2 <- graph.adjacency(cities_mat_2000, mode = "undirected")
 plot.igraph(cities_graph2)
@@ -178,7 +222,7 @@ head(DE_genes) #check out the data
 
 # make sure to change the path to where you downloaded this using wget
 brass_voom_E <- read_csv("../data/voom_transform_brassica.csv")
-brass_voom_E[,-c(38,42,46)] # remove questionable library columns
+brass_voom_E <- brass_voom_E[,-c(38,42,46)] # remove questionable library columns
 head(brass_voom_E)
 ```
 
@@ -317,6 +361,21 @@ Another really cool property of graphs is we can ask how connected any two nodes
  The functions `graph.density()` and `average.path.length()` compute the graph density and average path length (big surprise.  Use these functions to determine which graph (MR4 or MR10) has the greater density and the greater average path length.  Are the results what you expected?
 
 
+```
+## Error in "igraph" %in% class(graph): object 'gene_graphMR4' not found
+```
+
+```
+## Error in "igraph" %in% class(graph): object 'gene_graphMR4' not found
+```
+
+```
+## Error in "igraph" %in% class(graph): object 'gene_graphMR10' not found
+```
+
+```
+## Error in "igraph" %in% class(graph): object 'gene_graphMR10' not found
+```
 Now let's plot the distance between two specific nodes. Rather annoyingly `igraph` does not have an easy way to input gene names for the path analysis. It requires that you provide the numeric row number of gene A and how you want to compare that to the column number of gene B. I have written this additional piece of code to show you how this works. We get the shortest paths between ALL genes in the network and then print the results. We are interested in visualizing the path between Bra038955 (row number 132) and Bra019098 (column number 45). This is where the 132 and 45 arguments come from in *get.shortest.paths()*
 
 

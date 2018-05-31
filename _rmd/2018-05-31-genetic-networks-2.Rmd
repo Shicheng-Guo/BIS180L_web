@@ -149,7 +149,7 @@ head(DE_genes) #check out the data
 
 # make sure to change the path to where you downloaded this using wget
 brass_voom_E <- read_csv("../data/voom_transform_brassica.csv")
-brass_voom_E[,-c(38,42,46)] # remove questionable library columns
+brass_voom_E <- brass_voom_E[,-c(38,42,46)] # remove questionable library columns
 head(brass_voom_E)
 ```
 
