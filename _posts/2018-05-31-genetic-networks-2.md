@@ -305,7 +305,7 @@ gene_graphMR10 <- graph.adjacency(genes_adj_MR10, mode = "undirected") #convert 
 comps <- clusters(gene_graphMR10)$membership                        #define gene cluster membership
 colbar <- rainbow(max(comps)+1)                                   #define colors
 V(gene_graphMR10)$color <- colbar[comps+1]                          #assign colors to nodes
-plot(gene_graphMR10, layout = layout_with_kk, vertex.size = 4)
+plot(gene_graphMR10, layout = layout_with_kk, vertex.size = 4, vertex.label = NA)
 ```
 
 ##Graph Statistics for Network Comparison
