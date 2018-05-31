@@ -111,50 +111,6 @@ Now plot this example to see the connections based on the 2000 mile distance cut
 
 ```r
 library(igraph) # load package
-```
-
-```
-## 
-## Attaching package: 'igraph'
-```
-
-```
-## The following objects are masked from 'package:dplyr':
-## 
-##     as_data_frame, groups, union
-```
-
-```
-## The following objects are masked from 'package:purrr':
-## 
-##     compose, simplify
-```
-
-```
-## The following object is masked from 'package:tidyr':
-## 
-##     crossing
-```
-
-```
-## The following object is masked from 'package:tibble':
-## 
-##     as_data_frame
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     decompose, spectrum
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     union
-```
-
-```r
 # make sure to use the 2000 mile distance cutoff 
 cities_graph2 <- graph.adjacency(cities_mat_2000, mode = "undirected")
 plot.igraph(cities_graph2)
@@ -349,7 +305,7 @@ gene_graphMR10 <- graph.adjacency(genes_adj_MR10, mode = "undirected") #convert 
 comps <- clusters(gene_graphMR10)$membership                        #define gene cluster membership
 colbar <- rainbow(max(comps)+1)                                   #define colors
 V(gene_graphMR10)$color <- colbar[comps+1]                          #assign colors to nodes
-plot(gene_graphMR10, layout = layout_with_kk, vertex.size = 4, vertex.label = NA)
+plot(gene_graphMR10, layout = layout_with_kk, vertex.size = 4)
 ```
 
 ##Graph Statistics for Network Comparison
@@ -361,22 +317,7 @@ Another really cool property of graphs is we can ask how connected any two nodes
  The functions `graph.density()` and `average.path.length()` compute the graph density and average path length (big surprise.  Use these functions to determine which graph (MR4 or MR10) has the greater density and the greater average path length.  Are the results what you expected?
 
 
-```
-## Error in "igraph" %in% class(graph): object 'gene_graphMR4' not found
-```
-
-```
-## Error in "igraph" %in% class(graph): object 'gene_graphMR4' not found
-```
-
-```
-## Error in "igraph" %in% class(graph): object 'gene_graphMR10' not found
-```
-
-```
-## Error in "igraph" %in% class(graph): object 'gene_graphMR10' not found
-```
-Now let's plot the distance between two specific nodes. Rather annoyingly `igraph` does not have an easy way to input gene names for the path analysis. It requires that you provide the numeric row number of gene A and how you want to compare that to the column number of gene B. I have written this additional piece of code to show you how this works. We get the shortest paths between ALL genes in the network and then print the results. We are interested in visualizing the path between Bra038955 (row number 132) and Bra019098 (column number 45). This is where the 132 and 45 arguments come from in *get.shortest.paths()*
+Now let's plot the distance between two specific nodes. Rather annoyingly `igraph` does not have an easy way to input gene names for the path analysis. It requires that you provide the numeric row number of gene A and how you want to compare that to the column number of gene B. I have written this additional piece of code to show you how this works. We get the shortest paths between ALL genes in the network and then print the results. We are interested in visualizing the path between Bra029179 (row number 227) and Bra019098 (column number 43). This is where the 227 and 43 arguments come from in *get.shortest.paths()*
 
 
 ```r
@@ -384,7 +325,7 @@ gene_graphMR10 <- graph.adjacency(genes_adj_MR10, mode = "undirected")
 distMatrix <- shortest.paths(gene_graphMR10, v = V(gene_graphMR10), to = V(gene_graphMR10))
 head(distMatrix)[,1:7]
 
-pl <- get.shortest.paths(gene_graphMR10, 132, 45)$vpath[[1]] # pull paths between node 132 and 45
+pl <- get.shortest.paths(gene_graphMR10, 227, 43)$vpath[[1]] # pull paths between node 132 and 45
 
 V(gene_graphMR10)[pl]$color <- paste("green")          # define node color
 E(gene_graphMR10)$color <- paste("grey")               # define default edge color
