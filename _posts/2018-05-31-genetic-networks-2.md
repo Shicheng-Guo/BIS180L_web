@@ -272,13 +272,13 @@ gene_graphMR3 <- graph.adjacency(genes_adj_MR3, mode = "undirected") #convert ad
 comps <- clusters(gene_graphMR3)$membership                        #define gene cluster membership
 colbar <- rainbow(max(comps)+1)                                   #define colors
 V(gene_graphMR3)$color <- colbar[comps+1]                          #assign colors to nodes
-plot(gene_graphMR3, layout = layout.fruchterman.reingold, vertex.size = 6, vertex.label = NA)
+plot(gene_graphMR3, layout = layout_with_kk, vertex.size = 6, vertex.label = NA)
   
 gene_graphMR10 <- graph.adjacency(genes_adj_MR10, mode = "undirected") #convert adjacency to graph
 comps <- clusters(gene_graphMR10)$membership                        #define gene cluster membership
 colbar <- rainbow(max(comps)+1)                                   #define colors
 V(gene_graphMR10)$color <- colbar[comps+1]                          #assign colors to nodes
-plot(gene_graphMR10, layout = layout.fruchterman.reingold, vertex.size = 6, vertex.label = NA)
+plot(gene_graphMR10, layout = layout_with_kk, vertex.size = 6, vertex.label = NA)
 ```
 
 ##Graph Statistics for Network Comparison
@@ -308,7 +308,7 @@ V(gene_graphMR10)[pl]$color <- paste("green")          # define node color
 E(gene_graphMR10)$color <- paste("grey")               # define default edge color
 E(gene_graphMR10, path = pl)$color <- paste("blue")    # define edge color
 E(gene_graphMR10, path = pl)$width <- 10               # define edge width
-plot(gene_graphMR10, layout = layout.fruchterman.reingold, vertex.size = 6, vertex.label = NA)
+plot(gene_graphMR10, layout = layout_with_kk, vertex.size = 6, vertex.label = NA)
 ```
 
 You may need to click on the zoom button on the plot to be abel to visualize this well.
