@@ -109,7 +109,7 @@ head(brass_voom_E)
 GxE_counts <- DE_genes %>% select(GeneID) %>% left_join(brass_voom_E) #get count data specifically for the GxE genes
 head(GxE_counts)
 
-GxE_counts <- GxE_counts %>% column_to_rownames("GeneID") %>% as.matrix(GxE_counts) # some of the downstream steps require a data matrix
+GxE_counts <- GxE_counts %>% column_to_rownames("GeneID") %>% as.matrix() # some of the downstream steps require a data matrix
 head(GxE_counts[,1:6])
 ```
 

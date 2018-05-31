@@ -83,7 +83,7 @@ cities_hclust <- cities %>% as.dist() %>% hclust()
 ggdendrogram(cities_hclust)
 ```
 
-![plot of chunk unnamed-chunk-20]({{ site.baseurl }}/figure/unnamed-chunk-20-1.png)
+![plot of chunk unnamed-chunk-19]({{ site.baseurl }}/figure/unnamed-chunk-19-1.png)
 
 
 **Exercise 1:**
@@ -210,7 +210,7 @@ head(GxE_counts)
 ```
 
 ```r
-GxE_counts <- GxE_counts %>% column_to_rownames("GeneID") %>% as.matrix(GxE_counts) # some of the downstream steps require a data matrix
+GxE_counts <- GxE_counts %>% column_to_rownames("GeneID") %>% as.matrix() # some of the downstream steps require a data matrix
 head(GxE_counts[,1:6])
 ```
 
@@ -243,7 +243,7 @@ gene_hclust_row <- GxE_counts %>% dist() %>% hclust()
 ggdendrogram(gene_hclust_row)
 ```
 
-![plot of chunk unnamed-chunk-23]({{ site.baseurl }}/figure/unnamed-chunk-23-1.png)
+![plot of chunk unnamed-chunk-22]({{ site.baseurl }}/figure/unnamed-chunk-22-1.png)
 What a mess! We have clustered similar genes to one another but that are too many genes, so we are overplotted in this direction. How about if we cluster by column instead? Notice we have to transpose the data using `t()`. Also, make sure you stretch out the window so you can view it! 
 
 
@@ -263,7 +263,7 @@ plot(gene_hclust_col) #redraw the tree everytime before adding the rectangles
 rect.hclust(gene_hclust_col, k = 4, border = "red")
 ```
 
-![plot of chunk unnamed-chunk-25]({{ site.baseurl }}/figure/unnamed-chunk-25-1.png)
+![plot of chunk unnamed-chunk-24]({{ site.baseurl }}/figure/unnamed-chunk-24-1.png)
 **Exercise 3:**
 __a__ With k = 4 as one of the arguments to the rect.hclust() function, what is the largest and smallest group contained within the rectangles? 
 
@@ -303,7 +303,7 @@ fit <- pvclust(GxE_counts, method.hclust = "ward.D", method.dist = "euclidean", 
 plot(fit) # dendogram with p-values
 ```
 
-![plot of chunk unnamed-chunk-26]({{ site.baseurl }}/figure/unnamed-chunk-26-1.png)
+![plot of chunk unnamed-chunk-25]({{ site.baseurl }}/figure/unnamed-chunk-25-1.png)
 The green values are the "Bootstrap Percentage" (BP) values, indicating the percentage of bootstramp samples where that branch was observed.  Red values are the "Approximate Unbiased" (AU) values which scale the BP based on the number of samples that were taken. In both cases numbers closer to 100 provide more support. 
 
 **Exercise 4:**
@@ -338,7 +338,7 @@ head(cities) # city example
 heatmap.2(as.matrix(cities), Rowv=as.dendrogram(cities_hclust), scale="row", density.info="none", trace="none")
 ```
 
-![plot of chunk unnamed-chunk-27]({{ site.baseurl }}/figure/unnamed-chunk-27-1.png)
+![plot of chunk unnamed-chunk-26]({{ site.baseurl }}/figure/unnamed-chunk-26-1.png)
 **Exercise 5:**
 We used the scale rows option. This is necessary so that every *row* in the data set will be on the same scale when visualized in the heatmap. This is to prevent really large values somewhere in the data set dominating the heatmap signal. Remember if you still have this data set in memory you can take a look at a printed version to the terminal. Compare the distance matrix that you printed with the colors of the heat map. See the advantage of working with small test sets? Take a look at your plot of the cities heatmap and interpret what a dark red value and a light yellow value in the heatmap would mean in geographic distance. Provide an example of of each in your explanation.
 
