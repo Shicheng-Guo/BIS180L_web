@@ -317,7 +317,7 @@ Another really cool property of graphs is we can ask how connected any two nodes
  The functions `graph.density()` and `average.path.length()` compute the graph density and average path length (big surprise.  Use these functions to determine which graph (MR4 or MR10) has the greater density and the greater average path length.  Are the results what you expected?
 
 
-Now let's plot the distance between two specific nodes. Rather annoyingly `igraph` does not have an easy way to input gene names for the path analysis. It requires that you provide the numeric row number of gene A and how you want to compare that to the column number of gene B. I have written this additional piece of code to show you how this works. We get the shortest paths between ALL genes in the network and then print the results. We are interested in visualizing the path between Bra029179 (row number 227) and Bra019098 (column number 43). This is where the 227 and 43 arguments come from in *get.shortest.paths()*
+Now let's plot the distance between two specific nodes. Rather annoyingly `igraph` does not have an easy way to input gene names for the path analysis. It requires that you provide the numeric row number of gene A and how you want to compare that to the column number of gene B. I have written this additional piece of code to show you how this works. We get the shortest paths between ALL genes in the network and then print the results. We are interested in visualizing the path between Bra029719 (row number 227) and Bra019098 (column number 43). This is where the 227 and 43 arguments come from in *get.shortest.paths()*
 
 
 ```r
