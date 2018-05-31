@@ -45,22 +45,18 @@ Clone the Assignment_8 repository
 
 Okay, let's load up our city data again and get started by playing with some examples!
 
-If you need to download the file again, here is the address:
+The cities data is included in the Assignment 8 repo, but if you aren't taking BIS180L and need to download the file again, here is the address:
 
 ```bash
 wget http://jnmaloof.github.io/BIS180L_web/data/us_cities.txt
 ```
 
-Infile the data into R. 
+Load the data into R. 
 
 
 ```r
-# be sure to change the path
-cities <- read.table("../data/us_cities.txt", sep = "\t", header = TRUE)
-rownames(cities) <- cities$X #make first column the rownames
-cities <- cities[,-1] #remove first column
-cities <- as.matrix(cities) #convert to matrix
-cities # print matrix
+cities <- read.delim("../data/us_cities.txt", row.names=1) # be sure to change the path
+cities
 ```
 
 ```
@@ -75,6 +71,8 @@ cities # print matrix
 ## LA   2979 2786 2631 2687 2054 1131  379    0 1059
 ## DEN  1949 1771 1616 2037  996 1307 1235 1059    0
 ```
+
+
 Take a look at the printed matrix. Imagine that we are an airline and want to calculate the best routes between cities. However, the planes that we have in our fleet have a maximum fuel range of only 1500 miles. This would put a constraint on our city network. Cities with distances greater than 1500 miles between them would no longer be reachable directly. Their edge value would become a zero.
 Likewise, if two cities are within 1500 miles, their edge value would become 1. This 1 or 0 representation of the network is called the network **adjacency** matrix. 
 
@@ -102,7 +100,10 @@ cities_mat # check out the adjacency matrix
 **Exercise 1:**
 Based on this 0 or 1 representation of our network, what city is the most highly connected? *Hint: sum the values down a column OR across a row for each city*
 
-Try extending the range to 2000 miles in the above code. Does the highest connected city change? If so explain. 
+Try extending the range to 2000 miles in the above code (place the adjacency matrix in an object `cities_mat_2000`. Does the highest connected city change? If so explain. 
+
+
+
 
 ##Plotting networks
 Now plot this example to see the connections based on the 2000 mile distance cutoff. It should show the same connections as in your adjacency matrix. 
@@ -111,7 +112,7 @@ Now plot this example to see the connections based on the 2000 mile distance cut
 ```r
 library(igraph) # load package
 # make sure to use the 2000 mile distance cutoff 
-cities_graph2 <- graph.adjacency(cities_mat, mode = "undirected")
+cities_graph2 <- graph.adjacency(cities_mat_2000, mode = "undirected")
 plot.igraph(cities_graph2)
 ```
 
@@ -125,7 +126,7 @@ Re-calculate the adjacency matrix with the cutoff value at 2300. Calculate the n
 
 
 ```r
-sum(cities_mat)/2 # divide by 2 because the matrix has 2 values for each edge
+sum(cities_mat_2300)/2 # divide by 2 because the matrix has 2 values for each edge
 ```
 This 1 or 0 representation of the network is a very useful simplification that we will take advantage of when trying construct biological networks. We will define each gene as a node and the edges between the nodes as some value that we can calculate to make an adjacency matrix. 
 
@@ -137,141 +138,182 @@ This 1 or 0 representation of the network is a very useful simplification that w
 
 **(Gene1)--Value?--(Gene2)**
 
-We do not have geographic distance between genes, but we do have observations of each gene's relative expression values across the Genotype by Environment by Tissue type combinations. We can reduce this data down by performing a simple correlation based analysis of the data. We could calculate a correlation coefficient (a value between -1 and +1) between each gene with every other gene in our data set. The network would look like this for all gene pairs:
+We do not have geographic distance between genes, but we do have observations of each gene's relative expression values across the Genotype by Environment by Tissue type combinations. We can use similarity in gene expression values to measure the biological distance between genes.  Genes that are expressed in more similar patterns should be closer.
+
+A simple way to do this would be to calculate a correlation coefficient (a value between -1 and +1) between each gene with every other gene in our data set. The network would look like this for all gene pairs:
 
 **(Gene1)--Correlation--(Gene2)**
 
-There are **MANY** important caveats and limitations to this approach outlined **[here](http://www.nature.com/nrg/journal/v16/n2/full/nrg3868.html)**, but for learning purposes correlation networks are great. To start constructing an adjacency matrix of a gene network let's put some constraints on what we want to call an edge. Let's that if the absolute correlation coefficient between genes is greater than 0.7 (i.e. + or -) then we will assign an edge value of 1, if not it will get a 0. This is called an unsigned network. There is no sign associated with the positive or negative correlation values represented in our adjacency matrix.
+There are **MANY** important caveats and limitations to this approach outlined **[here](http://www.nature.com/nrg/journal/v16/n2/full/nrg3868.html)**, but they still can be useful.
 
-**(Gene1)--(+0.9)--(Gene2)**
+One problem with correlation-based networks is that the correlation coefficient can be effected by many things (including technical details of the experiment) that we don't care about.  A better choice is to the the **Mutual Correlation Ranks**, as explained [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2762411/).
 
-**(Gene2)--(-0.76)--(Gene3)**
+To calculate the mutual ranks we take the following steps:
 
-**(Gene1)--(+0.50)--(Gene3)**
+1. Compute the pairwise corelation coefficient for all gene pairs
+2. For each gene, rank its correlation coefficients from highest to lowest.
+3. Note that the ranks computes in step 2 are not necessarily symmetric.  So, for each gene pair compute the (geometric) average of ranks.
 
-**(Gene3)--(-0.69)--(Gene4)**
+Once we have done this, our network will look like this for all gene pairs:
+
+**(Gene1)--MutualRank--(Gene2)**
+
+Let's get started.
+
+Based on the pattern that we observed in our clustering analysis on Tuesday and further analysis, the leaf samples that appeared to be part of their own cluster (especially in the heat map) were bad libraries. **This demonstrates the importance of visualizing your data as often as possible during an analysis to catch potential errors.** We will remove these libraries from our analysis today.
+
+Either copy the files from Assignment_7 to your assignment_8 directory or re-download:
+
+```bash
+wget http://jnmaloof.github.io/BIS180L_web/data/DEgenes_GxE.csv
+wget http://jnmaloof.github.io/BIS180L_web/data/voom_transform_brassica.csv
+```
+
+Load the data into R
+
+```r
+library(tidyverse)
+# make sure to change the path to where you downloaded this using wget
+DE_genes <- read_csv("../data/DEgenes_GxE.csv")
+head(DE_genes) #check out the data
+
+# make sure to change the path to where you downloaded this using wget
+brass_voom_E <- read_csv("../data/voom_transform_brassica.csv")
+brass_voom_E[,-c(38,42,46)] # remove questionable library columns
+head(brass_voom_E)
+
+GxE_counts <- DE_genes %>% select(GeneID) %>% left_join(brass_voom_E) #get count data specifically for the GxE genes
+head(GxE_counts)
+
+GxE_counts <- GxE_counts %>% column_to_rownames("GeneID") %>% as.matrix(GxE_counts) # some of the downstream steps require a data matrix
+head(GxE_counts[,1:6])
+```
+
+To Illustrate the process let's begin with just 5 genes
+Subset the data to just five genes
+
+```r
+GxE_subset <- GxE_counts[1:5,]
+```
+
+Create correlation matrix
+
+```r
+GxE_cor <- cor(t(GxE_subset))
+GxE_cor %>% round(3)
+```
+
+Set the diagonal to 0:
+
+```r
+diag(GxE_cor) <- 0
+GxE_cor
+```
+
+
+Rank the correlations for each gene.  We will use the absolute corelation value, so + or - correlations will be treated the same.  This will lead to an __unsigned__ network.
+
+```r
+GxE_rank <- apply(GxE_cor,2,function(x) rank(-abs(x)))
+GxE_rank
+```
 
 **Exercise 4:**
-Fill in the following 0 or 1 values for our gene network with a constraint of 0.7 or greater.
+(**A**) Describe what is meant by the "1" in the ["Bra035334", "Bra033034"] cell.
 
-**(Gene1)--(?)--(Gene2)**
+(**B**) Do ["Bra035334", "Bra033034"] and ["Bra033034", "Bra035334"] have different values?  If so, why?
 
-**(Gene2)--(?)--(Gene3)**
+Now compute the pairwise mutual ranks (aka average ranks):
 
-**(Gene1)--(?)--(Gene3)**
+```r
+GxE_MR <- sqrt(GxE_rank * t(GxE_rank))
+GxE_MR
+```
 
-**(Gene3)--(?)--(Gene4)**
+(C) Do ["Bra035334", "Bra033034"] and ["Bra033034", "Bra035334"] have different values in the MR tables?  Why or why not?
+
+We next need to construct an adjacency matrix of this gene network.  To do so, let's put some constraints on what we want to call an edge. In this case let's only place edges between genes when there mutual rank is 2 or less.
+
+**Exercize 5:**
+(**A**) _Create the adjacency matrix described above and place it in an object called `genes_adj_MR2`.  It should look like this:_
+
+```
+##           Bra010821 Bra033034 Bra035334 Bra003598 Bra016182
+## Bra010821         0         0         0         0         1
+## Bra033034         0         0         1         0         0
+## Bra035334         0         1         0         1         0
+## Bra003598         0         0         1         0         0
+## Bra016182         1         0         0         0         0
+```
+
+(B) Which genes are connected to Bra035334?
 
 Okay, I think now that we have the basic concepts, let's work with the larger gene expression data set. 
 
-In following up on the pattern that we observed in our clustering analysis on Tuesday I found out that the leaf samples that appeared to be part of their own cluster (especially in the heat map) were bad libraries. **This demonstrates the importance of visualizing your data as often as possible during an analysis to catch potential errors.** We will remove these libraries from our analysis today.
-
-Download the data.
-
-
-```bash
-wget https://raw.githubusercontent.com/rjcmarkelz/BIS180L_web/feature-networks/data/DEgenes_GxE.csv
-wget https://raw.githubusercontent.com/rjcmarkelz/BIS180L_web/feature-networks/data/voom_transform_brassica.csv
-```
-Infile the data and calculate an adjacency matrix using a 0.85 correlation cutoff this time.
-
-
-```r
-genes <- read.table("voom_transform_brassica.csv", sep = ",", header = TRUE)
-genes <- genes[,-c(38,42,46)] # remove questionable library columns
-DE_genes <- read.table("DEgenes_GxE.csv", sep = ",")
-DE_gene_names <- rownames(DE_genes)
-GxE_counts <- as.data.frame(genes[DE_gene_names,])
-genes_cor <- cor(t(GxE_counts)) # calculate the correlation between all gene pairs
-```
-
-**Exercise 5:**
-
-**a** 
-Create an adjacency matrix called `genes_adj85` for the genes use a cutoff of abs(correlation) > 0.85.  Remember to set the diagonal of the adjacency matrix to 0.  Create a second adjacency matrix `genes_adj95` using a cutoff of abs(correlation) > 0.95.
-
-
-
-**b**
-Now we can do some calculations. If our cutoff is 0.85, how many edges do we have in our 255 node network? What if we increase our cutoff to 0.95? *hint: sum( )*
 
 **Exercise 6:**
-Use the following code to plot our networks using different thresholds for connectivity. What patterns do you see in the visualization of this data? *Note: the second plot will take a while to render*
+
+(**A**)  
+__Working with the the full `GxE_counts` matrix__, create an adjacency matrix called `genes_adj_MR3` for the genes use a cutoff of MR < =  3.  Remember to set the diagonal of the adjacency matrix to 0.  Create a second adjacency matrix `genes_adj_MR10` using a cutoff of of MR < =  10.
+
+
+
+(**B**)
+Now we can do some calculations. If our cutoff is MR3, how many edges do we have in our 255 node network? What if we increase our cutoff to MR10? *hint: sum( )*
+
+
+
+**Exercise 7:**
+Use the following code to plot our networks using different thresholds for connectivity. What do the colors represent?  What patterns do you see in the visualization of this data? 
 
 
 ```r
-gene_graph95 <- graph.adjacency(genes_adj95, mode = "undirected") #convert adjacency to graph
-comps <- clusters(gene_graph95)$membership                        #define gene cluster membership
+gene_graphMR3 <- graph.adjacency(genes_adj_MR3, mode = "undirected") #convert adjacency to graph
+comps <- clusters(gene_graphMR3)$membership                        #define gene cluster membership
 colbar <- rainbow(max(comps)+1)                                   #define colors
-V(gene_graph95)$color <- colbar[comps+1]                          #assign colors to nodes
-plot(gene_graph95, layout = layout.fruchterman.reingold, vertex.size = 6, vertex.label = NA)
+V(gene_graphMR3)$color <- colbar[comps+1]                          #assign colors to nodes
+plot(gene_graphMR3, layout = layout.fruchterman.reingold, vertex.size = 6, vertex.label = NA)
+  
+gene_graphMR10 <- graph.adjacency(genes_adj_MR10, mode = "undirected") #convert adjacency to graph
+comps <- clusters(gene_graphMR10)$membership                        #define gene cluster membership
+colbar <- rainbow(max(comps)+1)                                   #define colors
+V(gene_graphMR10)$color <- colbar[comps+1]                          #assign colors to nodes
+plot(gene_graphMR10, layout = layout.fruchterman.reingold, vertex.size = 6, vertex.label = NA)
 ```
-
-![plot of chunk plotgenenetwork]({{ site.baseurl }}/figure/plotgenenetwork-1.png)
-
-```r
-#this one will take a little while to render
-gene_graph85 <- graph.adjacency(genes_adj85, mode = "undirected")
-comps <- clusters(gene_graph85)$membership
-colbar <- rainbow(max(comps)+1)
-V(gene_graph85)$color <- colbar[comps+1]
-plot(gene_graph85, layout=layout.fruchterman.reingold, vertex.size=6, vertex.label=NA)
-```
-
-![plot of chunk plotgenenetwork]({{ site.baseurl }}/figure/plotgenenetwork-2.png)
 
 ##Graph Statistics for Network Comparison
 Graph density is a measure of the total number of edges between nodes out of the total possible number of edges between nodes. It is a useful metric if you want to compare two networks with a similar number of nodes. We could have split our data into the two treatments (DP and NDP) at the beginning of our analysis, built separate networks for each, then used metrics like this to compare the network properties between treatments. 
 
 Another really cool property of graphs is we can ask how connected any two nodes are to one another by performing a path analysis through the network. Think about the cities network. If we wanted to get from BOS to SF but we had our plane fuel constraints we could not fly between the two cities on a direct flight. We will have to settle for a layover. A path analysis can find the flight path between cities connecting BOS and SF in the shortest number of layovers. In a biological context it is a little more abstract, but we are asking the network if there is a way that we can get from gene A to gene B by following the edges in the network. Plotting this will help understand!
 
-**Exercise 7:**
- Use the following code to answer these two questions: In gene_graph85, what is the total graph density? In gene_graph85, what is the average path length? 
+**Exercise 8:**
+ Use the following code to answer these two questions: In gene_graphMR10, what is the total graph density? In gene_graphMR10, what is the average path length? 
 
 
 ```r
-graph.density(gene_graph85)
-average.path.length(gene_graph85)
+graph.density(gene_graphMR10)
+average.path.length(gene_graphMR10)
 ```
 Now let's plot the distance between two specific nodes. Rather annoyingly `igraph` does not have an easy way to input gene names for the path analysis. It requires that you provide the numeric row number of gene A and how you want to compare that to the column number of gene B. I have written this additional piece of code to show you how this works. We get the shortest paths between ALL genes in the network and then print the results. We are interested in visualizing the path between Bra033034 (row number 2) and Bra009406 (column number 7). This is where the 2 and 7 arguments come from in *get.shortest.paths()*
 
 
 ```r
-gene_graph85 <- graph.adjacency(genes_adj85, mode = "undirected")
-distMatrix <- shortest.paths(gene_graph85, v = V(gene_graph85), to = V(gene_graph85))
+gene_graphMR10 <- graph.adjacency(genes_adj_MR10, mode = "undirected")
+distMatrix <- shortest.paths(gene_graphMR10, v = V(gene_graphMR10), to = V(gene_graphMR10))
 head(distMatrix)[,1:7]
+
+pl <- get.shortest.paths(gene_graphMR10, 2, 7)$vpath[[1]] # pull paths between node 2 and 7
+
+V(gene_graphMR10)[pl]$color <- paste("green")          # define node color
+E(gene_graphMR10)$color <- paste("grey")               # define default edge color
+E(gene_graphMR10, path = pl)$color <- paste("blue")    # define edge color
+E(gene_graphMR10, path = pl)$width <- 10               # define edge width
+plot(gene_graphMR10, layout = layout.fruchterman.reingold, vertex.size = 6, vertex.label = NA)
 ```
 
-```
-##           Bra010821 Bra033034 Bra035334 Bra003598 Bra016182 Bra013164
-## Bra010821         0       Inf       Inf       Inf       Inf       Inf
-## Bra033034       Inf         0       Inf       Inf       Inf         4
-## Bra035334       Inf       Inf         0       Inf       Inf       Inf
-## Bra003598       Inf       Inf       Inf         0       Inf       Inf
-## Bra016182       Inf       Inf       Inf       Inf         0       Inf
-## Bra013164       Inf         4       Inf       Inf       Inf         0
-##           Bra009406
-## Bra010821       Inf
-## Bra033034         6
-## Bra035334       Inf
-## Bra003598       Inf
-## Bra016182       Inf
-## Bra013164         3
-```
+You may need to click on the zoom button on the plot to be abel to visualize this well.
 
-```r
-pl <- get.shortest.paths(gene_graph85, 2, 7)$vpath[[1]] # pull paths between node 2 and 7
-
-V(gene_graph85)[pl]$color <- paste("green")          # define node color
-E(gene_graph85)$color <- paste("grey")               # define default edge color
-E(gene_graph85, path = pl)$color <- paste("blue")    # define edge color
-E(gene_graph85, path = pl)$width <- 10               # define edge width
-plot(gene_graph85, layout = layout.fruchterman.reingold, vertex.size = 6, vertex.label = NA)
-```
-
-![plot of chunk plotgenegraph85]({{ site.baseurl }}/figure/plotgenegraph85-1.png)
-
-**Exercise 8:**
+**Exercise 9:**
 Using what you know about graphs, repeat the analysis for the smaller cities matrix. Show your code to answer these questions.
 What is the graph density of the cities network with a 1500 mile flight range?
 What is the average path length of the cities network with a 1500 mile flight range?
