@@ -272,7 +272,7 @@ Another really cool property of graphs is we can ask how connected any two nodes
 **Exercise 8:**
  The functions `graph.density()` and `average.path.length()` compute the graph density and average path length (big surprise.  Use these functions to determine which graph (MR4 or MR10) has the greater density and the greater average path length.  Are the results what you expected?
 
-```{r plotdensity, echo=FALSE, results='hide'}
+```{r plotdensity, echo=FALSE, eval=FALSE}
 graph.density(gene_graphMR4)
 average.path.length(gene_graphMR4)
 graph.density(gene_graphMR10)
