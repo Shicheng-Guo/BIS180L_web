@@ -1,7 +1,7 @@
 Gene Networks 2
 ========================================================
 author: Julin Maloof
-date: June 01, 2017
+date: May 31, 2018
 autosize: true
 
 ```{r, include=FALSE}
@@ -51,10 +51,6 @@ First calculate the correlation between each gene's expression across samples
 ```{r}
 knitr::kable(cor_mat)
 ```
-***
-```{r}
-plot(simple_graph,layout=layout_with_kk)
-```
 
 Adjacency Matrix
 ================
@@ -65,10 +61,7 @@ Connect genes with a "1"
 ```{r}
 knitr::kable(adj_mat)
 ```
-***
-```{r}
-plot(simple_graph,layout=layout_with_kk)
-```
+
 
 Terminology
 ===========
@@ -79,6 +72,63 @@ Terminology
 ```{r}
 plot(simple_graph,layout=layout_with_kk)
 ```
+
+Mutual Rank Networks
+====================
+One problem with correlation networks is that it is hard to know what threshold to pick.  Further, correlation values can be affected by "noise" in the experiment, that may not be relevant.
+
+An alterantive (and in my hands better) approach is to use __Mutual Ranks__.  We can connect genes with the the highest correlations, regardless of their precise value.
+
+Here, we:
+
+1. Create a pariwise correlation matrix, as above
+2. Rank the correlations from strongest to weakest
+3. Compute the pairwise geometric mean ranks
+4. Choose a rank-based cutoff to create the adjacency matrix
+
+Correlation Matrix
+===================
+First calculate the correlation between each gene's expression across samples
+```{r}
+knitr::kable(cor_mat)
+```
+
+Rank Matrix
+==============
+```{r}
+diag(cor_mat) <- 0
+rank_mat <- apply(cor_mat,2,function(x) rank(-abs(x)))
+knitr::kable(rank_mat)
+```
+
+Average Ranks
+=============
+```{r}
+MR_mat <- sqrt(rank_mat * t(rank_mat))
+knitr::kable(round(MR_mat,2))
+```
+
+
+Adjacency Matrix
+=========================
+Mutual Rank <= 3
+```{r}
+adj_mat <- MR_mat <= 3
+diag(adj_mat) <- 0
+knitr::kable(adj_mat)
+```
+
+Network
+============
+```{r}
+knitr::kable(adj_mat)
+```
+***
+```{r}
+simple_graph2 <- graph.adjacency(adj_mat,mode = "undirected")
+plot(simple_graph2,layout=layout_with_kk)
+```
+
 
 Limitations
 ===========
