@@ -178,7 +178,7 @@ head(DE_genes) #check out the data
 
 # make sure to change the path to where you downloaded this using wget
 brass_voom_E <- read_csv("../data/voom_transform_brassica.csv")
-brass_voom_E[,-c(38,42,46)] # remove questionable library columns
+brass_voom_E <- brass_voom_E[,-c(38,42,46)] # remove questionable library columns
 head(brass_voom_E)
 ```
 
@@ -317,7 +317,7 @@ Another really cool property of graphs is we can ask how connected any two nodes
  The functions `graph.density()` and `average.path.length()` compute the graph density and average path length (big surprise.  Use these functions to determine which graph (MR4 or MR10) has the greater density and the greater average path length.  Are the results what you expected?
 
 
-Now let's plot the distance between two specific nodes. Rather annoyingly `igraph` does not have an easy way to input gene names for the path analysis. It requires that you provide the numeric row number of gene A and how you want to compare that to the column number of gene B. I have written this additional piece of code to show you how this works. We get the shortest paths between ALL genes in the network and then print the results. We are interested in visualizing the path between Bra038955 (row number 132) and Bra019098 (column number 45). This is where the 132 and 45 arguments come from in *get.shortest.paths()*
+Now let's plot the distance between two specific nodes. Rather annoyingly `igraph` does not have an easy way to input gene names for the path analysis. It requires that you provide the numeric row number of gene A and how you want to compare that to the column number of gene B. I have written this additional piece of code to show you how this works. We get the shortest paths between ALL genes in the network and then print the results. We are interested in visualizing the path between Bra029719 (row number 227) and Bra019098 (column number 43). This is where the 227 and 43 arguments come from in *get.shortest.paths()*
 
 
 ```r
@@ -325,7 +325,7 @@ gene_graphMR10 <- graph.adjacency(genes_adj_MR10, mode = "undirected")
 distMatrix <- shortest.paths(gene_graphMR10, v = V(gene_graphMR10), to = V(gene_graphMR10))
 head(distMatrix)[,1:7]
 
-pl <- get.shortest.paths(gene_graphMR10, 132, 45)$vpath[[1]] # pull paths between node 132 and 45
+pl <- get.shortest.paths(gene_graphMR10, 227, 43)$vpath[[1]] # pull paths between node 132 and 45
 
 V(gene_graphMR10)[pl]$color <- paste("green")          # define node color
 E(gene_graphMR10)$color <- paste("grey")               # define default edge color
