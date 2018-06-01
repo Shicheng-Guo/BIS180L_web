@@ -15,5 +15,7 @@ Right click on the link to download the markdown template.  Edit the markdown te
 | __April 19 and 24__ | R Parts 1 and 2    | See Assignment3 in github                                               | __April 30, 9AM__  |
 | __May 1__           | R SNPs and GWAS    | See Assignment 4 in github                                              | __May 4, 11:59PM__ |
 | __May10__           | Shiny              | See Shiny Lab Page                                                      | __May 15, 1PM__    |
-| __May15__          | Illumina, IGV, SNPs | See Assignment 5 in Github | __May 22, 1:10PM__  |
-| __May 22__  | Differential expression, GO, promoters  | See Assignment 6 in Github | __May 29, 1:10PM__  |
+| __May15__           | Illumina, IGV, SNPs | See Assignment 5 in Github                                             | __May 22, 1:10PM__  |
+| __May 22__          | Differential expression, GO, promoters  | See Assignment 6 in Github                         | __May 29, 1:10PM__  |
+| __May 29__          | Clustering         | See Assignment 7 template in Github                                     | __June 5th, 1:10 PM__ |
+| __May 29__          | Networks           | See Assignment 8 template in Github                                     | __June 5th, 1:10 PM__ |
