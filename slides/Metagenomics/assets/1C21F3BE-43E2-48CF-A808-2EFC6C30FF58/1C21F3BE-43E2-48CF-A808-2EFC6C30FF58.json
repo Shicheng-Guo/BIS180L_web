@@ -396,15 +396,6 @@
       ],
       "accessibility" : [
         {
-          "text" : "Diagram Adapted from Elizabeth Costello, Univ. Colorado, Boulder",
-          "targetRectangle" : {
-            "y" : 722.9447019696236,
-            "x" : 16.99568843841553,
-            "width" : 654.4559999999996,
-            "height" : 26
-          }
-        },
-        {
           "text" : "Beta Diversity: UniFrac",
           "targetRectangle" : {
             "y" : 45.07257080078125,
@@ -414,12 +405,12 @@
           }
         },
         {
-          "text" : "pasted-image.png",
+          "text" : "Diagram Adapted from Elizabeth Costello, Univ. Colorado, Boulder",
           "targetRectangle" : {
-            "y" : 411.9523010253906,
-            "x" : 280.3507690429688,
-            "width" : 641.125,
-            "height" : 288.5987790055624
+            "y" : 722.9447019696236,
+            "x" : 16.99568843841553,
+            "width" : 654.4559999999996,
+            "height" : 26
           }
         },
         {
@@ -438,6 +429,15 @@
             "x" : 64.51950073242188,
             "width" : 764.2439999999999,
             "height" : 43
+          }
+        },
+        {
+          "text" : "pasted-image.png",
+          "targetRectangle" : {
+            "y" : 411.9523010253906,
+            "x" : 280.3507690429688,
+            "width" : 641.125,
+            "height" : 288.5987790055624
           }
         }
       ],

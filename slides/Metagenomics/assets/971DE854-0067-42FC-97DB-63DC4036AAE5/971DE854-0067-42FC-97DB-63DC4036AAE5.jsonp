@@ -356,21 +356,21 @@ local_slide( {
         ],
         "accessibility" : [
           {
-            "text" : "pasted-image.png",
-            "targetRectangle" : {
-              "y" : 105.6935119628906,
-              "x" : 141.7691345214844,
-              "width" : 740.4617309570312,
-              "height" : 556.6129760742188
-            }
-          },
-          {
             "text" : "Zoological and evolutionary insights",
             "targetRectangle" : {
               "y" : 680.4846806526184,
               "x" : 222.5780048370361,
               "width" : 578.8440000000002,
               "height" : 43
+            }
+          },
+          {
+            "text" : "pasted-image.png",
+            "targetRectangle" : {
+              "y" : 105.6935119628906,
+              "x" : 141.7691345214844,
+              "width" : 740.4617309570312,
+              "height" : 556.6129760742188
             }
           }
         ],

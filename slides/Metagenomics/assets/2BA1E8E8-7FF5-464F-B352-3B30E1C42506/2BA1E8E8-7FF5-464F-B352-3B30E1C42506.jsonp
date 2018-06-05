@@ -356,15 +356,6 @@ local_slide( {
         ],
         "accessibility" : [
           {
-            "text" : "Alpha Diversity Method 4",
-            "targetRectangle" : {
-              "y" : 74,
-              "x" : 80.96000000000009,
-              "width" : 862.0799999999999,
-              "height" : 92
-            }
-          },
-          {
             "text" : "Faith’s Phylogenetic Diversity (PD_whole_tree)",
             "targetRectangle" : {
               "y" : 209,
@@ -398,6 +389,15 @@ local_slide( {
               "x" : 113.9999995231628,
               "width" : 757.0079999999998,
               "height" : 85
+            }
+          },
+          {
+            "text" : "Alpha Diversity Method 4",
+            "targetRectangle" : {
+              "y" : 74,
+              "x" : 80.96000000000009,
+              "width" : 862.0799999999999,
+              "height" : 92
             }
           }
         ],

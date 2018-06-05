@@ -370,15 +370,6 @@ local_slide( {
         ],
         "accessibility" : [
           {
-            "text" : "pasted-image.tif",
-            "targetRectangle" : {
-              "y" : 623.5812187194824,
-              "x" : 215.2504501342773,
-              "width" : 207.0315570831299,
-              "height" : 108.1091889739037
-            }
-          },
-          {
             "text" : "pasted-image.png",
             "targetRectangle" : {
               "y" : 587.7203369140625,
@@ -394,6 +385,15 @@ local_slide( {
               "x" : 213.811767578125,
               "width" : 596.3764658879882,
               "height" : 551.65625
+            }
+          },
+          {
+            "text" : "pasted-image.tif",
+            "targetRectangle" : {
+              "y" : 623.5812187194824,
+              "x" : 215.2504501342773,
+              "width" : 207.0315570831299,
+              "height" : 108.1091889739037
             }
           },
           {

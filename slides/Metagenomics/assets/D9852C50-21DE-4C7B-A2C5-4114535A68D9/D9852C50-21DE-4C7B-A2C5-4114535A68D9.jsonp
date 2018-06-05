@@ -58,7 +58,7 @@ local_slide( {
         "width" : 858,
         "height" : 457
       },
-      "498E23C82CA78A4BCD7BA88E5243B6FC" : {
+      "55BAB61703675042C077CC4C3198754B" : {
         "type" : "texture",
         "index" : 0,
         "assetRequest" : {
@@ -356,15 +356,6 @@ local_slide( {
         ],
         "accessibility" : [
           {
-            "text" : "Beta Diversity",
-            "targetRectangle" : {
-              "y" : 72,
-              "x" : 265.28,
-              "width" : 493.4400000000001,
-              "height" : 96
-            }
-          },
-          {
             "text" : "Beta diversity measures the diversity between samples.",
             "targetRectangle" : {
               "y" : 209,
@@ -398,6 +389,15 @@ local_slide( {
               "x" : 113.9999995231628,
               "width" : 785.0160000000001,
               "height" : 128
+            }
+          },
+          {
+            "text" : "Beta Diversity",
+            "targetRectangle" : {
+              "y" : 72,
+              "x" : 265.28,
+              "width" : 493.4400000000001,
+              "height" : 96
             }
           }
         ],
@@ -632,7 +632,7 @@ local_slide( {
                           "pointY" : 0.5
                         }
                       },
-                      "texture" : "498E23C82CA78A4BCD7BA88E5243B6FC"
+                      "texture" : "55BAB61703675042C077CC4C3198754B"
                     }
                   ]
                 }
