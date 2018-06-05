@@ -144,8 +144,6 @@ Load the data into R
 ```{r message=FALSE, warning=FALSE, results='hide'} 
 library(tidyverse)
 # make sure to change the path to where you downloaded this using wget
-DE_genes <- read_csv("../data/DEgenes_GxE.csv")
-head(DE_genes) #check out the data
 
 # make sure to change the path to where you downloaded this using wget
 brass_voom_E <- read_csv("../data/voom_transform_brassica.csv")

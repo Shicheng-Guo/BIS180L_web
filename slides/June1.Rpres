@@ -1,0 +1,172 @@
+June1
+========================================================
+author: 
+date: 
+autosize: true
+incremental: true
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Q
+=====
+
+_Can you go over FPKM vs RPKM again and why we decided to not use RPKM as measure for gene expression?_
+
+* FPKM and RPKM are ~ the same thing
+* The both are poorly behaved statistically because you lose information on the actual number of reads underlying the number.
+
+1 read mapped to a 100bp gene and 10 reads mapped to a 1000bp gene both have RPK of 1 but should not be treated the same. (think how much more difference an additional read would make to the RPK of the 100bp gene)
+
+Q
+====
+
+_How do you determine if a clustering result is actually representative of something statistically rather than just judging by eye?_
+
+* Is there sigifniciant enrichment for certain types of genes?
+* Compare to clusters generated from randomized data
+
+
+Q
+====
+_Can you explain what set.seed() and shortest.paths() functions do?_
+
+* `set.seed()`: consistent "random" numbers
+* `shortest.paths()`: it is in the name!  what is the shortest way to get between two nodes?
+
+
+Q
+====
+_Can you please explain the clusGap function and how to interpret the Gap statistic plot? (how do you know the appropriate number of clusters from the plot ?)_
+
+* You want the maximum gap between observerd and expected (largest Gap).
+* However
+  - Generally you want the smallest number of clusters that satisfies the criteria
+  - There is error, or noise, in estimating the Gap statistic, so we take the smallest number of clusters where their Gap statistics is within 1 SE of the first local maximum.  
+  
+Help file: " The default method "firstSEmax" looks for the smallest k such that its value f(k) is not more than 1 standard error away from the first local maximum."
+
+Q
+=====
+For the Genetic Networks 1 lab, the suggested number of k-means clusters was 8. Why is that a better option than 9 clusters? Only because the gap statistic plot was still rising as it reached 9.
+
+Q
+======
+_What are some reasons that causes the correlational matrix to be asymmetrical?_
+
+The correlation matrix __is__ symmetric.
+
+The ranks are not...
+
+Q
+======
+_What clustering method was used to make the clusters in the gene networks graphs? Is the clustering we did Tuesday independent of our lab Thursday?_
+
+You ran the code...you should be able to answer this
+
+Q 
+=======
+_does research in genomics need to be confirmed through other methods (knocking out genes etc.) or is it valid on it's own to be seen as enough evidence_
+
+It depends on the conclusion you are trying to make
+
+Q
+======
+
+In the heat map graph that we made can you explain what the z-score value means and how to interpret this graph? What are the axes?
+
+Q
+=======
+When we use the function graph.density() in R, how is this calculated exactly? Is this entirely based on the number of edges?
+
+Q
+========
+What does average path length indeed calculate? And why does it change when we change threshold?
+
+
+Q
+======
+"In the genetic network 2 part, we used 'diag' function a lot, could you explain more about its function?
+
+ Q
+ ======
+Can you explain the purpose of using the parties mutual ranks, and the adjacency matrix when looking at co expression (and is this step always necessary)?
+
+Q 
+========
+
+"1. Did you discover the mutual rank method? or someone discovered this?
+
+2.why the average¬† path length in MR10 is greater than MR4?"
+
+Q
+========
+What are the next experimental steps after constructing a gene expression network?¬† How do you verify that the network clusters identified are actually genes involved in the same pathway?¬† Are there computational strategies to answer this question?
+
+
+Q
+=======
+Why do we create a ranking instead of just using the distance between correlations. What happens if a one gene's expression is highly correlated with that of many genes, but because it is in a ranking system, the lesser correlated ones would be ignored. Alternatively, what if a gene's expression isn't highly correlated with any other genes but by default some gene will be ranked first.
+
+Q 
+========
+When we cluster from the the co-expression network graph, what is the clustering based on?¬† Is it any different from the groups that are connected by edges?
+
+##Q
+Under what circumstances would we rather use hierarchical clustering over k-means and vice versa?
+
+## Q
+What is the significance in setting the diagonals to 0?
+
+
+
+# Q
+## Q
+How do we decide what threshold of connectivity is appropriate when constructing a gene network?
+
+## Q
+"I had trouble wrapping my head around this piece of coding
+
+```{r}
+if (all.counts) {
+#count all occurrences of a motif instead of the number of promoters that it occurs in
+target.counts.sum <- apply(target.counts,1,sum)
+universe.counts.sum <- apply(universe.counts,1,sum)
+} else {
+target.counts.sum <- apply(ifelse(target.counts > 0,1,0),1,sum)
+universe.counts.sum <- apply(ifelse(universe.counts > 0 , 1, 0),1,sum)
+}
+n.motifs <- length(target.counts.sum)
+results <- vector(mode=""numeric"",length=n.motifs)
+for (i in 1:n.motifs) {
+if (all.counts) { #the contigency tables are different depending on whether we are looking at promoters or overall occurrences
+#test if ratio of occurrences to promoters is the same in the target and the universe
+m <- matrix(c(
+target.counts.sum[i], #number of occurrences within target
+dim(target.counts)[2], #number of promoters in target
+universe.counts.sum[i], #number of occurrences within universe
+dim(universe.counts)[2] #number of promoters in universe
+),ncol=2)
+} else { #looking at promoters with and without hits
+m <- matrix(c(
+target.counts.sum[i], #number of promoters in target with hit
+dim(target.counts)[2]-target.counts.sum[i], #number of promoters in target with no hit
+universe.counts.sum[i], #number of promoters in universe with hit
+dim(universe.counts)[2]-universe.counts.sum[i] #number of promoters in universe with no hit
+),ncol=2)
+} #else
+results[i] <- fisher.test(m,alternative=""greater"")$p.value
+} #for loop
+results.table <- data.frame(
+motif=names(motifs),
+universe.percent = round(universe.counts.sum/dim(universe.counts)[2],3)*100,
+target.percent = round(target.counts.sum/dim(target.counts)[2],3)*100,
+p.value = results)
+results.table <- results.table[order(results.table$p.value),]
+results.table
+}
+```
+
+
+when is it preferred to use hierarchical clustering instead of k -mean? when is using a euclidean distance metric better than a pearsons metric?

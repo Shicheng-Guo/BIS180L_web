@@ -37,7 +37,7 @@ QIIME requires many dependencies which can make installing it a bit of headache.
 3. Switch your region to `US East (N. Virginia)` -- This is necessary because the AMI is only available in this region.
 4. Click on `Launch Instance`
 5. Click on `Community AMIs`, search for `ami-1918ff72`, and select it.
-6. Select the `m3.medium` instance type and then click "Review and Launch"
+6. Select the `m1.medium` instance type and then click "Review and Launch"
 7. Create a new keypair and download the .pem file.
 8. Email this file to yourself or save it somewhere in addition to the lab PC that you are using.
 9. If desired, set up an Elastic IP (see the first lab).  This isn't really necessary in this case since you should finish this lab today.  It is no big deal; if you don't do this and need to stop and restart your instance just check the AWS console to determine your new IP address.
@@ -112,6 +112,16 @@ Download and unzip the data files:
     tar -xvzf MetaGenomeData.tar.gz
 ```
 
+## Fish
+
+The linux  shell on qiime is `bash`.  If you want to switch to `fish`, then do the following.  (It won't matter unless you want to use a `for` loop)
+
+```bash
+sudo apt-get install fish #install fish
+sudo chsh -s /usr/bin/fish #make fish the default shell
+fish #start fish in this session
+```
+
 ## Start WinSCP
 We are going to need to move files from the QIIME instance to the PC so that you can view them.  On the lab PCs we will use the program `WinSCP`.  If you are using a Mac you can use `scp` from the command line.  
 
@@ -153,13 +163,15 @@ In the RiceSeqs.fna file, barcodes for each sequence are indicated in the header
 
 **Helpful Commands (in no particular order):** `cut`, `grep`, `head`, `sort`, `uniq` and good 'ol `|` to chain the commands together.
 
-If you get stuck, highlight the hidden text underneath this sentence for one potential solution.  
+If you get stuck, highlight the hidden text underneath this sentence for one potential solution to identifying the barcodes themselves.  
 <font color="white" face="menlo">
 grep ">" RiceSeqs.fna | cut -d " " -f 4 | sort | uniq -c
 </font>
 
 **Exercise 1:**
 Using information in the RiceMappingFile.txt and RiceSeqs.fna answer the following questions. Are the number of sequences for each sample approximately the same or are there any outliers? If so, which samples do they belong to? Could a different number of sequences per sample affect future analysis? Explain your reasoning.
+
+(Note: you might want to use a `for` loop here.)
 
 Now that we've poked around in our raw data, let's carry on with analyzing the microbes present in our samples.
 
