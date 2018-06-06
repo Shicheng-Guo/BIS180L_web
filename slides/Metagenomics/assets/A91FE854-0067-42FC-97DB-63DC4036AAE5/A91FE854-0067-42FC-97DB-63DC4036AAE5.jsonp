@@ -370,15 +370,6 @@ local_slide( {
         ],
         "accessibility" : [
           {
-            "text" : "pasted-image.png",
-            "targetRectangle" : {
-              "y" : 136.0816497802734,
-              "x" : 206.4844360351562,
-              "width" : 611.0311279296875,
-              "height" : 495.8367004394531
-            }
-          },
-          {
             "text" : "A cluster of 16S rRNA reads with >97% similarity to define “species”",
             "targetRectangle" : {
               "y" : 659.1563720703125,
@@ -394,6 +385,15 @@ local_slide( {
               "x" : 67.19798855590818,
               "width" : 889.604,
               "height" : 70
+            }
+          },
+          {
+            "text" : "pasted-image.png",
+            "targetRectangle" : {
+              "y" : 136.0816497802734,
+              "x" : 206.4844360351562,
+              "width" : 611.0311279296875,
+              "height" : 495.8367004394531
             }
           }
         ],

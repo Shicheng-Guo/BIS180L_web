@@ -370,15 +370,6 @@ local_slide( {
         ],
         "accessibility" : [
           {
-            "text" : "Sequencing of the 16S ribosomal RNA",
-            "targetRectangle" : {
-              "y" : 62.81991195678711,
-              "x" : 149.8767923706054,
-              "width" : 744.04,
-              "height" : 170
-            }
-          },
-          {
             "text" : "pasted-image.tif",
             "targetRectangle" : {
               "y" : 262.4951782226562,
@@ -394,6 +385,15 @@ local_slide( {
               "x" : 587.116753578186,
               "width" : 429.5939999999997,
               "height" : 26
+            }
+          },
+          {
+            "text" : "Sequencing of the 16S ribosomal RNA",
+            "targetRectangle" : {
+              "y" : 62.81991195678711,
+              "x" : 149.8767923706054,
+              "width" : 744.04,
+              "height" : 170
             }
           }
         ],

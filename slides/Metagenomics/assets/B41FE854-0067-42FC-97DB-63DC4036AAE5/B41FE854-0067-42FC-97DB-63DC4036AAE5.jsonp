@@ -30,20 +30,6 @@ local_slide( {
         "width" : 1024,
         "height" : 768
       },
-      "8B75A031895165B325098DFF66DF9B32" : {
-        "type" : "texture",
-        "index" : 0,
-        "assetRequest" : {
-          "type" : "slide",
-          "state" : "contents",
-          "slide" : "none"
-        },
-        "url" : {
-          "native" : "assets\/B41FE854-0067-42FC-97DB-63DC4036AAE5.pdf"
-        },
-        "width" : 1024,
-        "height" : 768
-      },
       "BD9208122A8D8D5032054498DB75E27E" : {
         "type" : "texture",
         "index" : 2,
@@ -57,6 +43,20 @@ local_slide( {
         },
         "width" : 399,
         "height" : 23
+      },
+      "498E23C82CA78A4BCD7BA88E5243B6FC" : {
+        "type" : "texture",
+        "index" : 0,
+        "assetRequest" : {
+          "type" : "slide",
+          "state" : "contents",
+          "slide" : "none"
+        },
+        "url" : {
+          "native" : "assets\/B41FE854-0067-42FC-97DB-63DC4036AAE5.pdf"
+        },
+        "width" : 1024,
+        "height" : 768
       },
       "2CF409BFCACCCBA0EBB320CD664525E1" : {
         "type" : "texture",
@@ -370,15 +370,6 @@ local_slide( {
         ],
         "accessibility" : [
           {
-            "text" : "Today’s lab focuses on the rice root microbiome",
-            "targetRectangle" : {
-              "y" : 37.83361101150513,
-              "x" : 128.8339891433716,
-              "width" : 766.3319999999997,
-              "height" : 43
-            }
-          },
-          {
             "text" : "Photo credit: Sundaresan Lab, UC Davis",
             "targetRectangle" : {
               "y" : 729.4998167157173,
@@ -394,6 +385,15 @@ local_slide( {
               "x" : 150.5312500000001,
               "width" : 722.9375,
               "height" : 497.875
+            }
+          },
+          {
+            "text" : "Today’s lab focuses on the rice root microbiome",
+            "targetRectangle" : {
+              "y" : 37.83361101150513,
+              "x" : 128.8339891433716,
+              "width" : 766.3319999999997,
+              "height" : 43
             }
           }
         ],
@@ -628,7 +628,7 @@ local_slide( {
                           "pointY" : 0.5
                         }
                       },
-                      "texture" : "8B75A031895165B325098DFF66DF9B32"
+                      "texture" : "498E23C82CA78A4BCD7BA88E5243B6FC"
                     }
                   ]
                 }

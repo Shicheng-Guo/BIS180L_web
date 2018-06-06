@@ -1,5 +1,19 @@
 {
   "assets" : {
+    "FD7847D4B833C51FDE974F667A426931" : {
+      "type" : "texture",
+      "index" : 1,
+      "assetRequest" : {
+        "type" : "slide",
+        "state" : "contents",
+        "slide" : "none"
+      },
+      "url" : {
+        "native" : "assets\/93C30D86-B4A5-4B47-9078-ADE92CA70D3D.pdf"
+      },
+      "width" : 860,
+      "height" : 74
+    },
     "9637EE0BB71A12022C710137D6579C25" : {
       "type" : "texture",
       "index" : 3,
@@ -13,20 +27,6 @@
       },
       "width" : 307,
       "height" : 100
-    },
-    "84514A013AB3858566CF5A6F1742EAF0" : {
-      "type" : "texture",
-      "index" : 1,
-      "assetRequest" : {
-        "type" : "slide",
-        "state" : "contents",
-        "slide" : "none"
-      },
-      "url" : {
-        "native" : "assets\/93C30D86-B4A5-4B47-9078-ADE92CA70D3D.pdf"
-      },
-      "width" : 860,
-      "height" : 74
     },
     "E7B014988ACB1AEED8FC61E4889FEE72" : {
       "type" : "texture",
@@ -368,12 +368,12 @@
       ],
       "accessibility" : [
         {
-          "text" : "Alpha Diversity Method 3",
+          "text" : "Screen Shot 2017-06-06 at 12.17.43 PM.png",
           "targetRectangle" : {
-            "y" : 74,
-            "x" : 80.96000000000009,
-            "width" : 862.0799999999999,
-            "height" : 92
+            "y" : 193.0439300537109,
+            "x" : 541.1589965820312,
+            "width" : 304.3492126464844,
+            "height" : 97.10189056396484
           }
         },
         {
@@ -413,12 +413,12 @@
           }
         },
         {
-          "text" : "Screen Shot 2017-06-06 at 12.17.43 PM.png",
+          "text" : "Alpha Diversity Method 3",
           "targetRectangle" : {
-            "y" : 193.0439300537109,
-            "x" : 541.1589965820312,
-            "width" : 304.3492126464844,
-            "height" : 97.10189056396484
+            "y" : 74,
+            "x" : 80.96000000000009,
+            "width" : 862.0799999999999,
+            "height" : 92
           }
         }
       ],
@@ -840,7 +840,7 @@
                         "pointY" : 0.5
                       }
                     },
-                    "texture" : "84514A013AB3858566CF5A6F1742EAF0"
+                    "texture" : "FD7847D4B833C51FDE974F667A426931"
                   }
                 ]
               }

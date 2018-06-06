@@ -112,16 +112,6 @@ Download and unzip the data files:
     tar -xvzf MetaGenomeData.tar.gz
 ```
 
-## Fish
-
-The linux  shell on qiime is `bash`.  If you want to switch to `fish`, then do the following.  (It won't matter unless you want to use a `for` loop)
-
-```bash
-sudo apt-get install fish #install fish
-sudo chsh -s /usr/bin/fish #make fish the default shell
-fish #start fish in this session
-```
-
 ## Start WinSCP
 We are going to need to move files from the QIIME instance to the PC so that you can view them.  On the lab PCs we will use the program `WinSCP`.  If you are using a Mac you can use `scp` from the command line.  
 
@@ -170,8 +160,6 @@ grep ">" RiceSeqs.fna | cut -d " " -f 4 | sort | uniq -c
 
 **Exercise 1:**
 Using information in the RiceMappingFile.txt and RiceSeqs.fna answer the following questions. Are the number of sequences for each sample approximately the same or are there any outliers? If so, which samples do they belong to? Could a different number of sequences per sample affect future analysis? Explain your reasoning.
-
-(Note: you might want to use a `for` loop here.)
 
 Now that we've poked around in our raw data, let's carry on with analyzing the microbes present in our samples.
 

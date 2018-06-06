@@ -402,21 +402,21 @@ local_slide( {
             }
           },
           {
-            "text" : "Beta Diversity: UniFrac continued",
-            "targetRectangle" : {
-              "y" : 45.07257080078125,
-              "x" : 108.3500076293944,
-              "width" : 807.3000000000002,
-              "height" : 65
-            }
-          },
-          {
             "text" : "pasted-image.png",
             "targetRectangle" : {
               "y" : 357.4161132574081,
               "x" : 361.3314514160156,
               "width" : 585.625,
               "height" : 336.6875
+            }
+          },
+          {
+            "text" : "Beta Diversity: UniFrac continued",
+            "targetRectangle" : {
+              "y" : 45.07257080078125,
+              "x" : 108.3500076293944,
+              "width" : 807.3000000000002,
+              "height" : 65
             }
           }
         ],

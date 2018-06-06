@@ -382,24 +382,6 @@
       ],
       "accessibility" : [
         {
-          "text" : "Slides from Kristen Beck, modified by Julin Maloof",
-          "targetRectangle" : {
-            "y" : 664.4193120002747,
-            "x" : 109.2320003509521,
-            "width" : 805.5359999999997,
-            "height" : 43
-          }
-        },
-        {
-          "text" : "pasted-image.tif",
-          "targetRectangle" : {
-            "y" : -2.02734375,
-            "x" : -1.9609375,
-            "width" : 1236.480102539062,
-            "height" : 823.7492065429688
-          }
-        },
-        {
           "text" : "Getting Messy with Microbes:",
           "targetRectangle" : {
             "y" : 452.85546875,
@@ -415,6 +397,24 @@
             "x" : 99.35550092651368,
             "width" : 825.2889599999999,
             "height" : 80.40000319480896
+          }
+        },
+        {
+          "text" : "Slides from Kristen Beck, modified by Julin Maloof",
+          "targetRectangle" : {
+            "y" : 664.4193120002747,
+            "x" : 109.2320003509521,
+            "width" : 805.5359999999997,
+            "height" : 43
+          }
+        },
+        {
+          "text" : "pasted-image.tif",
+          "targetRectangle" : {
+            "y" : -2.02734375,
+            "x" : -1.9609375,
+            "width" : 1236.480102539062,
+            "height" : 823.7492065429688
           }
         },
         {

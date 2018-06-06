@@ -396,6 +396,15 @@
       ],
       "accessibility" : [
         {
+          "text" : "pasted-image.png",
+          "targetRectangle" : {
+            "y" : 411.9523010253906,
+            "x" : 280.3507690429688,
+            "width" : 641.125,
+            "height" : 288.5987790055624
+          }
+        },
+        {
           "text" : "Make a phylogenetic tree including all sequences",
           "targetRectangle" : {
             "y" : 137.1728057861328,
@@ -429,15 +438,6 @@
             "x" : 96.51949882507324,
             "width" : 862.1639999999998,
             "height" : 43
-          }
-        },
-        {
-          "text" : "pasted-image.png",
-          "targetRectangle" : {
-            "y" : 411.9523010253906,
-            "x" : 280.3507690429688,
-            "width" : 641.125,
-            "height" : 288.5987790055624
           }
         },
         {

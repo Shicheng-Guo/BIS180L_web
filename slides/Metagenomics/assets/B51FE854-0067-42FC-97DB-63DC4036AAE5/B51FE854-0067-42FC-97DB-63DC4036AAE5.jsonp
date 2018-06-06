@@ -156,6 +156,20 @@ local_slide( {
         "width" : 168,
         "height" : 235
       },
+      "9BA40D5F6444B37AF2B7BDCF0316C65A" : {
+        "type" : "texture",
+        "index" : 7,
+        "assetRequest" : {
+          "type" : "slide",
+          "state" : "contents",
+          "slide" : "none"
+        },
+        "url" : {
+          "native" : "assets\/B51FE854-0067-42FC-97DB-63DC4036AAE5.pdf"
+        },
+        "width" : 239,
+        "height" : 334
+      },
       "0711993C44C3A9EC7A8158BEEA50CF65" : {
         "type" : "texture",
         "index" : 20,
@@ -225,20 +239,6 @@ local_slide( {
         },
         "width" : 1024,
         "height" : 768
-      },
-      "E41F53965C9E3E01966460D570217094" : {
-        "type" : "texture",
-        "index" : 7,
-        "assetRequest" : {
-          "type" : "slide",
-          "state" : "contents",
-          "slide" : "none"
-        },
-        "url" : {
-          "native" : "assets\/B51FE854-0067-42FC-97DB-63DC4036AAE5.pdf"
-        },
-        "width" : 239,
-        "height" : 334
       },
       "498E23C82CA78A4BCD7BA88E5243B6FC" : {
         "type" : "texture",
@@ -580,12 +580,39 @@ local_slide( {
         ],
         "accessibility" : [
           {
+            "text" : "Rhizosphere",
+            "targetRectangle" : {
+              "y" : 213.7495123744011,
+              "x" : 670.5933399200439,
+              "width" : 156.6600000000001,
+              "height" : 34
+            }
+          },
+          {
+            "text" : "IR50",
+            "targetRectangle" : {
+              "y" : 599.8043829798698,
+              "x" : 248.9331699609756,
+              "width" : 57.596,
+              "height" : 34
+            }
+          },
+          {
             "text" : "pasted-image.tif",
             "targetRectangle" : {
               "y" : 257.5781288146973,
               "x" : 62.59707260131835,
               "width" : 165.0989302510352,
               "height" : 206.625
+            }
+          },
+          {
+            "text" : "Rhizoplane",
+            "targetRectangle" : {
+              "y" : 339.6519171595573,
+              "x" : 728.5046510696411,
+              "width" : 140.056,
+              "height" : 34
             }
           },
           {
@@ -598,24 +625,6 @@ local_slide( {
             }
           },
           {
-            "text" : "Endosphere",
-            "targetRectangle" : {
-              "y" : 584.67724609375,
-              "x" : 854.0568873882294,
-              "width" : 151.984,
-              "height" : 34
-            }
-          },
-          {
-            "text" : "pasted-image.tif",
-            "targetRectangle" : {
-              "y" : 35.08625984191895,
-              "x" : 62.59706974029541,
-              "width" : 165.0942996740341,
-              "height" : 186.0042892694473
-            }
-          },
-          {
             "text" : "13571893055_a10d823cdd_z.jpg",
             "targetRectangle" : {
               "y" : 500.6949768066405,
@@ -625,11 +634,11 @@ local_slide( {
             }
           },
           {
-            "text" : "IR50",
+            "text" : "Endosphere",
             "targetRectangle" : {
-              "y" : 599.8043829798698,
-              "x" : 248.9331699609756,
-              "width" : 57.596,
+              "y" : 584.67724609375,
+              "x" : 854.0568873882294,
+              "width" : 151.984,
               "height" : 34
             }
           },
@@ -643,12 +652,12 @@ local_slide( {
             }
           },
           {
-            "text" : "Rhizosphere",
+            "text" : "pasted-image.tif",
             "targetRectangle" : {
-              "y" : 213.7495123744011,
-              "x" : 670.5933399200439,
-              "width" : 156.6600000000001,
-              "height" : 34
+              "y" : 35.08625984191895,
+              "x" : 62.59706974029541,
+              "width" : 165.0942996740341,
+              "height" : 186.0042892694473
             }
           },
           {
@@ -657,15 +666,6 @@ local_slide( {
               "y" : 343.8906256556511,
               "x" : 242.7171714305878,
               "width" : 70.02800000000002,
-              "height" : 34
-            }
-          },
-          {
-            "text" : "Rhizoplane",
-            "targetRectangle" : {
-              "y" : 339.6519171595573,
-              "x" : 728.5046510696411,
-              "width" : 140.056,
               "height" : 34
             }
           }
@@ -2186,7 +2186,7 @@ local_slide( {
                           "pointY" : 0.5
                         }
                       },
-                      "texture" : "E41F53965C9E3E01966460D570217094"
+                      "texture" : "9BA40D5F6444B37AF2B7BDCF0316C65A"
                     }
                   ]
                 }
