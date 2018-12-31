@@ -4,7 +4,7 @@ layout: post
 tags:
 ---
 
-1. Go to your AWS E2C machines
+1. Go to your AWS E2C machines on the AWS dashboard
 2. Select machines to terminate (Note you have machines running in **two or three** locations: **Virgina** and **Oregon** OR **Califonia**)
 3. Select *Actions > Change Termination Protection*
 ![]({{site.baseurl}}/images/AWS_Termination_Protection.png)
