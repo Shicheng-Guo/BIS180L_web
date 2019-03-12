@@ -314,7 +314,7 @@ Let's utilize the beta diversity to generate UPGMA trees.
 Which sites cluster together? Which sites are different? How would you explain this pattern of diversity?  
 
 **Exercise 9:**
-Discuss some of the potential physiologies of the predominant groups of microbes correlated with the various rice microbiome samples. This information can be taken from the displays in Exercise 3.  
+Discuss some of the potential physiologies of the predominant groups of microbes correlated with the various rice microbiome samples. This information can be taken from the displays in Exercise 4.  
 *Hint* Use [MicrobeWiki](http://microbewiki.kenyon.edu/index.php/MicrobeWiki) or other online sites to learn more about these microbes.  
 
 

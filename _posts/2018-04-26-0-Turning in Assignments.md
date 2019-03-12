@@ -1,6 +1,7 @@
 ---
 layout: post
 title: How to turn in your Rmd assignments
+hidden: true
 ---
 
 One of the advantages of working in R markdown is that the code and its output can all be included in the same document.  

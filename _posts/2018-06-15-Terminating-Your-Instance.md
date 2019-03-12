@@ -1,6 +1,7 @@
 ---
 title: "Terminating Your Instance"
 layout: post
+hidden: true
 tags:
 ---
 
