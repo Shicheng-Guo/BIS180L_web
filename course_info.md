@@ -13,7 +13,7 @@ __Discussion:__  F 1:10-2:00 PM  SciLab2020
 __Instructor:__  Julin Maloof <jnmaloof@ucdavis.edu>   
 __Teaching Assistant:__ John Davis <jtdavis@ucdavis.edu>  
 
-__TA Office Hours:__ Tentatively 78B Hutchinson on Mondays 2:45-3:45 pm and Wednesdays 1:15-2:15 pm
+__TA Office Hours:__ 78B Hutchinson on Mondays 2:45-3:45 pm and Wednesdays 1:15-2:15 pm
 
 
 ## Learning Objectives
