@@ -5,7 +5,7 @@ tags:
 hidden: 
 ---
 
-If you want to try doing the labs directly on your Mac instead of on AWS here is how you can.
+If you want to try doing the labs directly on your Mac instead of on AWS here is how you can.  This document may have errors; please let me know and I can help (and update the document)
 
 ## web downloads
 
@@ -20,18 +20,15 @@ Install the following packages by clicking on the link and following the instruc
 
 ## Atom packages
 
-Open up at atom, click on File > Preferences, and then install the following atom packages.  Not all of these are needed for the BIS180L but they are good to have
+Open up  atom, click on File > Preferences, and then install the following atom packages.  Not all of these are needed for the BIS180L but they are good to have
 
 * Sublime-Style_Column-Selection
 * autocomplete-python
-* git-control
 * language-r
 * language-markdown
-* markdown-pdf
-* markdown-toc
-* markdown-preview
 * python-tools
-* r-exec
+
+In atom go to preferences and search for the 'whitespace' package.  Disable it.
 
 ## Homebrew
 
@@ -46,7 +43,6 @@ upgrade homebrew
 
 install the following packages through homebrew
 
-    #brew tap homebrew/science # deprecated?
     brew tap brewsci/bio # additional packages
     brew install htop
     brew install git
@@ -68,20 +64,15 @@ install the following packages through homebrew
 
 Open R and then
 
-    install.packages(c("swirl","ggplot2","genetics","LDheatmap","hwde","GenABEL","seqinr","qtl"))
-    install.packages(c("evaluate","formatR","highr","markdown", "yaml","htmltools","caTools","bitops","knitr","rmarkdown"))
-    install.packages("devtools")
-    install.packages("shiny")
-    install.packages("rsconnect")
+    install.packages(c('swirl','ggplot2','genetics','hwde','seqinr','qtl','evaluate','formatR','highr','markdown','yaml','htmltools','caTools','bitops','knitr','rmarkdown','devtools','shiny','pvclust','gplots','cluster','igraph','scatterplot3d','ape','SNPassoc','rsconnect','dplyr','tidyverse','learnr'))
     devtools::install_github(repo = "cran/PSMix")
-    install.packages(c("pvclust","gplots","cluster","igraph","scatterplot3d","ape","SNPassoc"))
 
 Still within R, install bioconductor
 
     source("http://bioconductor.org/biocLite.R")
     biocLite()
-    biocLite("edgeR")
-    biocLite("VariantAnnotation")
+    biocLite(c("Rsubread","snpStats","rtracklayer","goseq","impute","multtest","VariantAnnotation","chopsticks","edgeR"))
+    install.packages('LDheatmap')
 
 ## perl modules
 
@@ -91,6 +82,15 @@ For auto_barcode to work, the following must be installed (From the Unix command
     sudo cpan install Statistics::R
     sudo cpan install Text::Levenshtein::XS
     sudo cpan install Text::Table
+
+## STAR aligner
+
+From the unix command line:
+    
+    cd ~/Downloads
+    wget https://github.com/alexdobin/STAR/raw/master/bin/MacOSX_x86_64/STAR
+    chmod 0755 STAR
+    cp STAR /usr/local/bin
 
 ## Other
 
