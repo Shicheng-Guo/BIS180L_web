@@ -14,7 +14,7 @@ __Instructor:__  Julin Maloof <jnmaloof@ucdavis.edu>
 __Teaching Assistant:__ John Davis <jtdavis@ucdavis.edu>  
 
 __TA Office Hours:__ 78B Hutchinson on Mondays 2:45-3:45 pm and Wednesdays 1:15-2:15 pm
-
+__Maloof Office Hours:__ By appointment
 
 ## Learning Objectives
 
@@ -26,7 +26,8 @@ At the end of this course you should be able to:
 * Automate repetitive computational tasks using loops
 * Write scripts in R for data analysis and display
 * Perform a genome wide association study (GWAS)
-* Analyze Illumina sequencing data to find  SNPs and differentially expressed genes
+* Analyze Illumina sequencing data to find SNPs
+* Analyze RNAseq data to find differentially expressed genes and pathways
 * Make and deploy Shiny web applications
 * Reconstruct genetic co-expression networks
 * Analyze metagenomics data

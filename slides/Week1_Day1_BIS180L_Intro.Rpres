@@ -1,16 +1,16 @@
 Welcome to BIS180L 
 ========================================================
 author: Julin Maloof
-date: April 03, 2018
+date: April 02, 2019
 
 Course Personnel
 =======================================================
 
 __Instructor:__ Julin Maloof <jnmaloof@ucdavis.edu>
 
-__Teaching Assistant:__ Jiadong Ni <jni@ucdavis.edu>
+__Teaching Assistant:__ John Davis <jtdavis@ucdavis.edu>
 
-__Extra Help (today):__ John Davis
+__Extra Help (today):__ Jiadong Ni 
 
 What this course is about
 ========================================================
@@ -29,16 +29,33 @@ At the end of this course you should be able to:
 * Automate repetitive computational tasks using loops
 * Write scripts in R for data analysis and display
 * Perform genome wide association studies (GWAS)
-* Analyze Illumina sequencing data to find sequence polymorphsims
+* Analyze Illumina sequencing data to find sequence polymorphisms
 
 Learning Objectives, Continued
 ==========================================================
 incremental: true
-* Analyze RNA-seq data to find differentially expressed genes
+* Analyze RNA-seq data to find differentially expressed genes and pathways
 * Make and deploy Shiny web applications
 * Reconstruct genetic co-expression networks
 * Analyze metagenomics data
 * Apply best practices for reproducible data analyses via git version control and markdown notebooks
+
+Most interested in?  Most unfamiliar with?
+===================================
+* Cloud computing / AWS
+* Linux command line
+* Automate tasks using loops
+* Write scripts in R for data analysis and display
+* Perform genome wide association studies (GWAS)
+* Analyze Illumina sequencing data to find sequence polymorphisms
+
+***
+* Analyze RNA-seq data / differentially expressed genes and pathways
+* Shiny web applications
+* Genetic co-expression networks
+* Metagenomics data
+* Reproducible data analyses / git / markdown 
+
 
 Why R and Linux?
 ================
@@ -50,6 +67,10 @@ incremental:true
   * Outstanding built-in tools for data crunching
   * Provides access to hundreds of bioinformatics programs
   * Easy to automate repetitive tasks
+  
+Why R and Linux?
+================
+incremental:true
 * R 
   * Powerful scripting, statistical, data processing, and graphical capabilities
   * Many bioinformatics packages are developed in R
@@ -63,9 +84,28 @@ And
 
 “Coding is engaging and empowering. It’s a necessary 21st Century skill.” – Jan Cuny, Program Officer, National Science Foundation
 
+And
+===
+[coding is cool](http://www.huffingtonpost.com/2013/02/27/code-org-video_n_2767453.html)
+
 “Code has become the 4th literacy. Everyone needs to know how our digital world works, not just engineers.” – Mark Surman, Executive Director, The Mozilla Foundation
 
 “If you can program a computer, you can achieve your dreams. A computer doesn’t care about your family background, your gender, just that you know how to code. But we’re only teaching it in a small handful of schools, why?” – Dick Costolo, CEO, Twitter
+
+Do you want to succeed in this class?
+=====================================
+incremental: true
+
+Secrets for success:
+
+1. You are learning a new language, treat it as such.
+2. Go slow.  If your goal is to get out of this room as soon as possible you will not succeed.
+3. Read the lab instructions carefully.  See #2.
+4. Do not cut and paste code.  Type it; you will learn it better.
+5. Take the time to understand a command.
+6. Do ask for help when you are stuck or confused.
+7. Google is a good resource for coding questions.
+8. Be kind to yourself and your neighbors.
 
 Course Schedule
 ========================================================
@@ -116,8 +156,8 @@ Course Grading
 ==============
 
 * 45% Lab assignments
-* 25% Take home midterm (Available May 4, __Due May 10, 1:10 PM__)
-* 25% Take home final (Available June 5, __Due June 11, 9:00 AM__)
+* 25% Take home midterm (Available May 4, __Due May 09, 1:10 PM__)
+* 25% Take home final (Available June 5, __Due June 10, 9:00 AM__)
 * 5% Discussion/participation (TBD)
 
 Do your own work
@@ -166,7 +206,7 @@ Reference Text2
 
 This is another excellent book that more generally covers data manipulation and analysis in R.
 
-The author, Hadely Wickham, has built some very nice additions to R that we will make use of in this class.
+The author, Hadley Wickham, has built some very nice additions to R that we will make use of in this class.
 
 
 Why are we here?
@@ -175,7 +215,7 @@ incremental: true
 And what is bioinformatics?
 * OK so it is a requirement, but what else?
 
-Bbioinformatics best practices
+Bioinformatics best practices
 ==================================
 transition: rotate
 
@@ -198,7 +238,7 @@ Virtual Linux machine
 incremental: true
 
 * The computer lab machines run Windows
-* Bioinformatics on a Windows machine is painful (although getting better) (R is OK)
+* Bioinformatics on a Windows machine is painful (although getting better) (R is fine)
 * Solution: virtual machine!
 * Use [Amazon Web Services](https://aws.amazon.com/) to run a virtual Linux machine in the cloud
 * You can connect to your virtual machine from any computer, including your laptop or home computer
@@ -230,10 +270,12 @@ incremental:true
 
 As detailed in the lab notes for today:
 
-* You will need to register for an account at AWS
-* As you UC Davis student you get $100 credit.  That should easily be enough to complete this class (800 - 1500 hours of compute time) __If you stop your machine when not in use__
+* You will need to register at AWS Educate; see email from AWS educate.
+* As a participant in this class $50 credit.  That should easily be enough to complete this class 1500 hours of compute time) __If you stop your machine when not in use__
+* Optionally you can also sign up for an AWS account, in which case you will get an additional $100 per year so long as you are at UC Davis.  This option requires that you give AWS a credit card.
 * __It is very important that you stop your machine when not in use__
-* If you are already running Linux, or want to try installing the relevant software on your Mac, I can give you installation notes. 
+* If you are already running Linux, or want to try installing the relevant software on your Mac, I can give you installation notes. (But for today's class please connect to AWS).
+
 
 Today's Lab
 ==========
@@ -310,9 +352,18 @@ In the meantime, keep:
 * The notes (in Markdown!) from the Linux tutorial
 * The answer to "Exercise 1" from the Linux tutorial
 
+Refresher: Secrets for success
+================================
+
+If you don't have this email, see me:
+=====================================
+(For most of you this would have arrived in early March)
+![](Invite_Email.PNG)
+
 Lets go have fun!
 =================
 type: section
+
 
 
 
