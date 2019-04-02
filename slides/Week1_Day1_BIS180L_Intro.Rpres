@@ -102,7 +102,7 @@ Secrets for success:
 2. Go slow.  If your goal is to get out of this room as soon as possible you will not succeed.
 3. Read the lab instructions carefully.  See #2.
 4. Do not cut and paste code.  Type it; you will learn it better.
-5. Take the time to understand a command.
+5. Take the time to understand a command.  THINK! 
 6. Do ask for help when you are stuck or confused.
 7. Google is a good resource for coding questions.
 8. Be kind to yourself and your neighbors.
@@ -209,11 +209,11 @@ This is another excellent book that more generally covers data manipulation and 
 The author, Hadley Wickham, has built some very nice additions to R that we will make use of in this class.
 
 
-Why are we here?
-================
-incremental: true
-And what is bioinformatics?
-* OK so it is a requirement, but what else?
+<!-- Why are we here? -->
+<!-- ================ -->
+<!-- incremental: true -->
+<!-- And what is bioinformatics? -->
+<!-- * OK so it is a requirement, but what else? -->
 
 Bioinformatics best practices
 ==================================
