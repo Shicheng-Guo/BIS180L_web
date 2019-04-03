@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Assignments
-hidden: false
+hidden: true
 ---
 
 

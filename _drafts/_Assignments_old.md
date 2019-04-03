@@ -1,6 +1,7 @@
 ---
 layout: page
-title: Assignments
+title: Assignments1
+hidden: true
 ---
 
 ### Instructions
