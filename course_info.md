@@ -40,7 +40,7 @@ At the end of this course you should be able to:
 * Class Participation/presentation: 5%
 
 ## Written Assignments
-There will be written assignments due every week or two. Assignments will generally be __due at 9:00AM on Monday__ for the previous week’s material. Weekly assignments will take one of two forms:
+There will be written assignments due every week or two. Weekly assignments will take one of two forms:
 
 1. __Problem sets.__ Problem sets will consist of questions that you answer as you work through the lab material. They may consist of combinations of short answers, code segments, figures, and other data analysis. You should be able to complete these during the scheduled lab periods.
 2. __Lab reports.__ For lab reports you will write a short document describing your analysis. Lab reports should consist of two to three pages of text (minimum font size: 12 points, minimum page margins 1”) and have up to four figures or tables (which do not count towards the page limit). Please see separate document on SmartSite for more information.

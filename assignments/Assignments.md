@@ -11,8 +11,8 @@ Right click on the link to download the markdown template.  Edit the markdown te
 
 | Date Assigned       | Title              | Links                                                                   | Date Due           |
 |:--------------------|:-------------------|:------------------------------------------------------------------------|:-------------------|
-| __April 05__        | Sequence Alignment | [SA_template]({{site.baseurl}}/assignments/Assignment_1_SA_template.md) | __April 16, 9AM__  |
-| __April 12__        | Loops, BLAST       | template in github repo                                                 | __April 23, 9AM__  |
+| __April 04__        | Sequence Alignment | [SA_template]({{site.baseurl}}/assignments/Assignment_1_SA_template.md) | __April 11, 1:00 PM__  |
+<!-- | __April 12__        | Loops, BLAST       | template in github repo                                                 | __April 23, 9AM__  |
 | __April 19 and 24__ | R Parts 1 and 2    | See Assignment3 in github                                               | __April 30, 9AM__  |
 | __May 1__           | R SNPs and GWAS    | See Assignment 4 in github                                              | __May 4, 11:59PM__ |
 | __May10__           | Shiny              | See Shiny Lab Page                                                      | __May 15, 1PM__    |
@@ -20,4 +20,4 @@ Right click on the link to download the markdown template.  Edit the markdown te
 | __May 22__          | Differential expression, GO, promoters  | See Assignment 6 in Github                         | __May 29, 1:10PM__  |
 | __May 29__          | Clustering         | See Assignment 7 template in Github                                     | __June 5th, 1:10 PM__ |
 | __May 29__          | Networks           | See Assignment 8 template in Github                                     | __June 5th, 1:10 PM__ |
-| __June 5__          | Metagenomics       | See Assignment 9 template in Github                                     | __June 8th, 9:00 AM__ |
+| __June 5__          | Metagenomics       | See Assignment 9 template in Github                                     | __June 8th, 9:00 AM__ | -->
