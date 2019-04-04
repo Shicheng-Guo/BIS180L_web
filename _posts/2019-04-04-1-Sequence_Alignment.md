@@ -28,16 +28,31 @@ You will see that the template also has a place for you to put the answers from 
 
 If you look at the `/data` directory, you will see that there are 3
 sub-directories for 3 different genomes. Each of these files was
-downloaded directly from its source genome project (TAIR, WormBase,
-FlyBase). There are files for proteins and files for genomes (the _A.
-thaliana_ files are in separate chromosomes while the worm and fly have
-all the sequences in a single file).
+downloaded from its source genome project (TAIR, WormBase,
+FlyBase). There are files for proteins and files for genomes.
 
 Now lets organize the files a little to make our lives easier. Create a
-subdirectory in the `Assignment_1` directory called `Data`. Create
-sub-directories for each species. Also create sub-directories under `Data` that organize by
-sequence type rather than species. In the end, your hierarchical
-structure should look like this.
+subdirectory in the `Assignment_1` directory called `Data`. We could organize our data either by species, or by sequence type.  Here we are going to do both.
+
+Within `Data`, create subdirectories for `Sequences` and `Species`. 
+
+Within `Sequences`, create sub directories for `Genome` and `Proteome`.
+
+Within `Species`, create subdirectories for each species.
+
+At this point, your hierarchy should look like this: 
+
+	Data
+		Sequences
+			Genome
+			Proteome
+
+		Species
+			A.thaliana
+			C.elegans
+			D.melanogaster
+
+Now copy the appropriate files to the `Sequences` directory.  You will need to uncompress and rename the files.  Use the appropriate commands to achieve this. Your directory should now look like this:
 
 	Data
 		Sequences
@@ -51,24 +66,41 @@ structure should look like this.
 				D.melanogaster.fa
 		Species
 			A.thaliana
-				genome.fa
-				protein.fa
 			C.elegans
-				genome.fa
-				protein.fa
 			D.melanogaster
-				genome.fa
-				protein.fa
 
-Note: you will need to uncompress the files. Additionally you will need to merge the A.thaliana chromosomes into a single file. Use the appropriate commands to achieve this and place the uncompressed files in the Sequences/Genome and Sequences/Proteome directories. Next create aliases from the species directories to these files. You should not need to duplicate sequences.  That is, `Sequences/Genome/A.thaliana.fa` should contain the real file and
-`Species/A.thaliana/genome.fa` should be an alias to that file so that you do not need to duplicate the data unnecessarily. Lastly, the file permissions should be "appropriate". You learned the commands that you need for all of these steps in Tuesday's lab.
+Next we need to populate the `Species` directory.  We don't want to take up disk space with additional copies of the genome and proteome files; instead create aliases within each species directory that point to the proper files in the `Sequences` directory.  That is, `Sequences/Genome/A.thaliana.fa` should contain the real file and `Species/A.thaliana/genome.fa` should be an alias to that file so that you do not need to duplicate the data unnecessarily. Lastly, the file permissions should be "appropriate". You learned the commands that you need for all of these steps in Tuesday's lab.
 
-When you have completed these tasks, change directory to your `Assignment_1` directory and run the following
-command.
+When you are done, your directory should look like this:
+
+	Data
+		Sequences
+			Genome
+				A.thaliana.fa
+				C.elegans.fa
+				D.melanogaster.fa
+			Proteome
+				A.thaliana.fa
+				C.elegans.fa
+				D.melanogaster.fa
+		Species
+			A.thaliana
+				genome.fa@
+				protein.fa@
+			C.elegans
+				genome.fa@
+				protein.fa@
+			D.melanogaster
+				genome.fa@
+				protein.fa@
+
+
+
+When you have completed these tasks, change directory to your `Assignment_1` directory and run the following command.
 
 	ls -lR Data
 
-This should indicated that there are 6 aliases to 6 files.
+This should indicate that there are 6 aliases to 6 files.
 
 Paste the output of the `ls -lR Data` command into your template
 
