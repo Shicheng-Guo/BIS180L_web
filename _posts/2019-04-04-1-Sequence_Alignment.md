@@ -276,12 +276,7 @@ have time to discuss.
 
 	grep Score 1k.water | awk '{sum+=$3} END {print sum/NR}'
 
-Answer the following questions in your the assignment template file.
-
-1. Is the shape of the curve normal? Do you expect it to be normal?
-2. Do you expect all protein comparisons to have the same distribution?
-3. How would protein composition and length affect the scores?
-4. How would the scoring matrix and gap penalties affect the scores?
+Answer questions 3-12 in your the assignment template file.
 
 ## Part 5: Alignment Significance ##
 
@@ -303,10 +298,10 @@ following questions?
 * How many amino acids do I need to align to do this experiment?
 * How long would it take to compare two proteomes?
 
-Write those down in your assignment template file. Now let's get back to the experiment.
+Write those down in your assignment template file (Q13). Now let's get back to the experiment.
 You want to find the A. thaliana and D. melanogaster orthologs of
 B0213.10. Set up the experiment any way you like. You need to be able to
-answer questions in the [Assignment Template]({{site.baseurl}}/assignments/Assignment_1_SA_template.md). Note that some questions may be
+answer questions 14-17 in the [Assignment Template]({{site.baseurl}}/assignments/Assignment_1_SA_template.md). Note that some questions may be
 open-ended and difficult to answer. For these, do your best
 and support your answer with scientific reasoning and/or appropriate
 sources.
