@@ -3,14 +3,14 @@ layout: page
 title: Readings and Resources
 ---
 
-## Day One (Apr 04)
+## Day One (Apr 02)
 [Noble: Organizing Bioinformatics Projects](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424#pcbi-1000424-g001)
 
 [(R) Markdown quick reference](http://rmarkdown.rstudio.com/authoring_basics.html)
 
 [Linux quick reference](http://www.linuxdevcenter.com/excerpt/LinuxPG_quickref/linux.pdf)
 
-## Day Two (Apr 06)
+## Day Two (Apr 04)
 
 ### Git
 [Git increases reproducibility and transparency](http://www.scfbm.org/content/8/1/7)
@@ -25,9 +25,9 @@ title: Readings and Resources
 
 [Local Alignment Stats](../docs/4_Local_alignment_statistics.pdf)
 
-Extra Info: [Combined Unabridged Sequence Analysis Primer](../docs/SequenceAnalysisPrimer.pdf) (This combines the above 4 documents above and has a bit more informaiton)
+Extra Info: [Combined Unabridged Sequence Analysis Primer](../docs/SequenceAnalysisPrimer.pdf) (This combines the above 4 documents above and has a bit more information)
 
-
+<!-- 
 ### Other
 
 [Orthologs and Paralogs](http://www.sciencedirect.com/science/article/pii/S0168952500020059)
@@ -54,4 +54,4 @@ Extra Info: [Combined Unabridged Sequence Analysis Primer](../docs/SequenceAnaly
 ## May 26
 [Giant Panda Gut Microbiome](http://mbio.asm.org/content/6/3/e00022-15)
 [Genome Web Article on the Paper](../docs/Giant_Panda_Microbiome_Ill-Suited_for_Bamboo_Diet.pdf)
-[Metagenomics of the rice rhizosphere](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4345613/)
+[Metagenomics of the rice rhizosphere](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4345613/) -->
