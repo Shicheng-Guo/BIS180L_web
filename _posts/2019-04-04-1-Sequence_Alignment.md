@@ -94,7 +94,7 @@ When you are done, your directory should look like this:
 				genome.fa@
 				protein.fa@
 
-
+(Where the `@` at the end of the filename denotes that this is an alias)
 
 When you have completed these tasks, change directory to your `Assignment_1` directory and run the following command.
 
