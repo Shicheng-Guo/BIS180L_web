@@ -206,10 +206,6 @@ sequence lines.
 
 	diff ce1.fa ce1.shuffle.fa
 
-Well, that's not quite what happened. Even the FASTA header lines are
-slightly different. Apparently `shuffleseq` changes whitespace in the
-defline for some reason.
-
 Now let's try aligning the A.
 thaliana protein against the shuffled C. elegans protein.
 
@@ -295,7 +291,7 @@ alignment. The query sequence is B0213.10, which can be found in the C.
 elegans proteome. Search this against all A. thaliana and D.
 melanogaster proteins to find its homologs.
 
-__Hint:__ when using `water` to search one protein against a whole proteome it matters which sequencing is given first.  Which is the query here?
+__Hint:__ when using `water` to search one protein against a whole proteome it matters which sequence is given first.  Which is the query here?
 
 Before you begin, it's a good idea to get an idea how long it will take
 to do the experiment. Will your experiment take seconds, minutes, hours,
