@@ -19,7 +19,7 @@ Paste the `date` command that you used for exercise one here:
 
 Paste the URL for the shared github repository that you created with your lab partners here.  Use proper markdown formatting:
 
-
+Paste the saved output of the `git log` command here (format as a code block)
 
 
 ## Sequence Alignment
@@ -28,7 +28,7 @@ Paste the URL for the shared github repository that you created with your lab pa
 
 ** Unless otherwise noted we are not requiring you to include your code here.  However, I advise that you record it in a separate Markdown file for your reference.  That way if you need it again (e.g. for the midterm) you have a record of what you did**
 
-__1.__ Paste in the result of the `ls -lR Data` command.
+__1.__ Paste in the result of the `ls -lR Data` command. (format as a code block)
 
 __2.__ Paste in the markdown table from the lab manual that includes for each genome:
 
@@ -64,7 +64,7 @@ __11.__ What is the expected (average) score of each pairwise alignment
 at random? (Perform some shuffled alignments to get an idea of what the
 random expectation is).
 
-__12.__ How many Z-scores away from the mean is the best alignment?
+__12.__ How many [Z-scores](https://www.statisticshowto.datasciencecentral.com/probability-and-statistics/z-score/) away from the mean is the best alignment?  If you know how to use R to do this, great.  If not you will learn in the next couple of weeks.  In the meantime, you can use an online calculator to calculate the mean and sd of your alignments.  [mean](https://goodcalculators.com/statistics-calculator-graph-generator/) [sd](https://goodcalculators.com/standard-deviation-calculator/) [Z](https://goodcalculators.com/z-score-calculator/)
 
 __13.__ Briefly discuss the statistical and biological significance of your results.
 
