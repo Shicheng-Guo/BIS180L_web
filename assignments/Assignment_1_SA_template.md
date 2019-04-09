@@ -59,9 +59,9 @@ __10.__ Create 1000 shuffles of the Q-enriched sequence above and report the ave
 
 __11.__ Briefly discuss parts 8-10 with respect to how sequence composition affects score. (*2pts*)
 
-__12.__ How does protein length affect the scores?  Design an experiment to test your idea and give the results.
+__2019: OK TO SKIP THIS QUESTION__ How does protein length affect the scores?  Design an experiment to test your idea and give the results.
 
-__13.__ How many amino acids can be aligned per second?  How many amino acids need to be aligned for the experiment?  How long would it take to compare the two proteomes? 
+__2019: OK TO SKIP THIS QUESTION__ How many amino acids can be aligned per second?  How many amino acids need to be aligned for the experiment?  How long would it take to compare the two proteomes? 
 
 __14.__ Starting with the C. elegans B0213.10 protein, find the best
 match in the A. thaliana and D. melanogaster proteomes with `water`.

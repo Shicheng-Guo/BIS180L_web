@@ -288,17 +288,20 @@ melanogaster proteins to find its homologs.
 
 __Hint:__ when using `water` to search one protein against a whole proteome it matters which sequence is given first.  Which is the query here?
 
-Before you begin, it's a good idea to get an idea how long it will take
+
+__2019: OK to skip the section stricken through below__
+~~Before you begin, it's a good idea to get an idea how long it will take
 to do the experiment. Will your experiment take seconds, minutes, hours,
 days, or longer? Before attempting to do the whole experiment, it pays
 to do a small fraction first. Don't begin until you can answer the
-following questions?
+following questions?~~
 
-* How many amino acids can I align per second?
-* How many amino acids do I need to align to do this experiment?
-* How long would it take to compare two proteomes?
+~~* How many amino acids can I align per second?~~
+~~* How many amino acids do I need to align to do this experiment?~~
+~~* How long would it take to compare two proteomes?~~
 
-Write those down in your assignment template file (Q13). Now let's get back to the experiment.
+~~Write those down in your assignment template file (Q13). Now let's get back to the experiment.~~
+
 You want to find the A. thaliana and D. melanogaster orthologs of
 B0213.10. Set up the experiment any way you like. You need to be able to
 answer questions 14-17 in the [Assignment Template]({{site.baseurl}}/assignments/Assignment_1_SA_template.md). Note that some questions may be
