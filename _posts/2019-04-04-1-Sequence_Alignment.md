@@ -289,7 +289,7 @@ melanogaster proteins to find its homologs.
 __Hint:__ when using `water` to search one protein against a whole proteome it matters which sequence is given first.  Which is the query here?
 
 
-__2019: OK to skip the section stricken through below__
+__2019: OK to skip the section stricken through below AND skip Q12 and Q13__
 ~~Before you begin, it's a good idea to get an idea how long it will take
 to do the experiment. Will your experiment take seconds, minutes, hours,
 days, or longer? Before attempting to do the whole experiment, it pays
