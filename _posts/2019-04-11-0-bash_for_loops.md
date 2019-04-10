@@ -124,7 +124,7 @@ If you want a bit more of a challenge, try this (optional)
 
 _hint_ click [here](http://fishshell.com/docs/current/index.html#syntax) and scroll down to "Quotes" and then "Escaping Characters"
 
-You can also the for loop to create new files, i.e.
+You can also use the for loop to create new files, i.e.
 
     set newFiles one two three four
     echo $newFiles
