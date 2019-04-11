@@ -5,38 +5,20 @@ date: April 12, 2018
 
 Teams
 ======
-We are going to work in teams for this lab.  You will still turn in your own work, but the collective expertise of three should be better than one.  If you are the more experienced person in your team help teadch your peers! 
-
-* Christopher, Andhra, Eunice
-* Evan, Gautham, Botao
-* Matthew, Gareth, Maylin
-* Gabriel, Irene, Sagayamary
-* Arkin, Ruihan, Camille
-* Ashley, Bismata, Minyoung
-
-Teams, set 2
-=============
-* Aaron, Alexander, Joann
-* Yingtong, Chad, Binh
-* Melodie, Dana, Krista
-* Christian, Veronica, Connie
-* Jacob, Laurel, Jordan
-* Andrew, Korey, Eleanor
-* Joshua, Zhouran, Jaclyn
-
 
 
 A few pointers 
 ===============
 incremental: true
 
-* Do not just copy and paste the commands from the lab manual.
-  * You need to learn these commands and how they are working
-  * Cut and paste without thinking may save you time now, but will hurt you in the long run.
-  
 * You must look at the output and files that your commands create.
   * IT is necessary to make sure that the command is doing what you think it should.
   * example...
+  
+* Do not just copy and paste the commands from the lab manual.
+  * You need to learn these commands and how they are working
+  * Cut and paste without thinking may save you time now, but will hurt you in the long run.
+
 
 Alignment methods
 ========================================================
@@ -56,6 +38,7 @@ incremental: true
 
 Goals:
 * Familiarity with BLAST at the command line.
+* Automating tasks with "for" loops
 * Orthology and Paralogy
 
 What does BLAST stand for?
@@ -110,7 +93,7 @@ incremental: true
 
 Imagine that we want to use a computer and robot to automatically measure the weight of every student in the room.  
 
-First lets describe in detail what the steps would be for a single student.  We use "pseudo-code" to describe what we want our program to do.
+First lets describe in detail what the steps would be for a single student.  We use "pseudo-code" to describe what we want our program to do for a single student.
 
 ```{}
 pick up the student
@@ -146,7 +129,7 @@ __Type the commands below into the Linux shell to see what happens__
 
 First we create a list of all the students, contained in the variable `classroom_students`
 
-    set classroom_students Irene Dana Arkin Nathan Melodie
+    set classroom_students Chris Carine Cole Surbhi Sankalp
     echo $classroom_students
 
 We use the `echo` command to confirm that the classroom_students list has been created successfully
@@ -172,7 +155,7 @@ Discussion Questions
 ====================
 incremental:true
 
-* Tomorrow's discussion will be a discussion in which both I and your peers answer questions about material in the first two weeks.
-* __Today__ go to canvas and take the "quiz"...list at least one question.  This is due by 6pm and will be part of the 5% "participation points".
+* Like last week, part of tomorrow's discussion will be a discussion in which both I and your peers answer questions about this week's material
+* __Today__ go to canvas and complete the assignment...list at least one question.  This is due by 6pm and will be part of the 5% "participation points".
   * Don't be shy about asking questions that you think might be "too simple".  I won't judge and I won't include your name if I use your question.
-* __Tomorrow__ We will break up into groups to answer the most common questions.  Attendance and participation will be par5 of the 5% "participation points"
+* __Tomorrow__ We will break up into groups to answer the most common questions.  Attendance and participation will be part of the 5% "participation points"
