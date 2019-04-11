@@ -135,7 +135,7 @@ You can also use the for loop to create new files, i.e.
     
     ls
 
-__Optional Exercise Four__: Write a for loop that runs the `water` command from the Sequence Alignment lab three times, (once per loop) each time using a different scoring matrix.  Be sure that the results from each call to `water` is saved in a different file with the file name indicating the parameters that were used.  Scoring matrices can be found at `ls /usr/share/EMBOSS/data/EBLOSUM*`.  You can get a list of them by typing `ls /usr/share/EMBOSS/data/EBLOSUM* | xargs -n 1 basename
+__Optional Exercise Four__: Write a for loop that runs the `water` command from the Sequence Alignment lab three times, (once per loop) each time using a different scoring matrix.  Be sure that the results from each call to `water` is saved in a different file with the file name indicating the parameters that were used.  Scoring matrices can be found at `ls /usr/share/EMBOSS/data/EBLOSUM*`.  You can get a list of them by typing `ls /usr/share/EMBOSS/data/EBLOSUM* | xargs -n 1 basename`
 
 
 ## Nested for Loops
