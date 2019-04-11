@@ -159,9 +159,7 @@ For each fruit we now loop through each of the numbers...
 __Optional Exercise Five:__ Use a nested for loop to run water for each scoring matrix and gap extension penalties from 3 through 9
 
 
-# BASH version
-
-__OPTIONAL: BIS180L Students do not need to do this__
+# BASH version OPTIONAL: BIS180L Students do not need to do this
 
 This is here as a reference in case you are working in the Bash shell
 
