@@ -1,21 +1,38 @@
 How to turn in Assignments (and other miscellany)
 ========================================================
 author: Julin Maloof
-date: April 10, 2018
+date: April 11, 2019
 
 
-Available AWS Hours
+Stop your AWS Instance when not in use!!!
 ===================
-incremental:true
-I may have scared some of you away from using your AWS instance outside of class.  Really you have a lot of hours.
+Some people are using their credit at an alarming rate.  I think this means that you are not stopping your instance.
+If your name is below then you may be forgetting to turn off your instance.
 
-The instance costs $0.0464 per hour.  Rounding up to $0.05, then your $100 credit gets you 2,000 hours
+Also, there is a $3.00 monthly charge for each EBS (virtual hard drive) that you create.  So if you created multiple instances that may explain the high charges.
 
-2,000 hours = 83 days if you left it on 24 hours a day.
+| Account       | Usage  |
+|:--------------|:-------|
+| hspourcyrous@ | $11.29 |
+| cwpittman@    | $7.4   |
+| ccrcheng@     | $6.05  |
+| adsriram@     | $5.65  |
+| kknahal@      | $5.36  |
+| rabednorz@    | $5.14  |
+| jwaskowiak@   | $5.04  |
 
-So...please feel free to use you instance as much as you would like.  
+Stop your AWS Instance when not in use!!!
+===================
+One __gotcha__ is that AWS Educate logs you out of the AWS console after 3 hours, but class is 4 hours long.
 
-**Still, turn it off when you aren't using it**
+If AWS Educate may log's you out of the console, your request to stop your instance will not be submitted and you will have to log in again and resubmit your stop request.
+
+If you see this, you should be fine:
+![](slide_images/Stopping_Instance.png)
+
+Or you can wait 30 seconds and be sure your instance is stopped if you see this:
+![](slide_images/Stopped_Instance.png)
+
 
 Tiger VNC on your computer
 ===========================
@@ -27,15 +44,28 @@ It is easy.  Just download TigerVNC (free) to your computer.  See the first lab 
 I need your GitHub Username
 ========================================================
 
-I am *STILL* missing usernames for:
+As of 8AM I am *STILL* missing usernames for:
 
-Mathew Elford  
-Gabriel Hargis  
-Derek Kawahara  
-Maylin Murdock  
-Dana Ngo  
-Brian Vo  
-Korey Vu  
+Stevie Benko  
+Alvin Chen  
+Chris Cheng  
+Devon Fitzpatrick  
+Marcus Flisher  
+Jana Gagacheva  
+Jonathan Kirkland  
+King Law  
+***
+Yimei Lu  
+Karenjit Nahal  
+Chad Pittman  
+Hanna Pourcyrous  
+Krishna Pramod Kumar  
+Guy Robinson  
+Rebecca Ryan  
+Sankalp Sinha  
+Samvardhini Sridharan  
+Cole Williams  
+
 
 To give me your GitHub Username:
 ========================================================
@@ -55,15 +85,16 @@ Assignment turn-in
 incremental: true
 Assignments are to be turned in by pushing to a github repository
 
-I will create a private GitHub repository for each of you for each assignment.  Assignment 1 is available.
+I will create a private GitHub repository for each of you for each assignment.  
 
-Short version:
+Assignment 1 and 2 are available.
+
+Short version for Assignment 1:
 * Clone the repository
 * Move your file(s) into the directory
 * `Git add` the file to be tracked
 * `Git commit` the change
 * Push to github
-* On the webpage for your repository create an issue "Please Grade Assignment 1"
 
 Step-by-step guide for assignment turn in
 ===================
@@ -73,8 +104,8 @@ Clone the repository--part I
 =====================
 
 * go to GitHub.com and logon
-* If you haven't already done so, accept the invitation to join the UCDBIS180L-18 team
-* Click on the link "UCDBIS180L-18/BIS180L_Assignments_..." link on the right hand side
+* If you haven't already done so, accept the invitation to join the UCDBIS180L-19 team
+* Click on the link "UCDBIS180L-19/BIS180L_Assignments_..." link on the right hand side
 
 ![assignments](git_clone_1.png)
 
@@ -89,7 +120,7 @@ Clone the repository--Part III
 * Go to terminal type `git clone` and then paste in the address.  It will look something like
 ![terminal_clone](git_clone_3.png)
 
-Create a directory and move files
+Move files into the repository
 =================================
 
 * `cd` into the repository (Change Stacey.Harmer to whatever is correct for your repo)
@@ -122,40 +153,19 @@ Push to GitHub
 
 When you are ready to submit push your changes to GitHub
 
-First set your git configuration options (only needs to be done once per machine)  
-
-```{r, eval=FALSE}
-git config --global push.default simple
-```
-
-Then
 ```{r, eval=FALSE}
 git push
 ```
 
 Of course you can push before this also.  Just be sure to push one final time when you have completed your work.
 
-Create an issue
-===============
+You can go to the github.com webpage for your repository to double check that the files are there.
 
-To tell us that you are ready for us to grade your assignment
-* go to the github webpage for this repository
-* click on "issues"
-
-![](git_issues_1.png)
-
-Create an issue, 2
-=====================
-
-* create a new issue "Assignment 1"
-![](git_issues_2.png)
-* tell us that you are ready for your assignment to be graded
-![](git_issues_3.png)
 
 Future
 ======
 
-For subsequent exercises clone the repository *before* you start working on the lab.  
+For subsequent assignments (including Assignment 2) clone the repository *before* you start working on the lab.  
 
 Do you work in the repository.
 
