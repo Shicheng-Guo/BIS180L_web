@@ -70,7 +70,7 @@ What if we want to add an "s" to make these fruit plural?
         echo {$fruit}s
     end
 
-The curly brackets are used to help fish distinguish between the variable name `fruit` and the text we want to add `s`.  `bash` requires slightly different specifications of the curly brackets.  If you are a `bash` user, see `bash` section below.
+The curly brackets are used to help fish distinguish between the variable name `fruit` and the text we want to add: "`s`".  `bash` requires slightly different specifications of the curly brackets.  If you are a `bash` user, see `bash` section below.
 
 __Exercise One__: Write a for loop to pluralize peach, tomato, potato (remember that these end in "es" when plural)
 
