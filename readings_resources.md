@@ -17,6 +17,8 @@ title: Readings and Resources
 
 ### Sequence Alignment Background
 
+[Choosing a Scoring Matrix](https://currentprotocols.onlinelibrary.wiley.com/doi/10.1002/0471250953.bi0305s00/otherversions)
+
 [Information Theory](../docs/1_Information_theory.pdf)
 
 [Amino Acid Similarity](../docs/2_Amino_acid_similarity.pdf)
@@ -27,10 +29,13 @@ title: Readings and Resources
 
 Extra Info: [Combined Unabridged Sequence Analysis Primer](../docs/SequenceAnalysisPrimer.pdf) (This combines the above 4 documents above and has a bit more information)
 
-<!-- 
-### Other
+## April 16
 
-[Orthologs and Paralogs](http://www.sciencedirect.com/science/article/pii/S0168952500020059)
+[Fitch on Orthologs and Paralogs](http://www.sciencedirect.com/science/article/pii/S0168952500020059)
+
+[Wikipedia on BLAST](https://en.wikipedia.org/wiki/BLAST)
+
+<!-- 
 
 [Kristen's cool paper](http://pubs.acs.org/doi/abs/10.1021/pr501243m)
 
