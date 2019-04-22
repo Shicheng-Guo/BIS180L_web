@@ -70,7 +70,7 @@ What if we want to add an "s" to make these fruit plural?
         echo {$fruit}s
     end
 
-The curly brackets are used to help fish distinguish between the variable name `fruit` and the text we want to add `s`.  `bash` requires slightly different specifications of the curly brackets.  If you are a `bash` user, see `bash` section below.
+The curly brackets are used to help fish distinguish between the variable name `fruit` and the text we want to add: "`s`".  `bash` requires slightly different specifications of the curly brackets.  If you are a `bash` user, see `bash` section below.
 
 __Exercise One__: Write a for loop to pluralize peach, tomato, potato (remember that these end in "es" when plural)
 
@@ -135,7 +135,7 @@ You can also use the for loop to create new files, i.e.
     
     ls
 
-__Optional Exercise Four__: Write a for loop that runs the `water` command from the Sequence Alignment lab three times, (once per loop) each time using a different scoring matrix.  Be sure that the results from each call to `water` is saved in a different file with the file name indicating the parameters that were used.  Scoring matrices can be found at `ls /usr/share/EMBOSS/data/EBLOSUM*`.  You can get a list of them by typing `ls /usr/share/EMBOSS/data/EBLOSUM* | xargs -n 1 basename
+__Optional Exercise Four__: Write a for loop that runs the `water` command from the Sequence Alignment lab three times, (once per loop) each time using a different scoring matrix.  Be sure that the results from each call to `water` is saved in a different file with the file name indicating the parameters that were used.  Scoring matrices can be found at `ls /usr/share/EMBOSS/data/EBLOSUM*`.  You can get a list of them by typing `ls /usr/share/EMBOSS/data/EBLOSUM* | xargs -n 1 basename`
 
 
 ## Nested for Loops
@@ -159,9 +159,7 @@ For each fruit we now loop through each of the numbers...
 __Optional Exercise Five:__ Use a nested for loop to run water for each scoring matrix and gap extension penalties from 3 through 9
 
 
-# BASH version
-
-__OPTIONAL: BIS180L Students do not need to do this__
+# BASH version OPTIONAL: BIS180L Students do not need to do this
 
 This is here as a reference in case you are working in the Bash shell
 

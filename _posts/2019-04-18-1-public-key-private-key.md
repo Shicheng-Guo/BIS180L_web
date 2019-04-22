@@ -20,58 +20,41 @@ In this method of authentication you generate a public key and a private key.  T
 
 When you attempt to login to GitHub a program called [SSH](https://help.ubuntu.com/community/SSH) tests to see if your computer has the matching private key.
 
-# note: this lab needs to be updated, this can be done within R studio.
-
-See https://www.r-bloggers.com/rstudio-and-github/
-
-
 ## Generate a ssh key pair
 
-From the Linux terminal, change to your home directory and see if you already have a ssh key pair
+You can either generate a ssh key pair at the command line or in Rstudio.  For this class, we will use Rstudio.
 
-    cd ~
-    ls -al .ssh/*
-
-If you get a directory not found, or don't see either `id_rsa.pub` or `id_dsa.pub` file then it means you need to create one (most likely you will need to create one)
-
-    ssh-keygen -t RSA -C "youremail@ucdavis.edu"
-    #creates a new ssh key pair using your email as an identifier
-
-When asked for a file to save the key in, just __press enter__ to save in the default location  
-When asked for a passphrase, just __press enter__
-
-Make sure that the files exist
-
-    cd .ssh
-    ls
-
-You should see 
-* `id_rsa`(this is your private key--don't share)
-* `id_rsa.pub` (this is your public key)
+1. Open Rstudio on your instance.
+2. Choose `Tools > Global options` from the pull-down menu.
+3. From the options box, click on `Git/Svn` on the left hand tab side
+![]({{site.baseurl}}/images/RstudioOptionsPane.png)
+4. Click `Create RSA Key...`
+![]({{site.baseurl}}/images/RstudioSSHpane.png)
+5. I usually don't create a passphrase, but for extra security feel free to.
+6. Click `Create`
+7. Click `Close`
+![]({{site.baseurl}}/images/RstudioSSHsuccess.png)
+8. Click `View public key`
+![]({{site.baseurl}}/images/RstudioSSHsuccess2.png)
+9. Press ctrl+c to copy the key to your clipboard. 
 
 ## Add your public key to github
 
-First copy your key to your clipboard
-
-    cat id_rsa.pub
-
-copy the key and your email address but no extra lines or spaces to the clipboard (`ctrl-shift-C`)
-
 Go to github.com and login to your account
 
-Click on the your profile icon near the upper right hand side and then select "settings".
+Click on the your profile icon near the upper right hand side and then select `settings`.
 
 ![]({{site.baseurl}}/images/GitHub_SSH1.png)
 
-Click on "SSH keys" on the left hand side
+Click on `SSH keys` on the left hand side
 
-Paste in your key and press "add key"
+Paste in your key and press `add key`
 
 ### Test the connection
 
     ssh -T git@github.com
 
-You may get a warning.  Go ahead and type "yes".  You should then get a message that you have successfully authenticated.
+You may get a warning.  Go ahead and type `yes`.  You should then get a message that you have successfully authenticated.
 
 ![]({{site.baseurl}}/images/GitHub_SSH2.png)
 
@@ -91,7 +74,7 @@ In the Linux terminal cd to the directory for that repository and update the URL
 
 Now you should be all set!
 
-Use the SSH method for future repositories
+Use the SSH URL method for cloning future repositories
 
 
 
