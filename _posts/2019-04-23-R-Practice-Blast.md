@@ -7,13 +7,9 @@ hidden: true
 
 For this lab we will continue to expand our R toolkit and apply what we learn to the BLAST results.
 
-## Get the exercise template
+## Exercise template
 
-There is a second template to use to answer the exercises below.  To get it:
-
-* Commit any changes to your `Assignment_3_template_1` files
-* Pull your Assignment_3 repository
-* Open the `Assignment_3_template_2.Rmd` file.
+Please use the `Assignment_3_template_2.Rmd` use (already in your repo) to answer the exercises below.  
 
 ## Joins
 
@@ -21,12 +17,18 @@ Often we will have different data sets that we want to combine in some way.  For
 
 ### Join Tutorial
 
-To learn how to do this please complete the tutorial that I wrote on joins.  You will need to re-install the tutorial package and then start the tutorial:
+To learn how to do this please complete the tutorial that I wrote on joins.  
 
+If you haven't already installed the tutorial package you can do so with:
 
 ```r
-devtools::install_github("UCDBIS180L/BIS180LTutorials") # needs to be reinstalled to get the new tutorial
+#you do not need to run this if you installed it during the previous lab "R Practice"
+devtools::install_github("UCDBIS180L/BIS180LTutorials") 
+```
 
+Then, start the tutorial with:
+
+```r
 learnr::run_tutorial("Joins", package = "BIS180LTutorials") 
 ```
 
@@ -34,9 +36,9 @@ learnr::run_tutorial("Joins", package = "BIS180LTutorials")
 
 Let's say we want to find *all* of the Arabidopsis genes with reciprocal best hits in the worm genome.  How would we do that?  Let's think of the steps:
 
-1. For each query record the E-value of the second-best hit.
+1. For each query record best hit, record the E-value of the second-best hit.
 2. Filter our hits to retain only the best hit. 
-3. Join the two data sets together
+3. Join the two worm->plant and plant->worm sets together
 4. Filter to keep genes with reciprocal best hits.
 
 Load the data.  Adjust the paths to work on your computer.
@@ -45,7 +47,7 @@ Load the data.  Adjust the paths to work on your computer.
 library(tidyverse)
 library(stringr) #character string manipulation
 
-plant_worm <- read_tsv("../data/plant_vs_worm.blastout.gz",
+plant_worm <- read_tsv("../data/plant_vs_worm.blastout_v2.1.gz",
                        col_names=c("query_id",
                                    "subject_id",
                                    "pct_ident",
@@ -58,7 +60,7 @@ plant_worm <- read_tsv("../data/plant_vs_worm.blastout.gz",
                                    "se",
                                    "E",
                                    "Score"))
-worm_plant <- read_tsv("../data/worm_vs_plant.blastout.gz",
+worm_plant <- read_tsv("../data/worm_vs_plant.blastout_v2.1.gz",
                        col_names=c("query_id",
                                    "subject_id",
                                    "pct_ident",
@@ -98,15 +100,60 @@ Look at the help page for `lead` and examine the `E` and `nextE` columns.  What 
 We want to know the difference between the E-value of the best hit and the next best hit.  It will be easiest to read if convert the E-values to log10 scale first.
 
 
-
 ```r
 plant_worm <- plant_worm %>% mutate(E_diff=log10(E)-log10(nextE))
 worm_plant <- worm_plant %>% mutate(E_diff=log10(E)-log10(nextE))
 ```
 
+### Logarithm review
+
+If you need a review on logarithms the [math is fun site](https://www.mathsisfun.com/algebra/logarithms.html) is a good choice.  Also experiment with the code below
+
+When we are dealing with log base 10, then log represents the number of times that we would have to multiple 10 by itself to reach the number that we want to take the log of.
+
+For example, what is the log10 of 1,000?  Well how many times do we have to multiply 10 by itself to equal 1,000?  Three times.  In R:
+
+```r
+log10(1000)
+```
+
+```
+## [1] 3
+```
+
+We can convert from a log10 value back to the original number by raising 10 to that power
+
+```r
+10^3
+```
+
+```
+## [1] 1000
+```
+
+For numbers less than 1 we are multiplying by 1/10, so the log is negative.  How many times do we have to multiple 1/10 to itself to equal 0.001?
 
 
-Now lets filter these to keep the best hit, as we did in the last lab.  Also use select to only keep relevant columns.
+```r
+log10(0.001)
+```
+
+```
+## [1] -3
+```
+
+and reverse it:
+
+```r
+10^-3
+```
+
+```
+## [1] 0.001
+```
+
+
+Now lets filter these to keep the best hit, as we did in the last lab.  Also, we use select to only keep relevant columns.
 
 
 ```r
@@ -125,20 +172,7 @@ worm_plant_best <- worm_plant %>%
 ```
 
 
-The `subject_id` in the plant_worm_best set is too long and needs to be shortened to just the gene_id.  `str_replace` searches for its second argument and replaces it with its third.  We are using wildcards (technically regular expressions) to search for strings that begin with "#" and replace them with nothing.  Hopefully there will be time to explain this in more detail in a later lab.
-
-
-```r
-head(plant_worm_best$subject_id) #yikes!
-
-plant_worm_best <- plant_worm_best %>%
-  mutate(subject_id=str_replace(subject_id,"#.*",""))
-
-head(plant_worm_best$subject_id) #better
-```
-
 Now let's create a table of Arabidopsis genes that includes the reciprocal blast results
-
 
 ```r
 plant_with_recip <- left_join(plant_worm_best, worm_plant_best,
@@ -149,35 +183,17 @@ plant_with_recip <- left_join(plant_worm_best, worm_plant_best,
 head(plant_with_recip,10)
 ```
 
-Unfortunately, having multiple isoforms makes this hard to sort through.  It would have been best to start with a proteome file that only had one, canonical isoform per gene.  At this point we will keep the isoform with the overall best score in its blast against worm:
-
-
-```r
-plant_with_recip <- plant_with_recip %>%
-  mutate(query_id=str_sub(query_id,1,9), 
-         subject_id.worm_plant=str_sub(subject_id.worm_plant,1,9)) %>%
-  arrange(query_id,desc(Score.plant_worm)) %>%
-  filter(!duplicated(query_id)) %>%
-  ungroup()
-
-head(plant_with_recip,10)                          
-```
 
 **Exercise 2**
-
-* What is the `str_sub()` function doing?
-* What does the "subject_id" column represent?
-* What does the "subject_id.worm_plant" column represent?
+CHANGED FOR 2019; PLEASE ANSWER THIS QUESTION FOR EXERCISE 2, EVEN IF YOU TEMPLATE READS DIFFERENTLY:
+Explain the effect of `by=c("subject_id"="query_id")` in the above code.  What does this do and why are we joining this way?
 
 **Exercise 3**
-
 Filter the `plant_with_recip` tibble to create a new tibble `plant_with_worm_orthologs`.  Consider what criteria you should use:
 
 * What relationship do you want between the "query_id" and "subject_id.worm_plant" columns?
-* E-value threshold for "E.plant_worm".  I recommend < 1e-04
-* Threshold for E_diff.plant_worm.  I recommend < -2 
-
-What does an E_diff.plant_worm threshold of < -2 mean?
+* E-value threshold for "E.plant_worm".  I recommend < 1e-04; what is this filter doing?
+* Threshold for E_diff.plant_worm.  I recommend < -2; what is this filter doing?
 
 Filter the results based on the above criteria to retain only those rows where there is a reciprocal blast that also meet the E-value E-value and E_diff thresholds; place the results in a new object `plant_with_worm_orthologs`
 
@@ -188,20 +204,7 @@ How many candidate orthologs do you have?
 **Exercise 4**
 Repeat the analysis above, but this time create a table of worm genes that have plant orthologs.  How many do you have?
 
-Hint: The code needed to remove isoforms is a little bit different for the worm proteins and is shown below.  You will still need to use left_join to create worm_with_recip before running the code below, and then filter afterwards.
 
-
-
-
-
-```r
-worm_with_recip <- worm_with_recip %>%
-  mutate(query_id=str_replace(query_id,"[a-z]$",""), 
-         subject_id.plant_worm=str_replace(subject_id.plant_worm,"[a-z]$","")) %>%
-  arrange(query_id,desc(Score.worm_plant)) %>%
-  filter(!duplicated(query_id)) %>%
-  ungroup()
-```
 
 
 
