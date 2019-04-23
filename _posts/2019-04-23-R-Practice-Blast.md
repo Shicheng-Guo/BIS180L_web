@@ -19,16 +19,11 @@ Often we will have different data sets that we want to combine in some way.  For
 
 To learn how to do this please complete the tutorial that I wrote on joins.  
 
-If you haven't already installed the tutorial package you can do so with:
+I have made some updates to the tutorial package, so please resinstall it and then load the tutorial:
+
 
 ```r
-#you do not need to run this if you installed it during the previous lab "R Practice"
 devtools::install_github("UCDBIS180L/BIS180LTutorials") 
-```
-
-Then, start the tutorial with:
-
-```r
 learnr::run_tutorial("Joins", package = "BIS180LTutorials") 
 ```
 
