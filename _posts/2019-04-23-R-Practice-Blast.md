@@ -9,7 +9,7 @@ For this lab we will continue to expand our R toolkit and apply what we learn to
 
 ## Exercise template
 
-Please use the `Assignment_3_template_2.Rmd` use (already in your repo) to answer the exercises below.  
+__IMPORTANT__ The `Assignment_3_template_2.Rmd` in your repo HAS BEEN UPDATED.  __PLEASE REPULL YOUR REPO TO GET THE CURRENT VERSION__.  Then use this file to answer the exercises below.  
 
 ## Joins
 
