@@ -189,7 +189,7 @@ CHANGED FOR 2019; PLEASE ANSWER THIS QUESTION FOR EXERCISE 2, EVEN IF YOU TEMPLA
 Explain the effect of `by=c("subject_id"="query_id")` in the above code.  What does this do and why are we joining this way?
 
 **Exercise 3**
-Filter the `plant_with_recip` tibble to create a new tibble `plant_with_worm_orthologs`.  Consider what criteria you should use:
+We next need to filter the `plant_with_recip` tibble to create a new tibble that only has the candidate ortholog pairs.  Consider what criteria you should use:
 
 * What relationship do you want between the "query_id" and "subject_id.worm_plant" columns?
 * E-value threshold for "E.plant_worm".  I recommend < 1e-04; what is this filter doing?
