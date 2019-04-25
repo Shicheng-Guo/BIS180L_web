@@ -23,7 +23,6 @@ Let's load the libraries we need:
 
 ```{r}
 library(tidyverse)
-library(stringr)
 ```
 
 
@@ -36,9 +35,12 @@ We begin by learning a few new tools to help us with the upcoming data sets.
 Spreadsheet data is often organized in a "wide" format where there is one row per individual and then multiple traits measured on that individual are in separate columns.  This is a convenient format for data entry, but R often wants data in a "long" format with one observation per row.  Please work through the Gather And Spread tutorial to learn more about these formats and how to convert:
 
 ```{r eval=FALSE}
-devtools::install_github("UCDBIS180L/BIS180LTutorials") # needs to be reinstalled to get the new tutorial
-
 learnr::run_tutorial("Gather_And_Spread", package = "BIS180LTutorials") 
+```
+
+(If you haven't already installed the tutorial packages, you can do so with:)
+```{r}
+devtools::install_github("UCDBIS180L/BIS180LTutorials") 
 ```
 
 
@@ -175,13 +177,14 @@ qplot(x=V1,y=V2,data=geno.mds,geom="point")
 
 **EXERCISE 2:** Is there any evidence for populations structure (different sub populations)?  If so, how many sub populations do you think the MDS plot reveals?  What do you make of the individuals that are between the major groups?
 
-```{r PCA_Alternative, eval=FALSE,echo=FALSE}
-##Alternative method for PCA
-##Not used 2013
+Optional: Principal components (PCs) represent an alternative dimensions reduction method.  
 
-#you must reduce the number of SNPS to be < = the number of observations
-geno.small <- geno.numeric[,sample(1:nrow(geno.numeric),size=nrow(geno.numeric))]
-geno.small[is.na(geno.small)] <- 0 #missing values not allowed
+```{r PCA_Alternative, eval=FALSE,echo=TRUE}
+##Alternative method for PCA
+
+#missing data is not allowed.  Here I remove columns with missing data.
+geno.small <- t(na.omit(t(geno.numeric)))
+
 geno.pc <- prcomp(geno.small)
 
 #Show variance explained by top PCs
@@ -191,13 +194,11 @@ plot(geno.pc)
 head(geno.pc$x)
 
 #you can relate back to the original SNPs by:
-head(geno.pc$rotation) #tell you how much each SNP contributed to each PC
+head(geno.pc$rotation) #tells you how much each SNP contributed to each PC
 
-pheno.PC <- merge(data.pheno,geno.pc$x,by="row.names")
-
-library(ggplot2)
-qplot(x=PC1,y=PC2,color=Region,data=pheno.PC) + scale_color_brewer(type="div")
-qplot(x=PC1,y=PC3,color=Region,data=pheno.PC) + scale_color_brewer(type="div")
+#plot it:
+qplot(x=PC1,y=PC2,data=as.data.frame(geno.pc$x))
+qplot(x=PC1,y=PC3,data=as.data.frame(geno.pc$x))
 ```
 
 ### Adding phenotypes
@@ -358,7 +359,7 @@ write.table(bim,file="rice.data.fastStructure.input.bim",col.names = FALSE, row.
 
 Now we can run fastStructure  fastStructure will determine the proportion of each individual's genome that came from one of K ancestral populations.  This can take a long time to run, so you can just import the results of my previous run of the analysis if you prefer.  The files should be in the zip that you downloaded.
 
-fastStructure is run from the Linux command line.  Open up the terminal and type:
+fastStructure is run from the Linux command line.  If you want to run it yourself (optional), open up the terminal and type:
 
 ```{r, engine="bash", eval=FALSE}
 python /usr/local/src/fastStructure/structure.py -K 4 --input=rice.data.fastStructure.input --output=rice.fastStructure.out --format=str
@@ -379,10 +380,14 @@ fs_results <- read_delim("rice.fastStructure.out.4.meanQ", delim=" ", col_names 
 head(fs_results)
 ```
 
-What happened?  fastStructure separates each column with two spaces and R interprets those extra spaces as extra columns.  Let's fix that, and add sample IDs back while we are at it.
+Pay attention to the text "<dbl>" and "<chr>" under the column names above. <dbl> indicates that R interprets the column as containing numeric data and <chr> indicates character data (dbl is short for double-precision floating point numeric data).  Clearly this should all be numeric, bu  fastStructure separates each column with two spaces and R interprets those extra spaces as extra columns.  Let's fix that, and add sample IDs back while we are at it.
 
 ```{r}
-fs_results <- fs_results %>% mutate(ID=data.geno.5000$ID) %>% select(ID, pop1=X1, pop2=X3, pop3=X5, pop4=X7)
+fs_results <- fs_results %>% 
+  mutate_all(str_trim) %>%
+  mutate_all(as.numeric) %>%
+  mutate(ID=data.geno.5000$ID) %>% 
+  select(ID, pop1=X1, pop2=X2, pop3=X3, pop4=X4)
 head(fs_results)
 ```
 
