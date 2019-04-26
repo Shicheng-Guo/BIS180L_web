@@ -34,12 +34,12 @@ We begin by learning a few new tools to help us with the upcoming data sets.
 
 Spreadsheet data is often organized in a "wide" format where there is one row per individual and then multiple traits measured on that individual are in separate columns.  This is a convenient format for data entry, but R often wants data in a "long" format with one observation per row.  Please work through the Gather And Spread tutorial to learn more about these formats and how to convert:
 
-```{r eval=FALSE}
+```{r, eval=FALSE}
 learnr::run_tutorial("Gather_And_Spread", package = "BIS180LTutorials") 
 ```
 
 (If you haven't already installed the tutorial packages, you can do so with:)
-```{r}
+```{r, eval=FALSE}
 devtools::install_github("UCDBIS180L/BIS180LTutorials") 
 ```
 
@@ -380,7 +380,7 @@ fs_results <- read_delim("rice.fastStructure.out.4.meanQ", delim=" ", col_names 
 head(fs_results)
 ```
 
-Pay attention to the text "<dbl>" and "<chr>" under the column names above. <dbl> indicates that R interprets the column as containing numeric data and <chr> indicates character data (dbl is short for double-precision floating point numeric data).  Clearly this should all be numeric, bu  fastStructure separates each column with two spaces and R interprets those extra spaces as extra columns.  Let's fix that, and add sample IDs back while we are at it.
+Pay attention to the text "<dbl>" and "<chr>" under the column names above. <dbl> indicates that R interprets the column as containing numeric data and <chr> indicates character data (dbl is short for double-precision floating point numeric data).  Clearly this should all be numeric, but  fastStructure separates each column with two spaces and R interprets those extra spaces as extra columns.  Let's fix that, and add sample IDs back while we are at it.
 
 ```{r}
 fs_results <- fs_results %>% 
