@@ -30,7 +30,7 @@ library(tidyverse)
 
 We begin by learning a few new tools to help us with the upcoming data sets.
     
-### reshaping data.
+### Reshaping data.
 
 Spreadsheet data is often organized in a "wide" format where there is one row per individual and then multiple traits measured on that individual are in separate columns.  This is a convenient format for data entry, but R often wants data in a "long" format with one observation per row.  Please work through the Gather And Spread tutorial to learn more about these formats and how to convert:
 
@@ -44,7 +44,7 @@ devtools::install_github("UCDBIS180L/BIS180LTutorials")
 ```
 
 
-### applying functions across rows or columns
+### Applying functions across rows or columns
 It is very common to want to apply a function to each row.  We can use the `apply()` function for this.  `apply` takes at least 3 arguments.
 
 `apply(X,MARGIN,FUN)`
@@ -55,11 +55,11 @@ where
 
 For example
 ```{r}
+set.seed(430) # This command will make it so you get the same matrix
 m <- matrix(rnorm(24),ncol=6) #create a matrix of numbers to illustrate apply
 m
 
-cat("\nrow minimums: \n")
-apply(m,1,min) # find the minimum value of each row
+cat("\nrow minimums: ", apply(m,1,min)) # find the minimum value of each row
 ```
 
 
@@ -80,14 +80,17 @@ colSums(m)
 
 ### Data Import
 You learned how to import data last week using `read_csv()`.  Note that read_csv can read in a .gzipped file directly.  Today we will provide an additional argument to the read_csv function:
+  * This will take a minute or two to load
+  * You will have to change the file path
+
 ```{r import_geno, results='hide', eval=TRUE}
 data.geno <- read_csv("../data/Rice_44K_genotypes.csv.gz",
                       na=c("NA","00")) #this tells R that missing data is denoted as "NA" or "00"
+```
 
-#Takes a minute or two to load
+R tells us there is a duplicated column, let's remove that:
 
-# R tells us there is a duplicated column, let's remove that:
-
+```{r remove_dup, results='hide', eval=TRUE}
 data.geno <- data.geno %>% select(-`6_17160794_1`)
 ```
 
@@ -98,7 +101,7 @@ head(data.geno[,1:20]) #first six rows of first 20 columns
 summary(data.geno[,1:20]) #summarizes the first 20 columns
 ```
 
-In this file each row represents a different rice variety and each column a different SNP. The column "X1" ("NSFTV1") gives the ID of each variety.  "X1" is not a very informative name (that column did not have a name in the data file and R assigned it the name "X1".) Let's rename it:
+In this file each row represents a different rice variety and each column a different SNP. The column "X1" gives the ID of each variety.  "X1" is not a very informative name (that column did not have a name in the data file and R assigned it the name "X1".) Let's rename it:
 
 ```{r}
 colnames(data.geno)[1] <- "ID"
@@ -128,7 +131,7 @@ if we want to randomly sample 3 rows, then:
 m2[sample(1:10,3),]
 ```
 
-** Exercise 1 **
+**Exercise 1**
 
 Now, create a data subset that contains a random sample of 5000 SNPs from the full data set.  Place the smaller data set in an object called `data.geno.5000`.  __Very important: you want to keep the first column, the one with the variety IDs, and you want it to be the first column.  AND You do not want it to show up randomly later on in the data set.__  Think about how to achieve this.
 
@@ -153,9 +156,9 @@ Now that we have our smaller subset we can create the MDS plot
 ```{r MDS, eval=TRUE, results='hide'}
 #convert the data matrix to numbers
 geno.numeric <- data.geno.5000[,-1] %>% # -1 to remove the first column, with names.
-  lapply(factor) %>% # convert charcters to "factors", where each category is internally represented as a number
+  lapply(factor) %>% # convert characters to "factors", where each category is internally represented as a number
   as.data.frame() %>% # reformat
-  data.matrix() #  conver to numeric
+  data.matrix() #  convert to numeric
 
 head(geno.numeric[,1:20])
 
@@ -207,7 +210,7 @@ The file "RiceDiversity.44K.MSU6.Phenotypes.csv" contains information about the 
 
 **EXERCISE 3:** 
 * Use the `read_csv()` `head()` and `summary()` functions that you learned earlier to import and look at this file.  Import the file into an object called "data.pheno".
-* Use a `join` function to merge the MDS scaled genotype data with the phenotype data. Use summary and head to look at the new object and make sure that it is as you expect.
+* Use a `join` function to merge the MDS scaled genotype data with the phenotype data into a new object called "data.pheno.mds". Use summary and head to look at the new object and make sure that it is as you expect.
 * Include your code in the .Rmd
 
 ```{r read_pheno, echo=FALSE, results='hide', eval=TRUE}
@@ -240,7 +243,7 @@ data.pheno.mds %>% ggplot(aes(x=`Protein content`, y=`Amylose content`)) +
 
 *Hint 3* use `size=I(3)` as an argument to increase the point size (you can play with different values)
 
-*Hint 4* when plotting the Region data, the colors will be easier to interpret if you include the following in your ggplot code: ` + scale_color_brewer(type="div")` This specifies that a diverging set of colors is used.  (Try plotting with and without this).
+*Hint 4* when plotting the Region data, the colors will be easier to interpret if you include the following in your ggplot code: `+ scale_color_brewer(type="div")` This specifies that a diverging set of colors is used.  (Try plotting with and without this).
 
 
 ```{r MDS_color, results='hide', eval=FALSE,echo=FALSE}
@@ -255,7 +258,7 @@ From the MDS plot it looks like there is structure in our population.  But how d
 
 We have to create three files in order to run fastStructure
 
-### genotype file
+### Genotype file
 First we have to convert our genotypes to the form that fastStructure expects.  fastStructure wants a separate row for each allele (two rows for each variety).  A couple of the commands below are a bit complex.  I will explain them in lab after this has been run.
 
 ```{r convert_Structure, results='hide',eval=TRUE}
@@ -311,7 +314,7 @@ head(fam)
 write.table(fam,file="rice.data.fastStructure.input.fam",col.names = FALSE, row.names = FALSE, quote = FALSE)
 ```
 
-### create the bim
+### Create the bim
 
 The bim file provides information on the alleles.  
 
@@ -357,14 +360,14 @@ write.table(bim,file="rice.data.fastStructure.input.bim",col.names = FALSE, row.
 
 ### Run fastStructure
 
-Now we can run fastStructure  fastStructure will determine the proportion of each individual's genome that came from one of K ancestral populations.  This can take a long time to run, so you can just import the results of my previous run of the analysis if you prefer.  The files should be in the zip that you downloaded.
+Now we can run fastStructure.  fastStructure will determine the proportion of each individual's genome that came from one of K ancestral populations.
 
-fastStructure is run from the Linux command line.  If you want to run it yourself (optional), open up the terminal and type:
+fastStructure is run from the Linux command line. Open up the terminal, navigate to your Assignment 4 directory and type:
 
 ```{r, engine="bash", eval=FALSE}
 python /usr/local/src/fastStructure/structure.py -K 4 --input=rice.data.fastStructure.input --output=rice.fastStructure.out --format=str
 ```
-(this will take about 1 minute to run)
+(this will take about 4 minutes to run)
 
 In the above command, `-K 4` specifies the number of ancestral populations that fastStructure should create
 
@@ -373,19 +376,19 @@ In the above command, `-K 4` specifies the number of ancestral populations that 
 The file `rice.fastStructure.out.4.meanQ` contains 1 row for each sample, and 1 column for each ancestral population.  The numbers give the proportion of the genome inferred to have come from the ancestral population.
 
 ```{r PSMix_out,results='hide'}
-fs_results <- read_delim("rice.fastStructure.out.4.meanQ", delim=" ", col_names = FALSE)
-```
-
-```{r}
+fs_results <- read_delim("rice.fastStructure.out.4.meanQ", delim="  ", col_names = FALSE, col_types = 'nnnn')
 head(fs_results)
 ```
 
-Pay attention to the text "<dbl>" and "<chr>" under the column names above. <dbl> indicates that R interprets the column as containing numeric data and <chr> indicates character data (dbl is short for double-precision floating point numeric data).  Clearly this should all be numeric, but  fastStructure separates each column with two spaces and R interprets those extra spaces as extra columns.  Let's fix that, and add sample IDs back while we are at it.
+Some of you may notice that the values across each row may sum to a number greater than one. This is because tidyverse is trying to present the tibble in an easier to look at format. The unaltered values are still contained in `fs_results` and can be visualized using the following code.
+```{r}
+head(data.frame(fs_results))
+```
+
+Now lets add sample IDs back and give our populations names
 
 ```{r}
 fs_results <- fs_results %>% 
-  mutate_all(str_trim) %>%
-  mutate_all(as.numeric) %>%
   mutate(ID=data.geno.5000$ID) %>% 
   select(ID, pop1=X1, pop2=X2, pop3=X3, pop4=X4)
 head(fs_results)
