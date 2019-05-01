@@ -105,12 +105,12 @@ qplot(x=assignedPop,y=Alu.Tol,data=data.pheno.mds,geom="violin")
 These plots may make you want to calculate the mean for your trait. We can use the `mean()` function to obtain the mean of a column:
 
 ```{r mean,results='hide',eval=FALSE}
-mean(data.pheno.mds$Amylose.content,na.rm=T) #the na.rm argument tells R to ignore missing data coded by "NA"
+mean(data.pheno.mds$`Amylose content`,na.rm=T) #the na.rm argument tells R to ignore missing data coded by "NA"
 ```
 
 You also know that we can use summarize to get a mean for each group
 
-```{r tapply,eval=FALSE}
+```{r summarize,eval=FALSE}
 data.pheno.mds %>% group_by(Region) %>% 
   summarize(mean.Amylose=mean(`Amylose content`,na.rm=T)) %>%
   arrange(desc(mean.Amylose))
@@ -132,11 +132,11 @@ The very low p-value for Region indicates that amylose content varies significan
 * Discuss: Do your results suggest a problem for GWAS?
 
 ```{r Ex6a,echo=FALSE,eval=FALSE}
-tapply(X=data.pheno.mds$Alu.Tol,INDEX=data.pheno.mds$popID,FUN=min,na.rm=T)
+tapply(X=data.pheno.mds$Alu.Tol,INDEX=data.pheno.mds$assignedPop,FUN=min,na.rm=T)
 ```
 
 ```{r Ex6b, results='hide',eval=FALSE}
-aov2 <- aov(Alu.Tol ~ popID,data=data.pheno.mds)
+aov2 <- aov(Alu.Tol ~ assignedPop,data=data.pheno.mds)
 summary(aov2)
 ```
 
@@ -165,7 +165,7 @@ snpinfo <- read.csv("snpInfo.csv",row.names=1)
 
 head(snpinfo) #note one column for chromosome and one for position (in base pairs)
 
-# you will need the data.geno file from the previous lab.  If you don't have it in your workspace, reload it
+# you will need the data.geno file from the previous lab.  If you don't have it in your workspace, reload it (change the path)
 data.geno <- read_csv("../data/Rice_44K_genotypes.csv.gz",
                       na=c("NA","00")) #this tells R that missing data is denoted as "NA" or "00"
 data.geno <- data.geno %>% select(-`6_17160794_1`)
@@ -263,6 +263,7 @@ To include your saved image in your Rmd file, use the markdown notation for incl
 
 
 ```{r LD,eval=FALSE,echo=FALSE}
+#currently not working
 #find column number of SNP of interest: 
 grep("3_30449857",colnames(snps3))
 ldout <- LD(snps3,2730:2750)
