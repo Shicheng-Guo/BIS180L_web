@@ -20,7 +20,8 @@ Today we will analyze variation in the phenotypic data.  We specifically want to
 We need to get the population assignments from fastStructure in the same data frame as the MDS genotype assignments and the phenotypic data.  You may have saved this at the end of Tuesday's lab; if not remake.  It should look something like this:
 
 
-```{r ,eval = FALSE}
+```{r, include = FALSE}
+library(tidyverse)
 load("data_from_SNP_lab.Rdata")
 ```
 
@@ -41,7 +42,7 @@ data.pheno.mds <- left_join(geno.mds,data.pheno,by=c("ID"="NSFTVID")) #even if y
 
 Let's examine the distribution of Amylose values.  You will recall we can make a histogram as follows:
 
-```{r Amylose_hist,results='hide',eval=FALSE}
+```{r Amylose_hist}
 library(ggplot2)
 data.pheno.mds %>%
   ggplot(aes(x=`Amylose content`)) +
