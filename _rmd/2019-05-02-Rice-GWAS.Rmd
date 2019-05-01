@@ -127,6 +127,7 @@ summary(aov1)
 The very low p-value for Region indicates that amylose content varies significantly by region.
 
 **Exercise 7:** 
+
 * Obtain the mean of your trait for each of the 4 fastStructure populations.
 * Perform an ANOVA for your trait to test if it varies significantly by population.  Show your code, the ANOVA output, and provide an interpretation.
 * Discuss: Do your results suggest a problem for GWAS?
