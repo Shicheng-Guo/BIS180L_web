@@ -19,27 +19,32 @@ The [tutorial at Rstudio](http://shiny.rstudio.com/tutorial/) is good but pretty
 
 Today we will work in teams of two (or three).  Each team will produce and deploy a Shiny app that will be collectively graded.
 
-| Student 1    | Student 2     | Student 3 | Repository                 |
-|--------------|---------------|-----------|----------------------------|
-| Jaclyn       | Connie        |           | Shiny_Jaclyn.Connie        |
-| Krista       | Joann         |           | Shiny_Krista.Joann         |
-| Gareth       | Mathew        |           | Shiny_Gareth.Mathew        |
-| Botao        | Josh          |           | Shiny_Botao.Josh           |
-| Chris        | Gautham       |           | Shiny_Chris.Gautham        |
-| Jacob        | Andrew        |           | Shiny_Jacob.Andrew         |
-| Camille      | Ani           |           | Shiny_Camille.Ani          |
-| Dana         | Sagaya        |           | Shiny_Dana.Sagaya          |
-| Evan         | Chad          |           | Shiny_Evan.Chad            |
-| Aaron        | Arkin         |           | Shiny_Aaron.Arkin          |
-| Minyoung     | Binh          |           | Shiny_Minyoung.Binh        |
-| Alex         | Jordan        |           | Shiny_Alex.Jordan          |
-| Christian    | Veronica      |           | Shiny_Christian.Veronica   |
-| Eleanor      | Ruihan        |           | Shiny_Eleanor.Ruihan       |
-| Yingtong     | Skylar        |           | Shiny_Yingtong.Skylar      |
-| Bismita      | Eunice        |           | Shiny_Bismita.Eunice       |
-| Korey        | Maylin        |           | Shiny_Korey.Maylin         |
-| Laurel       | Melodie       |           | Shiny_Melodie.Laurel       |
-| Ashley       | Irene         |           | Shiny_Ashley.Irene         |
+| Student 1   | Student 2   | Student 3 | Repository                |
+|:------------|:------------|:----------|:--------------------------|
+| Aditya      | Chris       |           | Shiny_Aditya.Chris        |
+| Alvin       | Cole        |           | Shiny_Alvin.Cole          |
+| Benny       | Sankalp     |           | Shiny_Benny.Sankalp       |
+| Chad        | Rebecca     |           | Shiny_Chad.Rebecca        |
+| Diane       | Angus       |           | Shiny_Diane.Angus         |
+| Elizabeth   | Yimei       |           | Shiny_Elizabeth.Yimei     |
+| Hanna       | Bonnie      |           | Shiny_Hanna.Bonnie        |
+| Hongtao     | Carine      |           | Shiny_Hongtao.Carine      |
+| Jana        | Jonathan    |           | Shiny_Jana.Jonathan       |
+| Jiaqi       | Tina        |           | Shiny_Jiaqi.Tina          |
+| Justin      | Eric        |           | Shiny_Justin.Eric         |
+| Karen       | Amber       |           | Shiny_Karen.Amber         |
+| Kenzie      | Nicole      |           | Shiny_Kenzie.Nicole       |
+| King        | Summer      |           | Shiny_King.Summer         |
+| Krishna     | Ria         |           | Shiny_Krishna.Ria         |
+| Marcus      | Picasso     |           | Shiny_Marcus.Picasso      |
+| Michael     | Amanda      |           | Shiny_Michael.Amanda      |
+| Raymond     | Danny       |           | Shiny_Raymond.Danny       |
+| Richard     | Natasha     |           | Shiny_Richard.Natasha     |
+| Samvardhini | Sina        | Surbhi    | Shiny_Samvardhini.Sina    |
+| Stevie      | Yige        |           | Shiny_Stevie.Yige         |
+| Tracy       | Reema       |           | Shiny_Tracy.Reema         |
+| Cameron     | Karenjit    |           | Shiny_Cameron.Karenjit    |
+
 
 ## Components of a Shiny App
 
