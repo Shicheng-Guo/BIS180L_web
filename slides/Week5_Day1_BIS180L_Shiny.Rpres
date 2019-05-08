@@ -161,8 +161,8 @@ Teams, continued
 | Marcus      | Picasso     |           | Shiny\_Marcus.Picasso      |
 | Michael     | Amanda      |           | Shiny\_Michael.Amanda      |
 | Raymond     | Danny       |           | Shiny\_Raymond.Danny       |
-| Richard     | Natasha Ann |           | Shiny\_Richard.Natasha Ann |
-| Samvardhini | Sina        | Surbhi    | Shiny\_Samvardhini.Sina    |
+| Richard     | Natasha Ann |           | Shiny\_Richard.Natasha     |
+| Samvardhini | Sina        | Surbhi    | Shiny\_Samvardhini.Sina.Surbhi|
 | Stevie      | Yige        |           | Shiny\_Stevie.Yige         |
 | Tracy       | Reema       |           | Shiny\_Tracy.Reema         |
 | Cameron     | Karenjit    |           | Shiny\_Cameron.Karenjit    |
@@ -178,7 +178,7 @@ I have listed some ideas below, __but feel free to choose something else__
 BLAST ideas
 ===========
 
-* Interactive plot to explore different hypotheses for Exercise 10 from the [R Intro lab]({{site.url}}/{% post_url 2018-04-19-2-R-Practice %}).
+* Interactive plot to explore different hypotheses for Exercise 10 from the [R Intro lab]({{site.url}}/{% post_url 2019-04-18-3-R-Practice %}).
   * The user could select which trait might affect the sequence length vs score relationship.  The plot could be a scatter plot of score vs sequence length colored by the value of the user-selected variable.  If you want to get fancy add a [slider-bar](http://shiny.rstudio.com/gallery/sliders.html) that allows the user to set the limits of the data ploted.    
   * Or the plot could be a boxplot of score faceted by high and low sequence length and high and low values of the user-selected variable (you could split these by median length).  Again you could add a [slider-bar](http://shiny.rstudio.com/gallery/sliders.html) that allows the user to set the split point for the graph facets.
   
