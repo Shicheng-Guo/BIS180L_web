@@ -248,7 +248,7 @@ Teams, continued
 Assignment
 ==========
 
-Your team should work together to create and deploy a ShinyApp that plots some aspect of the data from the BLAST or RICE labs, or from the tomato measurements data set that you used for the ggplot tutorial, available [here](http://jnmaloof.github.io/BIS180L_web/data/).  The app should allow user input that modifies the plot in a useful way.
+Your team should work together to create and deploy a ShinyApp that plots some aspect of the data from the BLAST or RICE labs, or from the tomato measurements data set that you used for the ggplot tutorial, available [here](http://jnmaloof.github.io/BIS180L_web/data/Tomato.csv).  The app should allow user input that modifies the plot in a useful way.
 
 I have listed some ideas below, __but feel free to choose something else__
 
