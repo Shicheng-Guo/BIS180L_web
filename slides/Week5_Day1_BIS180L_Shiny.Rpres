@@ -3,6 +3,83 @@ Make a web application with Shiny!
 author: Julin Maloof
 date: May 09, 2019
 
+```{r, include=FALSE}
+library(tidyverse)
+```
+
+
+QQplot
+======
+Before we go to Shiny, let me try to explain QQplots from the GWAS lab.
+
+QQplots (quantile - quantile plots) are used to compare two distributions.  Usually they are used to compare an observed distribution to a theoretical distribution.
+
+Traditionally one compares "quantiles" of each data set.
+
+quantiles
+=========
+__Quantiles__ are another name for __percentiles__.  They tell you the value of a data set at a particular quantile (percentile).
+
+```{r}
+mydata <- rnorm(n = 1000, mean = 10, sd = 2) #simulate a data set
+hist(mydata)
+```
+
+quantiles
+=========
+```{r}
+quantile(mydata, 0.95) # 95th pecentile
+quantile(mydata, c(0.05, 0.25, 0.5, 0.75, 0.95)) %>% round(2)
+```
+
+quantiles
+=========
+Simulate a second data set for comparison, different distribution:
+```{r}
+mydata2 <- rnorm(n = 1000, mean = 10, sd = 3)
+hist(mydata2)
+```
+
+QQplot
+======
+Two compare these two distributions we plot the quantiles of each against one another
+```{r}
+mydata.quantiles <- quantile(mydata,seq(0,1,by=0.01))
+head(mydata.quantiles)
+mydata2.quantiles <- quantile(mydata2, seq(0,1,by=0.01))
+plot(x=mydata.quantiles, y=mydata2.quantiles, ylim=c(0,20), xlim=c(0,20))
+abline(a=0,b=1)
+```
+
+QQplot and GWAS
+=================
+In GWAS we expect that the vast majority of SNPs will not affect the phenotype (not be associated).
+
+Population structure can cause many false positives.  This results in there being more significant pvalues than expected.  (aka p-value inflation).  The QQpval plot allows us to visualize p-value inflation.
+
+What is the expected distribution of p-values?  Uniform (i.e. 0.05 quantile should be p=0.05, etc).
+
+QQpval plot (no pop structure correction)
+=======
+![](QQplot1.png)
+
+When we expect a p-value of 0.01, we are observing a p-value of?
+
+What does this tell us about our observed p-values?
+
+QQpval plot (with pop structure correction)
+============
+![](QQplot2.png)
+
+When we expect a p-value of 0.01, we are observing a p-value of?
+
+What does this tell us about our observed p-values?
+
+How does this compare to the uncorrected analysis? 
+
+On to Shiny!
+============
+
 Goal
 =====
 incremental: true
@@ -161,7 +238,7 @@ Teams, continued
 | Marcus      | Picasso     |           | Shiny\_Marcus.Picasso      |
 | Michael     | Amanda      |           | Shiny\_Michael.Amanda      |
 | Raymond     | Danny       |           | Shiny\_Raymond.Danny       |
-| Richard     | Natasha Ann |           | Shiny\_Richard.Natasha     |
+| Richard     | Natasha Ann |           | Shiny\_Richard.Natasha       |
 | Samvardhini | Sina        | Surbhi    | Shiny\_Samvardhini.Sina.Surbhi|
 | Stevie      | Yige        |           | Shiny\_Stevie.Yige         |
 | Tracy       | Reema       |           | Shiny\_Tracy.Reema         |
@@ -171,7 +248,7 @@ Teams, continued
 Assignment
 ==========
 
-Your team should work together to create and deploy a ShinyApp that plots some aspect of the data from the BLAST or RICE labs.  The app should allow user input that modifies the plot in a useful way.
+Your team should work together to create and deploy a ShinyApp that plots some aspect of the data from the BLAST or RICE labs, or from the tomato measurements data set that you used for the ggplot tutorial, available [here](http://jnmaloof.github.io/BIS180L_web/data/).  The app should allow user input that modifies the plot in a useful way.
 
 I have listed some ideas below, __but feel free to choose something else__
 
