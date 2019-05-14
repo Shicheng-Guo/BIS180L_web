@@ -1,7 +1,7 @@
 Intro to Illumina Sequence Analysis
 ========================================================
 author: Julin Maloof 
-date: May 15, 2018
+date: May 14, 2019
 autosize: true
 incremental: true
 
@@ -38,8 +38,8 @@ Goals
 For this series of labs:
 
 1. Learn about Illumina reads, how to map them, and quality control (today)
-2. How to view reads in a genome browser and how to find single nucleotide polymorphisms (next week)
-3. Find genes that are differentially expressed between genotypes or treatments
+2. How to view reads in a genome browser and how to find single nucleotide polymorphisms (Thursday)
+3. Find genes that are differentially expressed between genotypes or treatments (Thursday -> Next week)
 4. Ask if differentially expressed genes have any common functionality (gene ontologies) or promoter motifs
 5. Build a gene regulatory network to determine how genes connect to one another.
 
