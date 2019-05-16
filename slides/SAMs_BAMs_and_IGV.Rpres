@@ -1,15 +1,14 @@
 BAMs and SNPs and IGV
 ========================================================
 author: Julin N. Maloof
-date: May 17, 2018
+date: May 16, 2019
 autosize: true
 
 
 Friday Discussion
 =====================
 
-There __will__ be a discussion tomorrow.  Please submit your question(s) before 8pm today and plan to attend tomorrow.
-
+There will be a discussion tomorrow.  Please submit your question(s) before 6pm today.
 
 
 Lab Goals
@@ -106,5 +105,5 @@ VCF file
 
 Variant Call Format files are the output from the SNP caller and provide information about each possible SNP.
 
-You see these as you work through the lab.
+You will see these as you work through the lab.
 
