@@ -21,24 +21,6 @@ Today we will pick up where we left off.  Our goals are to:
 
 # Preliminaries
 
-## Installations
-
-We need to install one additional pieces of software.  
-
-### bamaddrg
-
-First [bamaddrg](https://github.com/ekg/bamaddrg).  Go ahead and install this now, we will use it a bit later.  
-
-    cd /usr/local/bin
-    sudo git clone --recursive https://github.com/ekg/bamaddrg.git
-    cd bamaddrg
-    sudo make #compiles source to an executable
-    set -U fish_user_paths /usr/local/bin/bamaddrg/ $fish_user_paths
-    
-    
-The `make` command compiles the code and "makes" the executable program
-
-
 ## Data files
 
 For better viewing and SNP calling I compiled all of the IMB211 internode files and all of the R500 internode files and ran tophat on those.  Then to keep the download to a somewhat reasonable size I subset the bam file to chromosome A01.  `cd` into your Assignment_5 directory and download the files as listed below:
@@ -68,11 +50,11 @@ __b__.  Give 2 reasons why reads might not map to the reference.
 
 ## Look at a bam file
 
-Bam files contain the information about where each read maps.  There are in a binary, compressed format so we can not use `less` on its own.  Thankfully there is a collection of programs called [`samtools`](http://www.htslib.org/) that allow us to view and manipulate these files.
+Bam files contain the information about where each read maps.  They are in a binary, compressed format so we can not use `less` on its own.  Thankfully there is a collection of programs called [`samtools`](http://www.htslib.org/) that allow us to view and manipulate these files.
 
 Let's take a look at `accepted_hits_A01.bam`.  For this we use the `samtools view` command
 
-    samtools view accepted_hits_A01.bam | less
+    samtools view -h accepted_hits_A01.bam | less
 
 | Field | Value |
 |-------|-------|
@@ -92,7 +74,8 @@ Let's take a look at `accepted_hits_A01.bam`.  For this we use the `samtools vie
 `samtools sort` -- sort BAM files; required by many downstream programs  
 `samtools index` -- create an index for quick access; required by many downstream programs  
 `samtools idxstats` -- summarize reads mapping to each reference sequence  
-`samtools mpileup` -- count the number of matches and mismatches at each position  
+`samtools mpileup` -- count the number of matches and mismatches at each position
+`samtools addreplacerg` -- add/replace read group identifiers in a BAM file
 
 And more
 
@@ -108,7 +91,7 @@ Then start IGV by typing
 
     igv.sh
     
-At the Linux command line, or by clicking on the IGV icon at the bottom of the screen.
+At the Linux command line
 
 ### Create a .genome file for IGV to use
 
@@ -172,10 +155,13 @@ Next create an index for each of the new files
 
 Now we use `freebayes` to look for SNPs.  `freebayes` calculates the number of reference and alternate alleles at each position in the genome and genotype likelihoods.
 
-We first call `bamaddrg` to add Read Groups to our bam files, enabling us to call SNPs separately for the two genotypes.  The output from `bamaddrg` is a merged bam file, which we then index and use as input for `freebayes`.
+We first call `samtools addreplacerg` to add Read Groups to our bam files, enabling us to call SNPs separately for the two genotypes.  The output from `samtools addreplacerg` is a bam file with the Read Groups, we will then merge the two bam files, index the merged file and use it as input for `freebayes`.
 
-    bamaddrg -b IMB211_rmdup.bam -s IMB211 -r IMB211 \
-    -b R500_rmdup.bam -s R500 -r R500 > combined_IMB211_R500.bam
+    samtools addreplacerg -o rg_IMB211_rmdup.bam -r "ID:IMB211" -r "SM:IMB211" IMB211_rmdup.bam
+    
+    samtools addreplacerg -o rg_R500_rmdup.bam -r "ID:R500" -r "SM:R500" R500_rmdup.bam
+    
+    samtools merge combined_IMB211_R500.bam rg_IMB211_rmdup.bam rg_R500_rmdup.bam
     
     samtools index combined_IMB211_R500.bam
     
