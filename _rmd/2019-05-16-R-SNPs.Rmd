@@ -59,6 +59,7 @@ Now with the headers attached the file makes a bit more sense.  Detailed informa
 * INFO lots of INFO.  We can learn about these from the beginning of the vcf file (See below)
 * FORMAT tells is the identity of the numbers in the next two fields
 * GT: The most probable genotype.  1/1 is homozygous alternate; 0/0 is homozygous reference; 0/1 is heterozygous.
+* AD: Allele Depth.  The counts of each of the observed alleles.
 * DP: Read Depth
 * RO: Reference allele observation count
 * QR: Sum of quality of the reference observations
@@ -84,13 +85,13 @@ To be able to use the SNP data in R we need to break up the data in the final tw
 
 ```{r separate, eval=FALSE}
 vcf.data <- vcf.data %>% separate(IMB211,
-                                  into = paste("IMB211",c("gt","tot.depth","ref.depth","ref.qual","alt.depth","alt.qual","gt.lik"),sep="_"), # new column names
+                                  into = paste("IMB211",c("gt","tot.depth","allele.depth", "ref.depth","ref.qual","alt.depth","alt.qual","gt.lik"),sep="_"), # new column names
                                   sep=":", #separate on ":" 
                                   convert=TRUE #converts numeric columns to numeric
 )
 
 vcf.data <- vcf.data %>% separate(R500,
-                                  into = paste("R500",c("gt","tot.depth","ref.depth","ref.qual","alt.depth","alt.qual","gt.lik"),sep="_"), # new column names
+                                  into = paste("R500",c("gt","tot.depth","allele.depth","ref.depth","ref.qual","alt.depth","alt.qual","gt.lik"),sep="_"), # new column names
                                   sep=":", #separate on ":" 
                                   convert=TRUE #converts numeric columns to numeric
                                   
@@ -110,7 +111,7 @@ We only want to keep positions that have a reasonable probabilty of being correc
 
 __a__ At a quality of 40 what is the probability that the SNP call is wrong?
 
-__b__Subset the data to only keep positions where the quality score is 40 or greater.  
+__b__Subset the data to only keep positions where the quality score is 40 or greater.  Put the retained SNPs in an object called `vcf.data.good`
 
 __c__What percentage of SNPs were retained?
 

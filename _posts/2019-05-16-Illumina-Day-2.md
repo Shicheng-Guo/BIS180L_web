@@ -14,7 +14,7 @@ In the last lab period we learned about Illumina reads and fastq files.  We perf
 
 Today we will pick up where we left off.  Our goals are to:
 
-1. Learn about sequence alignment/mapping (SAM/BAM) files.
+1. Learn about sequence alignment/mapping [(SAM/BAM) files](http://www.htslib.org/doc/sam.html).
 2. Examine mapped reads in [IGV--the integrative genomics viewer](https://www.broadinstitute.org/igv/).  This will allow us to see how reads are placed on the genome during the mapping process.
 3. Find polymorphic positions in our sequencing data.
 
@@ -64,9 +64,10 @@ Let's take a look at `accepted_hits_A01.bam`.  For this we use the `samtools vie
 | 04 | Position on the template where the read starts |
 | 05 | Phred based mapping quality for the read |
 | 06 | CIGAR string providing information about the mapping |
+| 07 - 09 | These give information about the "mate pair" if paired end sequencing was done |
 | 10 | Sequence |
 | 11 | Phred+33 quality of sequence |
-| Additional fields | Varies; see SAM page for more info |
+| Additional fields | Varies; see [SAM page](http://www.htslib.org/doc/sam.html) for more info |
 
 `samtools` has many additional functions.  These include
 
@@ -167,7 +168,7 @@ We first call `samtools addreplacerg` to add Read Groups to our bam files, enabl
     
     freebayes --fasta-reference ../Brapa_reference/BrapaV1.5_chrom_only.fa combined_IMB211_R500.bam  > IMB211_R500.vcf 
 
-We will examine the VCF file in the second part of todays lab.
+freebayes will take ~ 35 minutes to run.  If you would prefer not to wait, you can go ahead to the [second part of today's lab]({{site.baseurl}}/2019/05/16/R-SNPs) where you can download my copy of the VCF file.
 
 ## Two other popular SNP callers:
 
