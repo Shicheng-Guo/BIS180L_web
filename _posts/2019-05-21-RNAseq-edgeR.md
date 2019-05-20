@@ -82,7 +82,7 @@ readCounts <- featureCounts(
 __Exercise 1__  
 Read the help file for `featureCounts()`.  Be sure to look at the section "Value" where it describes the output.  
 __a__ Provide a line of code that displays the counts of the first 6 genes.  (It is not very interesting because the first genes in the file are on chromosome A03 (strange numbering...) and our bam file only has counts from A01...  )  
-__b__ The gene `Bra011030` is on chromosome A01.  What are its read counts in the two files?  (Show code)
+__b__ The gene `Bra011030` is on chromosome A01.  What are its read counts in the two files?  (Show code)  
 __c__ What percentage of reads (from each file) were assigned to a gene?  What percentage were unassigned because they were not located in a gene (aka "Feature")?  
 __d__ What are 2 possible reasons why there are reads that cannot be assigned to a gene?  
 
