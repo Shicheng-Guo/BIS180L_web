@@ -1,7 +1,7 @@
 RNAseq: Differential Expression
 ========================================================
 author: Julin Maloof
-date: May 22, 2018
+date: May 21, 2019
 autosize: true
 incremental: true
 
@@ -19,7 +19,7 @@ Using RNAseq to quantify expression
 * In theory: simple.  
 * Genes expressed at higher levels in the plants should generate more sequence fragments.
 * Therefore we can count the number of reads mapping to a particular gene.
-  - If IMB211 has more counts than R500 for a particlar gene, that may indicate higher expression
+  - If IMB211 has more counts than R500 for a particular gene, that may indicate higher expression
 
 
 Challenges
@@ -79,7 +79,7 @@ mutate(trt=str_extract(sample,"NDP|DP")) %>%
 mutate(group=str_c(gt,trt,sep = "_"))
 sample.description <- sample.description %>%
 mutate(gt=factor(gt),
-trt=factor(trt,levels = c("NDP","DP"))) # setting the levels in this way makes "NDP" the refernce
+trt=factor(trt,levels = c("NDP","DP"))) # setting the levels in this way makes "NDP" the reference
 design <- model.matrix(~gt+trt,data = sample.description)
 rownames(design) <- sample.description$sample %>% str_replace(fixed("_INTERNODE.1_matched.merged.fq.bam"),"")
 kable(design)
