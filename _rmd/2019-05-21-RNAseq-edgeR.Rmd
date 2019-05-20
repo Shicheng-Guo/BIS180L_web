@@ -16,7 +16,7 @@ knitr::opts_chunk$set(cache=TRUE)
 
 ## Background
 
-Differential expression analysis is a powerful tool in genomics.  The goal is to detect transcripts that are present at different levels in different samples.  Samples could be diseased versus healthy tissue, individuals treated with a drug versus controls, individuals from different populations, etc.  The determination and subsequent analysis of genes that are differentially expresseed can give insight into the biological processes affected by the disease/treatement/population, or whatever factor(s) are being used to contrast the samples. 
+Differential expression analysis is a powerful tool in genomics.  The goal is to detect transcripts that are present at different levels in different samples.  Samples could be diseased versus healthy tissue, individuals treated with a drug versus controls, individuals from different populations, etc.  The determination and subsequent analysis of genes that are differentially expressed can give insight into the biological processes affected by the disease/treatment/population, or whatever factor(s) are being used to contrast the samples. 
 
 The principle behind determining which genes are differentially expressed is similar to that for other hypothesis-based tests such as ANOVA or t-tests.  We will call genes differentially expressed if the mean expression between treatments is larger than would be expected by chance given the amount of variance among replicates within a treatment type.  However there are several important issues to consider: the first is multiple testing.  Imagine doing a t-test for differential expression on 30,000 genes.  At p < .05 you would expect 5% (600!) of the genes to be called as significantly different by random chance.  This is known as the multiple testing problem and the p-values must be adjusted to compensate for the large number of tests.  Second there are typically very few replicates per treatment reducing power; thankfully techniques have been developed to “share” information between genes to somewhat deal with this issue.  Third, the methods developed for microarray analysis are not directly applicable. Log-transformed microarray data can be effectively modeled as normally distributed.  In contrast RNAseq data is count data and therefore has a different (non-normal) numerical distribution. Consequently statistical models require a different error distribution.
 
@@ -26,7 +26,7 @@ It is important to consider an appropriate measure of expression and normalizati
 
 Regarding normalization between samples, genes with very high expression levels can skew RPKM type normalization.  Consider two samples where gene expression is the same except that in the first sample RUBISCO is expressed at a very high level, taking up half of the reads.  In the second sample RUBISCO is expressed at a lower level, accounting for 25% of the reads.  By RPKM all non RUBISCO genes will appear to be expressed more highly in the second sample because RUBISO “takes up” fewer reads.  Methods such as [TMM normalization](http://genomebiology.com/2010/11/3/R25) can account for this.
 
-Two packages that effectively deal with the above issues are [DESeq](http://bioconductor.org/packages/release/bioc/html/DESeq.html) and [edgeR](http://www.bioconductor.org/packages/release/bioc/html/edgeR.html), both available through [Bioconductor](http://bioconductor.org/).  Both are recommened.  We will use edgeR for today's exercises.  
+Two packages that effectively deal with the above issues are [DESeq](http://bioconductor.org/packages/release/bioc/html/DESeq.html) and [edgeR](http://www.bioconductor.org/packages/release/bioc/html/edgeR.html), both available through [Bioconductor](http://bioconductor.org/).  Both are recommend.  We will use edgeR for today's exercises.  
 
 If you are going to do your own RNAseq analyses at some later time, I __strongly recommend__ that you thoroughly study the [edgeR user manual](http://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf) available both at the [link](http://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf) and by typing `edgeRUsersGuide()` in R (after you have loaded the library).
 
@@ -194,12 +194,18 @@ counts.data <- counts.data[rowSums(counts.data[,-1] > 10) >= 3,]
 ```
 
 __Exercise 5:__  
-We expect that read counts, especially from biological replicates, will be highly correlated.  Check to see if this is the case using the `pairs()` function and the `cor()` function.  Explain what each of these functions does and comment on the results.  __Important Hint:__ _`pairs` is slow on the full dataset.  Try it on the first 1,000 genes.  Do you need to transform to make the pairs output more meaningful?_
+We expect that read counts, especially from biological replicates, will be highly correlated.  Check to see if this is the case using the `pairs()` function and the `cor()` function.  Explain what each of these functions does and comment on the results.  
 
-_Hint 2: remember that you will need to remove the "gene_id" column before using the data in `pairs` or `cor`_
+__Important Hint:__ _`pairs` is slow on the full dataset.  Try it on the first 1,000 genes.  Do you need to transform to make the pairs output more meaningful?_
+
+__Important Hint2:__ _it will be hard to see the pairs plot in the Rstudio inline display.  Once you have the plot, click the expand to full window icon to display the plot in its own window.  Alternatively, instead of using all columns of data, try it on a smaller number of columns_
+
+__Hint 3:__ _remember that you will need to remove the "gene_id" column before using the data in `pairs` or `cor`_
 
 ```{r Ex 5, echo=FALSE,eval=FALSE}
 pairs(log10(counts.data[1:1000,-1]))
+pairs(log10(counts.data[1:1000,2:7]))
+
 cor(counts.data[,-1])
 ```
 
@@ -353,7 +359,7 @@ In the resulting table,
 
 * logFC is the log2 fold-change in expression between R500 and IMB211.  So a logFC of 2 indicates that the gene is expressed 4 times higher in R500; a logFC of -3 indicates that it is 8 times lower in R500.
 * logCPM is the average expression across all samples.
-* LR is the likelihood ratio: L(Full model) / L (small model) .
+* LR is the likelihood ratio: L(Full model) / L(small model) .
 * PValue: unadjusted p-value
 * FDR: False discovery rate (p-value adjusted for multiple testing...this is the one to use)
 
@@ -400,7 +406,7 @@ plotDE(rownames(DEgene.gt)[1:9],dge.data,sample.description)
 
 __Exercise 8__  
 __a__.  Find all genes differentially expressed in response to the DP treatment (at a FDR < 0.01).  
-__b__.  How many genes are differentially expressed?
+__b__.  How many genes are differentially expressed?  
 __c__.  Make a plot of the top 9
 ```{r Ex8, eval=FALSE, echo=FALSE}
 trt.lrt <- glmLRT(fit,coef="trtDP")

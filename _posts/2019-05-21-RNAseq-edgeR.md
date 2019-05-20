@@ -14,7 +14,7 @@ tags:
 
 ## Background
 
-Differential expression analysis is a powerful tool in genomics.  The goal is to detect transcripts that are present at different levels in different samples.  Samples could be diseased versus healthy tissue, individuals treated with a drug versus controls, individuals from different populations, etc.  The determination and subsequent analysis of genes that are differentially expresseed can give insight into the biological processes affected by the disease/treatement/population, or whatever factor(s) are being used to contrast the samples. 
+Differential expression analysis is a powerful tool in genomics.  The goal is to detect transcripts that are present at different levels in different samples.  Samples could be diseased versus healthy tissue, individuals treated with a drug versus controls, individuals from different populations, etc.  The determination and subsequent analysis of genes that are differentially expressed can give insight into the biological processes affected by the disease/treatment/population, or whatever factor(s) are being used to contrast the samples. 
 
 The principle behind determining which genes are differentially expressed is similar to that for other hypothesis-based tests such as ANOVA or t-tests.  We will call genes differentially expressed if the mean expression between treatments is larger than would be expected by chance given the amount of variance among replicates within a treatment type.  However there are several important issues to consider: the first is multiple testing.  Imagine doing a t-test for differential expression on 30,000 genes.  At p < .05 you would expect 5% (600!) of the genes to be called as significantly different by random chance.  This is known as the multiple testing problem and the p-values must be adjusted to compensate for the large number of tests.  Second there are typically very few replicates per treatment reducing power; thankfully techniques have been developed to “share” information between genes to somewhat deal with this issue.  Third, the methods developed for microarray analysis are not directly applicable. Log-transformed microarray data can be effectively modeled as normally distributed.  In contrast RNAseq data is count data and therefore has a different (non-normal) numerical distribution. Consequently statistical models require a different error distribution.
 
@@ -24,7 +24,7 @@ It is important to consider an appropriate measure of expression and normalizati
 
 Regarding normalization between samples, genes with very high expression levels can skew RPKM type normalization.  Consider two samples where gene expression is the same except that in the first sample RUBISCO is expressed at a very high level, taking up half of the reads.  In the second sample RUBISCO is expressed at a lower level, accounting for 25% of the reads.  By RPKM all non RUBISCO genes will appear to be expressed more highly in the second sample because RUBISO “takes up” fewer reads.  Methods such as [TMM normalization](http://genomebiology.com/2010/11/3/R25) can account for this.
 
-Two packages that effectively deal with the above issues are [DESeq](http://bioconductor.org/packages/release/bioc/html/DESeq.html) and [edgeR](http://www.bioconductor.org/packages/release/bioc/html/edgeR.html), both available through [Bioconductor](http://bioconductor.org/).  Both are recommened.  We will use edgeR for today's exercises.  
+Two packages that effectively deal with the above issues are [DESeq](http://bioconductor.org/packages/release/bioc/html/DESeq.html) and [edgeR](http://www.bioconductor.org/packages/release/bioc/html/edgeR.html), both available through [Bioconductor](http://bioconductor.org/).  Both are recommend.  We will use edgeR for today's exercises.  
 
 If you are going to do your own RNAseq analyses at some later time, I __strongly recommend__ that you thoroughly study the [edgeR user manual](http://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf) available both at the [link](http://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf) and by typing `edgeRUsersGuide()` in R (after you have loaded the library).
 
@@ -119,18 +119,18 @@ __b__. Check to make sure that the data looks as expected.  (What do you expect 
 ## Parsed with column specification:
 ## cols(
 ##   gene_id = col_character(),
-##   IMB211_DP_1_INTERNODE.1_matched.merged.fq.bam = col_integer(),
-##   IMB211_DP_2_INTERNODE.1_matched.merged.fq.bam = col_integer(),
-##   IMB211_DP_3_INTERNODE.1_matched.merged.fq.bam = col_integer(),
-##   IMB211_NDP_1_INTERNODE.1_matched.merged.fq.bam = col_integer(),
-##   IMB211_NDP_2_INTERNODE.1_matched.merged.fq.bam = col_integer(),
-##   IMB211_NDP_3_INTERNODE.1_matched.merged.fq.bam = col_integer(),
-##   R500_DP_1_INTERNODE.1_matched.merged.fq.bam = col_integer(),
-##   R500_DP_2_INTERNODE.1_matched.merged.fq.bam = col_integer(),
-##   R500_DP_3_INTERNODE.1_matched.merged.fq.bam = col_integer(),
-##   R500_NDP_1_INTERNODE.1_matched.merged.fq.bam = col_integer(),
-##   R500_NDP_2_INTERNODE.1_matched.merged.fq.bam = col_integer(),
-##   R500_NDP_3_INTERNODE.1_matched.merged.fq.bam = col_integer()
+##   IMB211_DP_1_INTERNODE.1_matched.merged.fq.bam = col_double(),
+##   IMB211_DP_2_INTERNODE.1_matched.merged.fq.bam = col_double(),
+##   IMB211_DP_3_INTERNODE.1_matched.merged.fq.bam = col_double(),
+##   IMB211_NDP_1_INTERNODE.1_matched.merged.fq.bam = col_double(),
+##   IMB211_NDP_2_INTERNODE.1_matched.merged.fq.bam = col_double(),
+##   IMB211_NDP_3_INTERNODE.1_matched.merged.fq.bam = col_double(),
+##   R500_DP_1_INTERNODE.1_matched.merged.fq.bam = col_double(),
+##   R500_DP_2_INTERNODE.1_matched.merged.fq.bam = col_double(),
+##   R500_DP_3_INTERNODE.1_matched.merged.fq.bam = col_double(),
+##   R500_NDP_1_INTERNODE.1_matched.merged.fq.bam = col_double(),
+##   R500_NDP_2_INTERNODE.1_matched.merged.fq.bam = col_double(),
+##   R500_NDP_3_INTERNODE.1_matched.merged.fq.bam = col_double()
 ## )
 ```
 
@@ -177,9 +177,13 @@ counts.data <- counts.data[rowSums(counts.data[,-1] > 10) >= 3,]
 ```
 
 __Exercise 5:__  
-We expect that read counts, especially from biological replicates, will be highly correlated.  Check to see if this is the case using the `pairs()` function and the `cor()` function.  Explain what each of these functions does and comment on the results.  __Important Hint:__ _`pairs` is slow on the full dataset.  Try it on the first 1,000 genes.  Do you need to transform to make the pairs output more meaningful?_
+We expect that read counts, especially from biological replicates, will be highly correlated.  Check to see if this is the case using the `pairs()` function and the `cor()` function.  Explain what each of these functions does and comment on the results.  
 
-_Hint 2: remember that you will need to remove the "gene_id" column before using the data in `pairs` or `cor`_
+__Important Hint:__ _`pairs` is slow on the full dataset.  Try it on the first 1,000 genes.  Do you need to transform to make the pairs output more meaningful?_
+
+__Important Hint2:__ _it will be hard to see the pairs plot in the Rstudio inline display.  Once you have the plot, click the expand to full window icon to display the plot in its own window.  Alternatively, instead of using all columns of data, try it on a smaller number of columns_
+
+__Hint 3:__ _remember that you will need to remove the "gene_id" column before using the data in `pairs` or `cor`_
 
 
 
@@ -367,23 +371,23 @@ topTags(gt.lrt) # the top 10 most differentially expressed genes
 ```
 ## Coefficient:  gtR500 
 ##                logFC   logCPM       LR        PValue           FDR
-## Bra033098 -12.153106 6.068467 998.6286 3.567444e-219 8.573994e-215
-## Bra023495 -11.889170 5.789511 974.7529 5.522556e-214 6.636456e-210
-## Bra016271 -14.250692 8.143807 891.5845 6.625961e-196 5.308278e-192
-## Bra020631 -11.318306 5.202817 871.9668 1.219006e-191 7.324399e-188
-## Bra011216 -11.258770 5.129307 853.8612 1.052269e-187 5.058046e-184
-## Bra020643 -14.383989 8.280215 841.6326 4.793719e-185 1.920204e-181
-## Bra009785   7.950946 6.020666 786.7807 4.038360e-173 1.386542e-169
-## Bra011765  -7.319948 6.340366 749.1397 6.172451e-165 1.854359e-161
-## Bra026924  -8.334015 5.024615 729.7444 1.018056e-160 2.718661e-157
-## Bra029392   8.339095 6.298419 725.1631 1.009170e-159 2.425439e-156
+## Bra033098 -12.153105 6.070823 998.8289 3.227155e-219 7.756145e-215
+## Bra023495 -11.889171 5.792298 974.5077 6.243784e-214 7.503155e-210
+## Bra016271 -14.250692 8.144467 891.3678 7.385316e-196 5.916623e-192
+## Bra020631 -11.318315 5.206858 870.7722 2.216677e-191 1.331890e-187
+## Bra011216 -11.258770 5.133650 853.8519 1.057186e-187 5.081683e-184
+## Bra020643 -14.383988 8.280736 841.0553 6.399981e-185 2.563619e-181
+## Bra009785   7.950946 6.018503 786.8301 3.939704e-173 1.352669e-169
+## Bra011765  -7.319947 6.341553 749.4443 5.299422e-165 1.592079e-161
+## Bra026924  -8.334013 5.028260 729.9894 9.005222e-161 2.404795e-157
+## Bra029392   8.339064 6.296476 723.1411 2.777440e-159 6.675300e-156
 ```
 
 In the resulting table,
 
 * logFC is the log2 fold-change in expression between R500 and IMB211.  So a logFC of 2 indicates that the gene is expressed 4 times higher in R500; a logFC of -3 indicates that it is 8 times lower in R500.
 * logCPM is the average expression across all samples.
-* LR is the likelihood ratio: L(Full model) / L (small model) .
+* LR is the likelihood ratio: L(Full model) / L(small model) .
 * PValue: unadjusted p-value
 * FDR: False discovery rate (p-value adjusted for multiple testing...this is the one to use)
 
@@ -394,10 +398,10 @@ summary(decideTestsDGE(gt.lrt,p.value=0.01)) #This uses the FDR.  0.05 would be 
 ```
 
 ```
-##    [,1] 
-## -1  5487
-## 0  13562
-## 1   4985
+##        gtR500
+## Down     5487
+## NotSig  13562
+## Up       4985
 ```
 In this table, the -1 row is the number of down regulated genes in R500 relative to IMB211 and the +1 tow is the number of up regulated genes.
 
@@ -441,7 +445,7 @@ plotDE(rownames(DEgene.gt)[1:9],dge.data,sample.description)
 
 __Exercise 8__  
 __a__.  Find all genes differentially expressed in response to the DP treatment (at a FDR < 0.01).  
-__b__.  How many genes are differentially expressed?
+__b__.  How many genes are differentially expressed?  
 __c__.  Make a plot of the top 9
 
 
