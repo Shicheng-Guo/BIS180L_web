@@ -73,14 +73,14 @@ head(DEgene.trt)
 
 ```
 ## # A tibble: 6 x 6
-##          X1     logFC   logCPM        LR       PValue          FDR
-##       <chr>     <dbl>    <dbl>     <dbl>        <dbl>        <dbl>
-## 1 Bra028803 -5.043456 3.514222 132.19855 1.353792e-30 3.253703e-26
-## 2 Bra019324  4.809736 2.209125  76.43637 2.274236e-18 2.732949e-14
-## 3 Bra034565  4.081287 2.159299  68.93415 1.018068e-16 8.156082e-13
-## 4 Bra025587  4.190919 3.298713  55.04401 1.178609e-13 7.081670e-10
-## 5 Bra029946  2.280844 5.364465  47.80174 4.715743e-12 1.898675e-08
-## 6 Bra026156  1.764672 6.467797  47.50653 5.482101e-12 1.898675e-08
+##   X1        logFC logCPM    LR   PValue      FDR
+##   <chr>     <dbl>  <dbl> <dbl>    <dbl>    <dbl>
+## 1 Bra028803 -5.04   3.51 132.  1.35e-30 3.25e-26
+## 2 Bra019324  4.81   2.21  76.4 2.27e-18 2.73e-14
+## 3 Bra034565  4.08   2.16  68.9 1.02e-16 8.16e-13
+## 4 Bra025587  4.19   3.30  55.0 1.18e-13 7.08e-10
+## 5 Bra029946  2.28   5.36  47.8 4.72e-12 1.90e- 8
+## 6 Bra026156  1.76   6.47  47.5 5.48e-12 1.90e- 8
 ```
 
 ```r
@@ -90,18 +90,18 @@ head(DEgene.trt)
 
 ```
 ## # A tibble: 6 x 6
-##      GeneID     logFC   logCPM        LR       PValue          FDR
-##       <chr>     <dbl>    <dbl>     <dbl>        <dbl>        <dbl>
-## 1 Bra028803 -5.043456 3.514222 132.19855 1.353792e-30 3.253703e-26
-## 2 Bra019324  4.809736 2.209125  76.43637 2.274236e-18 2.732949e-14
-## 3 Bra034565  4.081287 2.159299  68.93415 1.018068e-16 8.156082e-13
-## 4 Bra025587  4.190919 3.298713  55.04401 1.178609e-13 7.081670e-10
-## 5 Bra029946  2.280844 5.364465  47.80174 4.715743e-12 1.898675e-08
-## 6 Bra026156  1.764672 6.467797  47.50653 5.482101e-12 1.898675e-08
+##   GeneID    logFC logCPM    LR   PValue      FDR
+##   <chr>     <dbl>  <dbl> <dbl>    <dbl>    <dbl>
+## 1 Bra028803 -5.04   3.51 132.  1.35e-30 3.25e-26
+## 2 Bra019324  4.81   2.21  76.4 2.27e-18 2.73e-14
+## 3 Bra034565  4.08   2.16  68.9 1.02e-16 8.16e-13
+## 4 Bra025587  4.19   3.30  55.0 1.18e-13 7.08e-10
+## 5 Bra029946  2.28   5.36  47.8 4.72e-12 1.90e- 8
+## 6 Bra026156  1.76   6.47  47.5 5.48e-12 1.90e- 8
 ```
 
 
-__a.__ Load the gene descriptions; pay attention to the "col_names" argument.  What is appropriate here?  Use one of the `join()` funtions (which one?) to add gene descriptions for the genes found to be regulated by the DP treatment.  Output a table of the top 10 genes that includes the output from edgeR and the descriptions.
+__a.__ Load the gene descriptions; pay attention to the "col_names" argument.  What is appropriate here?  Use one of the `join()` functions (which one?) to add gene descriptions for the genes found to be regulated by the DP treatment.  Output a table of the top 10 genes that includes the output from edgeR and the descriptions.
 
 __b.__ Repeat this for  genes with a genotype x trt interaction.
 
@@ -312,7 +312,7 @@ target.promoters <- promoters[DEgene.interaction.match]
 
 ### Look for over-represented motifs
 
-I have written a function to wrap up the required code.  Paste this into R to create the function
+I have written a function to wrap up the required code.  Copy and paste this into R to create the function
 
 ```r
 #create a function to summarize the results and test for significance

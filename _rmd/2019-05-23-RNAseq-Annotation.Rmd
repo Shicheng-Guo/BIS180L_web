@@ -313,7 +313,7 @@ target.promoters <- promoters[DEgene.interaction.match]
 
 ### Look for over-represented motifs
 
-I have written a function to wrap up the required code.  Paste this into R to create the function
+I have written a function to wrap up the required code.  Copy and paste this into R to create the function
 ```{r motif_enrich, eval=FALSE}
 #create a function to summarize the results and test for significance
 motifEnrichment <- function(target.promoters,universe.promoters,all.counts=F,motifs=motifsSS) {
