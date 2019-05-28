@@ -31,7 +31,7 @@ An intuitive example is clustering the distances between known geographic locati
 4. Merge the two closest points into one cluster (merge BOS and NY in our example data set)
 5. Repeat steps 3 and 4 until all the items belong to a single large cluster
 
-A special note: all the clusters at each merge take on the shortest distance between any one member of the cluster and the remaining clusters. For example, the distance between BOS and DC is 429 miles, but the distance between NY and DC is 233. Because BOS/NY are considered one cluster after our first round, their cluster distance to DC is 233. All three of these cities are then merged into one cluster DC/NY/BOS.  (Alternative approached could be used, such as taking the mean distance or the longest distance).
+A special note: By default all the clusters at each merge take on the largest distance between any one member of the cluster and the remaining clusters. For example, the distance between BOS and DC is 429 miles, but the distance between NY and DC is 233. Because BOS/NY are considered one cluster after our first round, their cluster distance to DC is 429 All three of these cities are then merged into one cluster DC/NY/BOS.  (Alternative approaches could be used, such as taking the mean distance or the shortest distance).
 
 Change into your Assignment_7 directory.
 
