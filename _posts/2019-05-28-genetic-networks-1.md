@@ -83,7 +83,7 @@ cities_hclust <- cities %>% as.dist() %>% hclust()
 ggdendrogram(cities_hclust)
 ```
 
-![plot of chunk unnamed-chunk-26]({{ site.baseurl }}/figure/unnamed-chunk-26-1.png)
+![plot of chunk unnamed-chunk-17]({{ site.baseurl }}/figure/unnamed-chunk-17-1.png)
 
 
 **Exercise 1:**
@@ -113,6 +113,14 @@ wget http://jnmaloof.github.io/BIS180L_web/data/voom_transform_brassica.csv
 ```r
 # make sure to change the path to where you downloaded this using wget
 DE_genes <- read_csv("../data/DEgenes_GxE.csv")
+dim(DE_genes)
+```
+
+```
+## [1] 255   6
+```
+
+```r
 head(DE_genes) #check out the data
 ```
 
@@ -128,14 +136,15 @@ head(DE_genes) #check out the data
 ## 6 Bra013164  4.10   9.33  47.9 4.38e-12 1.76e- 8
 ```
 
+
 ```r
 # make sure to change the path to where you downloaded this using wget
 brass_voom_E <- read_csv("../data/voom_transform_brassica.csv")
-head(brass_voom_E)
+head(brass_voom_E[,1:6])
 ```
 
 ```
-## # A tibble: 6 x 49
+## # A tibble: 6 x 6
 ##   GeneID IMB211_DP_1_INT… IMB211_DP_1_LEAF IMB211_DP_1_PET…
 ##   <chr>             <dbl>            <dbl>            <dbl>
 ## 1 Bra00…            1.86             -3.43             4.22
@@ -144,38 +153,26 @@ head(brass_voom_E)
 ## 4 Bra00…            5.90              4.85             5.75
 ## 5 Bra00…            4.35              3.20             4.73
 ## 6 Bra00…            1.18              1.53             2.70
-## # … with 45 more variables: IMB211_DP_1_SILIQUE <dbl>,
-## #   IMB211_DP_2_INTERNODE <dbl>, IMB211_DP_2_LEAF <dbl>,
-## #   IMB211_DP_2_PETIOLE <dbl>, IMB211_DP_2_SILIQUE <dbl>,
-## #   IMB211_DP_3_INTERNODE <dbl>, IMB211_DP_3_LEAF <dbl>,
-## #   IMB211_DP_3_PETIOLE <dbl>, IMB211_DP_3_SILIQUE <dbl>,
-## #   IMB211_NDP_1_INTERNODE <dbl>, IMB211_NDP_1_LEAF <dbl>,
-## #   IMB211_NDP_1_PETIOLE <dbl>, IMB211_NDP_1_SILIQUE <dbl>,
-## #   IMB211_NDP_2_INTERNODE <dbl>, IMB211_NDP_2_LEAF <dbl>,
-## #   IMB211_NDP_2_PETIOLE <dbl>, IMB211_NDP_2_SILIQUE <dbl>,
-## #   IMB211_NDP_3_INTERNODE <dbl>, IMB211_NDP_3_LEAF <dbl>,
-## #   IMB211_NDP_3_PETIOLE <dbl>, IMB211_NDP_3_SILIQUE <dbl>,
-## #   R500_DP_1_INTERNODE <dbl>, R500_DP_1_LEAF <dbl>,
-## #   R500_DP_1_PETIOLE <dbl>, R500_DP_1_SILIQUE <dbl>,
-## #   R500_DP_2_INTERNODE <dbl>, R500_DP_2_LEAF <dbl>,
-## #   R500_DP_2_PETIOLE <dbl>, R500_DP_2_SILIQUE <dbl>,
-## #   R500_DP_3_INTERNODE <dbl>, R500_DP_3_LEAF <dbl>,
-## #   R500_DP_3_PETIOLE <dbl>, R500_DP_3_SILIQUE <dbl>,
-## #   R500_NDP_1_INTERNODE <dbl>, R500_NDP_1_LEAF <dbl>,
-## #   R500_NDP_1_PETIOLE <dbl>, R500_NDP_1_SILIQUE <dbl>,
-## #   R500_NDP_2_INTERNODE <dbl>, R500_NDP_2_LEAF <dbl>,
-## #   R500_NDP_2_PETIOLE <dbl>, R500_NDP_2_SILIQUE <dbl>,
-## #   R500_NDP_3_INTERNODE <dbl>, R500_NDP_3_LEAF <dbl>,
-## #   R500_NDP_3_PETIOLE <dbl>, R500_NDP_3_SILIQUE <dbl>
+## # … with 2 more variables: IMB211_DP_1_SILIQUE <dbl>,
+## #   IMB211_DP_2_INTERNODE <dbl>
+```
+
+
+```r
+GxE_counts <- DE_genes %>% select(GeneID) %>% left_join(brass_voom_E) #get count data specifically for the G,xE genes
+dim(GxE_counts)
+```
+
+```
+## [1] 255  49
 ```
 
 ```r
-GxE_counts <- DE_genes %>% select(GeneID) %>% left_join(brass_voom_E) #get count data specifically for the GxE genes
-head(GxE_counts)
+head(GxE_counts[,1:6])
 ```
 
 ```
-## # A tibble: 6 x 49
+## # A tibble: 6 x 6
 ##   GeneID IMB211_DP_1_INT… IMB211_DP_1_LEAF IMB211_DP_1_PET…
 ##   <chr>             <dbl>            <dbl>            <dbl>
 ## 1 Bra01…         -3.46                1.70            0.134
@@ -184,30 +181,10 @@ head(GxE_counts)
 ## 4 Bra00…          4.05                6.09            5.10 
 ## 5 Bra01…         -0.00370            -1.84            5.38 
 ## 6 Bra01…          4.25               -3.43            2.64 
-## # … with 45 more variables: IMB211_DP_1_SILIQUE <dbl>,
-## #   IMB211_DP_2_INTERNODE <dbl>, IMB211_DP_2_LEAF <dbl>,
-## #   IMB211_DP_2_PETIOLE <dbl>, IMB211_DP_2_SILIQUE <dbl>,
-## #   IMB211_DP_3_INTERNODE <dbl>, IMB211_DP_3_LEAF <dbl>,
-## #   IMB211_DP_3_PETIOLE <dbl>, IMB211_DP_3_SILIQUE <dbl>,
-## #   IMB211_NDP_1_INTERNODE <dbl>, IMB211_NDP_1_LEAF <dbl>,
-## #   IMB211_NDP_1_PETIOLE <dbl>, IMB211_NDP_1_SILIQUE <dbl>,
-## #   IMB211_NDP_2_INTERNODE <dbl>, IMB211_NDP_2_LEAF <dbl>,
-## #   IMB211_NDP_2_PETIOLE <dbl>, IMB211_NDP_2_SILIQUE <dbl>,
-## #   IMB211_NDP_3_INTERNODE <dbl>, IMB211_NDP_3_LEAF <dbl>,
-## #   IMB211_NDP_3_PETIOLE <dbl>, IMB211_NDP_3_SILIQUE <dbl>,
-## #   R500_DP_1_INTERNODE <dbl>, R500_DP_1_LEAF <dbl>,
-## #   R500_DP_1_PETIOLE <dbl>, R500_DP_1_SILIQUE <dbl>,
-## #   R500_DP_2_INTERNODE <dbl>, R500_DP_2_LEAF <dbl>,
-## #   R500_DP_2_PETIOLE <dbl>, R500_DP_2_SILIQUE <dbl>,
-## #   R500_DP_3_INTERNODE <dbl>, R500_DP_3_LEAF <dbl>,
-## #   R500_DP_3_PETIOLE <dbl>, R500_DP_3_SILIQUE <dbl>,
-## #   R500_NDP_1_INTERNODE <dbl>, R500_NDP_1_LEAF <dbl>,
-## #   R500_NDP_1_PETIOLE <dbl>, R500_NDP_1_SILIQUE <dbl>,
-## #   R500_NDP_2_INTERNODE <dbl>, R500_NDP_2_LEAF <dbl>,
-## #   R500_NDP_2_PETIOLE <dbl>, R500_NDP_2_SILIQUE <dbl>,
-## #   R500_NDP_3_INTERNODE <dbl>, R500_NDP_3_LEAF <dbl>,
-## #   R500_NDP_3_PETIOLE <dbl>, R500_NDP_3_SILIQUE <dbl>
+## # … with 2 more variables: IMB211_DP_1_SILIQUE <dbl>,
+## #   IMB211_DP_2_INTERNODE <dbl>
 ```
+
 
 ```r
 GxE_counts <- GxE_counts %>% column_to_rownames("GeneID") %>% as.matrix() # some of the downstream steps require a data matrix
@@ -243,7 +220,7 @@ gene_hclust_row <- GxE_counts %>% dist() %>% hclust()
 ggdendrogram(gene_hclust_row)
 ```
 
-![plot of chunk unnamed-chunk-29]({{ site.baseurl }}/figure/unnamed-chunk-29-1.png)
+![plot of chunk unnamed-chunk-23]({{ site.baseurl }}/figure/unnamed-chunk-23-1.png)
 What a mess! We have clustered similar genes to one another but that are too many genes, so we are overplotted in this direction. How about if we cluster by column instead? Notice we have to transpose the data using `t()`. Also, make sure you stretch out the window so you can view it! 
 
 
@@ -263,7 +240,7 @@ plot(gene_hclust_col) #redraw the tree everytime before adding the rectangles
 rect.hclust(gene_hclust_col, k = 4, border = "red")
 ```
 
-![plot of chunk unnamed-chunk-31]({{ site.baseurl }}/figure/unnamed-chunk-31-1.png)
+![plot of chunk unnamed-chunk-25]({{ site.baseurl }}/figure/unnamed-chunk-25-1.png)
 **Exercise 3:**
 __a__ With k = 4 as one of the arguments to the rect.hclust() function, what is the largest and smallest group contained within the rectangles? 
 
@@ -303,7 +280,7 @@ fit <- pvclust(GxE_counts, method.hclust = "ward.D", method.dist = "euclidean", 
 plot(fit) # dendogram with p-values
 ```
 
-![plot of chunk unnamed-chunk-32]({{ site.baseurl }}/figure/unnamed-chunk-32-1.png)
+![plot of chunk unnamed-chunk-26]({{ site.baseurl }}/figure/unnamed-chunk-26-1.png)
 The green values are the "Bootstrap Percentage" (BP) values, indicating the percentage of bootstrap samples where that branch was observed.  Red values are the "Approximate Unbiased" (AU) values which scale the BP based on the number of samples that were taken. In both cases numbers closer to 100 provide more support. 
 
 **Exercise 4:**
@@ -338,7 +315,7 @@ head(cities) # city example
 heatmap.2(as.matrix(cities), Rowv=as.dendrogram(cities_hclust), scale="row", density.info="none", trace="none")
 ```
 
-![plot of chunk unnamed-chunk-33]({{ site.baseurl }}/figure/unnamed-chunk-33-1.png)
+![plot of chunk unnamed-chunk-27]({{ site.baseurl }}/figure/unnamed-chunk-27-1.png)
 **Exercise 5:**
 We used the scale rows option. This is necessary so that every *row* in the data set will be on the same scale when visualized in the heatmap. This is to prevent really large values somewhere in the data set dominating the heatmap signal. Remember if you still have this data set in memory you can take a look at a printed version to the terminal. Compare the distance matrix that you printed with the colors of the heat map. See the advantage of working with small test sets? Take a look at your plot of the cities heatmap and interpret what a dark red value and a light yellow value in the heatmap would mean in geographic distance. Provide an example of of each in your explanation.
 

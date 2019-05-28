@@ -100,15 +100,23 @@ wget http://jnmaloof.github.io/BIS180L_web/data/voom_transform_brassica.csv
 ```{r message=FALSE, warning=FALSE} 
 # make sure to change the path to where you downloaded this using wget
 DE_genes <- read_csv("../data/DEgenes_GxE.csv")
+dim(DE_genes)
 head(DE_genes) #check out the data
+```
 
+```{r message=FALSE, warning=FALSE}
 # make sure to change the path to where you downloaded this using wget
 brass_voom_E <- read_csv("../data/voom_transform_brassica.csv")
-head(brass_voom_E)
+head(brass_voom_E[,1:6])
+```
 
-GxE_counts <- DE_genes %>% select(GeneID) %>% left_join(brass_voom_E) #get count data specifically for the GxE genes
-head(GxE_counts)
+```{r message=FALSE, warning=FALSE}
+GxE_counts <- DE_genes %>% select(GeneID) %>% left_join(brass_voom_E) #get count data specifically for the G,xE genes
+dim(GxE_counts)
+head(GxE_counts[,1:6])
+```
 
+```{r message=FALSE, warning=FALSE}
 GxE_counts <- GxE_counts %>% column_to_rownames("GeneID") %>% as.matrix() # some of the downstream steps require a data matrix
 head(GxE_counts[,1:6])
 ```
