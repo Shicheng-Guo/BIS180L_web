@@ -12,7 +12,7 @@ tags:
      - RNA-seq 
 ---
 
-_This lab was designed by [Cody Markelz](http://rjcmarkelz.github.io/) a former postdoc in the Maloof Lab._
+This lab was designed by [Cody Markelz](http://rjcmarkelz.github.io/) a former postdoc in the Maloof Lab.  Cody went on to co-found the _Canabis_ breeding company [Rev Genomics](https://www.revgenomics.com/).  Genetic networks are one of the methodologies Rev Genomics utilizes to accelerate their breeding program.
 
 ## Assignment repository
 Please clone your `Assignment_7` repository and place your answers in the `Assignment_7_template.Rmd` notebook file.  When you are done push the .Rmd .html files
@@ -23,7 +23,7 @@ As you learned last lab, when we are dealing with genome scale data it is hard t
 The two clustering methods that we will be exploring are hierarchical clustering and k-means. These have important similarities and differences that we will discuss in detail throughout today. The basic idea with clustering is to find how similar the rows and/or columns in the data set are based on the values contained within the data frame. You used a similar technique last lab when you produced the MDS plot of samples. This visualization of the the samples in the data set showed that samples from similar genotype and treatment combinations were plotted next to one another based on their Biological Coefficient of Variation calculated across all of the counts of genes. 
 
 ## Hierarchical Clustering
-An intuitive example is clustering the distances between know geographic locations, such as US Cities. I took this example from this [website](http://www.analytictech.com/networks/hiclus.htm).  The basic procedure is to:
+An intuitive example is clustering the distances between known geographic locations, such as US Cities. I took this example from this [website](http://www.analytictech.com/networks/hiclus.htm).  The basic procedure is to:
  
 1. Calculate a distance measure between all the row and column combinations in data set (think geographic distances between cities)
 2. Start all the items in the data out as belonging to its own cluster (every city is its own cluster)
@@ -31,7 +31,7 @@ An intuitive example is clustering the distances between know geographic locatio
 4. Merge the two closest points into one cluster (merge BOS and NY in our example data set)
 5. Repeat steps 3 and 4 until all the items belong to a single large cluster
 
-A special note: all the clusters at each merge take on the shortest distance between any one member of the cluster and the remaining clusters. For example, the distance between BOS and DC is 429 miles, but the distance between NY and DC is 233. Because BOS/NY are considered one cluster after our first round, their cluster distance to DC is 233. All three of these cities are then merged into one cluster DC/NY/BOS.  (Alternative approached could be used, such as takign the mean distance or the longest distance).
+A special note: all the clusters at each merge take on the shortest distance between any one member of the cluster and the remaining clusters. For example, the distance between BOS and DC is 429 miles, but the distance between NY and DC is 233. Because BOS/NY are considered one cluster after our first round, their cluster distance to DC is 233. All three of these cities are then merged into one cluster DC/NY/BOS.  (Alternative approached could be used, such as taking the mean distance or the longest distance).
 
 Change into your Assignment_7 directory.
 
@@ -83,7 +83,7 @@ cities_hclust <- cities %>% as.dist() %>% hclust()
 ggdendrogram(cities_hclust)
 ```
 
-![plot of chunk unnamed-chunk-19]({{ site.baseurl }}/figure/unnamed-chunk-19-1.png)
+![plot of chunk unnamed-chunk-26]({{ site.baseurl }}/figure/unnamed-chunk-26-1.png)
 
 
 **Exercise 1:**
@@ -97,7 +97,7 @@ Hint: Think Midwest.
 
 Now that we have that example out of the way, lets start using this technique on biological data. This week will be a review of all the cool data manipulation steps you have learned in past weeks. I would like to emphasize that printing dataframes (or parts of them) is a really fast way to get an idea about the data you are working with. Visual summaries like printed data, or plotting the data are often times the best way to make sure things are working the way they should be and you are more likely to catch errors. I have included visual summaries at all of the points where I would want to check on the data. 
 
-If you remember last week, you found some genes that had significant GxE in the internode tissue. We are going to be taking a look at those same genes again this week. That data set that you used only had 12 RNA-seq libraries in it. However, that subset of data was part of a much larger study that we are going to explore today. This data set consists of RNA-seq samples collected from 2 genotypes of *Brassica rapa* (R500 and IMB211) that were grown in either dense (DP) or non-dense planting (NDP) treatments. The researcher that did this stiudy, Upendra, also collected tissue from multiple tissue types including: Leaf, Petiole, Internode (you worked with this last week), and silique (the plant seed pod). There were also 3 biological replicates of each combination (Rep 1, 2, 3). If your head is spinning thinking about all of this, do not worry, data visualization will come to the rescue here in a second.
+If you remember last week, you found some genes that had significant GxE in the internode tissue. We are going to be taking a look at those same genes again this week. That data set that you used only had 12 RNA-seq libraries in it. However, that subset of data was part of a much larger study that we are going to explore today. This data set consists of RNA-seq samples collected from 2 genotypes of *Brassica rapa* (R500 and IMB211) that were grown in either dense (DP) or non-dense planting (NDP) treatments. The researcher that did this study, Upendra, also collected tissue from multiple tissue types including: Leaf, Petiole, Internode (you worked with this last week), and silique (the plant seed pod). There were also 3 biological replicates of each combination (Rep 1, 2, 3). If your head is spinning thinking about all of this, do not worry, data visualization will come to the rescue here in a second.
 
 Remember last week when we were concerned with what distribution the RNA-seq count data was coming from so that we could have a good statistical model of it? Well, if we want to perform good clustering we also need to think about this because most of the simplest clustering assumes data to be from a normal distribution. I have transformed the RNAseq data to be normally distributed for you, but if you every need to do it yourself you can do so with the function `voom` from the `limma` package.  
 
@@ -136,15 +136,15 @@ head(brass_voom_E)
 
 ```
 ## # A tibble: 6 x 49
-##   GeneID    IMB211_DP_1_INTERNODE IMB211_DP_1_LEAF IMB211_DP_1_PETIOLE
-##   <chr>                     <dbl>            <dbl>               <dbl>
-## 1 Bra000002                 1.86             -3.43                4.22
-## 2 Bra000003                 5.37              6.35                6.52
-## 3 Bra000004                 0.624             2.00                1.99
-## 4 Bra000005                 5.90              4.85                5.75
-## 5 Bra000006                 4.35              3.20                4.73
-## 6 Bra000007                 1.18              1.53                2.70
-## # ... with 45 more variables: IMB211_DP_1_SILIQUE <dbl>,
+##   GeneID IMB211_DP_1_INT… IMB211_DP_1_LEAF IMB211_DP_1_PET…
+##   <chr>             <dbl>            <dbl>            <dbl>
+## 1 Bra00…            1.86             -3.43             4.22
+## 2 Bra00…            5.37              6.35             6.52
+## 3 Bra00…            0.624             2.00             1.99
+## 4 Bra00…            5.90              4.85             5.75
+## 5 Bra00…            4.35              3.20             4.73
+## 6 Bra00…            1.18              1.53             2.70
+## # … with 45 more variables: IMB211_DP_1_SILIQUE <dbl>,
 ## #   IMB211_DP_2_INTERNODE <dbl>, IMB211_DP_2_LEAF <dbl>,
 ## #   IMB211_DP_2_PETIOLE <dbl>, IMB211_DP_2_SILIQUE <dbl>,
 ## #   IMB211_DP_3_INTERNODE <dbl>, IMB211_DP_3_LEAF <dbl>,
@@ -176,15 +176,15 @@ head(GxE_counts)
 
 ```
 ## # A tibble: 6 x 49
-##   GeneID    IMB211_DP_1_INTERNODE IMB211_DP_1_LEAF IMB211_DP_1_PETIOLE
-##   <chr>                     <dbl>            <dbl>               <dbl>
-## 1 Bra010821              -3.46                1.70               0.134
-## 2 Bra033034               8.32               -3.43              -1.24 
-## 3 Bra035334               6.01                2.62               2.81 
-## 4 Bra003598               4.05                6.09               5.10 
-## 5 Bra016182              -0.00370            -1.84               5.38 
-## 6 Bra013164               4.25               -3.43               2.64 
-## # ... with 45 more variables: IMB211_DP_1_SILIQUE <dbl>,
+##   GeneID IMB211_DP_1_INT… IMB211_DP_1_LEAF IMB211_DP_1_PET…
+##   <chr>             <dbl>            <dbl>            <dbl>
+## 1 Bra01…         -3.46                1.70            0.134
+## 2 Bra03…          8.32               -3.43           -1.24 
+## 3 Bra03…          6.01                2.62            2.81 
+## 4 Bra00…          4.05                6.09            5.10 
+## 5 Bra01…         -0.00370            -1.84            5.38 
+## 6 Bra01…          4.25               -3.43            2.64 
+## # … with 45 more variables: IMB211_DP_1_SILIQUE <dbl>,
 ## #   IMB211_DP_2_INTERNODE <dbl>, IMB211_DP_2_LEAF <dbl>,
 ## #   IMB211_DP_2_PETIOLE <dbl>, IMB211_DP_2_SILIQUE <dbl>,
 ## #   IMB211_DP_3_INTERNODE <dbl>, IMB211_DP_3_LEAF <dbl>,
@@ -243,14 +243,14 @@ gene_hclust_row <- GxE_counts %>% dist() %>% hclust()
 ggdendrogram(gene_hclust_row)
 ```
 
-![plot of chunk unnamed-chunk-22]({{ site.baseurl }}/figure/unnamed-chunk-22-1.png)
+![plot of chunk unnamed-chunk-29]({{ site.baseurl }}/figure/unnamed-chunk-29-1.png)
 What a mess! We have clustered similar genes to one another but that are too many genes, so we are overplotted in this direction. How about if we cluster by column instead? Notice we have to transpose the data using `t()`. Also, make sure you stretch out the window so you can view it! 
 
 
 **Exercise 2:**
 What is the general pattern in the h-clustering data? 
 Using what you learned from the city example, what is the subcluster that appears to be very different than the rest of the samples? 
-*Hint: You may need to plot this yourself and stretch it out if the rendering on the website compresses the output.  In your .Rmd file you can click on the left icon above the plot to display it in its own windows*
+*Hint: You may need to plot this yourself and stretch it out if the rendering in R studio compresses the output.  In your .Rmd file you can click on the left icon above the plot to display it in its own windows*
 
 We have obtained a visual summary using h-clustering. Now what? We can go a little further and start to define some important sub-clusters within our tree. We can do this using the following function. Once again make sure you plot it so you can stretch the axes. 
 
@@ -263,7 +263,7 @@ plot(gene_hclust_col) #redraw the tree everytime before adding the rectangles
 rect.hclust(gene_hclust_col, k = 4, border = "red")
 ```
 
-![plot of chunk unnamed-chunk-24]({{ site.baseurl }}/figure/unnamed-chunk-24-1.png)
+![plot of chunk unnamed-chunk-31]({{ site.baseurl }}/figure/unnamed-chunk-31-1.png)
 **Exercise 3:**
 __a__ With k = 4 as one of the arguments to the rect.hclust() function, what is the largest and smallest group contained within the rectangles? 
 
@@ -303,8 +303,8 @@ fit <- pvclust(GxE_counts, method.hclust = "ward.D", method.dist = "euclidean", 
 plot(fit) # dendogram with p-values
 ```
 
-![plot of chunk unnamed-chunk-25]({{ site.baseurl }}/figure/unnamed-chunk-25-1.png)
-The green values are the "Bootstrap Percentage" (BP) values, indicating the percentage of bootstramp samples where that branch was observed.  Red values are the "Approximate Unbiased" (AU) values which scale the BP based on the number of samples that were taken. In both cases numbers closer to 100 provide more support. 
+![plot of chunk unnamed-chunk-32]({{ site.baseurl }}/figure/unnamed-chunk-32-1.png)
+The green values are the "Bootstrap Percentage" (BP) values, indicating the percentage of bootstrap samples where that branch was observed.  Red values are the "Approximate Unbiased" (AU) values which scale the BP based on the number of samples that were taken. In both cases numbers closer to 100 provide more support. 
 
 **Exercise 4:**
 After running the 50 bootstrap samples, make a new plot but change nboot up to 1000. In general what happens to BP and AU?
@@ -313,7 +313,7 @@ After running the 50 bootstrap samples, make a new plot but change nboot up to 1
 We will be discussing more methods for choosing the number of clusters in the k-means section. Until then, we will expand what we learned about h-clustering to do a more sophisticated visualization of the data. 
 
 ## Heatmaps
-Heatmaps are another way to visualize h-clustering results. Instead of looking at either the rows (genes) or the columns (samples) like we did with the h-clustering examples we can view the entire data matrix at once. How do we do this? We could print the matrix, but that would just be a bunch of numbers. Heatmaps take all the values within the data matrix and convert them to a color value. The human eye is really good at picking out patterns so lets convert that data matrix to a color value AND do some h-clustering. Although we can do this really easily with the heatmap() function that comes preloaded in R, there is a small library that provides some additional functionality for heatmaps. We will start with the cities example because it is small and easy to see what is going on. 
+Heatmaps are another way to visualize h-clustering results. Instead of looking at either the rows (genes) or the columns (samples) like we did with the h-clustering examples we can view the entire data matrix at once. How do we do this? We could print the matrix, but that would just be a bunch of numbers. Heatmaps take all the values within the data matrix and convert them to a color value. The human eye is really good at picking out patterns so lets convert that data matrix to a color value AND do some h-clustering. Although we can do this really easily with the heatmap() function that comes pre-loaded in R, there is a small library that provides some additional functionality for heatmaps. We will start with the cities example because it is small and easy to see what is going on. 
 
 *A general programming tip: always have little test data sets. That allows you to figure out what the functions are doing. If you understand how it works on a small scale then you will be better able to troubleshoot when scaling to large datasets.*
 
@@ -338,7 +338,7 @@ head(cities) # city example
 heatmap.2(as.matrix(cities), Rowv=as.dendrogram(cities_hclust), scale="row", density.info="none", trace="none")
 ```
 
-![plot of chunk unnamed-chunk-26]({{ site.baseurl }}/figure/unnamed-chunk-26-1.png)
+![plot of chunk unnamed-chunk-33]({{ site.baseurl }}/figure/unnamed-chunk-33-1.png)
 **Exercise 5:**
 We used the scale rows option. This is necessary so that every *row* in the data set will be on the same scale when visualized in the heatmap. This is to prevent really large values somewhere in the data set dominating the heatmap signal. Remember if you still have this data set in memory you can take a look at a printed version to the terminal. Compare the distance matrix that you printed with the colors of the heat map. See the advantage of working with small test sets? Take a look at your plot of the cities heatmap and interpret what a dark red value and a light yellow value in the heatmap would mean in geographic distance. Provide an example of of each in your explanation.
 
@@ -416,7 +416,7 @@ plot(gap, main = "Gap Statistic")
 ```
 This is also part of the cluster package that you loaded earlier. It will take a few minutes to calculate this statistic. In the mean time, check out some more information about it in the ?clusGap documentation. We could imagine that as we increase the number of k-means to estimate, we are always going to increase the fit of the data. The extreme examples of this would be if we had k = 255 for the total number of genes in the data set or k = 1. We would be able to fit the data perfectly in the k = 255 case, but what has it told us? It has not really told us anything. Just like you played with the number of k-means in Exercise 8, we can also do this computationally! We want optimize to have the fewest number of clusters that  can explain the variance in our data set.
 
-**Exercise 9:** Based on this Gap statistic plot at what number of k clusters (x-axis) do you start to see diminishing returns? To put this another way, at what value of k does k-1 and k+1 start to look the same for the first time? Or yet another way, when are you getting diminishing returns for adding more k-means? See if you can make the trade off of trying to capture a lot of variation in the data as the Gap statistic increases, but you do not want to add too many k-means because your returns diminish as you add more. Explain your answer using the plot as a guide to help you interpret the data.
+**Exercise 9:** Based on the above Gap statistic plot, at what number of k clusters (x-axis) do you start to see diminishing returns? To put this another way, at what value of k does k-1 and k+1 start to look the same for the first time? Or yet another way, when are you getting diminishing returns for adding more k-means? See if you can make the trade off of trying to capture a lot of variation in the data as the Gap statistic increases, but you do not want to add too many k-means because your returns diminish as you add more. Explain your answer using the plot as a guide to help you interpret the data.
 
 Now we can take a look at the plot again and also print to the terminal what clusGap() calculated. 
 

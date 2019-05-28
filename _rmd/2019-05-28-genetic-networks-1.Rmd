@@ -23,7 +23,7 @@ As you learned last lab, when we are dealing with genome scale data it is hard t
 The two clustering methods that we will be exploring are hierarchical clustering and k-means. These have important similarities and differences that we will discuss in detail throughout today. The basic idea with clustering is to find how similar the rows and/or columns in the data set are based on the values contained within the data frame. You used a similar technique last lab when you produced the MDS plot of samples. This visualization of the the samples in the data set showed that samples from similar genotype and treatment combinations were plotted next to one another based on their Biological Coefficient of Variation calculated across all of the counts of genes. 
 
 ## Hierarchical Clustering
-An intuitive example is clustering the distances between know geographic locations, such as US Cities. I took this example from this [website](http://www.analytictech.com/networks/hiclus.htm).  The basic procedure is to:
+An intuitive example is clustering the distances between known geographic locations, such as US Cities. I took this example from this [website](http://www.analytictech.com/networks/hiclus.htm).  The basic procedure is to:
  
 1. Calculate a distance measure between all the row and column combinations in data set (think geographic distances between cities)
 2. Start all the items in the data out as belonging to its own cluster (every city is its own cluster)
@@ -132,7 +132,7 @@ ggdendrogram(gene_hclust_col)
 **Exercise 2:**
 What is the general pattern in the h-clustering data? 
 Using what you learned from the city example, what is the subcluster that appears to be very different than the rest of the samples? 
-*Hint: You may need to plot this yourself and stretch it out if the rendering on the website compresses the output.  In your .Rmd file you can click on the left icon above the plot to display it in its own windows*
+*Hint: You may need to plot this yourself and stretch it out if the rendering in R studio compresses the output.  In your .Rmd file you can click on the left icon above the plot to display it in its own windows*
 
 We have obtained a visual summary using h-clustering. Now what? We can go a little further and start to define some important sub-clusters within our tree. We can do this using the following function. Once again make sure you plot it so you can stretch the axes. 
 
@@ -259,7 +259,7 @@ plot(gap, main = "Gap Statistic")
 ```
 This is also part of the cluster package that you loaded earlier. It will take a few minutes to calculate this statistic. In the mean time, check out some more information about it in the ?clusGap documentation. We could imagine that as we increase the number of k-means to estimate, we are always going to increase the fit of the data. The extreme examples of this would be if we had k = 255 for the total number of genes in the data set or k = 1. We would be able to fit the data perfectly in the k = 255 case, but what has it told us? It has not really told us anything. Just like you played with the number of k-means in Exercise 8, we can also do this computationally! We want optimize to have the fewest number of clusters that  can explain the variance in our data set.
 
-**Exercise 9:** Based on this Gap statistic plot at what number of k clusters (x-axis) do you start to see diminishing returns? To put this another way, at what value of k does k-1 and k+1 start to look the same for the first time? Or yet another way, when are you getting diminishing returns for adding more k-means? See if you can make the trade off of trying to capture a lot of variation in the data as the Gap statistic increases, but you do not want to add too many k-means because your returns diminish as you add more. Explain your answer using the plot as a guide to help you interpret the data.
+**Exercise 9:** Based on the above Gap statistic plot, at what number of k clusters (x-axis) do you start to see diminishing returns? To put this another way, at what value of k does k-1 and k+1 start to look the same for the first time? Or yet another way, when are you getting diminishing returns for adding more k-means? See if you can make the trade off of trying to capture a lot of variation in the data as the Gap statistic increases, but you do not want to add too many k-means because your returns diminish as you add more. Explain your answer using the plot as a guide to help you interpret the data.
 
 Now we can take a look at the plot again and also print to the terminal what clusGap() calculated. 
 
