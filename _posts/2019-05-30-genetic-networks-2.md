@@ -150,7 +150,7 @@ One problem with correlation-based networks is that the correlation coefficient 
 
 To calculate the mutual ranks we take the following steps:
 
-1. Compute the pairwise corelation coefficient for all gene pairs
+1. Compute the pairwise correlation coefficient for all gene pairs
 2. For each gene, rank its correlation coefficients from highest to lowest.
 3. Note that the ranks computes in step 2 are not necessarily symmetric.  So, for each gene pair compute the (geometric) average of ranks.
 
@@ -173,8 +173,6 @@ Load the data into R
 ```r
 library(tidyverse)
 # make sure to change the path to where you downloaded this using wget
-DE_genes <- read_csv("../data/DEgenes_GxE.csv")
-head(DE_genes) #check out the data
 
 # make sure to change the path to where you downloaded this using wget
 brass_voom_E <- read_csv("../data/voom_transform_brassica.csv")
@@ -188,13 +186,7 @@ We will use the 300 genes showing the most variance across samples in the data s
 brass_voom_E$variance <- apply(brass_voom_E[,-1],1,var)
 
 gene_exp300 <- brass_voom_E %>% filter(rank(desc(variance)) <= 300) %>% select(-variance) %>% column_to_rownames("GeneID") %>% as.matrix()
-```
 
-```
-## Warning: Setting row names on a tibble is deprecated.
-```
-
-```r
 head(gene_exp300[,1:6])
 ```
 
@@ -237,7 +229,7 @@ gene_exp5_cor
 ```
 
 
-Rank the correlations for each gene.  We will use the absolute corelation value, so + or - correlations will be treated the same.  This will lead to an __unsigned__ network.
+Rank the correlations for each gene.  We will use the absolute correlation value, so + or - correlations will be treated the same.  This will lead to an __unsigned__ network.
 
 ```r
 gene_exp5_rank <- apply(gene_exp5_cor,2,function(x) rank(-abs(x)))

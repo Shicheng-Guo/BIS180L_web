@@ -123,7 +123,7 @@ One problem with correlation-based networks is that the correlation coefficient 
 
 To calculate the mutual ranks we take the following steps:
 
-1. Compute the pairwise corelation coefficient for all gene pairs
+1. Compute the pairwise correlation coefficient for all gene pairs
 2. For each gene, rank its correlation coefficients from highest to lowest.
 3. Note that the ranks computes in step 2 are not necessarily symmetric.  So, for each gene pair compute the (geometric) average of ranks.
 
@@ -179,7 +179,7 @@ gene_exp5_cor
 ```
 
 
-Rank the correlations for each gene.  We will use the absolute corelation value, so + or - correlations will be treated the same.  This will lead to an __unsigned__ network.
+Rank the correlations for each gene.  We will use the absolute correlation value, so + or - correlations will be treated the same.  This will lead to an __unsigned__ network.
 ```{r, results='hide'}
 gene_exp5_rank <- apply(gene_exp5_cor,2,function(x) rank(-abs(x)))
 gene_exp5_rank
