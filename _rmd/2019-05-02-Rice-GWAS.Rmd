@@ -132,11 +132,13 @@ The very low p-value for Region indicates that amylose content varies significan
 * Perform an ANOVA for your trait to test if it varies significantly by population.  Show your code, the ANOVA output, and provide an interpretation.
 * Discuss: Do your results suggest a problem for GWAS?
 
-```{r Ex6a,echo=FALSE,eval=FALSE}
-tapply(X=data.pheno.mds$Alu.Tol,INDEX=data.pheno.mds$assignedPop,FUN=min,na.rm=T)
+```{r Ex7a,echo=FALSE,eval=FALSE}
+data.pheno.mds %>% group_by(assignedPop) %>%
+  summarize(mean.Aluminum_tolerance=mean(`Alu.Tol`,na.rm=T)) %>%
+  arrange(desc(mean.Aluminum_tolerance))
 ```
 
-```{r Ex6b, results='hide',eval=FALSE}
+```{r Ex7b, results='hide',eval=FALSE}
 aov2 <- aov(Alu.Tol ~ assignedPop,data=data.pheno.mds)
 summary(aov2)
 ```
