@@ -1,7 +1,7 @@
 Gene Networks 2
 ========================================================
 author: Julin Maloof
-date: May 31, 2018
+date: May 30, 2019
 autosize: true
 
 ```{r, include=FALSE}
@@ -77,11 +77,13 @@ Mutual Rank Networks
 ====================
 One problem with correlation networks is that it is hard to know what threshold to pick.  Further, correlation values can be affected by "noise" in the experiment, that may not be relevant.
 
-An alterantive (and in my hands better) approach is to use __Mutual Ranks__.  We can connect genes with the the highest correlations, regardless of their precise value.
+An alternative (and in my hands better) approach is to use __Mutual Ranks__.  We can connect genes with the the highest correlations, regardless of their precise value.
+
+[More info](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2762411/)
 
 Here, we:
 
-1. Create a pariwise correlation matrix, as above
+1. Create a pairwise correlation matrix, as above
 2. Rank the correlations from strongest to weakest
 3. Compute the pairwise geometric mean ranks
 4. Choose a rank-based cutoff to create the adjacency matrix
@@ -143,8 +145,7 @@ Correlation networks easy to make and easy to understand but have some limitatio
 * Are correlations even the right measure?
 * Directionality?
 
-More advanced methods:
+Additional method:
 ======================
 
-* Weighted Gene Correlation Networks [(WGCNA)](https://labs.genetics.ucla.edu/horvath/htdocs/CoexpressionNetwork/Rpackages/WGCNA/) (nice tutorials also Youtube videos)
-* [Mutual Rank networks](http://atted.jp/help/mr.shtml) also see [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2762411/)
+* Weighted Gene Correlation Networks.  Uses a "soft" threshold. [(WGCNA)](https://labs.genetics.ucla.edu/horvath/htdocs/CoexpressionNetwork/Rpackages/WGCNA/) (nice tutorials also YouTube videos)
