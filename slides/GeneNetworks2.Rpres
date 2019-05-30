@@ -98,9 +98,10 @@ knitr::kable(cor_mat)
 Rank Matrix
 ==============
 ```{r}
-diag(cor_mat) <- 0
+diag(cor_mat) <- NA
 rank_mat <- apply(cor_mat,2,function(x) rank(-abs(x)))
-knitr::kable(rank_mat)
+diag(rank_mat) <- NA
+knitr::kable(rank_mat, digits=0 )
 ```
 
 Average Ranks
