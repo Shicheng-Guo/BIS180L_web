@@ -1,0 +1,72 @@
+---
+title: "Microbiome Setup"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(readxl)
+```
+
+
+downloading and preprocessing reads
+
+First install SRAdb
+```{r, eval=FALSE}
+source("https://bioconductor.org/biocLite.R")
+biocLite("SRAdb")
+```
+
+get aspera-connect; makes SRA downlaods faster
+```{bash, eval=FALSE}
+brew cask install aspera-connect
+brew install sratoolkit
+```
+
+Create database if needed, set up connection
+```{r}
+library(SRAdb)
+sqlfile <- '~/SRAmetadb.sqlite'
+if(!file.exists('~/SRAmetadb.sqlite')) sqlfile <<- getSRAdbFile(destdir="~")
+sra_con <- dbConnect(SQLite(),sqlfile)
+```
+
+Get sample info by downloading table from (https://www.ncbi.nlm.nih.gov/Traces/study/?acc=SRP044745).  I am sure there is a way to get this from the SRAdb directly, but no time to figure that out right now.
+```{r}
+sinfo <- read_tsv("Microbiome_SraRunTable.txt") %>%
+  select(Sample_Name, SRA_Sample,  Run)
+sinfo
+```
+
+get additional sample info from PNAS supplemental data
+
+```{r}
+sinfo2 <- read_excel("pnas.1414592112.sd01.xlsx", sheet = "Dataset S2", skip = 1)
+sinfo2
+```
+
+filter to keep samples we want
+
+```{r}
+sinfo2 <- sinfo2 %>% 
+  filter(Cultivar %in% c("Nipponebare", "M104", "IR50")) %>% arrange(Site, Cultivar, Compartment)
+sinfo2
+```
+
+merge
+
+```{r}
+sinfo <- inner_join(sinfo, sinfo2, by=c("Sample_Name" = "SampleID"))
+sinfo
+```
+
+```{r}
+system.time({
+  for(f in sinfo$Run.x) {
+    print(f)
+    system2("prefetch", args=c( "-a '/Applications/Aspera Connect.app/Contents/Resources/ascp|/Applications/Aspera Connect.app/Contents/Resources/asperaweb_id_dsa.putty'", f))
+    system2("fastq-dump", args=c("-outdir fastqs", "--gzip", f))
+  }
+})
+```
+
