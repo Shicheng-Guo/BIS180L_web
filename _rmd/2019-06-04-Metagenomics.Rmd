@@ -70,10 +70,28 @@ cd ~/Assignments/Assignment_9_Maloof.Julin
 ```
 
 Download and unzip the data files:
-
 ```{bash, eval=FALSE}
 wget http://jnmaloof.github.io/BIS180L_web/data/MetaGenomeData.tar.gz
 tar -xvzf MetaGenomeData.tar.gz
+```
+
+We also need a reference file that has 16S sequences from different taxa, so that we can classify our reads
+```{bash, eval=FALSE}
+wget ftp://greengenes.microbio.me/greengenes_release/gg_13_5/gg_13_8_otus.tar.gz
+```
+
+now convert the reference files into a format that QIIME can use:
+```{bash, eval=FALSE}
+qiime tools import \
+  --input-path gg_13_8_otus/rep_set_aligned/97_otus.fasta \
+  --output-path 97_otus_sequences.qza \
+  --type 'FeatureData[Sequence]'
+  
+qiime tools import \
+  --input-path gg_13_8_otus/taxonomy/97_otu_taxonomy.txt \
+  --output-path 97_otus_taxonomy.qza \
+  --input-format HeaderlessTSVTaxonomyFormat \
+  --type 'FeatureData[Taxonomy]'
 ```
 
 ## Background for our Data
@@ -188,7 +206,8 @@ library(phyloseq)
 ```
 
 ```{r}
-rice <- import_b
+rice <- import_biom(BIOMfilename = "~/Assignments/Assignment_9/qiime_export/feature-table.biom",
+                    refseqfilename = "~/Assignments/Assignment_9/qiime_export/dna-sequences.fasta")
 ```
 
 
