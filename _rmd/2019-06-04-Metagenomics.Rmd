@@ -8,7 +8,6 @@ tags:
 - Metagenomics
 ---
 
-
 # Assignment 9: Metagenomics
 
 ## Background
@@ -151,6 +150,45 @@ qiime vsearch cluster-features-de-novo \
   --p-perc-identity 0.99 \
   --o-clustered-table Data/RiceTable-dn-99.qza \
   --o-clustered-sequences Data/RiceRep-seqs-dn-99.qza
+```
+
+
+## Export data in a format that can be read by R phyloseq
+
+We have to issue a separate table for each data type that we want to export
+```{bash, eval=FALSE}
+ # table of OTUs
+qiime tools export \
+  --input-path Data/RiceTable-dn-99.qza \
+  --output-path qiime_export
+
+# sequences
+qiime tools export \
+  --input-path Data/RiceRep-seqs-dn-99.qza \
+  --output-path qiime_export
+```
+
+## Import OTU table into R
+
+We will use the R package [phyloseq](https://joey711.github.io/phyloseq/install.html) To analyze the OTU data.
+
+First, install it (only needs to be done once).
+
+In R:
+
+```{r, eval=FALSE}
+source('http://bioconductor.org/biocLite.R')
+biocLite('phyloseq')
+```
+When asked "Update all/some/none? [a/s/n]:" you can choose "n"
+
+Now bring data into R
+```{r}
+library(phyloseq)
+```
+
+```{r}
+rice <- import_b
 ```
 
 
