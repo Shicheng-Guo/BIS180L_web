@@ -390,7 +390,6 @@ __a.__   Does cultivar or location appear to have more of an influence on the cl
 
 __b.__  Which two locations are more similar to one another?  Does that make biological sense?
 
-The distance matrix generated for beta diversity can also be used to make UPGMA trees. UPGMA is a simple hierarchical clustering method and can be used to classify sampling units on the basis of pairwise similarities.  
 
 **Exercise 8:**  
 
