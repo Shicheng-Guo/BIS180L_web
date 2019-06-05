@@ -20,4 +20,4 @@ Right click on the link to download the markdown template.  Edit the markdown te
 | __May 21__          | Differential expression, GO, promoters  | See Assignment 6 in Github                         | __May 29, 5:00PM__  |
 | __May 28__          | Clustering         | See Assignment 7 template in Github                                     | __June 5th, 5:00 PM__ |
 | __May 30__          | Networks           | See Assignment 8 template in Github                                     | __June 5th, 5:00 PM__ |
-| __June 4__          | Metagenomics       | See Assignment 9 template in Github                                     | __June 6th, 5:00 PM__ | -->
+| __June 4__          | Metagenomics       | See Assignment 9 template in Github                                     | __June 6th, 5:00 PM__ | 
